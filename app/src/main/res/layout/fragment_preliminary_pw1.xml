@@ -1,0 +1,105 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.co.rajpusht.rajpusht.PreliminaryPW1Fragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACN 1 DATE"
+                android:layout_marginLeft="7dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/calender"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="-2dp"
+                android:background="#97D6B8"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on what to eat and how much during your pregnancy? "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/pw1_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="-2dp"
+                android:background="#97D6B8"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="On an average, how much does your entire household spend per month on buying foods and food items ? "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/pw1_amount"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="-2dp"
+                android:background="#97D6B8"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

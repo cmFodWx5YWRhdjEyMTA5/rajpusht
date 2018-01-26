@@ -1,0 +1,271 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view1"
+    tools:context="in.co.rajpusht.rajpusht.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/box1"
+                android:gravity="center_vertical">
+
+                <TextView
+                android:id="@+id/womenname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="9dp"
+                    android:text="Sulochana Devi"/>
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/womenname"
+                    android:layout_marginLeft="9dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="3dp"
+                    android:text="ANC Date : 10-06-2017"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@color/red"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_alignParentRight="true"
+                    android:text="PW 3"/>
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/box1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/womenname1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="9dp"
+                    android:text="Bimala Agarwal"/>
+
+                <TextView
+                    android:id="@+id/date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/womenname1"
+                    android:layout_marginLeft="9dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="3dp"
+                    android:text="ANC Date : 23-12-2017"/>
+
+                <Button
+                    android:id="@+id/pww1"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@color/green"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_alignParentRight="true"
+                    android:text="PW 1"/>
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/box1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/womenname2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="9dp"
+                    android:text="Kamla Bagri"/>
+
+                <TextView
+                    android:id="@+id/date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/womenname2"
+                    android:layout_marginLeft="9dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Delivery Date : 02-01-2018"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@color/red"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_alignParentRight="true"
+                    android:text="LM 1"/>
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/box1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/womenname4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="9dp"
+                    android:text="Aparna Devi"/>
+
+                <TextView
+                    android:id="@+id/date4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/womenname4"
+                    android:layout_marginLeft="9dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="3dp"
+                    android:text="ANC Date : 15-04-2017"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@color/red"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_alignParentRight="true"
+                    android:text="PW 4"/>
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/box1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/womenname5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="9dp"
+                    android:text="Sonam Agarwal"/>
+
+                <TextView
+                    android:id="@+id/date5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/womenname5"
+                    android:layout_marginLeft="9dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="3dp"
+                    android:text="ANC Date : 23-09-2017"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@color/red"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_alignParentRight="true"
+                    android:text="PW 2"/>
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/box1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/womenname6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="9dp"
+                    android:text="Kamla Bansal"/>
+
+                <TextView
+                    android:id="@+id/date6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/womenname6"
+                    android:layout_marginLeft="9dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Delivery Date : 07-08-2018"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@color/green"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_alignParentRight="true"
+                    android:text="YC 1"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

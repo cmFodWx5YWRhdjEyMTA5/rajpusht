@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="in.co.rajpusht.rajpusht.Pw1Fragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="100dp"
+            android:background="@color/white"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <in.co.rajpusht.rajpusht.CustomTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabIndicatorHeight="2dp"
+            android:background="#00000000"
+            app:tabTextColor="@color/view2"
+            app:tabMode="fixed"
+            android:layout_above="@+id/footer"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            android:elevation="6dp"/>
+
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:padding="11dp"
+                android:visibility="gone"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@drawable/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="PROFILE"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:text="save"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:background="@drawable/box3"
+                android:layout_marginRight="5dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

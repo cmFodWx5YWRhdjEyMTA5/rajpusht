@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="in.co.rajpusht.rajpusht.Profile">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="11dp"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/back"
+            android:gravity="center_vertical"
+            android:text="PROFILE"
+            android:textColor="@color/white"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="13dp"
+            android:visibility="gone"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/search" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="58dp"
+        android:layout_below="@+id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="center">
+
+                <ImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_Photo_profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/pic"
+                    android:layout_centerInParent="true"
+                    android:foregroundGravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Sulochana Devi"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:layout_below="@+id/profile_Photo_profile"/>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set Location"
+                android:layout_marginLeft="7dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/view2"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/view2"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/choria"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="12dp"
+                            android:background="@drawable/box1"
+                            android:paddingRight="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:text="Choria"/>
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp" />
+                    <TextView
+                        android:id="@+id/depur"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="12dp"
+                        android:background="@drawable/box1"
+                        android:paddingRight="8dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="Dhepur"/>
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp" />
+                    <TextView
+                        android:id="@+id/dhelana"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="12dp"
+                        android:background="@drawable/box1"
+                        android:paddingRight="8dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="Dhelana"/>
+
+
+                </LinearLayout>
+
+                <RadioGroup
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/choriar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:alpha="0.5"
+                        android:gravity="center"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp" />
+
+                    <RadioButton
+                        android:id="@+id/depurr"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:alpha="0.5"
+                        android:gravity="center"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp" />
+                    <RadioButton
+                        android:id="@+id/dhelanar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:alpha="0.5"
+                        android:gravity="center"/>
+
+
+
+                </RadioGroup>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set Language"
+                android:layout_marginLeft="7dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/view2"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/view2"/>
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/english"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:text="English"
+                    android:gravity="center"/>
+
+                <Space
+                    android:layout_width="33dp"
+                    android:layout_height="2dp" />
+
+                <RadioButton
+                    android:id="@+id/hindi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:text="Hindi"
+                    android:gravity="center"/>
+
+
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="11dp"
+            android:visibility="gone"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="PROFILE"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:text="save"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:background="@drawable/box3"
+            android:layout_marginRight="5dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

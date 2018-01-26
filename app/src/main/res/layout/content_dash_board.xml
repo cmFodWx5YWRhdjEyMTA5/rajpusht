@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="in.co.rajpusht.rajpusht.DashBoard"
+    tools:showIn="@layout/app_bar_dash_board">
+    
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="11dp"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/menus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/menu"
+            android:gravity="center_vertical"
+            android:text="BENEFICIARY LIST"
+            android:textColor="@color/white"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="13dp"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/search" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/mainframe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:layout_above="@+id/footer"></FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/pwimg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/pw_icon"/>
+
+            <TextView
+                android:id="@+id/pwtext"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:lines="2"
+                android:text="PREGNANT WOMEN"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="9dp"
+                android:gravity="center"
+                android:layout_below="@id/pwimg"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/lmimg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/lm_icon"/>
+
+            <TextView
+                android:id="@+id/lmtext"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:lines="2"
+                android:text="LACTATING MOTHER"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="9dp"
+                android:gravity="center"
+                android:layout_below="@id/lmimg"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ymimg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/mc_icon"/>
+
+            <TextView
+                android:id="@+id/ymtext"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:lines="2"
+                android:text="MOTHER OF YOUNG CHILD"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="9dp"
+                android:gravity="center"
+                android:layout_below="@id/ymimg"/>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

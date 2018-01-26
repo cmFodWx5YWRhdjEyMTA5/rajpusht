@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/colorPrimary"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="18dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/profilelogo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        app:srcCompat="@drawable/profile" />
+
+    <TextView
+        android:id="@+id/profilename"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="Sulochana Devi"
+        android:gravity="bottom"
+        android:layout_marginLeft="6dp"
+        android:textSize="17dp"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@+id/profilelogo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginLeft="6dp"
+        android:gravity="top"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@+id/profilelogo"
+        android:layout_below="@id/profilename"
+        android:text="Village : Chorai" />
+
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/next"
+        android:padding="10dp"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
