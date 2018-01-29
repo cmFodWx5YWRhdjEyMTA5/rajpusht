@@ -81,12 +81,12 @@ public class PregnantWomenForm extends AppCompatActivity {
     p2.setVisibility(View.VISIBLE);
     p3.setVisibility(View.VISIBLE);
     p4.setVisibility(View.VISIBLE);
-    na.setVisibility(View.GONE);
+//    na.setVisibility(View.GONE);
     p1c.setVisibility(View.GONE);
     p2c.setVisibility(View.GONE);
     p3c.setVisibility(View.GONE);
     p4c.setVisibility(View.GONE);
-    nac.setVisibility(View.VISIBLE);
+//    nac.setVisibility(View.VISIBLE);
 
     if (fragment != null) {
         FragmentManager fragmentManager = getSupportFragmentManager();

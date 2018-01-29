@@ -25,8 +25,8 @@ public class PregantWomenFooter extends AppCompatActivity {
         setContentView(R.layout.activity_pregant_women_footer);
 
 
-        getSupportActionBar().hide();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().hide();
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 

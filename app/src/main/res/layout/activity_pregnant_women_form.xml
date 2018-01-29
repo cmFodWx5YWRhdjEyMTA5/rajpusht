@@ -88,7 +88,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:visibility="gone"
-                    android:src="@drawable/p1c"/>
+                    android:src="@drawable/pw1dgreen"/>
                 <ImageView
                     android:id="@+id/p1bl"
                     android:layout_width="50dp"

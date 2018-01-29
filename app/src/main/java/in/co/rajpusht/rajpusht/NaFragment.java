@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class NaFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     CheckBox checkbox;
     Spinner pw1_yesno;
-
+LinearLayout anetalcheck;
 
     public NaFragment() {
         // Required empty public constructor
@@ -76,7 +77,7 @@ public class NaFragment extends Fragment {
          final View view=       inflater.inflate(R.layout.fragment_na, container, false);
         checkbox = (CheckBox) view.findViewById(R.id.checkbox);
         pw1_yesno = (Spinner) view.findViewById(R.id.pw1_yesno);
-
+        anetalcheck = (LinearLayout) view.findViewById(R.id.anetalcheck);
         List<String> list1 = new ArrayList<String>();
         list1.add("--Select Options--");
         list1.add("Miscarriage/ abortion");
@@ -93,10 +94,11 @@ public class NaFragment extends Fragment {
             public void onClick(View v) {
                 if(checkbox.isChecked()){
                     pw1_yesno.setVisibility(View.VISIBLE);
+                    anetalcheck.setVisibility(View.INVISIBLE);
 
                 }
                 else{
-
+                    anetalcheck.setVisibility(View.VISIBLE);
                     pw1_yesno.setVisibility(View.INVISIBLE);
                 }
 

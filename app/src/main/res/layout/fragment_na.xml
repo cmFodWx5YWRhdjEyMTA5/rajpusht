@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Is the respondent/ pregnant woman available for interview?"
+            android:text="The respondent/ pregnant woman not available for interview"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@color/view2"
             android:layout_marginTop="4dp"
@@ -56,6 +56,7 @@
            android:gravity="center_vertical"/>
 
        <LinearLayout
+           android:id="@+id/anetalcheck"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:gravity="center_vertical"
@@ -68,7 +69,7 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Have you completed your first antenatal checkup (ANC)?"
+               android:text=" You have not completed your first antenatal checkup (ANC)"
                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                android:textColor="@color/view2"
                android:layout_marginTop="4dp"
