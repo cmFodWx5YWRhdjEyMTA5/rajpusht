@@ -31,7 +31,7 @@ public class Pw1Fragment extends Fragment {
 
         TabLayout tabLayout = (TabLayout) v.findViewById(R.id.tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Preliminary"));
+        tabLayout.addTab(tabLayout.newTab().setText("SBCC"));
         tabLayout.addTab(tabLayout.newTab().setText("Dietary Diversity"));
         tabLayout.addTab(tabLayout.newTab().setText("Height & Weight"));
 

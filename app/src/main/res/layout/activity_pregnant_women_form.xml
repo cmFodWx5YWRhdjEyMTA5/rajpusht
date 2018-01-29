@@ -26,6 +26,7 @@
             app:srcCompat="@drawable/back" />
 
         <TextView
+            android:id="@+id/nameCandiate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/back"
@@ -35,7 +36,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
         <TextView
-            android:id="@+id/search"
+            android:id="@+id/buttonName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -79,7 +80,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:onClick="pw1"
-                    android:src="@drawable/p1"/>
+                    android:src="@drawable/pw1dgreen"/>
 
                 <ImageView
                     android:id="@+id/p1c"
@@ -88,6 +89,13 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:src="@drawable/p1c"/>
+                <ImageView
+                    android:id="@+id/p1bl"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/pw1bl"/>
 
 
             </RelativeLayout>
@@ -104,7 +112,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:gravity="center"
-                    android:onClick="pw2"
+
                     android:src="@drawable/p2"/>
 
                 <ImageView
@@ -114,6 +122,13 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:src="@drawable/p2c"/>
+                <ImageView
+                    android:id="@+id/p2bl"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/pw2bl"/>
 
 
             </RelativeLayout>
@@ -130,7 +145,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:gravity="center"
-                    android:onClick="pw3"
+
                     android:src="@drawable/p3"/>
 
                 <ImageView
@@ -140,6 +155,13 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:src="@drawable/p3c"/>
+                <ImageView
+                android:id="@+id/p3bl"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:src="@drawable/pw3bl"/>
 
 
             </RelativeLayout>
@@ -156,7 +178,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:onClick="pw4"
+
                 android:src="@drawable/p4"/>
 
                 <ImageView
@@ -166,6 +188,13 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:src="@drawable/p4c"/>
+                <ImageView
+                    android:id="@+id/p4bl"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/pw4bl"/>
 
 
             </RelativeLayout>
@@ -181,6 +210,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:gravity="center"
+                android:onClick="naClicked"
                 android:src="@drawable/na"/>
 
             <ImageView
@@ -189,7 +219,7 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:visibility="gone"
-                android:src="@drawable/na"/>
+                android:src="@drawable/redna"/>
 
 
         </RelativeLayout>

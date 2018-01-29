@@ -1,0 +1,454 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fragments.PregnantWomenDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Name of the benificiary "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <EditText
+        android:id="@+id/nameBenificery"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mobile number "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <EditText
+       android:id="@+id/phoneNumber"
+        android:layout_width="366dp"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+
+        android:inputType="number"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+     />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" UID "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <EditText
+        android:id="@+id/UidNumber"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+
+        android:inputType="number"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+      />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bhamashah No.  "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <EditText
+        android:id="@+id/BhamashahNumber"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+
+        android:inputType="number"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Age (in completed years)"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <EditText
+        android:id="@+id/PersonAge"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+
+        android:inputType="number"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+  />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is your religion? "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/personaReligion"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do you belong to a scheduled caste, scheduled tribe, other backward class, or none of these? "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/castSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" What color of Ration Card do you hold?  "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/rationcardColorSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" What is your relationship with the head of the household?  "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/relationshipHeadSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What type of family do you live in?"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/typeFamilySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Highest education completed "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/educationComplted"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" What type of fuel does your household most commonly use for cooking?  "
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/fuelSelectionSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="In your household, who usually makes decision for"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/view2"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Visiting doctor for your own health"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="15dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/view2"/>
+
+    <Spinner
+        android:id="@+id/decsionSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="8dp"
+        android:spinnerMode="dropdown"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/gray"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Visiting doctor for your child’s health"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="15dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/view2"/>
+
+        <Spinner
+            android:id="@+id/decsionVisitDoctorSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:paddingLeft="8dp"
+            android:spinnerMode="dropdown"
+            android:paddingRight="8dp"
+            android:singleLine="true"
+            android:textSize="13dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

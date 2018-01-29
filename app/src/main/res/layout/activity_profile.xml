@@ -121,23 +121,40 @@
                             android:layout_height="50dp"
                             android:gravity="center_vertical"
                             android:paddingLeft="12dp"
-                            android:background="@drawable/box1"
+
                             android:paddingRight="8dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:text="Choria"/>
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="2dp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/view2"/>
+
                     <TextView
                         android:id="@+id/depur"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center_vertical"
                         android:paddingLeft="12dp"
-                        android:background="@drawable/box1"
+
                         android:paddingRight="8dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Dhepur"/>
+                        android:text="Dhepur"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/view2"/>
+
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="2dp" />
@@ -147,10 +164,17 @@
                         android:layout_height="50dp"
                         android:gravity="center_vertical"
                         android:paddingLeft="12dp"
-                        android:background="@drawable/box1"
+
                         android:paddingRight="8dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:text="Dhelana"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/view2"/>
 
 
                 </LinearLayout>
@@ -166,6 +190,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:alpha="0.5"
+                        android:checked="true"
                         android:gravity="center"/>
 
                     <Space
@@ -226,6 +251,7 @@
                     android:layout_height="wrap_content"
                     android:alpha="0.5"
                     android:text="English"
+                    android:checked="true"
                     android:gravity="center"/>
 
                 <Space

@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class DashBoard extends AppCompatActivity
 
     private Boolean exit = false;
     ImageView profile;
+    RelativeLayout relativePregnent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +61,63 @@ public class DashBoard extends AppCompatActivity
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
                 Intent i = new Intent(getApplicationContext(), Profile.class);
                 startActivity(i);
             }
         });
+
+        relativePregnent = (RelativeLayout) findViewById(R.id.pregnentWomen);
+        relativePregnent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  intentPregnent = new Intent(getApplicationContext(),PregantWomenFooter.class);
+                startActivity(intentPregnent);
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(this);
         displaySelectedScreen(R.id.nav_home);
+
+        TextView hometext=(TextView) findViewById(R.id.home);
+        hometext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+//                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        TextView beneficieryList=(TextView) findViewById(R.id.benificiarylist);
+        beneficieryList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+//                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        TextView changepassword=(TextView) findViewById(R.id.changepassword);
+        changepassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+//                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         TextView log = (TextView) findViewById(R.id.logout);
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+//                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
             }
         });
     }

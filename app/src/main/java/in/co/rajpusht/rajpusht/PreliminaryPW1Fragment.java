@@ -16,15 +16,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import extras.SessionManager;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PreliminaryPW1Fragment extends Fragment {
 
-    TextView date;
+    TextView date, acndate;
     private int mYear, mMonth, mDay;
     Spinner spinner1, spinner2;
+    SessionManager session;
 
     public PreliminaryPW1Fragment() {
         // Required empty public constructor
@@ -37,8 +40,12 @@ public class PreliminaryPW1Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_preliminary_pw1, container, false);
 
-        date = (TextView) v.findViewById(R.id.date);
+        session = new SessionManager(getActivity());
 
+        acndate = (TextView) v.findViewById(R.id.acndate);
+        acndate.setText(session.getOtpKey());
+
+        date = (TextView) v.findViewById(R.id.date);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,13 +64,13 @@ public class PreliminaryPW1Fragment extends Fragment {
                                 // Display Selected date in textbox
                                 date.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
-
                             }
                         }, mYear, mMonth, mDay);
-                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 dpd.show();
             }
         });
+        
 
         spinner2 = (Spinner) v.findViewById(R.id.pw1_amount);
         List<String> list1 = new ArrayList<String>();

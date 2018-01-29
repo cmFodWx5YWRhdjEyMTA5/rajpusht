@@ -1,21 +1,23 @@
-package in.co.rajpusht.rajpusht;
+package Adpter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import in.co.rajpusht.rajpusht.DiataryPW1Fragment;
+import in.co.rajpusht.rajpusht.HeightWeightFragment;
+import in.co.rajpusht.rajpusht.PreliminaryPW1Fragment;
+
 /**
- * Created by Narendra on 5/24/2017.
+ * Created by Ranjeet on 1/28/2018.
  */
 
-public class PagerAdapter1 extends FragmentStatePagerAdapter {
+public class PragnentWomenFooterAdpater extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
-    public PagerAdapter1(FragmentManager fm, int NumOfTabs) {
-
+    public PragnentWomenFooterAdpater(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
-
     }
 
     @Override

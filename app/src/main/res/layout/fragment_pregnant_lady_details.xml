@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    tools:context="in.co.rajpusht.rajpusht.HeightWeightFragment">
+    tools:context="fragments.Pregnant_lady_details">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Height in centimeters"
+                android:text="How many pregnancies did you have before the current pregnancy? "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -61,8 +61,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="-2dp"
                 android:background="@color/gray" />
 
@@ -72,7 +70,10 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Weight in Kilograms"
+                android:text="LMP (Last menstrual Period) Date.
+
+The LMP Date should be the FIRST day of the LAST menstrual period.  DO NOT count the first day when she first missed her period. Help the woman to remember the date by associating it with major events in the village such as puja, festival, etc
+"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -82,12 +83,13 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/box1"
-                    android:inputType="numberDecimal"
-                    android:gravity="center" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#00000000"
+                    android:gravity="center_vertical"
+                    android:drawableRight="@drawable/calender"/>
 
                 <EditText
                     android:id="@+id/editText"
@@ -109,11 +111,11 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="-2dp"
                 android:background="@color/gray" />
 
         </LinearLayout>
     </ScrollView>
+
+
 </FrameLayout>

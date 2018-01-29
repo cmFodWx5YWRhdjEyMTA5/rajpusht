@@ -32,7 +32,20 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), PregnantWomenForm.class);
+                i.putExtra("button","PW1");
+                i.putExtra("name","Bimala Agarwal");
                 startActivity(i);
+            }
+        });
+
+        Button pw2 = (Button) v.findViewById(R.id.pw2);
+        pw2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent(getActivity(), PregnantWomenForm.class);
+                i2.putExtra("button","PW2");
+                i2.putExtra("name","Sonam Agarwal");
+                startActivity(i2);
             }
         });
 

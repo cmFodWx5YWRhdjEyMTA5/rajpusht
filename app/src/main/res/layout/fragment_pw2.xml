@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="in.co.rajpusht.rajpusht.Pw1Fragment">
+    tools:context="fragments.Pw2Fragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -76,5 +76,6 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
 
 </FrameLayout>

@@ -33,7 +33,7 @@
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-                android:background="@drawable/box1"
+
                 android:paddingRight="8dp">
 
                 <TextView
@@ -51,12 +51,21 @@
                     android:src="@drawable/forwrd"/>
 
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+
+                android:background="@color/view2"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-                android:background="@drawable/box1"
+
                 android:paddingRight="8dp">
 
                 <TextView
@@ -74,12 +83,21 @@
                     android:src="@drawable/forwrd"/>
 
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+
+                android:background="@color/view2"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-                android:background="@drawable/box1"
+
                 android:paddingRight="8dp">
 
                 <TextView
@@ -97,12 +115,21 @@
                     android:src="@drawable/forwrd"/>
 
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+
+                android:background="@color/view2"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-                android:background="@drawable/box1"
+
                 android:paddingRight="8dp">
 
                 <TextView
@@ -120,6 +147,15 @@
                     android:src="@drawable/forwrd"/>
 
             </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+
+                android:background="@color/view2"/>
 
         </LinearLayout>
 
