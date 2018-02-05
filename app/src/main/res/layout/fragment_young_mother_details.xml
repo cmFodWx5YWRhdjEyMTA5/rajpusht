@@ -1,0 +1,346 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fragments.YoungMotherDetails">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<EditText-->
+            <!--android:layout_width="180dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:inputType="numberDecimal"-->
+            <!--android:background="@drawable/box1"-->
+            <!--android:gravity="center" />-->
+
+            <!--<EditText-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/box1"-->
+            <!--android:gravity="center" />-->
+
+            <!--<EditText-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/box1"-->
+            <!--android:gravity="center" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.75dp"-->
+            <!--android:layout_marginTop="-2dp"-->
+            <!--android:background="@color/gray" />-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="Date of delivery of the Child"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#00000000"
+                    android:gravity="center_vertical"
+                    android:drawableRight="@drawable/calender"/>
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/box1"
+                    android:visibility="gone"
+                    android:gravity="center" />
+
+                <EditText
+                    android:layout_width="80dp"
+                    android:visibility="gone"
+                    android:layout_height="50dp"
+                    android:background="@drawable/box1"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Place of delivery "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/placeofDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order of birth of the child "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <EditText
+                android:id="@+id/orderOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+
+                android:inputType="number"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Name of the child  "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <EditText
+                android:id="@+id/nameOfChild"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+
+                android:inputType="number"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sex of the child "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/sexOfchild"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Birth weight of the child "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <EditText
+                android:id="@+id/UidNumber"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+
+                android:inputType="number"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Was this child born before completing the full-term? (9 months 10 days)"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/wasChildBorn"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="After birth, when did you FIRST put your child to breast? "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/birthBreast"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Did you feed your child the first yellow, thick breast milk (khees)? "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/firstyellowFeed"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

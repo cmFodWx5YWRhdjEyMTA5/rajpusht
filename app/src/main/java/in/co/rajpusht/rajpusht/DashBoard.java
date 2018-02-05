@@ -26,7 +26,7 @@ public class DashBoard extends AppCompatActivity
 
     private Boolean exit = false;
     ImageView profile;
-    RelativeLayout relativePregnent;
+    RelativeLayout relativePregnent,realtiveYoungMother,relativeLactingMother;
 
 
     @Override
@@ -75,6 +75,27 @@ public class DashBoard extends AppCompatActivity
             public void onClick(View v) {
                 Intent  intentPregnent = new Intent(getApplicationContext(),PregantWomenFooter.class);
                 startActivity(intentPregnent);
+            }
+        });
+
+        realtiveYoungMother= (RelativeLayout) findViewById(R.id.realtiveYoungMother);
+        realtiveYoungMother.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+Intent intentYongMother = new Intent(getApplicationContext(),YoungMotherActivity.class);
+                startActivity(intentYongMother);
+
+            }
+        });
+
+                relativeLactingMother= (RelativeLayout) findViewById(R.id.relativeLactingMother);
+        relativeLactingMother.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentLactingMother = new Intent(getApplicationContext(),LactingMotherActivity.class);
+                startActivity(intentLactingMother);
+
             }
         });
 

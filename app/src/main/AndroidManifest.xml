@@ -32,7 +32,9 @@
         <activity
             android:name=".PregnantWomenForm"
             android:screenOrientation="portrait" />
-        <activity android:name=".PregantWomenFooter"></activity>
+        <activity android:name=".PregantWomenFooter" />
+        <activity android:name=".LactingMotherActivity" />
+        <activity android:name=".YoungMotherActivity"></activity>
     </application>
 
 </manifest>

@@ -17,12 +17,12 @@ import in.co.rajpusht.rajpusht.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PregnantWomenDetails.OnFragmentInteractionListener} interface
+ * {@link YoungMotherBasicDetails.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PregnantWomenDetails#newInstance} factory method to
+ * Use the {@link YoungMotherBasicDetails#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PregnantWomenDetails extends Fragment {
+public class YoungMotherBasicDetails extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,7 +37,7 @@ public class PregnantWomenDetails extends Fragment {
     Spinner personaReligion,castSpinner,rationcardColorSpinner,relationshipHeadSpinner,typeFamilySpinner,educationComplted,fuelSelectionSpinner,
             decsionSpinner,decsionVisitDoctorSpinner;
 
-    public PregnantWomenDetails() {
+    public YoungMotherBasicDetails() {
         // Required empty public constructor
     }
 
@@ -47,17 +47,16 @@ public class PregnantWomenDetails extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PregnantWomenDetails.
+     * @return A new instance of fragment YoungMotherBasicDetails.
      */
     // TODO: Rename and change types and number of parameters
-    public static PregnantWomenDetails newInstance(String param1, String param2) {
-        PregnantWomenDetails fragment = new PregnantWomenDetails();
+    public static YoungMotherBasicDetails newInstance(String param1, String param2) {
+        YoungMotherBasicDetails fragment = new YoungMotherBasicDetails();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-
     }
 
     @Override
@@ -73,8 +72,9 @@ public class PregnantWomenDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view= inflater.inflate(R.layout.fragment_young_mother_basic_details, container, false);
 
-                View view=inflater.inflate(R.layout.fragment_pregnant_women_details, container, false);
+
 
 
         personaReligion=(Spinner) view.findViewById(R.id.personaReligion);
@@ -238,6 +238,8 @@ public class PregnantWomenDetails extends Fragment {
         dataAdapterdecsionVisitDoctorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         decsionVisitDoctorSpinner.setAdapter(dataAdapterdecsionVisitDoctorSpinner);
 
+
+
         return view;
     }
 
@@ -258,12 +260,12 @@ public class PregnantWomenDetails extends Fragment {
 //                    + " must implement OnFragmentInteractionListener");
 //        }
 //    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+//
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//    }
 
     /**
      * This interface must be implemented by activities that contain this
