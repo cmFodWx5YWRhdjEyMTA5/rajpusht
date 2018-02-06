@@ -4,8 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="Registration"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/white"
+        android:textSize="23dp"
+        tools:layout_editor_absoluteY="0dp" />
     <!--<RelativeLayout-->
     <!--android:id="@+id/header"-->
     <!--android:layout_width="match_parent"-->
@@ -55,9 +67,9 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_marginBottom="100dp"
         android:background="@color/white"
+        android:layout_below="@+id/textView"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

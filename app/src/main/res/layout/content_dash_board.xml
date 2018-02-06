@@ -63,10 +63,20 @@
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary">
 
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Registration"
+            android:textColor="@color/white"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
         <RelativeLayout
             android:id="@+id/pregnentWomen"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:layout_weight="1">
 
             <ImageView
@@ -94,6 +104,7 @@
             android:id="@+id/relativeLactingMother"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:layout_weight="1">
 
             <ImageView
@@ -121,6 +132,7 @@
             android:id="@+id/realtiveYoungMother"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:layout_weight="1">
 
             <ImageView

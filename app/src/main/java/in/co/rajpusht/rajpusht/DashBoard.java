@@ -78,11 +78,21 @@ public class DashBoard extends AppCompatActivity
             }
         });
 
+        TextView register = (TextView) findViewById(R.id.register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+Intent intentYongMother = new Intent(getApplicationContext(),YoungMotherActivity.class);
+                startActivity(intentYongMother);
+
+            }
+        });
+
         realtiveYoungMother= (RelativeLayout) findViewById(R.id.realtiveYoungMother);
         realtiveYoungMother.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-Intent intentYongMother = new Intent(getApplicationContext(),YoungMotherActivity.class);
+                Intent intentYongMother = new Intent(getApplicationContext(),YoungMotherActivity.class);
                 startActivity(intentYongMother);
 
             }

@@ -14,6 +14,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import fragments.Pregnant_lady_details;
 import fragments.YoungMotherBasicDetails;
 import fragments.YoungMotherDetails;
 
@@ -23,6 +24,10 @@ public class YoungMotherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_young_mother);
+
+        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         tabLayout.addTab(tabLayout.newTab().setText("SBCC"));
@@ -73,7 +78,8 @@ public class YoungMotherActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new YoungMotherBasicDetails(), "PREGNANT WOMAN DETAILS");
-        adapter.addFragment(new YoungMotherDetails(), "PREGNANCY DETAILS");
+        adapter.addFragment(new Pregnant_lady_details(), "PREGNANCY DETAILS");
+        adapter.addFragment(new YoungMotherDetails(), "CHILD DETAILS");
 
         viewPager.setAdapter(adapter);
     }

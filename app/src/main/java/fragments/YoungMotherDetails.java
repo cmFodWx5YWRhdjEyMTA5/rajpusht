@@ -8,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,23 +23,11 @@ import java.util.List;
 
 import in.co.rajpusht.rajpusht.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link YoungMotherDetails.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link YoungMotherDetails#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class YoungMotherDetails extends Fragment {
+
+
+public class YoungMotherDetails extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
 
     TextView date;
@@ -44,43 +36,68 @@ public class YoungMotherDetails extends Fragment {
     EditText nameOfChild,birthWeightChild;
 
     private OnFragmentInteractionListener mListener;
+    RelativeLayout c1, c2, c3, c4, c5, c6, c7, c8, c9;
+    ImageView ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9, ch1c, ch2c, ch3c, ch4c, ch5c, ch6c, ch7c, ch8c, ch9c ;
+    Button addchild;
 
     public YoungMotherDetails() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment YoungMotherDetails.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static YoungMotherDetails newInstance(String param1, String param2) {
-        YoungMotherDetails fragment = new YoungMotherDetails();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
                 View view=inflater.inflate(R.layout.fragment_young_mother_details, container, false);
+
+        c1 = (RelativeLayout) view.findViewById(R.id.c1);
+        c2 = (RelativeLayout) view.findViewById(R.id.c2);
+        c3 = (RelativeLayout) view.findViewById(R.id.c3);
+        c4 = (RelativeLayout) view.findViewById(R.id.c4);
+        c5 = (RelativeLayout) view.findViewById(R.id.c5);
+        c6 = (RelativeLayout) view.findViewById(R.id.c6);
+        c7 = (RelativeLayout) view.findViewById(R.id.c7);
+        c8 = (RelativeLayout) view.findViewById(R.id.c8);
+        c9 = (RelativeLayout) view.findViewById(R.id.c9);
+
+        ch1 = (ImageView) view.findViewById(R.id.ch1);
+        ch2 = (ImageView) view.findViewById(R.id.ch2);
+        ch3 = (ImageView) view.findViewById(R.id.ch3);
+        ch4 = (ImageView) view.findViewById(R.id.ch4);
+        ch5 = (ImageView) view.findViewById(R.id.ch5);
+        ch6 = (ImageView) view.findViewById(R.id.ch6);
+        ch7 = (ImageView) view.findViewById(R.id.ch7);
+        ch8 = (ImageView) view.findViewById(R.id.ch8);
+        ch9 = (ImageView) view.findViewById(R.id.ch9);
+
+        ch1c = (ImageView) view.findViewById(R.id.ch1c);
+        ch2c = (ImageView) view.findViewById(R.id.ch2c);
+        ch3c = (ImageView) view.findViewById(R.id.ch3c);
+        ch4c = (ImageView) view.findViewById(R.id.ch4c);
+        ch5c = (ImageView) view.findViewById(R.id.ch5c);
+        ch6c = (ImageView) view.findViewById(R.id.ch6c);
+        ch7c = (ImageView) view.findViewById(R.id.ch7c);
+        ch8c = (ImageView) view.findViewById(R.id.ch8c);
+        ch9c = (ImageView) view.findViewById(R.id.ch9c);
+
+        ch1.setOnClickListener(this);
+        ch2.setOnClickListener(this);
+        ch3.setOnClickListener(this);
+        ch4.setOnClickListener(this);
+        ch5.setOnClickListener(this);
+        ch6.setOnClickListener(this);
+        ch7.setOnClickListener(this);
+        ch8.setOnClickListener(this);
+        ch9.setOnClickListener(this);
+
+        addchild = (Button) view.findViewById(R.id.addchild);
+        addchild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addChild();
+            }
+        });
 
         date = (TextView) view.findViewById(R.id.date);
         date.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +212,50 @@ public class YoungMotherDetails extends Fragment {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.ch1:
+                hideShow();
+                ch1c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch2:
+                hideShow();
+                ch2c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch3:
+                hideShow();
+                ch3c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch4:
+                hideShow();
+                ch4c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch5:
+                hideShow();
+                ch5c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch6:
+                hideShow();
+                ch6c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch7:
+                hideShow();
+                ch7c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch8:
+                hideShow();
+                ch8c.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ch9:
+                hideShow();
+                ch9c.setVisibility(View.VISIBLE);
+                break;
+
+        }
+    }
+
 //    @Override
 //    public void onAttach(Context context) {
 //        super.onAttach(context);
@@ -226,4 +287,109 @@ public class YoungMotherDetails extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void addChild(){
+
+        if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE && c3.getVisibility()==View.VISIBLE
+                && c4.getVisibility()==View.VISIBLE && c5.getVisibility()==View.VISIBLE && c6.getVisibility()==View.VISIBLE
+                && c7.getVisibility()==View.VISIBLE && c8.getVisibility()==View.VISIBLE && c9.getVisibility()==View.VISIBLE){
+            Toast.makeText(getActivity(), "Cannot add more child", Toast.LENGTH_SHORT).show();
+        }
+        else if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE && c3.getVisibility()==View.VISIBLE
+                && c4.getVisibility()==View.VISIBLE && c5.getVisibility()==View.VISIBLE && c6.getVisibility()==View.VISIBLE
+                && c7.getVisibility()==View.VISIBLE && c8.getVisibility()==View.VISIBLE){
+            c9.setVisibility(View.VISIBLE);
+            aChi();
+            ch9c.setVisibility(View.VISIBLE);
+        }
+        else if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE && c3.getVisibility()==View.VISIBLE
+                && c4.getVisibility()==View.VISIBLE && c5.getVisibility()==View.VISIBLE && c6.getVisibility()==View.VISIBLE
+                && c7.getVisibility()==View.VISIBLE){
+            c8.setVisibility(View.VISIBLE);
+            aChi();
+            ch8c.setVisibility(View.VISIBLE);
+        }
+        else if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE && c3.getVisibility()==View.VISIBLE
+                && c4.getVisibility()==View.VISIBLE && c5.getVisibility()==View.VISIBLE && c6.getVisibility()==View.VISIBLE){
+            c7.setVisibility(View.VISIBLE);
+            aChi();
+            ch7c.setVisibility(View.VISIBLE);
+        }
+        else if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE && c3.getVisibility()==View.VISIBLE
+                && c4.getVisibility()==View.VISIBLE && c5.getVisibility()==View.VISIBLE){
+            c6.setVisibility(View.VISIBLE);
+            aChi();
+            ch6c.setVisibility(View.VISIBLE);
+        }
+        else if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE && c3.getVisibility()==View.VISIBLE
+                && c4.getVisibility()==View.VISIBLE){
+            c5.setVisibility(View.VISIBLE);
+            aChi();
+            ch5c.setVisibility(View.VISIBLE);
+        }
+        else if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE && c3.getVisibility()==View.VISIBLE){
+            c4.setVisibility(View.VISIBLE);
+            aChi();
+            ch4c.setVisibility(View.VISIBLE);
+        }
+        else  if(c1.getVisibility()==View.VISIBLE && c2.getVisibility()==View.VISIBLE){
+            c3.setVisibility(View.VISIBLE);
+            aChi();
+            ch3c.setVisibility(View.VISIBLE);
+        }
+        else if(c1.getVisibility()==View.VISIBLE){
+            c2.setVisibility(View.VISIBLE);
+            aChi();
+            ch2c.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    public void hideShow(){
+
+        ch1.setVisibility(View.VISIBLE);
+        ch1c.setVisibility(View.GONE);
+        ch2.setVisibility(View.VISIBLE);
+        ch2c.setVisibility(View.GONE);
+        ch3.setVisibility(View.VISIBLE);
+        ch3c.setVisibility(View.GONE);
+        ch4.setVisibility(View.VISIBLE);
+        ch4c.setVisibility(View.GONE);
+        ch5.setVisibility(View.VISIBLE);
+        ch5c.setVisibility(View.GONE);
+        ch6.setVisibility(View.VISIBLE);
+        ch6c.setVisibility(View.GONE);
+        ch7.setVisibility(View.VISIBLE);
+        ch7c.setVisibility(View.GONE);
+        ch8.setVisibility(View.VISIBLE);
+        ch8c.setVisibility(View.GONE);
+        ch9.setVisibility(View.VISIBLE);
+        ch9c.setVisibility(View.GONE);
+
+    }
+    public void aChi(){
+
+        ch1.setVisibility(View.VISIBLE);
+        ch1c.setVisibility(View.GONE);
+        ch2.setVisibility(View.VISIBLE);
+        ch2c.setVisibility(View.GONE);
+        ch3.setVisibility(View.VISIBLE);
+        ch3c.setVisibility(View.GONE);
+        ch4.setVisibility(View.VISIBLE);
+        ch4c.setVisibility(View.GONE);
+        ch5.setVisibility(View.VISIBLE);
+        ch5c.setVisibility(View.GONE);
+        ch6.setVisibility(View.VISIBLE);
+        ch6c.setVisibility(View.GONE);
+        ch7.setVisibility(View.VISIBLE);
+        ch7c.setVisibility(View.GONE);
+        ch8.setVisibility(View.VISIBLE);
+        ch8c.setVisibility(View.GONE);
+        ch9.setVisibility(View.VISIBLE);
+        ch9c.setVisibility(View.GONE);
+
+
+    }
+
+
 }
