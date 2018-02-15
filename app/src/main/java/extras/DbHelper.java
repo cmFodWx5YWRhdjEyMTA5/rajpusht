@@ -277,5 +277,5 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-
+//advdag
 }
