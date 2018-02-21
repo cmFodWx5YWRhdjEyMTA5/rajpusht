@@ -36,6 +36,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/pregnetNumnber"
                     android:layout_width="180dp"
                     android:layout_height="50dp"
                     android:inputType="numberDecimal"

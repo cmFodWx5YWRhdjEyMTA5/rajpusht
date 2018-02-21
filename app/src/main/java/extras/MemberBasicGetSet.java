@@ -6,11 +6,11 @@ package extras;
 
 public class MemberBasicGetSet {
 
-    int survey_id;
+    String MemberId;
     String family_id, name, dor, doentry, doexit, dob, age, ifdobasum, dod, aadhar, aadharenrol, aadhardate, aadhartime, bhamasha, mobile, relation, sex, handicap, ifmarried, motherid, status, stage, substage, trackstatus, surveyor_id, timestamp, source;
 
-    public MemberBasicGetSet(int survey_id, String family_id, String name, String dor, String doentry, String doexit, String dob, String age, String ifdobasum, String dod, String aadhar, String aadharenrol, String aadhardate, String aadhartime, String bhamasha, String mobile, String relation, String sex, String handicap, String ifmarried, String motherid, String status, String stage, String substage, String trackstatus, String surveyor_id, String timestamp, String source) {
-        this.survey_id = survey_id;
+    public MemberBasicGetSet(String MemberId, String family_id, String name, String dor, String doentry, String doexit, String dob, String age, String ifdobasum, String dod, String aadhar, String aadharenrol, String aadhardate, String aadhartime, String bhamasha, String mobile, String relation, String sex, String handicap, String ifmarried, String motherid, String status, String stage, String substage, String trackstatus, String surveyor_id, String timestamp, String source) {
+        this.MemberId = MemberId;
         this.family_id = family_id;
         this.name = name;
         this.dor = dor;
@@ -40,12 +40,12 @@ public class MemberBasicGetSet {
         this.source = source;
     }
 
-    public int getSurvey_id() {
-        return survey_id;
+    public String getmemberId() {
+        return MemberId;
     }
 
-    public void setSurvey_id(int survey_id) {
-        this.survey_id = survey_id;
+    public void getmemberId(String memeberId) {
+        this.MemberId = memeberId;
     }
 
     public String getFamily_id() {

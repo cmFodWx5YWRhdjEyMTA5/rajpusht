@@ -90,7 +90,7 @@ public class YoungMotherBasicDetails extends Fragment {
 
         listrelationshipHeadSpinner.add("Head");
         listrelationshipHeadSpinner.add(" Wife");
-        listrelationshipHeadSpinner.add(" Daughter ");
+        listrelationshipHeadSpinner.add("Daughter");
         listrelationshipHeadSpinner.add("Daughter in law");
         listrelationshipHeadSpinner.add("Grandchild");
         listrelationshipHeadSpinner.add("Mother");

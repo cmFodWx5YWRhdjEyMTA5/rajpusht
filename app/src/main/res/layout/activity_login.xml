@@ -85,7 +85,7 @@
             android:layout_height="45dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:onClick="kjfhfid"
+
             android:text="Login"
             android:layout_alignParentRight="true"
             android:textColor="@color/white"/>

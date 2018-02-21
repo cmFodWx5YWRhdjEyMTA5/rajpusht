@@ -8,9 +8,37 @@ public class WomenBasicGetSet {
 
     int keyid;
 
+    String isedited;
+
+    public String getIsedited() {
+        return isedited;
+    }
+
+    public void setIsedited(String isedited) {
+        this.isedited = isedited;
+    }
+
+    public String getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(String isNew) {
+        this.isNew = isNew;
+    }
+
+    public String getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(String isApproved) {
+        this.isApproved = isApproved;
+    }
+
+    String isNew;String isApproved;
+
     String survey_id, education, cookingfuel, decicion_own, decision_child, if_bankaccount, acholder_name, bank_name, branch, ac_num, ifsc, bank_distsnce, postoffice_name, postoffice_address, pincode, postoffice_ac, hoemo_code;
 
-    public WomenBasicGetSet(int keyid, String survey_id, String education, String cookingfuel, String decicion_own, String decision_child, String if_bankaccount, String acholder_name, String bank_name, String branch, String ac_num, String ifsc, String bank_distsnce, String postoffice_name, String postoffice_address, String pincode, String postoffice_ac, String hoemo_code) {
+    public WomenBasicGetSet(String survey_id, String education, String cookingfuel, String decicion_own, String decision_child, String if_bankaccount, String acholder_name, String bank_name, String branch, String ac_num, String ifsc, String bank_distsnce, String postoffice_name, String postoffice_address, String pincode, String postoffice_ac, String hoemo_code,String isedited,String isNew,String isApproved) {
         this.keyid = keyid;
         this.survey_id = survey_id;
         this.education = education;
@@ -29,6 +57,9 @@ public class WomenBasicGetSet {
         this.pincode = pincode;
         this.postoffice_ac = postoffice_ac;
         this.hoemo_code = hoemo_code;
+        this.isNew= isNew;
+        this.isApproved = isApproved;
+        this.isedited = isedited;
     }
 
 

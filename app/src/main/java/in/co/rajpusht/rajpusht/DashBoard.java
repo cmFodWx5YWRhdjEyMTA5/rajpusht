@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,9 +27,10 @@ public class DashBoard extends AppCompatActivity
 
     private Boolean exit = false;
     ImageView profile;
+    String selectionstatus=null;
     RelativeLayout relativePregnent,realtiveYoungMother,relativeLactingMother;
 
-
+CheckBox checkChild,checkPregnets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,10 @@ public class DashBoard extends AppCompatActivity
         setSupportActionBar(toolbar);
 
        String vid = getIntent().getStringExtra("vid");
+
+
+        checkChild = (CheckBox) findViewById(R.id.checkChild);
+        checkPregnets= (CheckBox) findViewById(R.id.checkPregnet);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +91,38 @@ public class DashBoard extends AppCompatActivity
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-Intent intentYongMother = new Intent(getApplicationContext(),YoungMotherActivity.class);
-                startActivity(intentYongMother);
+                if(!checkChild.isChecked()&&!checkPregnets.isChecked()){
+
+                    Toast.makeText(DashBoard.this, "Please Check Any CheckButton", Toast.LENGTH_SHORT).show();
+
+                }
+                if(checkChild.isChecked()){
+
+                    selectionstatus="checkedChild";
+
+
+                }
+                if(checkPregnets.isChecked()){
+
+                    selectionstatus="checkedPregnent";
+
+
+                }
+                if(checkPregnets.isChecked()&& checkChild.isChecked()){
+
+
+                    selectionstatus="Pregnentandchild";
+
+
+
+                }
+
+                if(selectionstatus!=null) {
+                    Intent intentYongMother = new Intent(getApplicationContext(), RegistrationWomen.class);
+                    intentYongMother.putExtra("status", selectionstatus);
+                    startActivity(intentYongMother);
+                }
+
 
             }
         });
@@ -95,7 +131,7 @@ Intent intentYongMother = new Intent(getApplicationContext(),YoungMotherActivity
         realtiveYoungMother.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentYongMother = new Intent(getApplicationContext(),YoungMotherActivity.class);
+                Intent intentYongMother = new Intent(getApplicationContext(),RegistrationWomen.class);
                 startActivity(intentYongMother);
 
             }

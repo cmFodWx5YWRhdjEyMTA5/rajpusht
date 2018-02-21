@@ -12,32 +12,52 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
+
+    SQLiteDatabase db;
 
     // Database Name
-    private static final String DATABASE_NAME = "rajpustData";
+    private static final String DATABASE_NAME = "ranjeettest";
+
+    private Context context;
+
+
+    public DbHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context=context;
+
+db=getWritableDatabase();
+    }
+
 
     // Contacts table name
-    private static final String TABLE_FAMILYDATA = "familydata";
-    private static final String MEMBER_BASIC = "memberbasic";
+    private static final String TABLE_FAMILYDATA ="familydata";
+    private static final String MEMBER_BASIC ="memberbasic";
     private static final String WOMEN_EXTRA = "womenextra";
     private static final String CHILD_EXTRA = "childextra";
     private static final String PREGNANT = "pregnant";
 
-
+//Family memebr table
     // Contacts Table Columns names
+    private static final String FAMILYTABLE_ID="familytableId";
     private static final String FAMILY_ID = "familyid";
     private static final String DIST_CODE = "dist_code";
     private static final String PROJECT_CODE = "project_code";
     private static final String SECTOR_CODE = "sector_code";
     private static final String AWC_CODE = "awc_code";
+    private static final String VILLAGE_CODE="village_code";
     private static final String RELIGION = "religion";
     private static final String CASTE = "caste";
     private static final String RCARD = "rcard";
     private static final String FAMILY_TYPE = "family_type";
     private static final String SURVEYOR_ID = "surveyor_id";
+    private static final String IS_EDITED_FAMILY= "is_edited";
+    private static final String IS_NEW_FAMILY= "is_new";
+    private static final String IS_APPROVED_FAMILY = "is_approved";
 
-    private static final String SURVEY_ID = "survey_id";
+    //MEMBER _ BASIC
+
+    private static final String MEMBER_ID= "MemberId";
     private static final String FAMILYY_ID = "familyy_id";
     private static final String NAME = "name";
     private static final String DOR = "dor";
@@ -45,26 +65,33 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DOEXIT = "doexit";
     private static final String DOB = "dob";
     private static final String AGE = "age";
-    private static final String IF_DOB_ASSUMED = "if_dob";
-    private static final String DODEATH = "dodeath";
-    private static final String AADHAR = "aadhar";
-    private static final String AADHAR_ENROLMENT = "aadhar_enrolment";
-    private static final String AADHAR_DATE = "aadhar_date";
-    private static final String AADHAR_TIME = "aadhar_time";
-    private static final String BHAMASHA = "bhamasha";
-    private static final String MOBILE = "mobile";
-    private static final String RELATION = "relation";
-    private static final String SEX = "sex";
-    private static final String HANDICAP = "handicap";
+    private static final String IF_DOB_ASSUMED="if_dob";
+    private static final String DODEATH="dodeath";
+    private static final String AADHAR="aadhar";
+    private static final String AADHAR_ENROLMENT="aadhar_enrolment";
+    private static final String AADHAR_DATE="aadhar_date";
+    private static final String AADHAR_TIME="aadhar_time";
+    private static final String BHAMASHA="bhamasha";
+    private static final String MOBILE="mobile";
+    private static final String RELATION="relation";
+    private static final String SEX="sex";
+    private static final String HANDICAP="handicap";
     private static final String IF_MARRIED = "if_married";
     private static final String MOTHER_ID = "mothet_id";
     private static final String STATUS = "status";
     private static final String STAGE = "stage";
     private static final String SUB_STAGE = "sbu_stage";
-    private static final String TRACK_STATUS = "track_status";
+    private static final String IS_TO_TRACK = "IS_TO_TRACK";
     private static final String SURVAYORR_ID = "survayorr_id";
     private static final String TIME_STAMP = "time_stamp";
     private static final String SOURCE = "source";
+    private static final String IS_EDITED_MEMBER= "is_edited";
+    private static final String IS_NEW_MEMBER= "is_new";
+    private static final String IS_APPROVED_MEMBER = "is_approved";
+
+    //
+
+
 
     private static final String WOMENUID = "womenuid";
     private static final String SURVEYY_ID = "surveyY_id";
@@ -84,6 +111,11 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String PINCODE = "pincode";
     private static final String POSTOFFICE_AC = "postoffice_ac";
     private static final String HOEMO_CODE = "hoemo_code";
+//    private static final String IS_EDITED= "is_edited";
+//    private static final String IS_NEW= "is_new";
+//    private static final String IS_APPROVED = "is_approved";
+
+
 
     private static final String CHILDUID = "childuid";
     private static final String SURVEYYY_ID = "SURVEYYYid";
@@ -100,38 +132,154 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String IFSTARTED_SOLIDFOOD = "ifstartedsolidfood";
     private static final String WHICHMONTH_SOLIDFOOD = "whichmonthsolidfood";
     private static final String CHILDIMMUNIZATION_STATUS = "childimmunizationstatus";
+//    private static final String IS_EDITED= "is_edited";
+//    private static final String IS_NEW= "is_new";
+//    private static final String IS_APPROVED = "is_approved";
 
-    private static final String PREGNENTUID = "pregnantuid";
+
+
+
     private static final String PREGNANCY_ID = "pregnancy_id";
     private static final String SURVEYYYY_ID = "surveyyyy_id";
     private static final String ORDEROF_PREGNANCY = "orderof_pregnancy";
     private static final String LMP_DATE = "lmp_date";
+    private static final String IS_ACTIVE = "Is_active";
     private static final String SURVEYORR_ID = "surveyorr_id";
     private static final String TIMEE_STAMP = "timee_stamp";
     private static final String SOURCEE = "sourcee";
+    private static final String IS_EDITED= "is_edited";
+    private static final String IS_NEW= "is_new";
+    private static final String IS_APPROVED = "is_approved";
 
 
-    public DbHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
+
+public static final String CREATE_FAMILYDATA_TABLE = "CREATE TABLE " + TABLE_FAMILYDATA + " ( "
+//            + FAMILYTABLE_ID + " INTEGER PRIMARY KEY, "
+            + FAMILY_ID + " VARCHAR, "
+            + DIST_CODE + " VARCHAR, "
+            + PROJECT_CODE + " VARCHAR, "
+            + SECTOR_CODE + " VARCHAR, "
+            + AWC_CODE + " VARCHAR, "
+            + VILLAGE_CODE + " VARCHAR, "
+            + RELIGION + " INTEGER, "
+            + CASTE + " INTEGER, "
+            + RCARD + " INTEGER, "
+            + FAMILY_TYPE + " INTEGER, "
+            + IS_EDITED_FAMILY + " VARCHAR, "
+            + IS_NEW_FAMILY + " VARCHAR, "
+            + IS_APPROVED_FAMILY + " VARCHAR, "
+            + SURVEYOR_ID + " VARCHAR)";
+
+
+
+//    public DbHelper(Context context) {
+//        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+//    }
 
     // Creating Tables
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        String CREATE_FAMILYDATA_TABLE = "CREATE TABLE " + TABLE_FAMILYDATA + "(" + FAMILY_ID + " INTEGER PRIMARY KEY," + DIST_CODE + " TEXT," + PROJECT_CODE + " TEXT," + SECTOR_CODE + " TEXT," + AWC_CODE + " TEXT," + RELIGION + " INT," + CASTE + " INT," + RCARD + " INT," + FAMILY_TYPE + " INT," + SURVEYOR_ID + " TEXT," + ")";
+    public void onCreate(SQLiteDatabase db)
+        {
+//            super.onCreate(db);
+//            Log.d("Sqlite","CREATE_FAMILYDATA_TABLE");
+
+
+//        Log.d("Sqlite",CREATE_FAMILYDATA_TABLE);
         db.execSQL(CREATE_FAMILYDATA_TABLE);
 
-        String CREATE_MEMBERBASIC_TABLE = "CREATE TABLE " + MEMBER_BASIC + "(" + SURVEY_ID + " INTEGER PRIMARY KEY," + FAMILYY_ID + " TEXT," + NAME + " TEXT," + DOR + " TEXT," + DOENRTY + " TEXT," + DOEXIT + " TEXT," + DOB + " TEXT," + AGE + " TEXT," + IF_DOB_ASSUMED + " TEXT," + DODEATH + " TEXT," + AADHAR + " TEXT," + AADHAR_ENROLMENT + " TEXT," + AADHAR_DATE + " TEXT," + AADHAR_TIME + " TEXT," + BHAMASHA + " TEXT," + MOBILE + " TEXT," + RELATION + " TEXT," + SEX + " TEXT," + HANDICAP + " TEXT," + IF_MARRIED + " TEXT," + MOTHER_ID + " TEXT," + STATUS + " TEXT," + STAGE + " TEXT," + SUB_STAGE + " TEXT," + TRACK_STATUS + " TEXT," + SURVAYORR_ID + " TEXT," + TIME_STAMP + " TEXT," + SOURCE + " TEXT," + ")";
+        String CREATE_MEMBERBASIC_TABLE = "CREATE TABLE " + MEMBER_BASIC + "(" +
+                MEMBER_ID+ " VARCHAR, "
+                + FAMILYY_ID + " VARCHAR, "
+                + NAME + " VARCHAR,"
+                + DOR + " DATE, "
+                + DOENRTY + " DATE, "
+                + DOEXIT + " DATE, "
+                + DOB + " DATE, "
+                + AGE + " FLOAT, "
+                + IF_DOB_ASSUMED + " VARCHAR, "
+                + DODEATH + " DATE, "
+                + AADHAR + " VARCHAR, "
+                + AADHAR_ENROLMENT + " VARCHAR, "
+                + AADHAR_DATE + " DATE, "
+                + AADHAR_TIME + " TEXT, "
+                + BHAMASHA + " TEXT, "
+                + MOBILE + " TEXT, "
+                + RELATION + " VARCHAR, "
+                + SEX + " VARCHAR,"
+                + HANDICAP + " VARCHAR, "
+                + IF_MARRIED + " VARCHAR, "
+                + MOTHER_ID + " VARCHAR,"
+                + STATUS + " VARCHAR,"
+                + STAGE + " VARCHAR,"
+                + SUB_STAGE + " VARCHAR, "
+                + IS_TO_TRACK + " VARCHAR, "
+                + SURVAYORR_ID + " VARCHAR, "
+                + TIME_STAMP + " DATETIME, "
+                + IS_EDITED_MEMBER + " VARCHAR, "
+                + IS_NEW_MEMBER + " VARCHAR, "
+                + IS_APPROVED_MEMBER + " TEXT, "
+                + SOURCE + " TEXT)";
         db.execSQL(CREATE_MEMBERBASIC_TABLE);
 
-        String CREATE_WOMEN_EXTRA = "CREATE TABLE " + WOMEN_EXTRA + "(" + WOMENUID + " INTEGER PRIMARY KEY," + SURVEYY_ID + " TEXT," + EDUCATION + " TEXT," + COOKINGFUEL + " TEXT," + DECISIONMAKER_OWNHEALTH + " TEXT," + DECISIONMAKER_CHILDHEALTH + " TEXT," + IF_BANK_ACCOUNT + " TEXT," + AC_HOLDER_NAME + " TEXT," + BANK_NAME + " TEXT," + BRANCH + " TEXT," + AC_NO + " TEXT," + IFSC_CODE + " TEXT," + BANK_DISTANCE + " TEXT," + POSTOFFICE_NAME + " TEXT," + POSTOFFICE_ADDRESS + " TEXT," + PINCODE + " TEXT," + POSTOFFICE_AC + " TEXT," + HOEMO_CODE + " TEXT," + ")";
+        String CREATE_WOMEN_EXTRA = "CREATE TABLE " + WOMEN_EXTRA + "("
+//                + WOMENUID + " INTEGER PRIMARY KEY,"
+                + MEMBER_ID + " VARCHAR, "
+                + EDUCATION + " INTEGER, "
+                + COOKINGFUEL + " INTEGER, "
+                + DECISIONMAKER_OWNHEALTH + " INTEGER, "
+                + DECISIONMAKER_CHILDHEALTH + " INTEGER, "
+                + IF_BANK_ACCOUNT + " VARCHAR, "
+                + AC_HOLDER_NAME + " VARCHAR, "
+                + BANK_NAME + " VARCHAR, "
+                + BRANCH + " VARCHAR, "
+                + AC_NO + " VARCHAR, "
+                + IFSC_CODE + " VARCHAR, "
+                + BANK_DISTANCE + " FLOAT, "
+                + POSTOFFICE_NAME + " VARCHAR, "
+                + POSTOFFICE_ADDRESS + " VARCHAR, "
+                + PINCODE + " VARCHAR, "
+                + POSTOFFICE_AC + " VARCHAR, "
+                + HOEMO_CODE + " VARCHAR, "
+                + IS_EDITED + " VARCHAR, "
+                + IS_NEW + " VARCHAR, "
+                + IS_APPROVED + " VARCHAR)";
         db.execSQL(CREATE_WOMEN_EXTRA);
 
-        String CREATE_CHILD_EXTRA = "CREATE TABLE " + CHILD_EXTRA + "(" + CHILDUID + " INTEGER PRIMARY KEY," + SURVEYYY_ID + " TEXT," + DO_DELIVERY + " TEXT," + DELIVERY_PLACE + " TEXT," + CHILD_ORDER + " TEXT," + BIRTH_WT + " TEXT," + FULL_TERM + " TEXT," + WHENFIRST_BF + " TEXT," + IFFEED_KHEES + " TEXT," + CURRENTLY_BF + " TEXT," + WHENSTOP_BF + " TEXT," + ANYTHINGBEFORE_BF + " TEXT," + IFSTARTED_SOLIDFOOD + " TEXT," + WHICHMONTH_SOLIDFOOD + " TEXT," + CHILDIMMUNIZATION_STATUS + " TEXT," + ")";
+        String CREATE_CHILD_EXTRA = "CREATE TABLE " + CHILD_EXTRA + "("
+
+                + MEMBER_ID + " VARCHAR, "
+                + DO_DELIVERY + " DATE, "
+                + DELIVERY_PLACE + " INTEGER, "
+                + CHILD_ORDER + " INTEGER, "
+                + BIRTH_WT + " FLOAT,"
+                + FULL_TERM + " VARCHAR, "
+                + WHENFIRST_BF + " INTEGER, "
+                + IFFEED_KHEES + " VARCHAR, "
+                + CURRENTLY_BF + " VARCHAR, "
+                + WHENSTOP_BF + " INTEGER, "
+                + ANYTHINGBEFORE_BF + " VARCHAR, "
+                + IFSTARTED_SOLIDFOOD + " VARCHAR, "
+                + WHICHMONTH_SOLIDFOOD + " FLOAT, "
+                + CHILDIMMUNIZATION_STATUS + " VARCHAR, "
+                + IS_EDITED + " VARCHAR, "
+               + IS_NEW + " VARCHAR, "
+              + IS_APPROVED + " VARCHAR)";
         db.execSQL(CREATE_CHILD_EXTRA);
 
-        String CREATE_PREGNANT = "CREATE TABLE " + PREGNANT + "(" + PREGNENTUID + " INTEGER PRIMARY KEY," + PREGNANCY_ID + " TEXT," + SURVEYYYY_ID + " TEXT," + ORDEROF_PREGNANCY + " TEXT," + LMP_DATE + " TEXT," + SURVEYORR_ID + " TEXT," + TIMEE_STAMP + " TEXT," + SOURCEE + " TEXT," + ")";
-        db.execSQL(CREATE_PREGNANT);
+        String CREATE_PREGNANT = "CREATE TABLE " + PREGNANT + "("
+//                + PREGNENTUID + " INTEGER PRIMARY KEY,"
+                + PREGNANCY_ID + " VARCHAR, "
+                + MEMBER_ID + " VARCHAR, "
+                + ORDEROF_PREGNANCY + " INTEGER, "
+                + LMP_DATE + " DATE,"
+                + IS_ACTIVE + " VARCHAR, "
+                + SURVEYORR_ID + " VARCHAR, "
+                + TIMEE_STAMP + " DATETIME,"
+                + SOURCEE + " VARCHAR, "
+                + IS_EDITED + " VARCHAR, "
+                + IS_NEW + " VARCHAR, "
+                + IS_APPROVED + " VARCHAR)";
+              db.execSQL(CREATE_PREGNANT);
     }
 
 
@@ -151,7 +299,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     // Adding new contact
-    public void addFamilyData(FamilyDetailGetSet familyDetailGetSet) {
+    public long addFamilyData(FamilyDetailGetSet familyDetailGetSet) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -167,15 +315,16 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(SURVEYOR_ID, familyDetailGetSet.getSurveyor_id());
 
         // Inserting Row
-        db.insert(TABLE_FAMILYDATA, null, values);
-        db.close(); // Closing database connection
+     long id=   db.insert(TABLE_FAMILYDATA, null, values);
+//        db.close(); // Closing database connection
+        return id;
     }
 
-    public void addMemberBasic(MemberBasicGetSet memberBasicGetSet) {
+    public long addMemberBasic(MemberBasicGetSet memberBasicGetSet) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(SURVEY_ID, memberBasicGetSet.getSurvey_id());
+        values.put(MEMBER_ID, memberBasicGetSet.getmemberId());
         values.put(FAMILYY_ID, memberBasicGetSet.getFamily_id());
         values.put(NAME, memberBasicGetSet.getName());
         values.put(DOR, memberBasicGetSet.getDor());
@@ -199,21 +348,22 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(STATUS, memberBasicGetSet.getStatus());
         values.put(STAGE, memberBasicGetSet.getStage());
         values.put(SUB_STAGE, memberBasicGetSet.getSubstage());
-        values.put(TRACK_STATUS, memberBasicGetSet.getTrackstatus());
+        values.put(IS_TO_TRACK, memberBasicGetSet.getTrackstatus());
         values.put(SURVAYORR_ID, memberBasicGetSet.getSurveyor_id());
         values.put(TIME_STAMP, memberBasicGetSet.getTimestamp());
         values.put(SOURCE, memberBasicGetSet.getSource());
 
         // Inserting Row
-        db.insert(MEMBER_BASIC, null, values);
-        db.close(); // Closing database connection
+       long id = db.insert(MEMBER_BASIC, null, values);
+//        db.close(); // Closing database connection
+        return  id;
     }
 
-    public void addWomenExtra(WomenBasicGetSet womenBasicGetSet) {
+    public long addWomenExtra(WomenBasicGetSet womenBasicGetSet) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(SURVEYY_ID, womenBasicGetSet.getSurvey_id());
+        values.put(MEMBER_ID, womenBasicGetSet.getSurvey_id());
         values.put(EDUCATION, womenBasicGetSet.getEducation());
         values.put(COOKINGFUEL, womenBasicGetSet.getCookingfuel());
         values.put(DECISIONMAKER_OWNHEALTH, womenBasicGetSet.getDecicion_own());
@@ -230,10 +380,15 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(PINCODE, womenBasicGetSet.getPincode());
         values.put(POSTOFFICE_AC, womenBasicGetSet.getPostoffice_ac());
         values.put(HOEMO_CODE, womenBasicGetSet.getHoemo_code());
+        values.put(IS_EDITED, womenBasicGetSet.getHoemo_code());
+        values.put(IS_NEW, womenBasicGetSet.getHoemo_code());
+        values.put(IS_APPROVED, womenBasicGetSet.getHoemo_code());
+//        values.put(HOEMO_CODE, womenBasicGetSet.getHoemo_code());
 
         // Inserting Row
-        db.insert(WOMEN_EXTRA, null, values);
-        db.close(); // Closing database connection
+      long id =  db.insert(WOMEN_EXTRA, null, values);
+//        db.close(); // Closing database connection
+        return id;
     }
 
     public void addChildExtra(ChildExtraGetSet childExtraGetSet) {
@@ -257,24 +412,30 @@ public class DbHelper extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(CHILD_EXTRA, null, values);
-        db.close(); // Closing database connection
+//        db.close(); // Closing database connection
     }
 
-    public void addPregnant(PregnantGetSet pregnantGetSet) {
+    public long addPregnant(PregnantGetSet pregnantGetSet) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(PREGNANCY_ID, pregnantGetSet.getPregnancyid());
-        values.put(SURVEYYYY_ID, pregnantGetSet.getSurveyid());
+        values.put(MEMBER_ID, pregnantGetSet.getSurveyid());
         values.put(ORDEROF_PREGNANCY, pregnantGetSet.getOrderofpregnancy());
         values.put(LMP_DATE, pregnantGetSet.getLmpdate());
         values.put(SURVEYORR_ID, pregnantGetSet.getSurveyorid());
         values.put(TIMEE_STAMP, pregnantGetSet.getTimestamp());
+
+        values.put(IS_ACTIVE, "Y");
+        values.put(IS_EDITED, "");
+        values.put(IS_NEW,"Y");
+        values.put(IS_APPROVED, "");
         values.put(SOURCEE, pregnantGetSet.getSource());
 
         // Inserting Row
-        db.insert(PREGNANT, null, values);
-        db.close(); // Closing database connection
+      long id = db.insert(PREGNANT, null, values);
+//        db.close(); // Closing database connection
+        return  id;
     }
 
 //advdag

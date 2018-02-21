@@ -6,11 +6,48 @@ package extras;
 
 public class PregnantGetSet {
 
-    int pregnantuid;
-    String pregnancyid, surveyid, orderofpregnancy, lmpdate, surveyorid, timestamp, source;
+    int pregnantuid,orderofpregnancy;
+    String pregnancyid, surveyid, lmpdate, surveyorid, timestamp, source;
+    String IS_ACTIVE;
+    String IS_EDITED;
+    String IS_NEW;
+    String IS_APPROVED;
 
-    public PregnantGetSet(int pregnantuid, String pregnancyid, String surveyid, String orderofpregnancy, String lmpdate, String surveyorid, String timestamp, String source) {
-        this.pregnantuid = pregnantuid;
+    public String getIS_APPROVED() {
+        return IS_APPROVED;
+    }
+
+    public void setIS_APPROVED(String IS_APPROVED) {
+        this.IS_APPROVED = IS_APPROVED;
+    }
+
+    public String getIS_ACTIVE() {
+
+        return IS_ACTIVE;
+    }
+
+    public void setIS_ACTIVE(String IS_ACTIVE) {
+        this.IS_ACTIVE = IS_ACTIVE;
+    }
+
+    public String getIS_EDITED() {
+        return IS_EDITED;
+    }
+
+    public void setIS_EDITED(String IS_EDITED) {
+        this.IS_EDITED = IS_EDITED;
+    }
+
+    public String getIS_NEW() {
+        return IS_NEW;
+    }
+
+    public void setIS_NEW(String IS_NEW) {
+        this.IS_NEW = IS_NEW;
+    }
+
+    public PregnantGetSet(String pregnancyid, String surveyid, int orderofpregnancy, String lmpdate, String surveyorid, String timestamp, String source,String IS_ACTIVE,String IS_EDITED,String IS_NEW ,String IS_APPROVED)  {
+
         this.pregnancyid = pregnancyid;
         this.surveyid = surveyid;
         this.orderofpregnancy = orderofpregnancy;
@@ -18,6 +55,10 @@ public class PregnantGetSet {
         this.surveyorid = surveyorid;
         this.timestamp = timestamp;
         this.source = source;
+        this.IS_ACTIVE=IS_ACTIVE;
+        this.IS_APPROVED=IS_APPROVED;
+        this.IS_EDITED=IS_EDITED;
+        this.IS_NEW=IS_NEW;
     }
 
     public int getPregnantuid() {
@@ -44,11 +85,11 @@ public class PregnantGetSet {
         this.surveyid = surveyid;
     }
 
-    public String getOrderofpregnancy() {
+    public int getOrderofpregnancy() {
         return orderofpregnancy;
     }
 
-    public void setOrderofpregnancy(String orderofpregnancy) {
+    public void setOrderofpregnancy(int orderofpregnancy) {
         this.orderofpregnancy = orderofpregnancy;
     }
 

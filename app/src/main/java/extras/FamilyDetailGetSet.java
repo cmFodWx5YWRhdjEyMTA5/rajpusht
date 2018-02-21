@@ -6,11 +6,11 @@ package extras;
 
 public class FamilyDetailGetSet {
 
-    int familyid, religion, cast, rcard, familytype;
-    String  dist_code, project_code, sector_code, awc_code, surveyor_id;
+    int  religion, cast, rcard, familytype;
+    String  dist_code, project_code, sector_code, awc_code, surveyor_id,familyid;
 
 
-    public FamilyDetailGetSet(int familyid, int religion, int cast, int rcard, int familytype, String dist_code, String project_code, String sector_code, String awc_code, String surveyor_id) {
+    public FamilyDetailGetSet(String familyid, int religion, int cast, int rcard, int familytype, String dist_code, String project_code, String sector_code, String awc_code, String surveyor_id) {
         this.familyid = familyid;
         this.religion = religion;
         this.cast = cast;
@@ -23,11 +23,11 @@ public class FamilyDetailGetSet {
         this.surveyor_id = surveyor_id;
     }
 
-    public int getFamilyid() {
+    public String getFamilyid() {
         return familyid;
     }
 
-    public void setFamilyid(int familyid) {
+    public void setFamilyid(String familyid) {
         this.familyid = familyid;
     }
 

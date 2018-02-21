@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,233 +18,248 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp">
-
-                <Button
-                    android:id="@+id/addchild"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="add new"
-                    android:textSize="11dp"
-                    android:textColor="@color/white"
-                    android:background="@color/colorPrimary"
-                    android:layout_alignParentRight="true"/>
-
-            </RelativeLayout>
-
-<HorizontalScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:id="@+id/c1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp">
-
-                    <ImageView
-                        android:id="@+id/ch1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="ch1Cli"
-                        android:visibility="gone"
-                        android:src="@drawable/white1"/>
-                    <ImageView
-                        android:id="@+id/ch1c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/pink1"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch2Cli"
-                        android:src="@drawable/white2"/>
-                    <ImageView
-                        android:id="@+id/ch2c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:src="@drawable/pink2"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch3Cli"
-                        android:src="@drawable/white3"/>
-                    <ImageView
-                        android:id="@+id/ch3c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:src="@drawable/pink3"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch4Cli"
-                        android:src="@drawable/white4"/>
-                    <ImageView
-                        android:id="@+id/ch4c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:src="@drawable/pink4"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c5"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch5Cli"
-                        android:src="@drawable/white5"/>
-                    <ImageView
-                        android:id="@+id/ch5c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:src="@drawable/pink5"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c6"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch6"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch6Cli"
-                        android:src="@drawable/white6"/>
-                    <ImageView
-                        android:id="@+id/ch6c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:src="@drawable/pink6"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c7"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch7"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch7Cli"
-                        android:src="@drawable/white7"/>
-                    <ImageView
-                        android:id="@+id/ch7c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:src="@drawable/pink7"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c8"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch8"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch8Cli"
-                        android:src="@drawable/white8"/>
-                    <ImageView
-                        android:id="@+id/ch8c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:src="@drawable/pink8"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/c9"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/ch9"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:onClick="ch9Cli"
-                        android:src="@drawable/white9"/>
-                    <ImageView
-                        android:id="@+id/ch9c"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/pink9"
-                        android:visibility="gone"/>
-
-                </RelativeLayout>
 
 
+<!--<HorizontalScrollView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c1"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp">-->
+
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch1"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:onClick="ch1Cli"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/white1"/>-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch1c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:src="@drawable/pink1"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c2"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch2"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch2Cli"-->
+                        <!--android:src="@drawable/white2"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch2c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/pink2"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c3"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch3"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch3Cli"-->
+                        <!--android:src="@drawable/white3"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch3c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/pink3"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c4"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch4"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch4Cli"-->
+                        <!--android:src="@drawable/white4"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch4c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/pink4"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c5"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch5"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch5Cli"-->
+                        <!--android:src="@drawable/white5"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch5c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/pink5"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c6"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch6"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch6Cli"-->
+                        <!--android:src="@drawable/white6"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch6c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/pink6"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c7"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch7"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch7Cli"-->
+                        <!--android:src="@drawable/white7"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch7c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/pink7"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c8"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch8"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch8Cli"-->
+                        <!--android:src="@drawable/white8"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch8c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:src="@drawable/pink8"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/c9"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch9"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:onClick="ch9Cli"-->
+                        <!--android:src="@drawable/white9"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/ch9c"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:src="@drawable/pink9"-->
+                        <!--android:visibility="gone"/>-->
+
+                <!--</RelativeLayout>-->
+
+
+
+            <!--</LinearLayout>-->
+<!--</HorizontalScrollView>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginBottom="10dp">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/addchild"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_alignParentTop="true"-->
+                        <!--android:layout_marginEnd="11dp"-->
+                        <!--android:layout_marginRight="11dp"-->
+                        <!--android:background="@drawable/pink1"-->
+                        <!--android:text="+"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="11dp"-->
+                        <!--/>-->
+
+                <!--</RelativeLayout>-->
 
             </LinearLayout>
-</HorizontalScrollView>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -539,4 +554,4 @@
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</RelativeLayout>
