@@ -296,6 +296,8 @@ public class RegistrationWomen extends AppCompatActivity {
 //gyyyh
 
 
+
+
         if(status.equals("checkedChild")){
 
             child.setEnabled(false);
@@ -1153,6 +1155,12 @@ Log.d("checkInsretd","Pregrncy Insreted");
         PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), "19/02/2018",  new Login().surveyerId, new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime()),"mobile","Y","","Y","");
        long id= db.addPregnant(pregnent);
        Log.d("CountPregnent","sucieesrate"+id);
+
+        ContentValues contentUpdate = new ContentValues();
+        contentUpdate.put("stage","PW");
+        contentUpdate.put("status","PW");
+        long uid=dbs.update("memberbasic",contentUpdate,"MemberId=?",new String[]{memberId});
+
 
 
         inserted = "1";
