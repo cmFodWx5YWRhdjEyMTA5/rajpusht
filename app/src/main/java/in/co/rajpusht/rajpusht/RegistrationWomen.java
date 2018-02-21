@@ -293,7 +293,7 @@ public class RegistrationWomen extends AppCompatActivity {
             }
         });
         child= (TextView) findViewById(R.id.child);
-
+//gyyyh
 
 
         if(status.equals("checkedChild")){
