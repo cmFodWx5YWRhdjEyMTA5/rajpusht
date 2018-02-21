@@ -1,19 +1,33 @@
 package in.co.rajpusht.rajpusht;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -34,20 +48,25 @@ public class RegistrationWomen extends AppCompatActivity {
     String status;
     CheckBox checkChild,checkPregnets;
     TextView basic,basicPregment,child;
-
+    View basicclick, pregnentclick, childclick;
+    CheckBox adhaaravailable;
     String registerMemeberId,familyID,memberId,pregnentId;
-    int castitem,relationitem,rationcardItem,familyttypeItem,eductionItemPosition;
-
-
+    int castitem,relationitem,rationcardItem,familyttypeItem,eductionItemPosition, religionitemposi, fuelItemPosition, decisionItemPosition, doctorvisitItemPosition;
+    LinearLayout noadhaar, banklayout, postofficeaccountdetail;
+    RelativeLayout bas, preg, chi;
    DbHelper db;
-    EditText nameBenificery,phoneNumber,UidNumber,pregnetNumnber;
-
+    EditText nameBenificery,phoneNumber,usidNumber,nameaccountholder, bhamashahNumber,aadharNumber,aadharenrollment,personAge, nameofbank, branchname,
+            bankaccountnumber, ifsccode, distancetobranch, distancenearestatm, nameofpostoffice, addressofpostoffice, postofficeaccount, postofficepincode,
+            hoemocode;
+    TextView datee, time, lmpdate, dob;
+    RadioGroup bankgroup;
     Spinner personaReligion,castSpinner,rationcardColorSpinner,relationshipHeadSpinner,typeFamilySpinner,educationComplted,fuelSelectionSpinner,
             decsionSpinner,decsionVisitDoctorSpinner;
     View fragment_pregnant_lady_detail,fragment_young_mother_basic_details;
-    EditText nameaccountholder;
-    String educationItem;
-
+    EditText pregnetNumnber;
+    String educationItem, accountype = "N", reli, cst, rati, rela, fami, fuel, deci, visi;
+    private int mYear, mMonth, mDay, mHour, mMinute, mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2;
+    Dialog dialogCoupon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,47 +75,254 @@ public class RegistrationWomen extends AppCompatActivity {
 
 //        getSupportActionBar().hide();
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
+
+
+        getSupportActionBar().setTitle("BASIC");
 
         db= new DbHelper(this);
 
         fragment_young_mother_basic_details = (View)findViewById(R.id.pregnentbasic);
         fragment_pregnant_lady_detail = (View)findViewById(R.id.pregnentDetails);
 
+        noadhaar = (LinearLayout) findViewById(R.id.noadhaar) ;
+        banklayout = (LinearLayout) findViewById(R.id.banklayout) ;
+        postofficeaccountdetail = (LinearLayout) findViewById(R.id.postofficeaccountdetail) ;
+        bankgroup = (RadioGroup) findViewById(R.id.bankgroup) ;
+        bankgroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if(checkedId == R.id.accountyes) {
+                    banklayout.setVisibility(View.VISIBLE);
+                    postofficeaccountdetail.setVisibility(View.GONE);
+                    accountype = "B";
 
+                }else if(checkedId == R.id.accountno) {
+                    postofficeaccountdetail.setVisibility(View.VISIBLE);
+                    banklayout.setVisibility(View.GONE);
+                    accountype = "P";
+                }else if(checkedId == R.id.noaccount) {
+                    postofficeaccountdetail.setVisibility(View.GONE);
+                    banklayout.setVisibility(View.GONE);
+                    accountype = "N";
+                }
+            }
+        });
 
+        adhaaravailable = (CheckBox) findViewById(R.id.adhaaravailable) ;
+        adhaaravailable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // update your model (or other business logic) based on isChecked
+                if(adhaaravailable.isChecked()){
+                    noadhaar.setVisibility(View.VISIBLE);
+                }else {
+                    noadhaar.setVisibility(View.GONE);
+                }
+            }
+        });
 
+        bas= (RelativeLayout) findViewById(R.id.relativeBasic);
+        preg= (RelativeLayout) findViewById(R.id.relativePregnent);
+        chi= (RelativeLayout) findViewById(R.id.relativeChild);
 
 
         status = getIntent().getStringExtra("status");
         Log.d("Ranjeet",status);
 
+        basicclick= (View) findViewById(R.id.basicclick);
+        pregnentclick= (View) findViewById(R.id.pregnentclick);
+        childclick= (View) findViewById(R.id.childclick);
+
+        datee = (TextView) findViewById(R.id.datee);
+        datee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datee.setError(null);
+                final Calendar calender = Calendar.getInstance();
+                mYear = calender.get(Calendar.YEAR);
+                mMonth = calender.get(Calendar.MONTH);
+                mDay = calender.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dpd = new DatePickerDialog(RegistrationWomen.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+                                datee.setText(dayOfMonth + "-"
+                                        + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+                dpd.show();
+            }
+        });
+        time = (TextView) findViewById(R.id.time);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                time.setError(null);
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog tpd = new TimePickerDialog(RegistrationWomen.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+                                // Display Selected time in textbox
+                                String AM_PM;
+                                if (hourOfDay < 12) {
+                                    AM_PM = "AM";
+                                } else {
+                                    AM_PM = "PM";
+                                }
+
+                                time.setText(hourOfDay + ":" + minute );
+                            }
+                        }, mHour, mMinute, false);
+                tpd.show();
+
+
+            }
+        });
+        lmpdate = (TextView) findViewById(R.id.lmpdate);
+        lmpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datee.setError(null);
+                final Calendar calender = Calendar.getInstance();
+                mYear2 = calender.get(Calendar.YEAR);
+                mMonth2 = calender.get(Calendar.MONTH);
+                mDay2 = calender.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dpd = new DatePickerDialog(RegistrationWomen.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+                                lmpdate.setText(dayOfMonth + "-"
+                                        + (monthOfYear + 1) + "-" + year);
+                                getAge(year, (monthOfYear + 1),dayOfMonth );
+                            }
+                        }, mYear2, mMonth2, mDay2);
+//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+                dpd.show();
+            }
+        });
+        dob = (TextView) findViewById(R.id.dob);
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datee.setError(null);
+                final Calendar calender = Calendar.getInstance();
+                mYear1 = calender.get(Calendar.YEAR);
+                mMonth1 = calender.get(Calendar.MONTH);
+                mDay1 = calender.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dpd = new DatePickerDialog(RegistrationWomen.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+                                dob.setText(dayOfMonth + "-"
+                                        + (monthOfYear + 1) + "-" + year);
+                                getAge(year, (monthOfYear + 1),dayOfMonth );
+                            }
+                        }, mYear1, mMonth1, mDay1);
+//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+                dpd.show();
+            }
+        });
 
         nameBenificery = (EditText) findViewById(R.id.nameBenificery);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
-        UidNumber = (EditText) findViewById(R.id.UidNumber);
+        usidNumber = (EditText) findViewById(R.id.usidNumber);
         nameaccountholder = (EditText) findViewById(R.id.nameaccountholder);
+        bhamashahNumber = (EditText) findViewById(R.id.bhamashahNumber);
+        aadharNumber = (EditText) findViewById(R.id.aadharNumber);
+        aadharenrollment = (EditText) findViewById(R.id.aadharenrollment);
+        personAge = (EditText) findViewById(R.id.personAge);
+        nameofbank = (EditText) findViewById(R.id.nameofbank);
+        branchname = (EditText) findViewById(R.id.branchname);
+        bankaccountnumber = (EditText) findViewById(R.id.bankaccountnumber);
+        ifsccode = (EditText) findViewById(R.id.ifsccode);
+        distancetobranch = (EditText) findViewById(R.id.distancetobranch);
+        distancenearestatm = (EditText) findViewById(R.id.distancenearestatm);
+        nameofpostoffice = (EditText) findViewById(R.id.nameofpostoffice);
+        addressofpostoffice = (EditText) findViewById(R.id.addressofpostoffice);
+        postofficeaccount = (EditText) findViewById(R.id.postofficeaccount);
+        postofficepincode = (EditText) findViewById(R.id.postofficepincode);
+        hoemocode = (EditText) findViewById(R.id.hoemocode);
+
+
         pregnetNumnber = (EditText)findViewById(R.id.pregnetNumnber);
 
         basic= (TextView) findViewById(R.id.basic);
+        basic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment_young_mother_basic_details.setVisibility(View.VISIBLE);
+                fragment_pregnant_lady_detail.setVisibility(View.GONE);
+                basicclick.setVisibility(View.VISIBLE);
+                pregnentclick.setVisibility(View.GONE);
+                childclick.setVisibility(View.GONE);
+            }
+        });
         basicPregment = (TextView) findViewById(R.id.basicPregment);
+        basicPregment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment_young_mother_basic_details.setVisibility(View.GONE);
+                fragment_pregnant_lady_detail.setVisibility(View.VISIBLE);
+                basicclick.setVisibility(View.GONE);
+                pregnentclick.setVisibility(View.VISIBLE);
+                childclick.setVisibility(View.GONE);
+                getSupportActionBar().setTitle("PREGNANT");
+            }
+        });
         child= (TextView) findViewById(R.id.child);
+
+
 
         if(status.equals("checkedChild")){
 
             child.setEnabled(false);
+            basicclick.setVisibility(View.VISIBLE);
             basicPregment.setVisibility(View.GONE);
+            bas.setVisibility(View.VISIBLE);
+            preg.setVisibility(View.GONE);
+            chi.setVisibility(View.VISIBLE);
         }
 
         if(status.equals("checkedPregnent")){
 
                 child.setVisibility(View.GONE);
                 basicPregment.setEnabled(false);
+            basicclick.setVisibility(View.VISIBLE);
+            bas.setVisibility(View.VISIBLE);
+            preg.setVisibility(View.VISIBLE);
+            chi.setVisibility(View.GONE);
 
         }
          if(status.equals("Pregnentandchild")){
              basicPregment.setEnabled(false);
+             basicclick.setVisibility(View.VISIBLE);
              child.setEnabled(false);
+             bas.setVisibility(View.VISIBLE);
+             preg.setVisibility(View.VISIBLE);
+             chi.setVisibility(View.VISIBLE);
 
         }
 
@@ -116,7 +342,19 @@ public class RegistrationWomen extends AppCompatActivity {
         dataAdapterpersonaReligion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         personaReligion.setAdapter(dataAdapterpersonaReligion);
 
+        personaReligion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                reli = String.valueOf(parent.getItemAtPosition(position));
+                religionitemposi =parent.getSelectedItemPosition();
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         castSpinner=(Spinner) findViewById(R.id.castSpinner);
         List<String> listcastSpinner = new ArrayList<String>();
@@ -133,7 +371,7 @@ public class RegistrationWomen extends AppCompatActivity {
         castSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                cst = String.valueOf(parent.getItemAtPosition(position));
                 castitem =parent.getSelectedItemPosition();
 
             }
@@ -162,6 +400,7 @@ public class RegistrationWomen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 rationcardItem = parent.getSelectedItemPosition();
+                rati = String.valueOf(parent.getItemAtPosition(position));
             }
 
             @Override
@@ -195,6 +434,7 @@ public class RegistrationWomen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 relationitem =parent.getSelectedItemPosition();
+                rela = String.valueOf(parent.getItemAtPosition(position));
             }
 
             @Override
@@ -223,6 +463,7 @@ public class RegistrationWomen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 familyttypeItem = parent.getSelectedItemPosition();
+                fami = String.valueOf(parent.getItemAtPosition(position));
             }
 
             @Override
@@ -253,6 +494,7 @@ public class RegistrationWomen extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 educationItem = String.valueOf(parent.getItemAtPosition(position));
+                Log.d("CheckSpinner",educationItem );
                 eductionItemPosition=parent.getSelectedItemPosition();
 
             }
@@ -285,7 +527,20 @@ public class RegistrationWomen extends AppCompatActivity {
         dataAdapterfuelSelectionSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fuelSelectionSpinner.setAdapter(dataAdapterfuelSelectionSpinner);
 
+        fuelSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                fuel = String.valueOf(parent.getItemAtPosition(position));
+                fuelItemPosition=parent.getSelectedItemPosition();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         decsionSpinner= (Spinner) findViewById(R.id.decsionSpinner);
 
@@ -305,13 +560,25 @@ public class RegistrationWomen extends AppCompatActivity {
         dataAdapterdecsionSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         decsionSpinner.setAdapter(dataAdapterdecsionSpinner);
 
+        decsionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                deci = String.valueOf(parent.getItemAtPosition(position));
+                decisionItemPosition=parent.getSelectedItemPosition();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         decsionVisitDoctorSpinner  = (Spinner) findViewById(R.id.decsionVisitDoctorSpinner);
-
         List<String> listdecsionVisitDoctorSpinner = new ArrayList<String>();
         listdecsionVisitDoctorSpinner.add("--Select Options--");
-
-
         listdecsionVisitDoctorSpinner.add("Self");
         listdecsionVisitDoctorSpinner.add("Husband/Wife");
         listdecsionVisitDoctorSpinner.add("Mother in law");
@@ -323,7 +590,20 @@ public class RegistrationWomen extends AppCompatActivity {
         dataAdapterdecsionVisitDoctorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         decsionVisitDoctorSpinner.setAdapter(dataAdapterdecsionVisitDoctorSpinner);
 
+        decsionVisitDoctorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                visi = String.valueOf(parent.getItemAtPosition(position));
+                doctorvisitItemPosition=parent.getSelectedItemPosition();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -335,55 +615,79 @@ public class RegistrationWomen extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
 
+                                        if(fragment_young_mother_basic_details.getVisibility()==View.VISIBLE){
 
-                                        int errorCode=validateBasicForm();
-if(errorCode==0) {
+                                            int errorCode=validateBasicForm();
+                                            if(errorCode==0) {
 
-    if (registerMemeberId == null) {
-        Log.d("awc_code", new Login().awc_code);
-       familyID = createFamilyId(new Login().awc_code);
+                                                if (registerMemeberId == null) {
+                                                    Log.d("awc_code", new Login().awc_code);
+                                                    familyID = createFamilyId(new Login().awc_code);
 
-        insertFamily(familyID,"ADD");
-         memberId = createMemberId(familyID);
+                                                    insertFamily(familyID,"ADD");
+                                                    memberId = createMemberId(familyID);
 
-       String memberInsterted = insertMemberMaster(familyID,memberId,"ADD");
-String womenExtraInserted = inserWomenExtra(memberId,"ADD");
-
-
-       if(memberInsterted.equals("1")){
-           registerMemeberId=memberId;
-
-           fragment_young_mother_basic_details.setVisibility(View.GONE);
-           fragment_pregnant_lady_detail.setVisibility(View.VISIBLE);
-           basicPregment.setText("Pregnenet ACtivated");
-//           basicPregment.setTextColor(green);
-//           basicPregment.setTextColor(green);
-           if(status.equalsIgnoreCase("checkedPregnent") || status.equalsIgnoreCase("Pregnentandchild")){
-
-               basicPregment.setEnabled(true);
-           }
+                                                    String memberInsterted = insertMemberMaster(familyID,memberId,"ADD");
+                                                    String womenExtraInserted = inserWomenExtra(memberId,"ADD");
 
 
-       }
+                                                    if(memberInsterted.equals("1")){
+                                                        registerMemeberId=memberId;
+
+                                                        fragment_young_mother_basic_details.setVisibility(View.GONE);
+                                                        fragment_pregnant_lady_detail.setVisibility(View.VISIBLE);
+//           basicPregment.setText("Pregnenet ACtivated");
+                                                        basic.setBackgroundResource(0);
+                                                        pregnentclick.setVisibility(View.VISIBLE);
+                                                        getSupportActionBar().setTitle("PREGNANT");
+                                                        basicclick.setVisibility(View.GONE);
+                                                        if(status.equalsIgnoreCase("checkedPregnent") || status.equalsIgnoreCase("Pregnentandchild")){
+
+                                                            basicPregment.setEnabled(true);
+                                                        }
+
+
+                                                    }
 
 
 //        Log.d("familyLog", familyID);
 
-    }
-    else{
-        insertFamily(familyID,"EDIT");
-        insertMemberMaster(familyID,memberId,"EDIT");
-        inserWomenExtra(memberId,"EDIT");
+                                                }
+                                                else{
+                                                    insertFamily(familyID,"EDIT");
+                                                    insertMemberMaster(familyID,memberId,"EDIT");
+                                                    inserWomenExtra(memberId,"EDIT");
 
-             if(basicPregment.isEnabled()){
-                 Log.d("CheckNull","insideEnbale"+pregnentId);
-
-                        insertPregnent(memberId,pregnentId);
-                    }
-    }
+                                                    if(basicPregment.isEnabled()){
+                                                        Log.d("CheckNull","insideEnbale"+pregnentId);
 
 
-}
+
+                                                        insertPregnent(memberId,pregnentId);
+                                                    }
+                                                }
+
+
+                                            }
+
+                                        }else if(fragment_pregnant_lady_detail.getVisibility()==View.VISIBLE){
+                                            if(pregnetNumnber.getText().length()==0){
+                                                pregnetNumnber.setError("");
+                                                Toast.makeText(RegistrationWomen.this, "Enter Number of child", Toast.LENGTH_SHORT).show();
+                                            }
+                                            else if(lmpdate.getText().toString().length()==0){
+                                                Toast.makeText(RegistrationWomen.this, "Please Select Date", Toast.LENGTH_SHORT).show();
+                                            }
+                                            else {
+
+                                                Log.d("topsecret",dob.getText().toString());
+                                                Toast.makeText(RegistrationWomen.this, dob.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                                                insertPregnent(memberId,pregnentId);
+                                            }
+                                        }
+
+
 
 
             }
@@ -623,40 +927,204 @@ return  inserted;
 
 public int validateBasicForm(){
 
+    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         int error =0;
 if(nameBenificery.getText().toString().length()==0){
 
     Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT).show();
+    nameBenificery.requestFocus();
+    imm.showSoftInput(nameBenificery, InputMethodManager.SHOW_IMPLICIT);
     error=1;
 
 }
 
-if(error==0 && phoneNumber.getText().toString().length()==0){
-
-    Toast.makeText(this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+if(error==0 && phoneNumber.getText().toString().length()!=10){
+    phoneNumber.requestFocus();
+    imm.showSoftInput(phoneNumber, InputMethodManager.SHOW_IMPLICIT);
+    Toast.makeText(this, "Enter valid Phone Number", Toast.LENGTH_SHORT).show();
     error=1;
 }
 
-if(error==0 && UidNumber.getText().toString().length()==0){
-
+if(error==0 && usidNumber.getText().toString().length()==0){
+    usidNumber.requestFocus();
+    imm.showSoftInput(usidNumber, InputMethodManager.SHOW_IMPLICIT);
     Toast.makeText(this, "Enter UID Numnber", Toast.LENGTH_SHORT).show();
 error=1;
 }
 
-if(error == 0 && nameaccountholder.getText().toString().length()==0 ){
-    Toast.makeText(this, "Enter Account Holder Name", Toast.LENGTH_SHORT).show();
-    error =1;
-}
-if(error==0 && educationItem.equalsIgnoreCase("select option")){
-    Toast.makeText(this, "Enter education", Toast.LENGTH_SHORT).show();
-    error=1;
-}
+
+    if(error == 0 && bhamashahNumber.getText().toString().length()==0 ){
+        bhamashahNumber.requestFocus();
+        imm.showSoftInput(bhamashahNumber, InputMethodManager.SHOW_IMPLICIT);
+        Toast.makeText(this, "Enter Bhamashah Number", Toast.LENGTH_SHORT).show();
+        error =1;
+    }
+
+    if(adhaaravailable.isChecked()){
+        if(error == 0 && aadharenrollment.getText().toString().length()==0 ){
+            aadharenrollment.requestFocus();
+            imm.showSoftInput(aadharenrollment, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Aadharenrollment Number", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
+//        if(error == 0 && datee.getText().toString().length()==0 ){
+//            Toast.makeText(this, "Enter Date", Toast.LENGTH_SHORT).show();
+//            error =1;
+//        } if(error == 0 && time.getText().toString().length()==0 ){
+//            Toast.makeText(this, "Enter Time", Toast.LENGTH_SHORT).show();
+//            error =1;
+//        }
+    }else{
+        if(error == 0 && aadharNumber.getText().toString().length()!=12 ){
+            aadharNumber.requestFocus();
+            imm.showSoftInput(aadharNumber, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Valid Aadhar Number", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
+    }
+
+
+    if(error == 0 && personAge.getText().toString().length()==0 ){
+        personAge.requestFocus();
+        imm.showSoftInput(personAge, InputMethodManager.SHOW_IMPLICIT);
+        Toast.makeText(this, "Enter Age", Toast.LENGTH_SHORT).show();
+        error =1;
+    }
+
+
+    if(error==0 && reli.equalsIgnoreCase("--Select Options--")){
+        personaReligion.requestFocus();
+        Toast.makeText(this, "Select Religion", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+    if(error==0 && cst.equalsIgnoreCase("--Select Options--")){
+        castSpinner.requestFocus();
+        Toast.makeText(this, "Select Caste", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+    if(error==0 && rati.equalsIgnoreCase("--Select Options--")){
+        rationcardColorSpinner.requestFocus();
+        Toast.makeText(this, "Select RationCard", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+    if(error==0 && rela.equalsIgnoreCase("--Select Options--")){
+        relationshipHeadSpinner.requestFocus();
+        Toast.makeText(this, "Select Relation with head of the household", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+    if(error==0 && fami.equalsIgnoreCase("--Select Options--")){
+        typeFamilySpinner.requestFocus();
+        Toast.makeText(this, "Select Family Type", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+    if(error==0 && educationItem.equalsIgnoreCase("--Select Options--")){
+        educationComplted.requestFocus();
+        Toast.makeText(this, "Select Education", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+    if(error==0 && fuel.equalsIgnoreCase("--Select Options--")){
+        fuelSelectionSpinner.requestFocus();
+        Toast.makeText(this, "Select Fuel", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+    if(error==0 && deci.equalsIgnoreCase("--Select Options--")){
+        decsionSpinner.requestFocus();
+        Toast.makeText(this, "Select Decision Maker for own health", Toast.LENGTH_SHORT).show();
+        error=1;
+    }if(error==0 && visi.equalsIgnoreCase("--Select Options--")){
+        decsionVisitDoctorSpinner.requestFocus();
+        Toast.makeText(this, "Select decision maker for child health", Toast.LENGTH_SHORT).show();
+        error=1;
+    }
+
+    if(accountype.equalsIgnoreCase("B")){
+        if(error == 0 && nameofbank.getText().toString().length()==0 ){
+            nameofbank.requestFocus();
+            imm.showSoftInput(nameofbank, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Bank Name", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && branchname.getText().toString().length()==0 ){
+            branchname.requestFocus();
+            imm.showSoftInput(branchname, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Branch Name", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && bankaccountnumber.getText().toString().length()==0 ){
+            bankaccountnumber.requestFocus();
+            imm.showSoftInput(bankaccountnumber, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Bank Account Number", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && ifsccode.getText().toString().length()==0 ){
+            ifsccode.requestFocus();
+            imm.showSoftInput(ifsccode, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Bank IFSC Code", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && distancetobranch.getText().toString().length()==0 ){
+            distancetobranch.requestFocus();
+            imm.showSoftInput(distancetobranch, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Distance", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && distancenearestatm.getText().toString().length()==0 ){
+            distancenearestatm.requestFocus();
+            imm.showSoftInput(distancenearestatm, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Distance from ATM", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
+    }
+    if (accountype.equalsIgnoreCase("P")){
+        if(error == 0 && nameofpostoffice.getText().toString().length()==0 ){
+            nameofpostoffice.requestFocus();
+            imm.showSoftInput(nameofpostoffice, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Name of Post Office", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && addressofpostoffice.getText().toString().length()==0 ){
+            addressofpostoffice.requestFocus();
+            imm.showSoftInput(addressofpostoffice, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Address of Post Office", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && postofficeaccount.getText().toString().length()==0 ){
+            postofficeaccount.requestFocus();
+            imm.showSoftInput(postofficeaccount, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Post Office Account Number", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && postofficepincode.getText().toString().length()==0 ){
+            postofficepincode.requestFocus();
+            imm.showSoftInput(postofficepincode, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Post Office Pincode", Toast.LENGTH_SHORT).show();
+            error =1;
+        }if(error == 0 && hoemocode.getText().toString().length()==0 ){
+            hoemocode.requestFocus();
+            imm.showSoftInput(hoemocode, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Hoemo Code", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
+    }
+
 return error;
 
 
 }
 
+    public String getAge(int year, int month, int day){
+        Calendar dob = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dob.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+        Integer ageInt = new Integer(age);
+        String ageS = ageInt.toString();
+        personAge.setText(ageS);
+        personAge.setEnabled(false);
+        Log.d("age",ageS);
+
+        return ageS;
+    }
 
 public String insertPregnent(String memberId,String pregnentID){
    String teppregnemtIDs="";
@@ -754,5 +1222,36 @@ public String generatePregnentID(String memberID){
 //    return memberId;
     return pregantId;
 }
+
+    @Override
+    public void onBackPressed() {
+
+        dialogCoupon    = new Dialog(RegistrationWomen.this);
+        dialogCoupon.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogCoupon.setContentView(R.layout.exit_dialog);
+        dialogCoupon.setCancelable(true);
+        dialogCoupon.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialogCoupon.setCanceledOnTouchOutside(true);
+
+
+        Button yes = (Button)dialogCoupon.findViewById(R.id.yes);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                finish();
+            }
+        });
+        Button no = (Button)dialogCoupon.findViewById(R.id.no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCoupon.hide();
+            }
+        });
+
+        dialogCoupon.show();
+    }
+
 //
 }

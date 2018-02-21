@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/buttonbox">
+
+    <TextView
+        android:id="@+id/editCoupon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:background="#00000000"
+        android:hint="Do you want to exit from registration ?"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="8dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/editCoupon"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="-10dp"
+        android:visibility="gone"
+        android:background="@color/black"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:layout_below="@+id/editCoupon">
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:text="No"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_marginRight="12dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/buttonbox"
+            android:textSize="14dp"/>
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:text="yes"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/no"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:background="@drawable/buttonbox"
+            android:textSize="14dp"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

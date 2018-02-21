@@ -17,883 +17,938 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" Name of the benificiary "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text=" Name of the benificiary "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <EditText
                 android:id="@+id/nameBenificery"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
-
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mobile number "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Mobile number "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <EditText
                 android:id="@+id/phoneNumber"
                 android:layout_width="366dp"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-
-                android:inputType="number"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
+
+                android:maxLength="10"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                />
-
+                android:inputType="number"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
                 android:text=" UID "
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="15dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <EditText
-                android:id="@+id/UidNumber"
+                android:id="@+id/usidNumber"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-android:digits="10"
-                android:inputType="number"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                />
-
+                android:inputType="number"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
                 android:text="Bhamashah No.  "
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="15dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <EditText
-                android:id="@+id/BhamashahNumber"
+                android:id="@+id/bhamashahNumber"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-
-                android:inputType="number"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
+
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                />
+                android:inputType="number"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aadhar No.  "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Aadhar No.  "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <EditText
                 android:id="@+id/aadharNumber"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-
-                android:inputType="number"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
+                android:maxLength="12"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                />
+                android:inputType="number"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp" />
 
             <CheckBox
+                android:id="@+id/adhaaravailable"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:text="if aadhar card not available"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <LinearLayout
                 android:id="@+id/noadhaar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Aadhar Enrolment No.  "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text="Aadhar Enrolment No.  "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
 
                 <EditText
                     android:id="@+id/aadharenrollment"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-
-                    android:inputType="number"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
+
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    />
+                    android:inputType="number"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
-                    android:id="@+id/acndate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date Stamp"
                     android:layout_marginLeft="7dp"
+                    android:text="Date Stamp"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/datee"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="#00000000"
                     android:layout_marginRight="3dp"
-                    android:gravity="center_vertical"
-                    android:drawableRight="@drawable/calender"/>
+                    android:background="#00000000"
+                    android:paddingLeft="10dp"
+                    android:drawableRight="@drawable/calender"
+                    android:gravity="center_vertical" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.75dp"
-                    android:layout_marginTop="-2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="-2dp"
+                    android:background="@color/gray" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time Stamp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginTop="5dp"
+                    android:text="Time Stamp"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
 
                 <TextView
                     android:id="@+id/time"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="#00000000"
-                    android:gravity="center_vertical"
                     android:layout_marginRight="3dp"
-                    android:drawableRight="@drawable/timee"/>
+                    android:background="#00000000"
+                    android:paddingLeft="10dp"
+                    android:drawableRight="@drawable/timee"
+                    android:gravity="center_vertical" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.75dp"
-                    android:layout_marginTop="-2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@color/gray"/>
+                    android:layout_marginTop="-2dp"
+                    android:background="@color/gray" />
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="Date of Birth"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
 
+            <TextView
+                android:id="@+id/dob"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="3dp"
+                android:background="#00000000"
+                android:paddingLeft="10dp"
+                android:drawableRight="@drawable/calender"
+                android:gravity="center_vertical" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Age (in completed years)"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Age (in completed years)"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
+
 
             <EditText
-                android:id="@+id/PersonAge"
+                android:id="@+id/personAge"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-
-                android:inputType="number"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                />
-
+                android:inputType="number"
+                android:maxLength="2"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="What is your religion? "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="What is your religion? "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/personaReligion"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Do you belong to a scheduled caste, scheduled tribe, other backward class, or none of these? "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Do you belong to a scheduled caste, scheduled tribe, other backward class, or none of these? "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/castSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" What color of Ration Card do you hold?  "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text=" What color of Ration Card do you hold?  "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/rationcardColorSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" What is your relationship with the head of the household?  "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text=" What is your relationship with the head of the household?  "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/relationshipHeadSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="What type of family do you live in?"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="What type of family do you live in?"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/typeFamilySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Highest education completed "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Highest education completed "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/educationComplted"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" What type of fuel does your household most commonly use for cooking?  "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text=" What type of fuel does your household most commonly use for cooking?  "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/fuelSelectionSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
                 android:text="In your household, who usually makes decision for"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="15dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Visiting doctor for your own health"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Visiting doctor for your own health"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/decsionSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
-
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Visiting doctor for your child’s health"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Visiting doctor for your child’s health"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <Spinner
                 android:id="@+id/decsionVisitDoctorSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
+                android:layout_marginTop="-2dp"
+                android:background="@color/gray" />
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bank Details"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:gravity="center"
-                android:layout_marginTop="19dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Do you have a bank account in your name ?"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:text="Which type of account do you have in your name ?"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
 
             <RadioGroup
                 android:id="@+id/bankgroup"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/yes"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                android:text="Yes"
-                    android:textColor="@color/view2"/>
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
                 <RadioButton
-                    android:id="@+id/no"
+                    android:id="@+id/accountyes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="No"
-                    android:textColor="@color/view2"/>
+                    android:layout_marginLeft="10dp"
+                    android:text="Bank Account"
+                    android:textColor="@color/view2" />
+
+                <RadioButton
+                    android:id="@+id/accountno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Post Office Account"
+                    android:textColor="@color/view2" />
+
+                <RadioButton
+                    android:id="@+id/noaccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="No Account"
+                    android:textColor="@color/view2" />
 
             </RadioGroup>
+
 
             <LinearLayout
                 android:id="@+id/banklayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Name of account holder "
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="19dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="Bank Details"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Name of account holder "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/nameaccountholder"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Name of bank "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Name of bank "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/nameofbank"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Branch name "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Branch name "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/branchname"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Account number "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Account number "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
-                    android:id="@+id/accountnumber"
+                    android:id="@+id/bankaccountnumber"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:inputType="number"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" IFSC code "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" IFSC code "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/ifsccode"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Distance of the nearest bank branch (Km) "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Distance of the nearest bank branch (Km) "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/distancetobranch"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Distance of the nearest bank "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Distance of the nearest ATM "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/distancenearestatm"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:inputType="numberDecimal"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/postofficeaccountdetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" In Case of Post Office Account "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:textStyle="bold"
+                    android:text=" Post Office Account Details "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Name of post office in which account is held "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Name of post office in which account is held "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/nameofpostoffice"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=" Address of post office "
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="15dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Address of post office "
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/addressofpostoffice"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Post office account number "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Post office account number "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/postofficeaccount"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Post office pincode "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" Post office pincode "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/postofficepincode"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" HOEMO code "
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
+                    android:text=" HOEMO code "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2"/>
+                    android:textColor="@color/view2" />
+
                 <EditText
                     android:id="@+id/hoemocode"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"/>
-
-
-
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
 
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

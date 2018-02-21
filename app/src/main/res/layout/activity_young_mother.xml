@@ -111,133 +111,180 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/buttom"
         android:visibility="gone"
-        android:id="@+id/pregnentDetails"
+        android:id="@+id/childDetails"
         />
 
     <LinearLayout
         android:id="@+id/buttom"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="56dp"
 
         android:layout_above="@id/footer"
 
+        android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:id="@+id/pregnentWomen"
+            android:id="@+id/relativeBasic"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:visibility="gone"
+            android:layout_margin="4dp"
+            android:background="#00000000"
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/pwimg"
+                android:id="@+id/basicimg"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="25dp"
+                android:src="@drawable/women"/>
+
+            <TextView
+                android:id="@+id/basictext"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:lines="2"
+                android:text="BASIC"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_below="@id/basicimg"/>
+            <TextView
+                android:id="@+id/basic"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="bgdfrrg"
+                android:textColor="#00000000"
+                android:gravity="center"/>
+            <View
+                android:id="@+id/basicclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativePregnent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/pregnentimg"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
                 android:src="@drawable/pw_icon"/>
 
             <TextView
-                android:id="@+id/pwtext"
+                android:id="@+id/pregnenttext"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="15dp"
                 android:lines="2"
-                android:text="PREGNANT WOMEN"
+                android:text="PREGNANT"
                 android:textColor="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="8dp"
+                android:textSize="12dp"
                 android:gravity="center"
-                android:layout_below="@id/pwimg"/>
+                android:layout_below="@id/pregnentimg"/>
+            <TextView
 
+                android:id="@+id/basicPregment"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="PREGNANCY"
+                android:textColor="#00000000"
+                android:gravity="center"/>
+
+            <View
+                android:id="@+id/pregnentclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"/>
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/relativeLactingMother"
+            android:id="@+id/relativeChild"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:visibility="gone"
+            android:layout_margin="4dp"
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/lmimg"
+                android:id="@+id/childimg"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:src="@drawable/lm_icon"/>
+                android:layout_height="25dp"
+                android:src="@drawable/child"/>
 
             <TextView
-                android:id="@+id/lmtext"
+                android:id="@+id/childtext"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="15dp"
                 android:lines="2"
-                android:text="LACTATING MOTHER"
+                android:text="CHILD"
                 android:textColor="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="8dp"
+                android:textSize="12dp"
                 android:gravity="center"
-                android:layout_below="@id/lmimg"/>
-
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/realtiveYoungMother"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:visibility="gone"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/ymimg"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:src="@drawable/mc_icon"/>
+                android:layout_below="@id/childimg"/>
 
             <TextView
-                android:id="@+id/ymtext"
+                android:id="@+id/child"
+                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:lines="2"
-                android:text="MOTHER OF YOUNG CHILD"
-                android:textColor="@color/white"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="8dp"
-                android:gravity="center"
-                android:layout_below="@id/ymimg"/>
-
+                android:layout_weight="1"
+                android:textColor="#00000000"
+                android:text="CHILD"
+                android:gravity="center"/>
+            <View
+                android:id="@+id/childclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"/>
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/basic"
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:text="BASIC "
-            android:textColor="@color/white"
-            android:background="@color/gray"
-            android:gravity="center"/>
+        <!--<TextView-->
+            <!--android:id="@+id/basic"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="BASIC "-->
+            <!--android:textColor="@color/white"-->
+            <!--android:gravity="center"/>-->
 
-        <TextView
+        <!--<TextView-->
 
-            android:id="@+id/basicPregment"
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:text="PREGNANCY"
-            android:textColor="@color/white"
-            android:background="@color/gray"
-            android:gravity="center"/>
+            <!--android:id="@+id/basicPregment"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="PREGNANCY"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:background="@color/gray"-->
+            <!--android:gravity="center"/>-->
 
-        <TextView
-            android:id="@+id/child"
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/white"
-            android:text="CHILD"
-            android:background="@color/gray"
-            android:gravity="center"/>
+        <!--<TextView-->
+            <!--android:id="@+id/child"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="CHILD"-->
+            <!--android:background="@color/gray"-->
+            <!--android:gravity="center"/>-->
 
         </LinearLayout>
 

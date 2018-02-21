@@ -93,7 +93,7 @@ CheckBox checkChild,checkPregnets;
             public void onClick(View v) {
                 if(!checkChild.isChecked()&&!checkPregnets.isChecked()){
 
-                    Toast.makeText(DashBoard.this, "Please Check Any CheckButton", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DashBoard.this, "Please select appropriate option", Toast.LENGTH_SHORT).show();
 
                 }
                 if(checkChild.isChecked()){
