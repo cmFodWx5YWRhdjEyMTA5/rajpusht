@@ -122,6 +122,92 @@
         android:layout_above="@id/footer"
 
         android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/pregnentWomen"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/pwimg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/pw_icon"/>
+
+            <TextView
+                android:id="@+id/pwtext"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:lines="2"
+                android:text="PREGNANT WOMEN"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="8dp"
+                android:gravity="center"
+                android:layout_below="@id/pwimg"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLactingMother"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/lmimg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/lm_icon"/>
+
+            <TextView
+                android:id="@+id/lmtext"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:lines="2"
+                android:text="LACTATING MOTHER"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="8dp"
+                android:gravity="center"
+                android:layout_below="@id/lmimg"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/realtiveYoungMother"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ymimg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/mc_icon"/>
+
+            <TextView
+                android:id="@+id/ymtext"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:lines="2"
+                android:text="MOTHER OF YOUNG CHILD"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="8dp"
+                android:gravity="center"
+                android:layout_below="@id/ymimg"/>
+
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/basic"
             android:layout_height="45dp"
@@ -130,7 +216,7 @@
             android:text="BASIC "
             android:textColor="@color/white"
             android:background="@color/gray"
-            />
+            android:gravity="center"/>
 
         <TextView
 
@@ -141,8 +227,7 @@
             android:text="PREGNANCY"
             android:textColor="@color/white"
             android:background="@color/gray"
-
-            />
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/child"
@@ -152,7 +237,7 @@
             android:textColor="@color/white"
             android:text="CHILD"
             android:background="@color/gray"
-            />
+            android:gravity="center"/>
 
         </LinearLayout>
 
