@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -195,20 +196,34 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
                 spinner_consult_selfString = String.valueOf(parent.getItemAtPosition(position));
- if(spinner_consult_selfString.equalsIgnoreCase("yes")){
-     spinner_consult_selfString="Y";
- }
- if(spinner_consult_selfString.equalsIgnoreCase("No")){
-     spinner_consult_selfString="N";
- }
-//
-            }
+                 if(spinner_consult_selfString.equalsIgnoreCase("yes")){
+                     spinner_consult_selfString="Y";
+                 }
+                 if(spinner_consult_selfString.equalsIgnoreCase("No")){
+                     spinner_consult_selfString="N";
+                 }
+                //
+                            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
+                            }
         });
+
+        a_no= (EditText) findViewById(R.id.a_no);
+        b_no= (EditText) findViewById(R.id.b_no);
+        c_no= (EditText) findViewById(R.id.c_no);
+        d_no= (EditText) findViewById(R.id.d_no);
+        e_no= (EditText) findViewById(R.id.e_no);
+        f_no= (EditText) findViewById(R.id.f_no);
+        g_no= (EditText) findViewById(R.id.g_no);
+        h_no= (EditText) findViewById(R.id.h_no);
+        i_no= (EditText) findViewById(R.id.i_no);
+        j_no= (EditText) findViewById(R.id.j_no);
+        k_no= (EditText) findViewById(R.id.k_no);
+        l_no= (EditText) findViewById(R.id.l_no);
+        m_no= (EditText) findViewById(R.id.m_no);
 
 
         a_food= (CheckBox) findViewById(R.id.a_food);
@@ -409,19 +424,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
 
-          a_no= (EditText) findViewById(R.id.a_no);
-          b_no= (EditText) findViewById(R.id.b_no);
-          c_no= (EditText) findViewById(R.id.c_no);
-          d_no= (EditText) findViewById(R.id.d_no);
-          e_no= (EditText) findViewById(R.id.e_no);
-          f_no= (EditText) findViewById(R.id.f_no);
-          g_no= (EditText) findViewById(R.id.g_no);
-          h_no= (EditText) findViewById(R.id.h_no);
-          i_no= (EditText) findViewById(R.id.i_no);
-          j_no= (EditText) findViewById(R.id.j_no);
-          k_no= (EditText) findViewById(R.id.k_no);
-          l_no= (EditText) findViewById(R.id.l_no);
-          m_no= (EditText) findViewById(R.id.m_no);
+
 
 
 
@@ -718,7 +721,47 @@ public class PregantWomenFooter extends AppCompatActivity {
 
     public void checkValidation(){
 
+        if(anc_date.getText().length()==0){
+            anc_date.setError("enter date");
+        }else if(spinner_consult_selfString.equalsIgnoreCase("--Select Options--")){
+            Toast.makeText(this, "Select if counseled", Toast.LENGTH_SHORT).show();
+        }else if(spend_on_bfString.equalsIgnoreCase("--Select Options--")){
+            Toast.makeText(this, "Select feeding", Toast.LENGTH_SHORT).show();
+        }else if(sepndOfFoodString.equalsIgnoreCase("--Select Options--")){
+            Toast.makeText(this, "Select amount spend on fooding", Toast.LENGTH_SHORT).show();
+        }else if(a_no.getVisibility()==View.VISIBLE && a_no.getText().length()==0){
+            a_no.setError("");
+        }else if(b_no.getVisibility()==View.VISIBLE && b_no.getText().length()==0){
+            b_no.setError("");
+        }else if(c_no.getVisibility()==View.VISIBLE && c_no.getText().length()==0){
+            c_no.setError("");
+        }else if(d_no.getVisibility()==View.VISIBLE && d_no.getText().length()==0){
+            d_no.setError("");
+        }else if(e_no.getVisibility()==View.VISIBLE && e_no.getText().length()==0){
+            e_no.setError("");
+        }else if(f_no.getVisibility()==View.VISIBLE && f_no.getText().length()==0){
+            f_no.setError("");
+        }else if(g_no.getVisibility()==View.VISIBLE && g_no.getText().length()==0){
+            g_no.setError("");
+        }else if(h_no.getVisibility()==View.VISIBLE && h_no.getText().length()==0){
+            h_no.setError("");
+        }else if(i_no.getVisibility()==View.VISIBLE && i_no.getText().length()==0){
+            i_no.setError("");
+        }else if(j_no.getVisibility()==View.VISIBLE && j_no.getText().length()==0){
+            j_no.setError("");
+        }else if(k_no.getVisibility()==View.VISIBLE && k_no.getText().length()==0){
+            k_no.setError("");
+        }else if(l_no.getVisibility()==View.VISIBLE && l_no.getText().length()==0){
+            l_no.setError("");
+        }else if(m_no.getVisibility()==View.VISIBLE && m_no.getText().length()==0){
+            m_no.setError("");
+        }else if(height.getText().length()==0){
+            height.setError("");
+        }else if(weight.getText().length()==0){
+            weight.setError("");
+        }else{
 
+        }
     }
 
 
