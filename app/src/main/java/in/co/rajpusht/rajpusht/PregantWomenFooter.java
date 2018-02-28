@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -211,18 +212,200 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
         a_food= (CheckBox) findViewById(R.id.a_food);
+        a_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                if(a_food.isChecked()){
+                    a_no.setVisibility(View.VISIBLE);
+                }else{
+                    a_no.setVisibility(View.GONE);
+                }
+
+            }
+          }
+        );
+
         b_food= (CheckBox) findViewById(R.id.b_food);
+        b_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(b_food.isChecked()){
+                                                      b_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      b_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         c_food= (CheckBox) findViewById(R.id.c_food);
+        c_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(c_food.isChecked()){
+                                                      c_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      c_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         d_food= (CheckBox) findViewById(R.id.d_food);
+        d_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(d_food.isChecked()){
+                                                      d_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      d_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         e_food= (CheckBox) findViewById(R.id.e_food);
+        e_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(e_food.isChecked()){
+                                                      e_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                     e_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         f_food= (CheckBox) findViewById(R.id.f_food);
+        f_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(f_food.isChecked()){
+                                                      f_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      f_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         g_food= (CheckBox) findViewById(R.id.g_food);
+        g_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(g_food.isChecked()){
+                                                      g_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      g_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         h_food= (CheckBox) findViewById(R.id.h_food);
+        h_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(h_food.isChecked()){
+                                                      h_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      h_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         i_food= (CheckBox) findViewById(R.id.i_food);
+        i_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(i_food.isChecked()){
+                                                      i_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      i_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         j_food= (CheckBox) findViewById(R.id.j_food);
+        j_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(j_food.isChecked()){
+                                                      j_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      j_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         k_food= (CheckBox) findViewById(R.id.k_food);
+        k_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(k_food.isChecked()){
+                                                      k_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      k_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         l_food= (CheckBox) findViewById(R.id.l_food);
+        l_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(l_food.isChecked()){
+                                                      l_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      l_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
         m_food= (CheckBox) findViewById(R.id.m_food);
+        m_food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                              @Override
+                                              public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                                                  if(m_food.isChecked()){
+                                                      m_no.setVisibility(View.VISIBLE);
+                                                  }else{
+                                                      m_no.setVisibility(View.GONE);
+                                                  }
+
+                                              }
+                                          }
+        );
+
 
 
 

@@ -50,7 +50,6 @@
                     android:layout_weight="3"/>
 
         </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -95,7 +94,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -140,9 +138,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
-
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -188,7 +183,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -234,7 +228,6 @@
 
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -280,7 +273,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -327,7 +319,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -355,14 +346,14 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
                     android:id="@+id/h_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
                 <EditText
 
                     android:visibility="invisible"
@@ -373,7 +364,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -401,7 +391,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
                     android:id="@+id/i_food"
@@ -411,7 +401,6 @@
                     android:layout_weight="3"/>
 
                 <EditText
-
                     android:visibility="invisible"
                     android:id="@+id/i_no"
                     android:inputType="number"
@@ -420,7 +409,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -466,7 +454,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -512,7 +499,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -559,7 +545,6 @@
                     android:layout_weight="3"/>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
