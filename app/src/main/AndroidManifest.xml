@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.rajpusht.rajpusht">
+   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -9,9 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        
         <activity
             android:name=".SplashScreen"
-            android:screenOrientation="portrait">
+            android:screenOrientation="userPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,21 +22,24 @@
         </activity>
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="userPortrait" />
         <activity
             android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
-            android:screenOrientation="portrait"
+            android:screenOrientation="userPortrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Profile"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="userPortrait" />
         <activity
             android:name=".PregnantWomenForm"
-            android:screenOrientation="portrait" />
-        <activity android:name=".PregantWomenFooter" />
-        <activity android:name=".LactingMotherActivity" />
-        <activity android:name=".RegistrationWomen"></activity>
+            android:screenOrientation="userPortrait" />
+        <activity android:name=".PregantWomenFooter"
+            android:screenOrientation="userPortrait"/>
+        <activity android:name=".LactingMotherActivity"
+            android:screenOrientation="userPortrait"/>
+        <activity android:name=".RegistrationWomen"
+            android:screenOrientation="userPortrait"></activity>
     </application>
 
 </manifest>

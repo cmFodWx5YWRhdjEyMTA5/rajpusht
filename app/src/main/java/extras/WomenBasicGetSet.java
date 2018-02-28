@@ -36,9 +36,19 @@ public class WomenBasicGetSet {
 
     String isNew;String isApproved;
 
+    public String getAtmdistance() {
+        return atmdistance;
+    }
+
+    public void setAtmdistance(String atmdistance) {
+        this.atmdistance = atmdistance;
+    }
+
+    String atmdistance;
+
     String survey_id, education, cookingfuel, decicion_own, decision_child, if_bankaccount, acholder_name, bank_name, branch, ac_num, ifsc, bank_distsnce, postoffice_name, postoffice_address, pincode, postoffice_ac, hoemo_code;
 
-    public WomenBasicGetSet(String survey_id, String education, String cookingfuel, String decicion_own, String decision_child, String if_bankaccount, String acholder_name, String bank_name, String branch, String ac_num, String ifsc, String bank_distsnce, String postoffice_name, String postoffice_address, String pincode, String postoffice_ac, String hoemo_code,String isedited,String isNew,String isApproved) {
+    public WomenBasicGetSet(String survey_id, String education, String cookingfuel, String decicion_own, String decision_child, String if_bankaccount, String acholder_name, String bank_name, String branch, String ac_num, String ifsc, String bank_distsnce, String postoffice_name, String postoffice_address, String pincode, String postoffice_ac, String hoemo_code,String isedited,String isNew,String isApproved,String atmdistance) {
         this.keyid = keyid;
         this.survey_id = survey_id;
         this.education = education;
@@ -60,6 +70,7 @@ public class WomenBasicGetSet {
         this.isNew= isNew;
         this.isApproved = isApproved;
         this.isedited = isedited;
+        this.atmdistance=atmdistance;
     }
 
 

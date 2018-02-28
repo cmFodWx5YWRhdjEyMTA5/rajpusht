@@ -5,11 +5,40 @@ package extras;
  */
 
 public class MemberBasicGetSet {
+    String isNew;
+
+    public String getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(String isNew) {
+        this.isNew = isNew;
+    }
+
+    public String getIsEditedMember() {
+        return isEditedMember;
+    }
+
+    public void setIsEditedMember(String isEditedMember) {
+        this.isEditedMember = isEditedMember;
+    }
+
+    public String getIsApprovedMember() {
+        return isApprovedMember;
+    }
+
+    public void setIsApprovedMember(String isApprovedMember) {
+        this.isApprovedMember = isApprovedMember;
+    }
+
+    String isEditedMember;
+    String isApprovedMember;
 
     String MemberId;
     String family_id, name, dor, doentry, doexit, dob, age, ifdobasum, dod, aadhar, aadharenrol, aadhardate, aadhartime, bhamasha, mobile, relation, sex, handicap, ifmarried, motherid, status, stage, substage, trackstatus, surveyor_id, timestamp, source;
 
-    public MemberBasicGetSet(String MemberId, String family_id, String name, String dor, String doentry, String doexit, String dob, String age, String ifdobasum, String dod, String aadhar, String aadharenrol, String aadhardate, String aadhartime, String bhamasha, String mobile, String relation, String sex, String handicap, String ifmarried, String motherid, String status, String stage, String substage, String trackstatus, String surveyor_id, String timestamp, String source) {
+    public MemberBasicGetSet(String MemberId, String family_id, String name, String dor, String doentry, String doexit, String dob, String age, String ifdobasum, String dod, String aadhar, String aadharenrol, String aadhardate, String aadhartime, String bhamasha, String mobile, String relation, String sex, String handicap, String ifmarried, String motherid, String status, String stage, String substage, String trackstatus, String surveyor_id, String timestamp, String source,
+                             String isNew,String isEditedMember,String isApprovedMember) {
         this.MemberId = MemberId;
         this.family_id = family_id;
         this.name = name;
@@ -38,6 +67,9 @@ public class MemberBasicGetSet {
         this.surveyor_id = surveyor_id;
         this.timestamp = timestamp;
         this.source = source;
+        this.isApprovedMember=isApprovedMember;
+        this.isNew=isNew;
+        this.isEditedMember=isEditedMember;
     }
 
     public String getmemberId() {

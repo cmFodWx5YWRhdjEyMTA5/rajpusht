@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="8dp"
+    android:layout_height="55dp">
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/white"
+    android:gravity="center_vertical">
+
+    <TextView
+    android:id="@+id/womenname"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_marginLeft="9dp"
+    android:text="Sulochana Devi"
+    android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/womenname"
+            android:layout_alignStart="@+id/womenname"
+            android:layout_below="@+id/womenname"
+            android:text="LMP Date : 10-06-2017"
+            android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/buttonststus"
+    android:layout_width="60dp"
+    android:layout_height="30dp"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="9dp"
+    android:background="@color/gray"
+    android:text="PW 3"
+    android:textColor="@color/white"
+    android:textSize="12dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

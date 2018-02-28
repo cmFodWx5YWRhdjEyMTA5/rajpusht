@@ -7,10 +7,38 @@ package extras;
 public class ChildExtraGetSet {
     int keyid;
 
+    public String getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(String isApproved) {
+        this.isApproved = isApproved;
+    }
+
+    public String getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(String isNew) {
+        this.isNew = isNew;
+    }
+
+    public String getISEdited() {
+        return ISEdited;
+    }
+
+    public void setISEdited(String ISEdited) {
+        this.ISEdited = ISEdited;
+    }
+
+    String isApproved,isNew,ISEdited;
+
     String survey_id, do_delivery, delivery_place, child_order, birth_wl, full_term, whenfirst_bf, iffeed_khees, currently_bf, whenstop_bf, anythingbefore_bf, ifstarted_solidfood, whichmonth_solidfood, childimmunization_status;
 
-    public ChildExtraGetSet(int keyid, String survey_id, String do_delivery, String delivery_place, String child_order, String birth_wl, String full_term, String whenfirst_bf, String iffeed_khees, String currently_bf, String whenstop_bf, String anythingbefore_bf, String ifstarted_solidfood, String whichmonth_solidfood, String childimmunization_status) {
-        this.keyid = keyid;
+    public ChildExtraGetSet( String survey_id, String do_delivery, String delivery_place, String child_order, String birth_wl, String full_term, String whenfirst_bf, String iffeed_khees,
+                             String currently_bf, String whenstop_bf, String anythingbefore_bf, String ifstarted_solidfood,
+                             String whichmonth_solidfood, String childimmunization_status,String isApproved,String isNew,String ISEdited) {
+
         this.survey_id = survey_id;
         this.do_delivery = do_delivery;
         this.delivery_place = delivery_place;

@@ -6,74 +6,331 @@
     android:layout_height="match_parent"
     tools:context="in.co.rajpusht.rajpusht.PregantWomenFooter">
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/header"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="55dp"-->
-        <!--android:background="@color/colorPrimary">-->
 
-        <!--<ImageView-->
-            <!--android:id="@+id/back"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_weight="1"-->
-            <!--android:clickable="true"-->
-            <!--android:padding="11dp"-->
-            <!--android:layout_marginRight="5dp"-->
-            <!--app:srcCompat="@drawable/back" />-->
+    <RelativeLayout
+        android:id="@+id/topLinear"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/header"
+        android:gravity="center_vertical">
 
-        <!--<TextView-->
-            <!--android:id="@+id/nameCandiate"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_toRightOf="@+id/back"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:text="BIMALA AGARWAL"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>-->
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LMP DATE : 22-08-2017"/>
 
-        <!--<TextView-->
-            <!--android:id="@+id/buttonName"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_weight="1"-->
-            <!--android:clickable="true"-->
-            <!--android:padding="13dp"-->
-            <!--android:gravity="center"-->
-            <!--android:text="PW 1"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"-->
-            <!--android:layout_marginRight="5dp" />-->
-    <!--</RelativeLayout>-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/date">
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/PW1Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="PW1"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
 
 
-    <android.support.v4.view.ViewPager
 
-        android:id="@+id/pager"
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/PW2Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="PW2"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/PW3Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="PW3"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/PW4Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="PW4"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/date"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:id="@+id/na"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:enabled="false"
+                android:src="@drawable/na"/>
+
+            <ImageView
+                android:id="@+id/nac"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:src="@drawable/redna"/>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/fragment_preliminary_pw1"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/buttom"
+        android:layout_below="@+id/topLinear"
+        android:id="@+id/sbcclayout"/>
+
+    <include layout="@layout/fragment_diatary_pw1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="100dp"
-        android:background="@color/white"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_above="@+id/buttom"
+        android:visibility="gone"
+        android:layout_below="@+id/topLinear"
+        android:id="@+id/dietaryLyout"
+        />
 
-    <in.co.rajpusht.rajpusht.CustomTabLayout
-        android:id="@+id/tab_layout"
+    <include layout="@layout/fragment_height_weight"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:tabIndicatorColor="@color/view2"
-        app:tabIndicatorHeight="4dp"
-        android:background="#00000000"
-        app:tabTextColor="@color/view2"
-        app:tabMode="fixed"
-        android:layout_above="@+id/footer"
-        app:tabSelectedTextColor="@color/colorPrimary"
-        android:elevation="6dp"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttom"
+        android:visibility="gone"
+        android:layout_below="@+id/topLinear"
+        android:id="@+id/heightWeightLayout"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/buttom"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+
+        android:layout_above="@id/footer"
+
+        android:background="@color/view"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/relativessbc"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="#00000000"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:id="@+id/basictext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="2"
+                android:text="SBCC"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+               />
+            <!--<TextView-->
+                <!--android:id="@+id/basic"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:text="bgdfrrg"-->
+                <!--android:textColor="#00000000"-->
+                <!--android:gravity="center"/>-->
+            <View
+                android:id="@+id/basicclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+
+                android:layout_alignParentBottom="true"
+                android:background="@color/gray"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeDiversity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:id="@+id/pregnenttext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="2"
+                android:layout_centerInParent="true"
+                android:text="DIETARY DIVERSITY"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_above="@+id/pregnentclick"
+               />
+            <!--<TextView-->
+
+                <!--android:id="@+id/basicPregment"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="PREGNANCY"-->
+                <!--android:textColor="#00000000"-->
+                <!--android:gravity="center"/>-->
+
+            <View
+                android:id="@+id/pregnentclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/gray"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeHeight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1">
+
+
+
+            <TextView
+                android:id="@+id/childtext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="2"
+                android:text="HEIGHT n WEIGHT"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+              />
+
+            <!--<TextView-->
+                <!--android:id="@+id/child"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textColor="#00000000"-->
+                <!--android:text="CHILD"-->
+                <!--android:gravity="center"/>-->
+            <View
+                android:id="@+id/childclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/gray"/>
+
+        </RelativeLayout>
+
+        <!--<TextView-->
+        <!--android:id="@+id/basic"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="BASIC "-->
+        <!--android:textColor="@color/white"-->
+        <!--android:gravity="center"/>-->
+
+        <!--<TextView-->
+
+        <!--android:id="@+id/basicPregment"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="PREGNANCY"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/gray"-->
+        <!--android:gravity="center"/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/child"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="CHILD"-->
+        <!--android:background="@color/gray"-->
+        <!--android:gravity="center"/>-->
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/footer"

@@ -1,24 +1,24 @@
 package fragments;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import in.co.rajpusht.rajpusht.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Pregnant_lady_details.OnFragmentInteractionListener} interface
+ * {@link BlankFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Pregnant_lady_details#newInstance} factory method to
+ * Use the {@link BlankFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Pregnant_lady_details extends Fragment {
+public class BlankFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,11 +27,10 @@ public class Pregnant_lady_details extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    TextView date;
-    private int mYear, mMonth, mDay;
+
     private OnFragmentInteractionListener mListener;
 
-    public Pregnant_lady_details() {
+    public BlankFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +40,11 @@ public class Pregnant_lady_details extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Pregnant_lady_details.
+     * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Pregnant_lady_details newInstance(String param1, String param2) {
-        Pregnant_lady_details fragment = new Pregnant_lady_details();
+    public static BlankFragment newInstance(String param1, String param2) {
+        BlankFragment fragment = new BlankFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,41 +65,7 @@ public class Pregnant_lady_details extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-                View v=inflater.inflate(R.layout.fragment_pregnant_lady_details, container, false);
-
-
-
-//        date = (TextView) v.findViewById(R.id.date);
-//        date.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                date.setError(null);
-//                final Calendar calender = Calendar.getInstance();
-//                mYear = calender.get(Calendar.YEAR);
-//                mMonth = calender.get(Calendar.MONTH);
-//                mDay = calender.get(Calendar.DAY_OF_MONTH);
-//                DatePickerDialog dpd = new DatePickerDialog(getActivity(),
-//                        new DatePickerDialog.OnDateSetListener() {
-//
-//                            @Override
-//                            public void onDateSet(DatePicker view, int year,
-//                                                  int monthOfYear, int dayOfMonth) {
-//                                // Display Selected date in textbox
-//                                date.setText(dayOfMonth + "/"
-//                                        + (monthOfYear + 1) + "/" + year);
-//                            }
-//                        }, mYear, mMonth, mDay);
-////                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-//                dpd.show();
-//            }
-//        });
-
-
-        return v;
-
-
+        return inflater.inflate(R.layout.fragment_blank, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -110,16 +75,16 @@ public class Pregnant_lady_details extends Fragment {
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 
     @Override
     public void onDetach() {

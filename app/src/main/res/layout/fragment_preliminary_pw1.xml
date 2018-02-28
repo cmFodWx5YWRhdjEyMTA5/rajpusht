@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/acndate"
+                android:id="@+id/text_acndate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ACN 1 DATE"
@@ -27,7 +27,7 @@
                 android:textColor="@color/view2"/>
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/anc_date"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="#00000000"
@@ -52,7 +52,7 @@
                 android:textColor="@color/view2"/>
 
             <Spinner
-                android:id="@+id/pw1_yesno"
+                android:id="@+id/spinner_consult_self"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:paddingLeft="8dp"
@@ -73,6 +73,43 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/gray"/>
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on how to feed your infant after delivery, how and when to breastfeed, what to feed the child in the first six months, etc.? "
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2"/>
+
+            <Spinner
+                android:id="@+id/spinner_spend_on_bf"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"/>
+
+
+
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +121,7 @@
                 android:textColor="@color/view2"/>
 
             <Spinner
-                android:id="@+id/pw1_amount"
+                android:id="@+id/spinner_spend_food"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:paddingLeft="8dp"

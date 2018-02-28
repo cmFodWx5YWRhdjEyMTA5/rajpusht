@@ -32,13 +32,22 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginBottom="4dp"
-                android:layout_weight="0.1"/>
+                android:layout_weight="1"/>
 
             <CheckBox
+                android:id="@+id/a_food"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_weight="1"/>
+                android:layout_weight="3"/>
+
+                <EditText
+                    android:id="@+id/a_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="number"
+                    android:visibility="invisible"
+                    android:layout_weight="3"/>
 
         </LinearLayout>
 
@@ -69,13 +78,21 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/b_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+                <EditText
+                    android:id="@+id/b_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="number"
+                    android:visibility="invisible"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -106,13 +123,21 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/c_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+                <EditText
+                    android:visibility="invisible"
+                    android:id="@+id/c_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -145,13 +170,22 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/d_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+
+                <EditText
+                    android:visibility="invisible"
+                    android:id="@+id/d_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -182,13 +216,22 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/e_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+                <EditText
+                    android:visibility="invisible"
+                    android:id="@+id/e_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
+
 
             </LinearLayout>
 
@@ -219,13 +262,22 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/f_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+
+                <EditText
+                    android:visibility="invisible"
+                    android:id="@+id/f_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -256,13 +308,23 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/g_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+
+                <EditText
+
+                    android:visibility="invisible"
+                    android:id="@+id/g_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -296,10 +358,19 @@
                     android:layout_weight="0.1"/>
 
                 <CheckBox
+                    android:id="@+id/h_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:layout_weight="1"/>
+                <EditText
+
+                    android:visibility="invisible"
+                    android:id="@+id/h_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -333,10 +404,20 @@
                     android:layout_weight="0.1"/>
 
                 <CheckBox
+                    android:id="@+id/i_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+
+                <EditText
+
+                    android:visibility="invisible"
+                    android:id="@+id/i_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -367,13 +448,22 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/j_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+                <EditText
+
+                    android:visibility="invisible"
+                    android:id="@+id/j_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -404,13 +494,22 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/k_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+                <EditText
+
+                    android:visibility="invisible"
+                    android:id="@+id/k_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -441,13 +540,23 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/l_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+
+                <EditText
+
+                    android:visibility="invisible"
+                    android:id="@+id/l_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 
@@ -478,13 +587,23 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="3dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="1"/>
 
                 <CheckBox
+                    android:id="@+id/m_food"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="3"/>
+
+                <EditText
+
+                    android:visibility="invisible"
+                    android:id="@+id/m_no"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 

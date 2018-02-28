@@ -42,8 +42,8 @@ public class PreliminaryPW1Fragment extends Fragment {
 
         session = new SessionManager(getActivity());
 
-        acndate = (TextView) v.findViewById(R.id.acndate);
-        acndate.setText(session.getOtpKey());
+//        acndate = (TextView) v.findViewById(R.id.acndate);
+//        acndate.setText(session.getOtpKey());
 
         date = (TextView) v.findViewById(R.id.date);
         date.setOnClickListener(new View.OnClickListener() {
@@ -72,19 +72,19 @@ public class PreliminaryPW1Fragment extends Fragment {
         });
         
 
-        spinner2 = (Spinner) v.findViewById(R.id.pw1_amount);
-        List<String> list1 = new ArrayList<String>();
-        list1.add("--Select Options--");
-        list1.add("Less than Rs. 500 per month");
-        list1.add("Rs. 500- 1,000 per month");
-        list1.add("Rs. 1000 – 2000 per month");
-        list1.add("Rs. 2000 – 4000 per month");
-        list1.add("Rs. 4000 – 5,000 per month");
-        list1.add("Rs. 5,000 and above");
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, list1);
-        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(dataAdapter1);
+////        spinner2 = (Spinner) v.findViewById(R.id.pw1_amount);
+//        List<String> list1 = new ArrayList<String>();
+//        list1.add("--Select Options--");
+//        list1.add("Less than Rs. 500 per month");
+//        list1.add("Rs. 500- 1,000 per month");
+//        list1.add("Rs. 1000 – 2000 per month");
+//        list1.add("Rs. 2000 – 4000 per month");
+//        list1.add("Rs. 4000 – 5,000 per month");
+//        list1.add("Rs. 5,000 and above");
+//        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getActivity(),
+//                android.R.layout.simple_spinner_item, list1);
+//        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner2.setAdapter(dataAdapter1);
 
 
         spinner1 = (Spinner) v.findViewById(R.id.pw1_yesno);

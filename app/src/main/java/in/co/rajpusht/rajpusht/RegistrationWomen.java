@@ -5,12 +5,15 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -37,20 +40,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import Adpter.NumberChildAdapter;
+import extras.ChildExtraGetSet;
 import extras.DbHelper;
 import extras.FamilyDetailGetSet;
 import extras.MemberBasicGetSet;
 import extras.PregnantGetSet;
+import extras.RecyclerTouchListener;
 import extras.WomenBasicGetSet;
 
 public class RegistrationWomen extends AppCompatActivity {
-
+    NumberChildAdapter numberAdpetr;
     String status;
+    String childSavingMode;
     CheckBox checkChild,checkPregnets;
     TextView basic,basicPregment,child;
     View basicclick, pregnentclick, childclick;
     CheckBox adhaaravailable;
-    String registerMemeberId,familyID,memberId,pregnentId;
+    String registerMemeberId,familyID,pregnentId;
     int castitem,relationitem,rationcardItem,familyttypeItem,eductionItemPosition, religionitemposi, fuelItemPosition, decisionItemPosition, doctorvisitItemPosition;
     LinearLayout noadhaar, banklayout, postofficeaccountdetail;
     RelativeLayout bas, preg, chi;
@@ -62,11 +69,23 @@ public class RegistrationWomen extends AppCompatActivity {
     RadioGroup bankgroup;
     Spinner personaReligion,castSpinner,rationcardColorSpinner,relationshipHeadSpinner,typeFamilySpinner,educationComplted,fuelSelectionSpinner,
             decsionSpinner,decsionVisitDoctorSpinner;
-    View fragment_pregnant_lady_detail,fragment_young_mother_basic_details;
+    View fragment_pregnant_lady_detail,fragment_young_mother_basic_details,childDetails;
     EditText pregnetNumnber;
     String educationItem, accountype = "N", reli, cst, rati, rela, fami, fuel, deci, visi;
     private int mYear, mMonth, mDay, mHour, mMinute, mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2;
     Dialog dialogCoupon;
+
+    Spinner placeofDelivery,sexOfchild,wasChildBorn,birthBreast,firstyellowFeed;
+    String DeliveryPlace,childSex,wasChildBornString;
+    int deliveryPlaceItemSelected,childSexItemSelected,wasChildBornPosition;
+
+    EditText nameOfChild,orderOfBirth,childWeight;
+    TextView dateOfDelivery,addchild;
+    String childIdrecyclerviewPosition;
+
+    int activatedREgistrationForm;
+    RecyclerView recyclerViewChild;
+    ArrayList<String>  arrayNoOfChild = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +102,7 @@ public class RegistrationWomen extends AppCompatActivity {
 
         fragment_young_mother_basic_details = (View)findViewById(R.id.pregnentbasic);
         fragment_pregnant_lady_detail = (View)findViewById(R.id.pregnentDetails);
+        childDetails = findViewById(R.id.childDetails);
 
         noadhaar = (LinearLayout) findViewById(R.id.noadhaar) ;
         banklayout = (LinearLayout) findViewById(R.id.banklayout) ;
@@ -91,16 +111,23 @@ public class RegistrationWomen extends AppCompatActivity {
         bankgroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                if(checkedId == R.id.accountyes) {
+                if(checkedId == R.id.accountyes)
+                {
                     banklayout.setVisibility(View.VISIBLE);
                     postofficeaccountdetail.setVisibility(View.GONE);
                     accountype = "B";
 
-                }else if(checkedId == R.id.accountno) {
+                }
+                else if(checkedId == R.id.accountno)
+                {
                     postofficeaccountdetail.setVisibility(View.VISIBLE);
                     banklayout.setVisibility(View.GONE);
                     accountype = "P";
-                }else if(checkedId == R.id.noaccount) {
+                }
+
+
+                else if(checkedId == R.id.noaccount)
+                {
                     postofficeaccountdetail.setVisibility(View.GONE);
                     banklayout.setVisibility(View.GONE);
                     accountype = "N";
@@ -126,7 +153,7 @@ public class RegistrationWomen extends AppCompatActivity {
 
 
         status = getIntent().getStringExtra("status");
-        Log.d("Ranjeet",status);
+//        Log.d("Ranjeet",status);
 
         basicclick= (View) findViewById(R.id.basicclick);
         pregnentclick= (View) findViewById(R.id.pregnentclick);
@@ -207,8 +234,23 @@ public class RegistrationWomen extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // Display Selected date in textbox
-                                lmpdate.setText(dayOfMonth + "-"
-                                        + (monthOfYear + 1) + "-" + year);
+                          String month,day;
+                                if((monthOfYear+1)<10){
+                                    month="0"+String.valueOf(monthOfYear+1) ;
+                                }
+                                else {
+                                    month=String.valueOf(monthOfYear+1);
+                                }
+
+                                if(dayOfMonth<10){
+                                    day="0"+String.valueOf(dayOfMonth);
+
+                                }
+                                else{
+                                    day=String.valueOf(dayOfMonth);
+                                }
+                                lmpdate.setText(year + "-"
+                                        + month + "-" + day);
                                 getAge(year, (monthOfYear + 1),dayOfMonth );
                             }
                         }, mYear2, mMonth2, mDay2);
@@ -234,8 +276,24 @@ public class RegistrationWomen extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // Display Selected date in textbox
-                                dob.setText(dayOfMonth + "-"
-                                        + (monthOfYear + 1) + "-" + year);
+                                String month,day;
+                                if((monthOfYear+1)<10){
+                                    month="0"+String.valueOf(monthOfYear+1) ;
+                                }
+                                else {
+                                    month=String.valueOf(monthOfYear+1);
+                                }
+
+                                if(dayOfMonth<10){
+                                    day="0"+String.valueOf(dayOfMonth);
+
+                                }
+                                else{
+                                    day=String.valueOf(dayOfMonth);
+                                }
+
+                                dob.setText(year + "-"
+                                        + month + "-" + day);
                                 getAge(year, (monthOfYear + 1),dayOfMonth );
                             }
                         }, mYear1, mMonth1, mDay1);
@@ -266,6 +324,91 @@ public class RegistrationWomen extends AppCompatActivity {
         postofficepincode = (EditText) findViewById(R.id.postofficepincode);
         hoemocode = (EditText) findViewById(R.id.hoemocode);
 
+        //child name
+
+
+
+
+
+        recyclerViewChild = (RecyclerView)findViewById(R.id.recyclerviewChildAdd);
+        recyclerViewChild.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewChild, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                Log.d("checkPosition"," "+position);
+                childIdrecyclerviewPosition=arrayNoOfChild.get(position);
+//                Log.d("checkPosition",childId);
+
+                getChildDetails(childIdrecyclerviewPosition);
+
+
+
+//                Toast.makeText(getApplicationContext(), movie.getDropLocation() + " is selected!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
+        dateOfDelivery= (TextView) findViewById(R.id.dateOfDelivery);
+        nameOfChild = (EditText) findViewById(R.id.nameOfChild);
+        orderOfBirth= (EditText) findViewById(R.id.orderOfBirth);
+        childWeight = (EditText) findViewById(R.id.childWeight);
+        addchild = (TextView) findViewById(R.id.addchild);
+
+        addchild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearChildForm();
+            }
+        });
+
+
+dateOfDelivery.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+        final Calendar calender = Calendar.getInstance();
+        mYear2 = calender.get(Calendar.YEAR);
+        mMonth2 = calender.get(Calendar.MONTH);
+        mDay2 = calender.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog dpd = new DatePickerDialog(RegistrationWomen.this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // Display Selected date in textbox
+                        String month,day;
+                        if((monthOfYear+1)<10){
+                            month="0"+String.valueOf(monthOfYear+1) ;
+                        }
+                        else {
+                            month=String.valueOf(monthOfYear+1);
+                        }
+
+                        if(dayOfMonth<10){
+                            day="0"+String.valueOf(dayOfMonth);
+
+                        }
+                        else{
+                            day=String.valueOf(dayOfMonth);
+                        }
+                        dateOfDelivery.setText(year + "-"
+                                + month + "-" + day);
+                        getAge(year, (monthOfYear + 1),dayOfMonth );
+                    }
+                }, mYear2, mMonth2, mDay2);
+//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+        dpd.show();
+
+    }
+});
+
 
         pregnetNumnber = (EditText)findViewById(R.id.pregnetNumnber);
 
@@ -273,60 +416,158 @@ public class RegistrationWomen extends AppCompatActivity {
         basic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment_young_mother_basic_details.setVisibility(View.VISIBLE);
-                fragment_pregnant_lady_detail.setVisibility(View.GONE);
-                basicclick.setVisibility(View.VISIBLE);
-                pregnentclick.setVisibility(View.GONE);
-                childclick.setVisibility(View.GONE);
+
+                basicclickedForm();
+
+
             }
         });
         basicPregment = (TextView) findViewById(R.id.basicPregment);
         basicPregment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment_young_mother_basic_details.setVisibility(View.GONE);
-                fragment_pregnant_lady_detail.setVisibility(View.VISIBLE);
-                basicclick.setVisibility(View.GONE);
-                pregnentclick.setVisibility(View.VISIBLE);
-                childclick.setVisibility(View.GONE);
-                getSupportActionBar().setTitle("PREGNANT");
+
+                basicPregnentClickForm();
+
             }
         });
         child= (TextView) findViewById(R.id.child);
-//gyyyh
+        child.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                childPregnentForm();
+
+
+
+            }
+        });
+
+
+
+            modeSetting(status,registerMemeberId);
+
+
+
+        placeofDelivery = (Spinner)  findViewById(R.id.placeofDelivery);
+//
+        List<String> listplaceofDelivery = new ArrayList<String>();
+        listplaceofDelivery.add("--Select Options--");
+
+        listplaceofDelivery.add("Hospital/ PHC/CHC/ Private clinic");
+        listplaceofDelivery.add("Home");
+
+        ArrayAdapter<String> postofDelivery = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listplaceofDelivery);
+        postofDelivery.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        placeofDelivery.setAdapter(postofDelivery);
+
+        placeofDelivery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                DeliveryPlace=String.valueOf(parent.getSelectedItem());
+                deliveryPlaceItemSelected=parent.getSelectedItemPosition();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        sexOfchild= (Spinner) findViewById(R.id.sexOfchild);
+        List<String> listsexOfchild = new ArrayList<String>();
+        listsexOfchild.add("--Select Options--");
+
+        listsexOfchild.add("Male");
+        listsexOfchild.add("Female");
+        listsexOfchild.add("Intersex");
+
+        ArrayAdapter<String> dataAdaptersexOfchild = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listsexOfchild);
+        dataAdaptersexOfchild.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sexOfchild.setAdapter(dataAdaptersexOfchild);
+
+        sexOfchild.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                childSex=String.valueOf(parent.getSelectedItem());
+                childSexItemSelected=parent.getSelectedItemPosition();
+
+                Log.d("SExofChild",""+childSexItemSelected);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
 
-        if(status.equals("checkedChild")){
+        wasChildBorn=(Spinner)findViewById(R.id.wasChildBorn);
+//
+        List<String> listwasChildBorn = new ArrayList<String>();
+        listwasChildBorn.add("--Select Options--");
 
-            child.setEnabled(false);
-            basicclick.setVisibility(View.VISIBLE);
-            basicPregment.setVisibility(View.GONE);
-            bas.setVisibility(View.VISIBLE);
-            preg.setVisibility(View.GONE);
-            chi.setVisibility(View.VISIBLE);
-        }
+        listwasChildBorn.add("Yes");
+        listwasChildBorn.add("No");
 
-        if(status.equals("checkedPregnent")){
 
-                child.setVisibility(View.GONE);
-                basicPregment.setEnabled(false);
-            basicclick.setVisibility(View.VISIBLE);
-            bas.setVisibility(View.VISIBLE);
-            preg.setVisibility(View.VISIBLE);
-            chi.setVisibility(View.GONE);
+        ArrayAdapter<String> dataAdapterwasChildBorn = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listwasChildBorn);
+        dataAdapterwasChildBorn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        wasChildBorn.setAdapter(dataAdapterwasChildBorn);
 
-        }
-         if(status.equals("Pregnentandchild")){
-             basicPregment.setEnabled(false);
-             basicclick.setVisibility(View.VISIBLE);
-             child.setEnabled(false);
-             bas.setVisibility(View.VISIBLE);
-             preg.setVisibility(View.VISIBLE);
-             chi.setVisibility(View.VISIBLE);
+        wasChildBorn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        }
+                wasChildBornPosition=parent.getSelectedItemPosition();
+                wasChildBornString=String.valueOf(parent.getSelectedItem());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        birthBreast= (Spinner) findViewById(R.id.birthBreast);
+
+        List<String> listbirthBreast = new ArrayList<String>();
+
+        listbirthBreast.add("--Select Options--");
+        listbirthBreast.add("Yes");
+        listbirthBreast.add("No");
+//        listbirthBreast.add("Intersexed");
+
+        ArrayAdapter<String> dataAdapterbirthBreast = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listbirthBreast);
+        dataAdapterbirthBreast.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        birthBreast.setAdapter(dataAdapterbirthBreast);
+
+
+        firstyellowFeed= (Spinner) findViewById(R.id.firstyellowFeed);
+
+        List<String> listfirstyellowFeed = new ArrayList<String>();
+
+        listfirstyellowFeed.add("--Select Options--");
+        listfirstyellowFeed.add("Yes");
+        listfirstyellowFeed.add("No");
+//        listfirstyellowFeed.add("Intersexed");
+
+        ArrayAdapter<String> dataAdapterfirstyellowFeed = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listfirstyellowFeed);
+        dataAdapterfirstyellowFeed.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        firstyellowFeed.setAdapter(dataAdapterfirstyellowFeed);
+//
 
         personaReligion=(Spinner) findViewById(R.id.personaReligion);
         List<String> list1 = new ArrayList<String>();
@@ -347,9 +588,9 @@ public class RegistrationWomen extends AppCompatActivity {
         personaReligion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 reli = String.valueOf(parent.getItemAtPosition(position));
                 religionitemposi =parent.getSelectedItemPosition();
-
             }
 
             @Override
@@ -496,7 +737,7 @@ public class RegistrationWomen extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 educationItem = String.valueOf(parent.getItemAtPosition(position));
-                Log.d("CheckSpinner",educationItem );
+//                Log.d("CheckSpinner",educationItem );
                 eductionItemPosition=parent.getSelectedItemPosition();
 
             }
@@ -518,7 +759,7 @@ public class RegistrationWomen extends AppCompatActivity {
         listfuelSelectionSpinner.add("Wood");
         listfuelSelectionSpinner.add("Crop residues");
         listfuelSelectionSpinner.add("Dung cakes");
-        listfuelSelectionSpinner.add("Coal/ charcoal");
+         listfuelSelectionSpinner.add("Coal/ charcoal");
         listfuelSelectionSpinner.add("Kerosene/ Diesel");
         listfuelSelectionSpinner.add("Electricity");
         listfuelSelectionSpinner.add("Liquified petroleum gas/ PNG");
@@ -617,78 +858,167 @@ public class RegistrationWomen extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
 
-                                        if(fragment_young_mother_basic_details.getVisibility()==View.VISIBLE){
+//                                        if(fragment_young_mother_basic_details.getVisibility()==View.VISIBLE){
 
-                                            int errorCode=validateBasicForm();
-                                            if(errorCode==0) {
+
+
 
                                                 if (registerMemeberId == null) {
-                                                    Log.d("awc_code", new Login().awc_code);
-                                                    familyID = createFamilyId(new Login().awc_code);
-
-                                                    insertFamily(familyID,"ADD");
-                                                    memberId = createMemberId(familyID);
-
-                                                    String memberInsterted = insertMemberMaster(familyID,memberId,"ADD");
-                                                    String womenExtraInserted = inserWomenExtra(memberId,"ADD");
 
 
-                                                    if(memberInsterted.equals("1")){
-                                                        registerMemeberId=memberId;
+                                                    Log.d("insertedValue","inserted Ito regsitertion");
+                                                    int errorCode=validateBasicForm();
+                                                    if(errorCode==0) {
+//                                                        Log.d("awc_code", new Login().awc_code);
+                                                        familyID = createFamilyId(new Login().awc_code);
 
-                                                        fragment_young_mother_basic_details.setVisibility(View.GONE);
-                                                        fragment_pregnant_lady_detail.setVisibility(View.VISIBLE);
-//           basicPregment.setText("Pregnenet ACtivated");
-                                                        basic.setBackgroundResource(0);
-                                                        pregnentclick.setVisibility(View.VISIBLE);
-                                                        getSupportActionBar().setTitle("PREGNANT");
-                                                        basicclick.setVisibility(View.GONE);
-                                                        if(status.equalsIgnoreCase("checkedPregnent") || status.equalsIgnoreCase("Pregnentandchild")){
+                                                        insertFamily(familyID, "ADD");
+                                                        String memberId = createMemberId(familyID);
 
-                                                            basicPregment.setEnabled(true);
+                                                        String memberInsterted = insertMemberMaster(familyID, memberId, "ADD");
+                                                        String womenExtraInserted = inserWomenExtra(memberId, "ADD");
+
+
+                                                        if (memberInsterted.equals("1")) {
+                                                            registerMemeberId = memberId;
+
+//
+
+
                                                         }
 
+                                                        getChildNumbers(registerMemeberId);
 
+                                                        tabMovement();
+//        Log.d("familyLog", familyID);}
                                                     }
 
-
-//        Log.d("familyLog", familyID);
 
                                                 }
                                                 else{
-                                                    insertFamily(familyID,"EDIT");
-                                                    insertMemberMaster(familyID,memberId,"EDIT");
-                                                    inserWomenExtra(memberId,"EDIT");
-
-                                                    if(basicPregment.isEnabled()){
-                                                        Log.d("CheckNull","insideEnbale"+pregnentId);
 
 
 
-                                                        insertPregnent(memberId,pregnentId);
+                                                    if(status.equalsIgnoreCase("checkedPregnent")){
+
+                                                        Log.d("insertedValue","inserted Ito checkedpregnent");
+                                                      int  errorCode=  validateBasicForm();
+//                                                        Log.d("ErrorCode",""+errorCode);
+                                                        if(errorCode==0)
+                                                        {
+
+                                                        errorCode =    pregentFormVAlidtion();
+
+                                                        if(errorCode==0){
+                                                            insertFamily(familyID,"EDIT");
+                                                            insertMemberMaster(familyID,registerMemeberId,"EDIT");
+                                                            inserWomenExtra(registerMemeberId,"EDIT");
+                                                            insertPregnent(registerMemeberId,pregnentId);
+                                                            tabMovement();
+
+                                                        }else{
+                                                            basicPregnentClickForm();
+                                                              }
+                                                        }
+                                                        else{
+//                                                            Log.d("Validation","inserted");
+                                                            basicclickedForm();
+                                                        }
+
                                                     }
-                                                }
+
+                                                    if(status.equalsIgnoreCase("checkedChild")){
 
 
-                                            }
 
-                                        }else if(fragment_pregnant_lady_detail.getVisibility()==View.VISIBLE){
-                                            if(pregnetNumnber.getText().length()==0){
-                                                pregnetNumnber.setError("");
-                                                Toast.makeText(RegistrationWomen.this, "Enter Number of child", Toast.LENGTH_SHORT).show();
-                                            }
-                                            else if(lmpdate.getText().toString().length()==0){
-                                                Toast.makeText(RegistrationWomen.this, "Please Select Date", Toast.LENGTH_SHORT).show();
-                                            }
-                                            else {
+                                                        int  errorCode=  validateBasicForm();
+                                                        Log.d("ErrorCode",""+errorCode);
+                                                        if(errorCode==0) {
+                                                        errorCode = childformValidation();
 
-                                                Log.d("topsecret",dob.getText().toString());
-                                                Toast.makeText(RegistrationWomen.this, dob.getText().toString(), Toast.LENGTH_SHORT).show();
+                                                            Log.d("ErrorCode","childform validationn"+errorCode);
+                                                        if(errorCode==0){
 
-                                                insertPregnent(memberId,pregnentId);
-                                            }
-                                        }
 
+                                                             insertFamily(familyID,"EDIT");
+
+                                                            insertMemberMaster(familyID,registerMemeberId,"EDIT");
+                                                            inserWomenExtra(registerMemeberId,"EDIT");
+
+
+if(childSavingMode.equalsIgnoreCase("new")) {
+    insertChildDetails(registerMemeberId, familyID);
+    promtForChild();
+}
+if(childSavingMode.equalsIgnoreCase("edit")){
+    Log.d("ChildEdit","Inserted in edit part");
+    editChildDetails(childIdrecyclerviewPosition);
+}
+
+
+
+
+                                                        }else{
+
+                                                            childPregnentForm();
+                                                        }
+
+                                                        }
+                                                        else{
+                                                            basicclickedForm();
+                                                        }
+
+                                                    }
+
+                                                    if(status.equalsIgnoreCase("Pregnentandchild")) {
+
+
+                                                        int errorCode = validateBasicForm();
+//                                                        Log.d("ErrorCode",""+errorCode);
+                                                        if (errorCode == 0) {
+
+                                                            errorCode = pregentFormVAlidtion();
+
+                                                            if (errorCode == 0) {
+                                                                insertFamily(familyID, "EDIT");
+                                                                insertMemberMaster(familyID, registerMemeberId, "EDIT");
+                                                                inserWomenExtra(registerMemeberId, "EDIT");
+                                                                insertPregnent(registerMemeberId, pregnentId);
+//                                                                tabMovement();
+                                                                errorCode = childformValidation();
+                                                                if (errorCode == 0) {
+
+//                                                                    insertFamily(familyID, "EDIT");
+//
+//                                                                    insertMemberMaster(familyID, registerMemeberId, "EDIT");
+//                                                                    inserWomenExtra(registerMemeberId, "EDIT");
+
+
+                                                                    if (childSavingMode.equalsIgnoreCase("new")) {
+                                                                        insertChildDetails(registerMemeberId, familyID);
+                                                                        promtForChild();
+                                                                    }
+                                                                    if (childSavingMode.equalsIgnoreCase("edit")) {
+                                                                        Log.d("ChildEdit", "Inserted in edit part");
+                                                                        editChildDetails(childIdrecyclerviewPosition);
+                                                                    }
+
+
+                                                                } else {
+
+                                                                    childPregnentForm();
+                                                                }
+                                                            } else {
+                                                                basicPregnentClickForm();
+                                                            }
+                                                        }
+
+                                                    }}
+
+
+
+
+//
 
 
 
@@ -700,33 +1030,29 @@ public class RegistrationWomen extends AppCompatActivity {
     public String createFamilyId(String awcCode){
 
 
-//        SQLiteDatabase dbSqli = openOrCreateDatabase("rajpustData",MODE_PRIVATE,null);
+
 
         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
 
-//        Cursor c = dbs.rawQuery("select * from familydata",null);
-//
-//        if (c != null && c.moveToFirst()) {}
 
 
-//
+
         Cursor c = dbs.rawQuery("SELECT * FROM familydata where awc_code ='"+awcCode+"'" , null);
-//        String familyId=awcCode+c;
 
-        Log.d("query","SELECT *  FROM familydata where awc_code ="+awcCode );
-//        Log.d("awc_code",c.getColumnIndex("sl_no")+"");
+
+//        Log.d("query","SELECT *  FROM familydata where awc_code ="+awcCode );
+
         c.getCount();
 
         int count = c.getCount();
-//        Log.d("count",""+count);
-        Log.d("countregister",""+ c.getCount());
+
+//        Log.d("countregister",""+ c.getCount());
 
       String familyCode= awcCode+String.format("%03d",count+1);
 
-      Log.d("family_code",familyCode);
+//      Log.d("family_code",familyCode);
 
-//        if()
 
 return familyCode;
 
@@ -737,15 +1063,15 @@ return familyCode;
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-            Cursor c = dbs.rawQuery("SELECT * FROM memberbasic where familyy_id ='"+familyID+"'" , null);
+            Cursor c = dbs.rawQuery("SELECT * FROM memberbasic where family_id ='"+familyID+"'" , null);
 
-//            Log.d("query","SELECT *  FROM familydata where awc_code ="+awcCode );
+
             c.getCount();
             int count = c.getCount();
-               Log.d("countregister",""+ c.getCount());
+//               Log.d("countregister",""+ c.getCount());
             String memberId= familyID+String.format("%02d",count+1);
 
-            Log.d("member_id",memberId);
+//            Log.d("member_id",memberId);
 
         return memberId;
         }
@@ -754,10 +1080,10 @@ return familyCode;
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-            FamilyDetailGetSet family = new FamilyDetailGetSet(familyId,1, castitem, rationcardItem, familyttypeItem, new Login().dist_code, new Login().project_code,new Login().sector_code,new Login().awc_code, "1");
-if(mode.equals("ADD")) {
-    long id = db.addFamilyData(family);
-}
+            FamilyDetailGetSet family = new FamilyDetailGetSet(familyId,religionitemposi, castitem, rationcardItem, familyttypeItem, new Login().dist_code, new Login().project_code,new Login().sector_code,new Login().awc_code, "1",new Login().village_code);
+           if(mode.equals("ADD")) {
+            long id = db.addFamilyData(family);
+             }
 if(mode.equals("EDIT")){
 
     ContentValues contentValues = new ContentValues();
@@ -767,12 +1093,12 @@ if(mode.equals("EDIT")){
     contentValues.put("family_type",familyttypeItem);
 
 
-    dbs.update("familydata",contentValues,"familyid="+familyId,null);
+    dbs.update("familydata",contentValues,"family_id="+familyId,null);
 
 
-//    dbs.execSQL("update familydata set (religion,caste,rcard,family_type) =('1',castitem,rationcardItem,familyttypeItem) where familyid=familyId" );
+
 }
-//
+
 
               SQLiteDatabase swl = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
@@ -785,9 +1111,9 @@ if(mode.equals("EDIT")){
                   if(c.moveToFirst()){
                       do{
 
-                          Log.d("awcrecords",c.getString(c.getColumnIndex("awc_code")));
-                          Log.d("awcrecords",c.getString(c.getColumnIndex("dist_code")));
-                          Log.d("awcrecords",c.getString(c.getColumnIndex("familyid")));
+//                          Log.d("awcrecords",c.getString(c.getColumnIndex("awc_code")));
+//                          Log.d("awcrecords",c.getString(c.getColumnIndex("dist_code")));
+//                          Log.d("awcrecords",c.getString(c.getColumnIndex("familyid")));
 
                       }while (c.moveToNext());
                   }
@@ -799,12 +1125,12 @@ if(mode.equals("EDIT")){
 
               if (c != null && c.moveToLast()) {
               long    lastId = c.getLong(0);
-//Log.d("vskp",c.getString(c.getColumnIndex(("erm_unique_key"))));
-                  Log.d("printValue",""+lastId);
+
+//                  Log.d("printValue",""+lastId);
 
                 String valueIndex=  c.getString(c.getColumnIndex("awc_code"));
 
-                  Log.d("insedrtValue","inserted vAlue"+valueIndex);
+//                  Log.d("insedrtValue","inserted vAlue"+valueIndex);
               }
 
 
@@ -812,17 +1138,15 @@ if(mode.equals("EDIT")){
 
           }
 
-//            Cursor c = dbs.rawQuery("")
-
 
         public String insertMemberMaster(String familyId,String memberId,String mode){
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), " ", "13-04-1991", "15", "N", " ", "1212112"," ", " ", " ", " ", " ", " ", "M", "N", "M", " ", "n", " ", " ", " ", new Login().surveyerId, new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile");
+      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString() ,aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "Y", "", "");
             String inserted = "0";
       if(mode.equals("ADD")) {
           long id = db.addMemberBasic(memberbasic);
-          Log.d("insertMember", " " + id);
+//          Log.d("insertMember", " " + id);
 
           if (id != -1) {
               inserted = "1";
@@ -831,14 +1155,14 @@ if(mode.equals("EDIT")){
       else{
           ContentValues contentValue = new ContentValues();
           contentValue.put("name",nameBenificery.getText().toString());
-          contentValue.put("dor",new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
-          contentValue.put("doentry",new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
-          Log.d("updateValue",memberId);
-          Log.d("MemberID",nameBenificery.getText().toString());
+//          contentValue.put("dor",new SimpleDateFormat("yyy-MM-dd", Locale.getDefault()).format(new Date()));
+          contentValue.put("doentry",new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
+//          Log.d("updateValue",memberId);
+//          Log.d("MemberID",nameBenificery.getText().toString());
 
-          long uid=dbs.update("memberbasic",contentValue,"MemberId=?",new String[]{memberId});
+          long uid=dbs.update("memberbasic",contentValue,"Members_id=?",new String[]{registerMemeberId});
           inserted = "1";
-//          Log.d("MemberID",""+uid);
+
       }
                 SQLiteDatabase swl = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
@@ -849,11 +1173,11 @@ if(mode.equals("EDIT")){
                     if (c.moveToFirst()) {
                         do {
 
-                            Log.d("MemberID", "NAME"+c.getString(c.getColumnIndex("name")));
-                            Log.d("MemberID", "DOR"+c.getString(c.getColumnIndex("dor")));
-                            Log.d("MemberID", "FAMILYid"+c.getString(c.getColumnIndex("familyy_id")));
-                            Log.d("MemberID", "MERMBERID"+c.getString(c.getColumnIndex("MemberId")));
-//                            Log.d("awcrecords", c.getString(c.getColumnIndex("familyid")));
+//                            Log.d("MemberID", "NAME"+c.getString(c.getColumnIndex("name")));
+//                            Log.d("MemberID", "DOR"+c.getString(c.getColumnIndex("dor")));
+//                            Log.d("MemberID", "FAMILYid"+c.getString(c.getColumnIndex("familyy_id")));
+//                            Log.d("MemberID", "MERMBERID"+c.getString(c.getColumnIndex("MemberId")));
+//
 
                         } while (c.moveToNext());
                     }
@@ -868,16 +1192,14 @@ return  inserted;
         }
 
         public String inserWomenExtra(String memberID,String mode){
-
-
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-            WomenBasicGetSet womenExtra = new WomenBasicGetSet(memberID, String.valueOf(eductionItemPosition), "", " ", " ", " ", nameaccountholder.getText().toString(), " ", " ",  "", " ", " ", " ", " ", " ", " ", " "," "," "," ");
-
+            WomenBasicGetSet womenExtra = new WomenBasicGetSet(memberID, String.valueOf(eductionItemPosition), String.valueOf(fuelItemPosition), String.valueOf(decisionItemPosition), String.valueOf(doctorvisitItemPosition), accountype, nameaccountholder.getText().toString(), nameofbank.getText().toString(), branchname.getText().toString(),  bankaccountnumber.getText().toString(), ifsccode.getText().toString(), distancetobranch.getText().toString(), nameofpostoffice.getText().toString(), addressofpostoffice.getText().toString(), postofficepincode.getText().toString(),postofficeaccount.getText().toString(), hoemocode.getText().toString()," "," Y"," ",distancenearestatm.getText().toString());
             String inserted = "0";
+
 
             if(mode.equals("ADD")) {
                 long id = db.addWomenExtra(womenExtra);
-                Log.d("insertMember", " " + id);
+//                Log.d("insertMember", " " + id);
 
                 if (id != -1) {
                     inserted = "1";
@@ -889,13 +1211,11 @@ return  inserted;
 
                 ContentValues contentValue = new ContentValues();
                 contentValue.put("education",eductionItemPosition);
-                contentValue.put("acholder_name",nameaccountholder.getText().toString());
-//                contentValue.put("doentry",new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
-//                Log.d("updateValue",memberId);
-//                Log.d("MemberID",nameBenificery.getText().toString());
+                contentValue.put("ac_holder_name",nameaccountholder.getText().toString());
 
-                long uid=dbs.update("womenextra",contentValue,"MemberId=?",new String[]{memberId});
-//          Log.d("MemberID",""+uid);
+
+                long uid=dbs.update("womenextra",contentValue,"Members_id=?",new String[]{registerMemeberId});
+
                 inserted = "1";
 
             }
@@ -910,12 +1230,9 @@ return  inserted;
                 if (c.moveToFirst()) {
                     do {
 
-                        Log.d("MemberID", "EDUCATION"+c.getString(c.getColumnIndex("education")));
-                        Log.d("MemberID", "ACCOUNTHOLDER"+c.getString(c.getColumnIndex("acholder_name")));
-//                        Log.d("MemberID", c.getString(c.getColumnIndex("familyy_id")));
-//                        Log.d("MemberID", c.getString(c.getColumnIndex("MemberId")));
-//                            Log.d("awcrecords", c.getString(c.getColumnIndex("familyid")));
-
+//                        Log.d("MemberID", "EDUCATION"+c.getString(c.getColumnIndex("education")));
+//                        Log.d("MemberID", "ACCOUNTHOLDER"+c.getString(c.getColumnIndex("acholder_name")));
+////
                     } while (c.moveToNext());
                 }
 
@@ -942,6 +1259,8 @@ if(nameBenificery.getText().toString().length()==0){
 }
 
 if(error==0 && phoneNumber.getText().toString().length()!=10){
+
+    basicclickedForm();
     phoneNumber.requestFocus();
     imm.showSoftInput(phoneNumber, InputMethodManager.SHOW_IMPLICIT);
     Toast.makeText(this, "Enter valid Phone Number", Toast.LENGTH_SHORT).show();
@@ -970,13 +1289,7 @@ error=1;
             Toast.makeText(this, "Enter Aadharenrollment Number", Toast.LENGTH_SHORT).show();
             error =1;
         }
-//        if(error == 0 && datee.getText().toString().length()==0 ){
-//            Toast.makeText(this, "Enter Date", Toast.LENGTH_SHORT).show();
-//            error =1;
-//        } if(error == 0 && time.getText().toString().length()==0 ){
-//            Toast.makeText(this, "Enter Time", Toast.LENGTH_SHORT).show();
-//            error =1;
-//        }
+//
     }else{
         if(error == 0 && aadharNumber.getText().toString().length()!=12 ){
             aadharNumber.requestFocus();
@@ -1107,6 +1420,51 @@ return error;
 
 }
 
+public int childformValidation(){
+     int error=0;
+
+    if (error == 0 && dateOfDelivery.getText().toString().length() == 0) {
+
+        error =1;
+        Toast.makeText(this, "Enter Date of Delivery", Toast.LENGTH_SHORT).show();
+    }
+
+     if(error==0 && nameOfChild.getText().toString().length()==0){
+         error=1;
+         Toast.makeText(this, "Enter Child Name", Toast.LENGTH_SHORT).show();
+     }
+
+     if(error==0 && DeliveryPlace.equalsIgnoreCase("--Select Options--")){
+
+         error=1;
+         Toast.makeText(this, "Enter Delivery Place", Toast.LENGTH_SHORT).show();
+     }
+
+    if(error==0 && orderOfBirth.getText().toString().length()==0){
+
+        error=1;
+        Toast.makeText(this, "Enter Order of Birth", Toast.LENGTH_SHORT).show();
+    }
+
+    if(error==0 && childSex.equalsIgnoreCase("--Select Options--")){
+
+        error=1;
+        Toast.makeText(this, "Enter sex of child ", Toast.LENGTH_SHORT).show();
+    }
+
+    if(error==0 && childWeight.getText().toString().length()==0){
+
+        error=1;
+        Toast.makeText(this, "Enter Child Weight", Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
+
+return error;
+}
+
     public String getAge(int year, int month, int day){
         Calendar dob = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
@@ -1123,7 +1481,7 @@ return error;
         String ageS = ageInt.toString();
         personAge.setText(ageS);
         personAge.setEnabled(false);
-        Log.d("age",ageS);
+//        Log.d("age",ageS);
 
         return ageS;
     }
@@ -1132,36 +1490,36 @@ public String insertPregnent(String memberId,String pregnentID){
    String teppregnemtIDs="";
     String inserted="";
     if(pregnentID==null){
-        Log.d("CheckNull","inserted ");
+//        Log.d("CheckNull","inserted ");
 
         pregnentId= generatePregnentID(memberId);
-        Log.d("CheckNull",pregnentId);
+//        Log.d("CheckNull",pregnentId);
     }
 
 
     SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
     Cursor c = dbs.rawQuery("SELECT * FROM  pregnant where pregnancy_id ='"+pregnentId+"'" , null);
-    Log.d("MANASQUERY","SELECT * FROM  pregnant where pregnancy_id ="+pregnentId);
+//    Log.d("MANASQUERY","SELECT * FROM  pregnant where pregnancy_id ="+pregnentId);
 
 //            Log.d("query","SELECT *  FROM familydata where awc_code ="+awcCode );
     c.getCount();
     int counted = c.getCount();
-    Log.d("CountPregnent",""+counted);
-    Log.d("CountPregnent",""+pregnentId);
+//    Log.d("CountPregnent",""+counted);
+//    Log.d("CountPregnent",""+pregnentId);
 
     if(counted==0){
 Log.d("checkInsretd","Pregrncy Insreted");
-        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), "19/02/2018",  new Login().surveyerId, new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime()),"mobile","Y","","Y","");
+        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime()),"mobile","Y","","Y","");
        long id= db.addPregnant(pregnent);
        Log.d("CountPregnent","sucieesrate"+id);
 
         ContentValues contentUpdate = new ContentValues();
         contentUpdate.put("stage","PW");
         contentUpdate.put("status","PW");
-        long uid=dbs.update("memberbasic",contentUpdate,"MemberId=?",new String[]{memberId});
+        long uid=dbs.update("memberbasic",contentUpdate,"Members_id=?",new String[]{registerMemeberId});
 
-
+        Log.d("CountPregnent","sucieesrate"+uid);
 
         inserted = "1";
     }
@@ -1170,21 +1528,25 @@ Log.d("checkInsretd","Pregrncy Insreted");
 
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("lmp_date","23/02/2018");
-        contentValues.put("orderof_pregnancy",Integer.valueOf(pregnetNumnber.getText().toString()));
+        contentValues.put("lmp_date",lmpdate.getText().toString());
+        contentValues.put("order_of_pregnancy",Integer.valueOf(pregnetNumnber.getText().toString()));
         contentValues.put("IS_EDITED","Y");
-        contentValues.put("TIMEE_STAMP",new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime()));
+        contentValues.put("TIME_STAMP",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 
 
         dbs.update("pregnant",contentValues,"pregnancy_id=?",new String[]{pregnentID});
-        Log.d("checkInsretd","Pregrncy updated ");
+//        Log.d("checkInsretd","Pregrncy updated ");
         inserted = "1";
 
     }
 
+
+
+
     SQLiteDatabase swl = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-    Cursor cr = swl.rawQuery("select * from pregnant", null);
+//    Cursor cr = swl.rawQuery("select * from pregnant", null);
+    Cursor cr = swl.rawQuery("select a.Members_id  FROM memberbasic a  left join memberbasic b on a.members_id=b.mother_id  left join (select * from pregnant where IS_ACTIVE='Y')  p on a.members_id=p.MEMBERS_ID  left join childextra c on b.MEMBERS_ID=c.MEMBERS_ID where a.is_to_track='Y' and a.stage <>'' order by a.STAGE,a.NAME", null);
     int total = cr.getCount();
     if (total >= 1) {
 
@@ -1192,20 +1554,18 @@ Log.d("checkInsretd","Pregrncy Insreted");
         if (cr.moveToFirst()) {
             do {
 
-                Log.d("MemberID", "orderofPRegncy"+ cr.getString(cr.getColumnIndex("orderof_pregnancy")));
-                Log.d("MemberID", "lmp"+ cr.getString(cr.getColumnIndex("lmp_date")));
-                Log.d("MemberID", "timestamp"+cr.getString(cr.getColumnIndex("timee_stamp")));
-                Log.d("MemberID", "timestamp"+cr.getString(cr.getColumnIndex("pregnancy_id")));
-//                        Log.d("MemberID", c.getString(c.getColumnIndex("familyy_id")));
-//                        Log.d("MemberID", c.getString(c.getColumnIndex("MemberId")));
+
+                Log.d("MemberID", "orderofPRegncy"+ cr.getString(cr.getColumnIndex("Members_id")));
+//                Log.d("MemberID", "lmp"+ cr.getString(cr.getColumnIndex("lmp_date")));
+//                Log.d("MemberID", "timestamp"+cr.getString(cr.getColumnIndex("timee_stamp")));
+//                Log.d("MemberID", "timestamp"+cr.getString(cr.getColumnIndex("pregnancy_id")));
 //
-//             Log.d("awcrecords", c.getString(c.getColumnIndex("familyid")));
 
                 i++;
             } while (cr.moveToNext());
         }
 
-        Log.d("recordCountPW",""+i);
+//        Log.d("recordCountPW",""+i);
     }
 
 
@@ -1219,14 +1579,14 @@ public String generatePregnentID(String memberID){
 
     SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-    Cursor c = dbs.rawQuery("SELECT * FROM  pregnant where MemberId ='"+memberID+"'" , null);
+    Cursor c = dbs.rawQuery("SELECT * FROM  pregnant where Members_id ='"+memberID+"'" , null);
 
-//            Log.d("query","SELECT *  FROM familydata where awc_code ="+awcCode );
+
     c.getCount();
     int count = c.getCount();
-    Log.d("countregister",""+ c.getCount());
+//    Log.d("countregister",""+ c.getCount());
     String pregantId= memberID+"P"+String.format("%02d",count+1);
-    Log.d("pregnemtid",pregantId);
+//    Log.d("pregnemtid",pregantId);
 //    return memberId;
     return pregantId;
 }
@@ -1237,16 +1597,21 @@ public String generatePregnentID(String memberID){
         dialogCoupon    = new Dialog(RegistrationWomen.this);
         dialogCoupon.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogCoupon.setContentView(R.layout.exit_dialog);
-        dialogCoupon.setCancelable(true);
-        dialogCoupon.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialogCoupon.setCancelable(false);
         dialogCoupon.setCanceledOnTouchOutside(true);
+//        setFinishOnTouchOutside(true);
+        dialogCoupon.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
 
 
         Button yes = (Button)dialogCoupon.findViewById(R.id.yes);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+//                onBackPressed();
+
+                Intent intentback = new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intentback);
                 finish();
             }
         });
@@ -1262,4 +1627,451 @@ public String generatePregnentID(String memberID){
     }
 
 //
+
+    public void modeSetting(String mode,String member){
+//member="123";
+
+        Log.d("activatedForm",activatedREgistrationForm+"");
+        Log.d("activatedForm",member+"");
+        Log.d("activatedForm",mode+"");
+
+//    Log.d("memberVAlue",member+ " "+mode+" "+ activatedREgistrationForm);
+    if(mode.equals("checkedChild")){
+        preg.setVisibility(View.GONE);
+         if(member==null) {
+
+             Log.d("activatedForm","Enterered"+"");
+             chi.setEnabled(false);
+            child.setEnabled(false);
+            basicclickedForm();
+//            activatedREgistrationForm=1;
+         }else{
+         child.setEnabled(true);
+             chi.setEnabled(true);
+         if(activatedREgistrationForm==3){
+//             activatedREgistrationForm=3;
+             childSavingMode="new";
+             childPregnentForm();
+
+         }
+
+            }
+//
+
+    }
+
+    if(mode.equals("checkedPregnent")){
+
+        chi.setVisibility(View.GONE);
+       if(member==null){
+
+
+        basicPregment.setEnabled(false);
+//       activatedREgistrationForm=1;
+           basicclickedForm();
+       }
+        else{
+    basicPregment.setEnabled(true);
+           if(activatedREgistrationForm==2){
+//               activatedREgistrationForm=2;
+               basicPregnentClickForm();
+           }
+        }
+//
+    }
+
+    if(mode.equals("Pregnentandchild")){
+
+        if(member==null) {
+
+            basicPregment.setEnabled(false);
+            child.setEnabled(false);
+//            activatedREgistrationForm=1;
+
+            basicclickedForm();
+        }else{
+            basicPregment.setEnabled(true);
+            child.setEnabled(true);
+
+
+            if(activatedREgistrationForm==1){
+                basicclickedForm();
+//                activatedREgistrationForm=2;
+            }
+            if(activatedREgistrationForm==2){
+//                activatedREgistrationForm=3;
+                basicPregnentClickForm();
+//                childPregnentForm();
+            }
+            if(activatedREgistrationForm==3){
+                childPregnentForm();
+            }
+
+        }
+//
+
+
+    }
+
+    }
+
+    public void basicclickedForm(){
+
+//        Log.d("Validation","inserted inside fucntion");
+        activatedREgistrationForm =1;
+        fragment_young_mother_basic_details.setVisibility(View.VISIBLE);
+        fragment_pregnant_lady_detail.setVisibility(View.GONE);
+        childDetails.setVisibility(View.GONE);
+
+        basicclick.setVisibility(View.VISIBLE);
+        pregnentclick.setVisibility(View.GONE);
+        childclick.setVisibility(View.GONE);
+        getSupportActionBar().setTitle("BASIC");
+
+    }
+
+    public void basicPregnentClickForm(){
+
+//        activatedREgistrationForm=2;
+        fragment_young_mother_basic_details.setVisibility(View.GONE);
+        fragment_pregnant_lady_detail.setVisibility(View.VISIBLE);
+        childDetails.setVisibility(View.GONE);
+        basicclick.setVisibility(View.GONE);
+        pregnentclick.setVisibility(View.VISIBLE);
+        childclick.setVisibility(View.GONE);
+        getSupportActionBar().setTitle("PREGNANT");
+
+
+    }
+
+    public void childPregnentForm(){
+        childSavingMode="new";
+
+//        activatedREgistrationForm=3;
+        childDetails.setVisibility(View.VISIBLE);
+        fragment_young_mother_basic_details.setVisibility(View.GONE);
+        fragment_pregnant_lady_detail.setVisibility(View.GONE);
+        basicclick.setVisibility(View.GONE);
+        pregnentclick.setVisibility(View.GONE);
+        childclick.setVisibility(View.VISIBLE);
+        getSupportActionBar().setTitle("CHILD");
+
+    }
+
+
+    public int  pregentFormVAlidtion(){
+
+        int error =0;
+        if(pregnetNumnber.getText().length()==0)
+        {
+            error =1;
+//              pregnetNumnber.setError("");
+                pregnetNumnber.requestFocus();
+                 Toast.makeText(RegistrationWomen.this, "Enter Number of child", Toast.LENGTH_SHORT).show();
+        }
+
+
+           if(error==0&&lmpdate.getText().toString().length()==0){
+             error =1;
+               lmpdate.requestFocus();
+                  Toast.makeText(RegistrationWomen.this, "Please Select Date", Toast.LENGTH_SHORT).show();
+            }
+
+return error;
+
+    }
+
+    public void tabMovement(){
+        if( status.equalsIgnoreCase("checkedChild")){
+
+            if(activatedREgistrationForm==1 ) {
+                activatedREgistrationForm = 3;
+            }else{
+
+                Intent intent = new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intent);
+                finish();
+            }
+
+        }
+        if( status.equalsIgnoreCase("checkedPregnent")){
+
+            if(activatedREgistrationForm==1 ){
+                activatedREgistrationForm=2;
+            }
+            else{
+
+                Intent intent = new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intent);
+                finish();
+            }
+
+        }
+
+        if( status.equalsIgnoreCase("Pregnentandchild")) {
+            if (activatedREgistrationForm == 1) {
+                activatedREgistrationForm = 2;
+            }else if(activatedREgistrationForm == 2){
+                activatedREgistrationForm=3;
+
+            }else{
+
+                Intent intent = new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intent);
+                finish();
+
+            }
+
+        }
+        modeSetting(status,registerMemeberId);
+    }
+
+
+    public void insertChildDetails(String motherId, String familyID)
+    {
+
+        String childID=createMemberId(familyID);
+        String cSex;
+        if (childSex.equalsIgnoreCase("male")) {
+
+            cSex="M";
+        }else if(childSex.equalsIgnoreCase("Female")){
+            cSex="F";
+        }else{
+            cSex="I";
+        }
+
+        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "Y", "", "");
+
+       db.addMemberBasic(memberbasic);
+try {
+    Cursor idhj=dbs.rawQuery("update memberbasic set stage=case when CAST(strftime('%s',date(" + dateOfDelivery.getText().toString() + ",'start of month','+12 month',cast(strftime('%d'," + dateOfDelivery.getText().toString() + ")as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END,status=case when CAST(strftime('%s',date(" + dateOfDelivery.getText().toString() + ",'start of month','+12 month',cast(strftime('%d'," + dateOfDelivery.getText().toString() + ")as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END WHERE MEMBERS_ID='" + childID + "'", null);
+idhj.moveToFirst();
+idhj.close();
+
+    Log.d("printUpdateVAlue","update memberbasic set stage=case when CAST(strftime('%s',date(" + dateOfDelivery.getText().toString() + ",'start of month','+12 month',cast(strftime('%d'," + dateOfDelivery.getText().toString() + ")as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END WHERE MEMBERS_ID='" + childID + "'");
+}catch(Exception e){
+    Log.d("Raw query","inserted");
+}
+        ChildExtraGetSet childextra = new   ChildExtraGetSet(childID, dateOfDelivery.getText().toString(), String.valueOf(deliveryPlaceItemSelected), orderOfBirth.getText().toString(),childWeight.getText().toString() , String.valueOf(wasChildBornPosition), "", "","", "", "", " ","","", "","Y","");
+
+         db.addChildExtra(childextra);
+
+
+
+
+    }
+
+    public void editChildDetails(String childSelectedId){
+        Log.d("ChildEdit","Inserted in edit part database");
+        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+        String cSex;
+        if (childSex.equalsIgnoreCase("male")) {
+
+            cSex="M";
+        }else if(childSex.equalsIgnoreCase("Female")){
+            cSex="F";
+        }else{
+            cSex="I";
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("sex",cSex);
+        contentValues.put("name",nameOfChild.getText().toString());
+
+       long jk= dbs.update("memberbasic",contentValues,"Members_id='"+childSelectedId+"'",null);
+//Log.d("Updated VAlue",ig+"");
+
+        if(jk==1) {
+
+            ContentValues contentValuesChild = new ContentValues();
+
+
+            contentValuesChild.put("delivery_place", String.valueOf(deliveryPlaceItemSelected));
+            contentValuesChild.put("dodelivery", dateOfDelivery.getText().toString());
+            contentValuesChild.put("child_order", orderOfBirth.getText().toString());
+            contentValuesChild.put("birth_wt", childWeight.getText().toString());
+            contentValuesChild.put("full_term", String.valueOf(wasChildBornPosition));
+            jk = dbs.update("childextra", contentValuesChild, "Members_id='" + childSelectedId + "'", null);
+        }
+if(jk==1){
+    Toast.makeText(this, "Updated Successfully ", Toast.LENGTH_SHORT).show();
+}
+
+        Log.d("Updated VAlue",jk+" ");
+    }
+
+
+    public String calculateStage( Date mindate,Date maxDate,Date compareDate){
+if(compareDate.after(mindate) && compareDate.before(maxDate)){
+    return "LM";
+}
+else{
+    return "MY";
+}
+
+
+    }
+
+
+    public void getChildNumbers(String motherID) {
+
+        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+        Cursor c = dbs.rawQuery("SELECT Members_id FROM memberbasic where mother_id ='" + motherID + "'", null);
+        int total = c.getCount();
+        if (total >= 1) {
+
+            int i = 0;
+            if (c.moveToFirst()) {
+                do {
+
+
+                    arrayNoOfChild.add(c.getString(c.getColumnIndex("Members_id")));
+
+                    Log.d("NumberOFChild", "orderofPRegncy" + c.getString(c.getColumnIndex("Members_id")));
+
+//
+
+
+                } while (c.moveToNext());
+            }
+
+
+
+        }
+
+         numberAdpetr = new NumberChildAdapter(arrayNoOfChild);
+
+        LinearLayoutManager layoutManager
+         = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewChild.setLayoutManager(layoutManager);
+        recyclerViewChild.setAdapter(numberAdpetr);
+
+
+
+    }
+
+
+    public void promtForChild(){
+
+        dialogCoupon    = new Dialog(RegistrationWomen.this);
+        dialogCoupon.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogCoupon.setContentView(R.layout.promtchildlayout);
+        dialogCoupon.setCancelable(false);
+        dialogCoupon.setCanceledOnTouchOutside(true);
+        dialogCoupon.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+    
+
+
+        Button yes = (Button)dialogCoupon.findViewById(R.id.yes);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                onBackPressed();
+
+
+//                activatedREgistrationForm=1;
+
+                if (arrayNoOfChild != null) {
+                    arrayNoOfChild.clear();
+
+
+                }
+                getChildNumbers(registerMemeberId);
+                numberAdpetr.notifyDataSetChanged();
+                clearChildForm();
+                dialogCoupon.hide();
+
+
+
+            }
+        });
+        Button no = (Button)dialogCoupon.findViewById(R.id.no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCoupon.hide();
+                tabMovement();
+            }
+        });
+
+        dialogCoupon.show();
+
+    }
+public void clearChildForm(){
+    dateOfDelivery.setText("");
+    nameOfChild.setText("");
+    orderOfBirth.setText("");
+    childWeight.setText("");
+    childWeight.setText(" ");
+    placeofDelivery.setSelection(0);
+            sexOfchild.setSelection(0);
+            wasChildBorn.setSelection(0);
+//            birthBreast.setSelection(0);
+//            first;yellowFeed.setSelection(0);
+    childSavingMode="new";
+    nameOfChild.requestFocus();
+//    dateOfDelivery.requestFocus();
+
+
+}
+
+public void getChildDetails(String childidfromDatabase){
+
+    childSavingMode="edit";
+
+
+
+    SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+    Cursor c = dbs.rawQuery("select b.members_id, b.name,b.sex,c.dodelivery,c.delivery_place,c.child_order,c.birth_wt,c.full_term  from memberbasic b left join childextra c on b.Members_id=c.Members_id where b.Members_id='"+childidfromDatabase+"'",null);
+    int total = c.getCount();
+    if (total >= 1) {
+
+//        int i = 0;
+        if (c.moveToFirst()) {
+            do {
+//             arrayNoOfChild.add(c.getString(c.getColumnIndex("Members_id")));
+                 Log.d("NumberOFChild", "orderofPRegncy" + c.getString(c.getColumnIndex("Members_id")));
+
+                dateOfDelivery.setText(c.getString(c.getColumnIndex("dodelivery")));
+                nameOfChild.setText(c.getString(c.getColumnIndex("name")));
+                orderOfBirth.setText(c.getString(c.getColumnIndex("child_order")));
+
+                childWeight.setText(c.getString(c.getColumnIndex("birth_wt")));
+
+                Log.d("spinnerSelection",""+c.getString(c.getColumnIndex("delivery_place")));
+                Log.d("spinnerSelection",""+c.getColumnIndex("delivery_place"));
+                placeofDelivery.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("delivery_place"))));
+                if(c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("M"))
+                {
+                    sexOfchild.setSelection(1);
+                }
+                if(c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("F"))
+                {
+                    sexOfchild.setSelection(2);
+                }
+                if(c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("I"))
+                {
+                    sexOfchild.setSelection(3);
+                }
+//                sexOfchild.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("sex"))));
+                wasChildBorn.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("full_term"))));
+//                birthBreast.setSelection(0);
+//                firstyellowFeed.setSelection(0);
+                childWeight.setText(c.getString(c.getColumnIndex("birth_wt")));
+//
+            } while (c.moveToNext());
+        }
+
+
+
+    }
+
+
+
+}
+
 }

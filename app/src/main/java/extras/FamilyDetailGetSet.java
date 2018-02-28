@@ -7,10 +7,25 @@ package extras;
 public class FamilyDetailGetSet {
 
     int  religion, cast, rcard, familytype;
-    String  dist_code, project_code, sector_code, awc_code, surveyor_id,familyid;
+    String  dist_code;
+    String project_code;
+    String sector_code;
+    String awc_code;
+    String surveyor_id;
+    String familyid;
+
+    public String getVillage_code() {
+        return village_code;
+    }
+
+    public void setVillage_code(String village_code) {
+        this.village_code = village_code;
+    }
+
+    String village_code;
 
 
-    public FamilyDetailGetSet(String familyid, int religion, int cast, int rcard, int familytype, String dist_code, String project_code, String sector_code, String awc_code, String surveyor_id) {
+    public FamilyDetailGetSet(String familyid, int religion, int cast, int rcard, int familytype, String dist_code, String project_code, String sector_code, String awc_code, String surveyor_id,String village_code) {
         this.familyid = familyid;
         this.religion = religion;
         this.cast = cast;
@@ -21,6 +36,7 @@ public class FamilyDetailGetSet {
         this.sector_code = sector_code;
         this.awc_code = awc_code;
         this.surveyor_id = surveyor_id;
+        this.village_code=village_code;
     }
 
     public String getFamilyid() {
