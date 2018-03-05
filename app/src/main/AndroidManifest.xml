@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.rajpusht.rajpusht">
-   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="userPortrait">
@@ -34,12 +34,17 @@
         <activity
             android:name=".PregnantWomenForm"
             android:screenOrientation="userPortrait" />
-        <activity android:name=".PregantWomenFooter"
-            android:screenOrientation="userPortrait"/>
-        <activity android:name=".LactingMotherActivity"
-            android:screenOrientation="userPortrait"/>
-        <activity android:name=".RegistrationWomen"
-            android:screenOrientation="userPortrait"></activity>
+        <activity
+            android:name=".PregantWomenFooter"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".LactingMotherActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".RegistrationWomen"
+            android:screenOrientation="userPortrait" />
+        <activity android:name=".LM_actvity" />
+        <activity android:name=".MyActivity"></activity>
     </application>
 
 </manifest>

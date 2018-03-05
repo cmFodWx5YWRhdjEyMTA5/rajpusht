@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
     ArrayList<BeneficiaryList> arraybeneficiary = new ArrayList<BeneficiaryList>();
     private SearchView searchView;
 
-    String beneficiaryQuery="select a.Members_id ,a.family_id,a.name,b.members_id as mother_id,b.name as mother,ifnull(a.status,b.status)status,ifnull(a.stage,b.stage)as stage,ifnull(a.sub_stage,b.sub_stage)as sub_stage,lmp_date,dodelivery,pregnancy_id,case\n" +
+    String beneficiaryQuery="select a.Members_id ,a.family_id,a.name,b.members_id as mother_id,b.name as mother,ifnull(a.status,b.status)status,ifnull(a.stage,b.stage)as stage,ifnull(a.sub_stage,b.sub_stage)as sub_stage,strftime('%d/%m/%Y', lmp_date)lmp_date,strftime('%d/%m/%Y', dodelivery)dodelivery,p.PREGNANCY_ID,is_anc,case\n" +
             "when  julianday('now') - julianday(lmp_date)<=98 then 'PW1'\n" +
             "when  julianday('now') - julianday(lmp_date)<=196 then 'PW2'\n" +
             "when  julianday('now') - julianday(lmp_date)<=252 then 'PW3'\n" +
@@ -54,7 +54,8 @@ public class HomeFragment extends Fragment {
             "when CAST(strftime('%s',date(DODELIVERY,'start of month','+38 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY5'\n" +
             "END\n" +
             "current_sub_stage \n" +
-            "FROM memberbasic a left join memberbasic b on a.mother_id=b.members_id left join (select * from pregnant where is_active='Y') p on a.members_id=p.MEMBERS_ID left join childextra c on a.MEMBERS_ID=c.MEMBERS_ID where a.is_to_track='Y' and current_sub_stage<>'' order by a.sub_stage asc,a.name desc";
+            "FROM memberbasic a left join memberbasic b on a.mother_id=b.members_id left join (select * from pregnant where is_active='Y') p on a.members_id=p.MEMBERS_ID left join childextra c on a.MEMBERS_ID=c.MEMBERS_ID" +
+            " left join (select * from pw_tracking) t on p.PREGNANCY_ID=t.PREGNANCY_ID and t.SUB_STAGE=current_sub_stage where a.is_to_track='Y' and current_sub_stage<>'' order by a.sub_stage asc,a.name desc";
 
 
 
@@ -87,7 +88,28 @@ public class HomeFragment extends Fragment {
                     intetPw1.putExtra("name",beneficiaryList.getName());
                     intetPw1.putExtra("members_id",beneficiaryList.getMembers_id());
                     intetPw1.putExtra("lmpDate",beneficiaryList.getLmp_date());
+                    intetPw1.putExtra("getstage","pw");
+                    intetPw1.putExtra("familyId",beneficiaryList.getFamily_id());
                     startActivity(intetPw1);
+                    getActivity().finish();
+                }
+
+                if(beneficiaryList.getStage().equalsIgnoreCase("LM")){
+
+                    Intent intentLm = new Intent(getActivity().getApplicationContext(),LM_actvity.class);
+                    intentLm.putExtra("name",beneficiaryList.getName());
+                    startActivity(intentLm);
+                    getActivity().finish();
+                }
+
+
+
+                if(beneficiaryList.getStage().equalsIgnoreCase("MY")){
+
+                    Intent intentLm = new Intent(getActivity().getApplicationContext(),MyActivity.class);
+                    intentLm.putExtra("name",beneficiaryList.getName());
+                    startActivity(intentLm);
+                    getActivity().finish();
                 }
                 Log.d("HomeREceycler"," "+position);
 
@@ -196,7 +218,7 @@ public class HomeFragment extends Fragment {
                     BeneficiaryList benefic = new BeneficiaryList(c.getString(c.getColumnIndex("Members_id")), c.getString(c.getColumnIndex("family_id")), c.getString(c.getColumnIndex("name")), c.getString(c.getColumnIndex("mother_id")),
                             c.getString(c.getColumnIndex("mother")), c.getString(c.getColumnIndex("status")),
                                     c.getString(c.getColumnIndex("stage")), c.getString(c.getColumnIndex("sub_stage")),
-                                            c.getString(c.getColumnIndex("lmp_date")), c.getString(c.getColumnIndex("dodelivery")), c.getString(c.getColumnIndex("current_sub_stage")),c.getString(c.getColumnIndex("pregnancy_id")));
+                                            c.getString(c.getColumnIndex("lmp_date")), c.getString(c.getColumnIndex("dodelivery")), c.getString(c.getColumnIndex("current_sub_stage")),c.getString(c.getColumnIndex("pregnancy_id")),c.getString(c.getColumnIndex("is_anc")));
                     arraybeneficiary.add(benefic);
 
 

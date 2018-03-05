@@ -72,6 +72,7 @@
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
                 android:text=" UID "
+                android:visibility="gone"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -86,6 +87,8 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:singleLine="true"
+
+                android:visibility="gone"
                 android:textSize="13dp" />
 
 

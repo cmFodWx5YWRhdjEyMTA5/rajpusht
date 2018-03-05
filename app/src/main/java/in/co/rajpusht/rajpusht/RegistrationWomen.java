@@ -49,7 +49,7 @@ import extras.PregnantGetSet;
 import extras.RecyclerTouchListener;
 import extras.WomenBasicGetSet;
 
-public class RegistrationWomen extends AppCompatActivity {
+public class RegistrationWomen extends AppCompatActivity  {
     NumberChildAdapter numberAdpetr;
     String status;
     String childSavingMode;
@@ -251,7 +251,7 @@ public class RegistrationWomen extends AppCompatActivity {
                                 }
                                 lmpdate.setText(year + "-"
                                         + month + "-" + day);
-                                getAge(year, (monthOfYear + 1),dayOfMonth );
+//                                getAge(year, (monthOfYear + 1),dayOfMonth );
                             }
                         }, mYear2, mMonth2, mDay2);
 //                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
@@ -398,7 +398,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
                         }
                         dateOfDelivery.setText(year + "-"
                                 + month + "-" + day);
-                        getAge(year, (monthOfYear + 1),dayOfMonth );
+//                        getAge(year, (monthOfYear + 1),dayOfMonth );
                     }
                 }, mYear2, mMonth2, mDay2);
 //                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
@@ -664,7 +664,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listrelationshipHeadSpinner.add("Grandchild");
         listrelationshipHeadSpinner.add("Mother");
         listrelationshipHeadSpinner.add("Sister");
-        listrelationshipHeadSpinner.add("Mother");
+
         listrelationshipHeadSpinner.add("Sister in law");
         listrelationshipHeadSpinner.add("Niece");
         listrelationshipHeadSpinner.add("Other relative");
@@ -793,7 +793,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
 
 
         listdecsionSpinner.add("Self");
-        listdecsionSpinner.add("Husband/Wife");
+        listdecsionSpinner.add("Husband");
         listdecsionSpinner.add("Mother in law");
         listdecsionSpinner.add("Father in law");
         listdecsionSpinner.add("Someone else in the family");
@@ -823,7 +823,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         List<String> listdecsionVisitDoctorSpinner = new ArrayList<String>();
         listdecsionVisitDoctorSpinner.add("--Select Options--");
         listdecsionVisitDoctorSpinner.add("Self");
-        listdecsionVisitDoctorSpinner.add("Husband/Wife");
+        listdecsionVisitDoctorSpinner.add("Husband");
         listdecsionVisitDoctorSpinner.add("Mother in law");
         listdecsionVisitDoctorSpinner.add("Father in law");
         listdecsionVisitDoctorSpinner.add("Someone else in the family");
@@ -901,13 +901,13 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
 
                                                     if(status.equalsIgnoreCase("checkedPregnent")){
 
-                                                        Log.d("insertedValue","inserted Ito checkedpregnent");
+
                                                       int  errorCode=  validateBasicForm();
 //                                                        Log.d("ErrorCode",""+errorCode);
                                                         if(errorCode==0)
                                                         {
 
-                                                        errorCode =    pregentFormVAlidtion();
+                                                        errorCode =  pregentFormVAlidtion();
 
                                                         if(errorCode==0){
                                                             insertFamily(familyID,"EDIT");
@@ -1080,11 +1080,11 @@ return familyCode;
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-            FamilyDetailGetSet family = new FamilyDetailGetSet(familyId,religionitemposi, castitem, rationcardItem, familyttypeItem, new Login().dist_code, new Login().project_code,new Login().sector_code,new Login().awc_code, "1",new Login().village_code);
+            FamilyDetailGetSet family = new FamilyDetailGetSet(familyId,religionitemposi, castitem, rationcardItem, familyttypeItem, new Login().dist_code, new Login().project_code,new Login().sector_code,new Login().awc_code, "1",new Login().village_code,"N");
            if(mode.equals("ADD")) {
             long id = db.addFamilyData(family);
              }
-if(mode.equals("EDIT")){
+        if(mode.equals("EDIT")){
 
     ContentValues contentValues = new ContentValues();
     contentValues.put("religion","1");
@@ -1093,7 +1093,7 @@ if(mode.equals("EDIT")){
     contentValues.put("family_type",familyttypeItem);
 
 
-    dbs.update("familydata",contentValues,"family_id="+familyId,null);
+            dbs.update("familydata",contentValues,"family_id="+familyId,null);
 
 
 
@@ -1248,6 +1248,7 @@ public int validateBasicForm(){
 
     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
+
         int error =0;
 if(nameBenificery.getText().toString().length()==0){
 
@@ -1267,12 +1268,12 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
     error=1;
 }
 
-if(error==0 && usidNumber.getText().toString().length()==0){
-    usidNumber.requestFocus();
-    imm.showSoftInput(usidNumber, InputMethodManager.SHOW_IMPLICIT);
-    Toast.makeText(this, "Enter UID Numnber", Toast.LENGTH_SHORT).show();
-error=1;
-}
+//if(error==0 && usidNumber.getText().toString().length()==0){
+//    usidNumber.requestFocus();
+//    imm.showSoftInput(usidNumber, InputMethodManager.SHOW_IMPLICIT);
+//    Toast.makeText(this, "Enter UID Numnber", Toast.LENGTH_SHORT).show();
+//error=1;
+//}
 
 
     if(error == 0 && bhamashahNumber.getText().toString().length()==0 ){
@@ -1310,6 +1311,7 @@ error=1;
 
     if(error==0 && reli.equalsIgnoreCase("--Select Options--")){
         personaReligion.requestFocus();
+
         Toast.makeText(this, "Select Religion", Toast.LENGTH_SHORT).show();
         error=1;
     }
@@ -1353,23 +1355,36 @@ error=1;
         error=1;
     }
 
-    if(accountype.equalsIgnoreCase("B")){
+    if( accountype.equalsIgnoreCase("B")){
+
+
+
+        if(error == 0 && nameaccountholder.getText().toString().length()==0 ){
+            nameaccountholder.requestFocus();
+            imm.showSoftInput(nameaccountholder, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Account Holder Name", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
         if(error == 0 && nameofbank.getText().toString().length()==0 ){
             nameofbank.requestFocus();
             imm.showSoftInput(nameofbank, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Bank Name", Toast.LENGTH_SHORT).show();
             error =1;
-        }if(error == 0 && branchname.getText().toString().length()==0 ){
+        }
+
+        if(error == 0 && branchname.getText().toString().length()==0 ){
             branchname.requestFocus();
             imm.showSoftInput(branchname, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Branch Name", Toast.LENGTH_SHORT).show();
             error =1;
-        }if(error == 0 && bankaccountnumber.getText().toString().length()==0 ){
+        }
+        if(error == 0 && bankaccountnumber.getText().toString().length()==0 ){
             bankaccountnumber.requestFocus();
             imm.showSoftInput(bankaccountnumber, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Bank Account Number", Toast.LENGTH_SHORT).show();
             error =1;
-        }if(error == 0 && ifsccode.getText().toString().length()==0 ){
+        }
+        if(error == 0 && ifsccode.getText().toString().length()==0 ){
             ifsccode.requestFocus();
             imm.showSoftInput(ifsccode, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Bank IFSC Code", Toast.LENGTH_SHORT).show();
@@ -1422,17 +1437,17 @@ return error;
 
 public int childformValidation(){
      int error=0;
-
+    if(error==0 && nameOfChild.getText().toString().length()==0){
+        error=1;
+        Toast.makeText(this, "Enter Child Name", Toast.LENGTH_SHORT).show();
+    }
     if (error == 0 && dateOfDelivery.getText().toString().length() == 0) {
 
         error =1;
         Toast.makeText(this, "Enter Date of Delivery", Toast.LENGTH_SHORT).show();
     }
 
-     if(error==0 && nameOfChild.getText().toString().length()==0){
-         error=1;
-         Toast.makeText(this, "Enter Child Name", Toast.LENGTH_SHORT).show();
-     }
+
 
      if(error==0 && DeliveryPlace.equalsIgnoreCase("--Select Options--")){
 
@@ -1456,6 +1471,11 @@ public int childformValidation(){
 
         error=1;
         Toast.makeText(this, "Enter Child Weight", Toast.LENGTH_SHORT).show();
+    }
+    if(error==0 && wasChildBornString.equalsIgnoreCase("--Select Options--")){
+
+        error =1;
+        Toast.makeText(this, "Select Full Term", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -1629,11 +1649,7 @@ public String generatePregnentID(String memberID){
 //
 
     public void modeSetting(String mode,String member){
-//member="123";
 
-        Log.d("activatedForm",activatedREgistrationForm+"");
-        Log.d("activatedForm",member+"");
-        Log.d("activatedForm",mode+"");
 
 //    Log.d("memberVAlue",member+ " "+mode+" "+ activatedREgistrationForm);
     if(mode.equals("checkedChild")){
@@ -1787,7 +1803,7 @@ return error;
             if(activatedREgistrationForm==1 ) {
                 activatedREgistrationForm = 3;
             }else{
-
+                Toast.makeText(this, " Successfully Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),DashBoard.class);
                 startActivity(intent);
                 finish();
@@ -1801,6 +1817,7 @@ return error;
             }
             else{
 
+                Toast.makeText(this, " Successfully Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),DashBoard.class);
                 startActivity(intent);
                 finish();
@@ -1815,7 +1832,7 @@ return error;
                 activatedREgistrationForm=3;
 
             }else{
-
+                Toast.makeText(this, " Successfully Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),DashBoard.class);
                 startActivity(intent);
                 finish();
@@ -1846,7 +1863,24 @@ return error;
 
        db.addMemberBasic(memberbasic);
 try {
-    Cursor idhj=dbs.rawQuery("update memberbasic set stage=case when CAST(strftime('%s',date(" + dateOfDelivery.getText().toString() + ",'start of month','+12 month',cast(strftime('%d'," + dateOfDelivery.getText().toString() + ")as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END,status=case when CAST(strftime('%s',date(" + dateOfDelivery.getText().toString() + ",'start of month','+12 month',cast(strftime('%d'," + dateOfDelivery.getText().toString() + ")as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END WHERE MEMBERS_ID='" + childID + "'", null);
+    Cursor idhj=dbs.rawQuery("update memberbasic set stage=case when " +
+                    "CAST(strftime('%s',date('" + dateOfDelivery.getText().toString() + "','start of month','+12 month'," +
+                    "cast(strftime('%d','" + dateOfDelivery.getText().toString() + "')as text) || ' DAY')) AS integer) > " +
+                    "CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END,status=case when " +
+                    "CAST(strftime('%s',date('" + dateOfDelivery.getText().toString() + "','start of month','+12 month'," +
+                    "cast(strftime('%d','" + dateOfDelivery.getText().toString() + "')as text) || ' DAY')) AS integer) > " +
+                    "CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END WHERE MEMBERS_ID='" + childID + "'",
+            null);
+
+
+//    Cursor idhj=dbs.rawQuery("update memberbasic set stage=case when " +
+//                    "CAST(strftime('%s',date(" + dateOfDelivery.getText().toString() + ",'start of month','+12 month'," +
+//                    "cast(strftime('%d'," + dateOfDelivery.getText().toString() + ")as text) || ' DAY')) AS integer) > " +
+//                    "CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END,status=case when " +
+//                    "CAST(strftime('%s',date(" + dateOfDelivery.getText().toString() + ",'start of month','+12 month'," +
+//                    "cast(strftime('%d'," + dateOfDelivery.getText().toString() + ")as text) || ' DAY')) AS integer) > " +
+//                    "CAST(strftime('%s',date('now')) as integer) then 'LM' else 'MY' END WHERE MEMBERS_ID='" + childID + "'",
+//            null);
 idhj.moveToFirst();
 idhj.close();
 
@@ -1992,8 +2026,18 @@ else{
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogCoupon.hide();
+
+                if (arrayNoOfChild != null) {
+                    arrayNoOfChild.clear();
+
+
+                }
+                getChildNumbers(registerMemeberId);
+                numberAdpetr.notifyDataSetChanged();
+                clearChildForm();
+
                 tabMovement();
+                dialogCoupon.hide();
             }
         });
 

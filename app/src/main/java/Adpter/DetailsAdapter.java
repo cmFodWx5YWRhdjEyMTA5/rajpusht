@@ -3,10 +3,12 @@ package Adpter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -57,11 +59,11 @@ if(position%2==0) {
 //        getchildname()==mothername;
 if(movie.getChild_id()!=null){
 
-    holder.date.setText("DoD"+movie.getDedelivery());
+    holder.date.setText("Delivery Date : "+movie.getDedelivery());
     holder.womenname.setText(movie.getChildname()+ " " +"("+"M/o"+" "+movie.getName()+")");
 }
 else{
-    holder.date.setText("LMP"+movie.getLmp_date());
+    holder.date.setText("LMP : "+movie.getLmp_date());
     holder.womenname.setText(movie.getName());
 }
 
@@ -70,7 +72,15 @@ if(movie.getSub_stage().equalsIgnoreCase(movie.getCurrent_sub_stage())){
     holder.buttonststuss.setText(movie.getCurrent_sub_stage());
 }
 else{
+
     holder.buttonststuss.setText(movie.getCurrent_sub_stage());
+}
+try {
+    if (movie.getIs_anc().equalsIgnoreCase("n")) {
+        holder.imageFlags.setBackgroundResource(R.drawable.flag);
+    }
+}catch (Exception e){
+    Log.d("IS_anc",e.toString());
 }
 
 
@@ -103,12 +113,14 @@ else{
 
         public TextView  womenname, date;
         Button buttonststuss;
+        ImageView imageFlags;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             womenname = (TextView) itemView.findViewById(R.id.womenname);
             date = (TextView) itemView.findViewById(R.id.date);
             buttonststuss = (Button) itemView.findViewById(R.id.buttonststus);
+            imageFlags = (ImageView) itemView.findViewById(R.id.imageFlag);
 //
             itemView.setTag(itemView);
 

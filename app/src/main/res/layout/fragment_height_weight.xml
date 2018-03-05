@@ -118,6 +118,50 @@
                 android:layout_marginTop="-2dp"
                 android:background="@color/gray" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="MUAC(Centimeter)"
+                android:id="@+id/muacholer"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:id="@+id/linearMuac"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/muac"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/box1"
+                    android:inputType="numberDecimal"
+                    android:gravity="center" />
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/box1"
+                    android:visibility="gone"
+                    android:gravity="center" />
+
+                <EditText
+                    android:layout_width="80dp"
+                    android:visibility="gone"
+                    android:layout_height="50dp"
+                    android:background="@drawable/box1"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

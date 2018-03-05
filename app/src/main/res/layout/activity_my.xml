@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+>
+
+    <RelativeLayout
+        android:id="@+id/topLinear"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="LMP DATE : 22-08-2017"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/date">
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/YM1Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="YM1"
+                    android:enabled="true"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/YM2Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="YM2"
+                    android:enabled="true"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/YM3Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="YM3"
+                    android:enabled="true"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/YM4Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="YM4"
+                    android:enabled="true"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <Button
+                    android:id ="@+id/YM5Button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="YM5"
+                    android:enabled="true"
+                    android:textColor="@color/white"
+                    android:background="@drawable/graycircularbutton"
+                    android:gravity="center"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/date"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:id="@+id/naButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:enabled="false"
+                android:src="@drawable/na"/>
+
+            <ImageView
+                android:id="@+id/nac"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:src="@drawable/redna"/>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/holdingTabs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@+id/topLinear"
+
+        android:orientation="vertical">
+
+        <include layout="@layout/mylayout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+
+            android:id="@+id/sbcclayout"/>
+
+        <include layout="@layout/fragment_diatary_pw1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:visibility="gone"
+
+            android:id="@+id/dietaryLyout"
+            />
+
+        <include layout="@layout/fragment_height_weight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:visibility="gone"
+
+            android:id="@+id/heightWeightLayout"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/buttom"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="55dp"
+            android:background="@color/view"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/relativessbc"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:background="#00000000"
+                android:layout_weight="1">
+
+
+                <TextView
+                    android:id="@+id/basictext"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:lines="2"
+                    android:text="IYCF"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/colorPrimary"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    />
+                <!--<TextView-->
+                <!--android:id="@+id/basic"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:text="bgdfrrg"-->
+                <!--android:textColor="#00000000"-->
+                <!--android:gravity="center"/>-->
+                <View
+                    android:id="@+id/basicclick"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="6dp"
+
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeDiversity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1">
+
+
+                <TextView
+                    android:id="@+id/pregnenttext"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:lines="2"
+                    android:layout_centerInParent="true"
+                    android:text="DIETARY DIVERSITY"
+                    android:textColor="@color/colorPrimary"
+
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:layout_above="@+id/pregnentclick"
+                    />
+                <!--<TextView-->
+
+                <!--android:id="@+id/basicPregment"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="PREGNANCY"-->
+                <!--android:textColor="#00000000"-->
+                <!--android:gravity="center"/>-->
+
+                <View
+                    android:id="@+id/pregnentclick"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="gone"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeHeight"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1">
+
+
+
+                <TextView
+                    android:id="@+id/childtext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="2"
+                    android:text="HEIGHT n WEIGHT"
+                    android:textColor="@color/colorPrimary"
+
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    />
+
+                <!--<TextView-->
+                <!--android:id="@+id/child"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textColor="#00000000"-->
+                <!--android:text="CHILD"-->
+                <!--android:gravity="center"/>-->
+                <View
+                    android:id="@+id/childclick"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="gone"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray"/>
+
+            </RelativeLayout>
+
+            <!--<TextView-->
+            <!--android:id="@+id/basic"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="BASIC "-->
+            <!--android:textColor="@color/white"-->
+            <!--android:gravity="center"/>-->
+
+            <!--<TextView-->
+
+            <!--android:id="@+id/basicPregment"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="PREGNANCY"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:background="@color/gray"-->
+            <!--android:gravity="center"/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/child"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="CHILD"-->
+            <!--android:background="@color/gray"-->
+            <!--android:gravity="center"/>-->
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/fragmentnaforlmnmy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footersrd"
+        android:visibility="gone"
+        android:layout_below="@+id/topLinear"
+        android:id="@+id/NaFormButtonLayout"
+        />
+
+    <!--<include layout="@layout/fragment_diatary_pw1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_above="@+id/buttom"-->
+    <!--android:visibility="gone"-->
+    <!--android:layout_below="@+id/topLinear"-->
+    <!--android:id="@+id/dietaryLyout"-->
+    <!--/>-->
+
+    <!--<include layout="@layout/fragment_height_weight"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_above="@+id/buttom"-->
+    <!--android:visibility="gone"-->
+    <!--android:layout_below="@+id/topLinear"-->
+    <!--android:id="@+id/heightWeightLayout"-->
+    <!--/>-->
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/footersrd"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="11dp"
+            android:visibility="gone"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="PROFILE"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:text="save"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:background="@drawable/box3"
+            android:layout_marginRight="5dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

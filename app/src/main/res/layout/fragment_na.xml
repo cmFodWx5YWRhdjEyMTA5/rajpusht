@@ -11,7 +11,11 @@
        android:orientation="vertical">
 
 
-    <LinearLayout
+
+
+
+
+       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -54,7 +58,6 @@
            android:layout_marginRight="10dp"
            android:layout_marginTop="5dp"
            android:gravity="center_vertical"/>
-
        <LinearLayout
            android:id="@+id/anetalcheck"
            android:layout_width="match_parent"
@@ -69,7 +72,7 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text=" You have not completed your first antenatal checkup (ANC)"
+               android:text=" The respondent/ pregnant woman not done antenatal checkup (ANC)"
                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                android:textColor="@color/view2"
                android:layout_marginTop="4dp"
@@ -78,6 +81,7 @@
                android:layout_weight="0.1"/>
 
            <CheckBox
+               android:id="@+id/chcekedNAM"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:gravity="center"
@@ -85,48 +89,9 @@
 
        </LinearLayout>
 
+
    </LinearLayout>
-    <RelativeLayout
-        android:layout_gravity="bottom"
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:padding="11dp"
-            android:visibility="gone"
-            android:layout_marginRight="5dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="PROFILE"
-            android:visibility="gone"
-            android:textColor="@color/white"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:text="save"
-            android:textColor="@color/white"
-            android:layout_margin="10dp"
-            android:background="@drawable/box3"
-            android:layout_marginRight="5dp" />
-    </RelativeLayout>
 
 
 </FrameLayout>

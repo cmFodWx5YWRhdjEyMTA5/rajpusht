@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 20;
 
     SQLiteDatabase db;
 
@@ -69,10 +69,10 @@ db=getWritableDatabase();
     private static final String AGE = "age";
     private static final String IF_DOB_ASSUMED="if_dob_assumed";
     private static final String DODEATH="dodeath";
-    private static final String AADHAR="aadhar";
-    private static final String AADDHAR_ENROL_NO="aadhar_enrol_no";
-    private static final String AADDHAR_DATE_STAMP="aadhar_date_stamp";
-    private static final String AADDHAR_TIME_STAMP="aadhar_time_stamp";
+    private static final String AADDHAR="aaddhar";
+    private static final String AADDHAR_ENROL_NO="aaddhar_enrol_no";
+    private static final String AADDHAR_DATE_STAMP="aaddhar_date_stamp";
+    private static final String AADDHAR_TIME_STAMP="aaddhar_time_stamp";
     private static final String BHAMASHA="bhamasha";
     private static final String MOBILE="mobile";
     private static final String RELATION="relation";
@@ -251,7 +251,10 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
         + FEED_L_NOS + " INTEGER, "
         + FEED_M + " VARCHAR, "
         + FEED_M_NOS + " INTEGER, "
-        + IS_APPROVED + "VARCHAR)";
+        + SOURCE + " VARCHAR, "
+        + IS_NEW + " VARCHAR, "
+        + IS_EDITED + " VARCHAR, "
+        + IS_APPROVED + " VARCHAR)";
 
     public static final String TRACKING_TABLE= "CREATE TABLE " + PW_TRACKING + " ( "
             + PREGNANCY_ID + " VARCHAR, "
@@ -305,7 +308,7 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 + AGE + " FLOAT, "
                 + IF_DOB_ASSUMED + " VARCHAR, "
                 + DODEATH + " DATE, "
-                + AADHAR + " VARCHAR, "
+                + AADDHAR + " VARCHAR, "
                 + AADDHAR_ENROL_NO + " VARCHAR, "
                 + AADDHAR_DATE_STAMP + " DATE, "
                 + AADDHAR_TIME_STAMP + " TEXT, "
@@ -370,8 +373,8 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 + WHICH_MONTH_SOLID_FOOD + " FLOAT, "
                 + CHILD_IMMUNIZATION_STATUS + " VARCHAR, "
                 + IS_EDITED + " VARCHAR, "
-               + IS_NEW + " VARCHAR, "
-              + IS_APPROVED + " VARCHAR)";
+                + IS_NEW + " VARCHAR, "
+                + IS_APPROVED + " VARCHAR)";
         db.execSQL(CREATE_CHILD_EXTRA);
 
         String CREATE_PREGNANT = "CREATE TABLE " + PREGNANT + "("
@@ -387,10 +390,9 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 + IS_EDITED + " VARCHAR, "
                 + IS_NEW + " VARCHAR, "
                 + IS_APPROVED + " VARCHAR)";
-              db.execSQL(CREATE_PREGNANT);
-
-              db.execSQL(CREATE_DIET_TABLE);
-              db.execSQL(TRACKING_TABLE);
+                db.execSQL(CREATE_PREGNANT);
+                db.execSQL(CREATE_DIET_TABLE);
+                db.execSQL(TRACKING_TABLE);
     }
 
 
@@ -427,6 +429,7 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
         values.put(FAMILY_TYPE, familyDetailGetSet.getFamilytype());
         values.put(SURVEYOR_ID, familyDetailGetSet.getSurveyor_id());
         values.put(VILLAGE_CODE, familyDetailGetSet.getVillage_code());
+        values.put(IS_NEW, familyDetailGetSet.getIs_new());
 
         // Inserting Row
      long id=   db.insert(TABLE_FAMILYDATA, null, values);
@@ -448,7 +451,7 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
         values.put(AGE, memberBasicGetSet.getAge());
         values.put(IF_DOB_ASSUMED, memberBasicGetSet.getIfdobasum());
         values.put(DODEATH, memberBasicGetSet.getDod());
-        values.put(AADHAR, memberBasicGetSet.getAadhar());
+        values.put(AADDHAR, memberBasicGetSet.getAadhar());
         values.put(AADDHAR_ENROL_NO, memberBasicGetSet.getAadharenrol());
         values.put(AADDHAR_DATE_STAMP, memberBasicGetSet.getAadhardate());
         values.put(AADDHAR_TIME_STAMP, memberBasicGetSet.getAadhartime());

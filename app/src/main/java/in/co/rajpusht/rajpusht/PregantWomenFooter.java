@@ -1,12 +1,18 @@
 package in.co.rajpusht.rajpusht;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,6 +20,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,33 +36,55 @@ import java.util.Locale;
 
 public class PregantWomenFooter extends AppCompatActivity {
 
-    View fragment_preliminary_pw1, fragment_diatary_pw1, fragment_height_weight;
+    View fragment_preliminary_pw1, fragment_diatary_pw1, fragment_height_weight,fragment_na;
 
-    View basicclick, pregnentclick, childclick;
+    View basicclick, pregnentclick, childclick,pd;
 
-    RelativeLayout relativessbc, relativeDiversity, relativeHeight;
+    RelativeLayout relativessbc, relativeDiversity, relativeHeight,holdingTabs;
+    Dialog dialogCoupon;
 
     String pwActive_subStage;
+    String errorCode="0";
 
-    TextView anc_date, acndate;
+    TextView anc_date, acndate,muachole;
+    LinearLayout linearMua;
     private int mYear, mMonth, mDay;
     Spinner spinner_consult_self, spinner_spend_food,spinner_spend_on_bf;
 
     CheckBox a_food,b_food,c_food,d_food,e_food,f_food,g_food,h_food,i_food,j_food,k_food,l_food,m_food;
     EditText a_no,b_no,c_no,d_no,e_no,f_no,g_no,h_no,i_no,j_no,k_no,l_no,m_no;
 
+    String af,bf,cf,df,ef,ff,gf,hf,i_f,jf,kf,lf,mf;
+    Integer an,bn,cn,dn,en,fn,gn,hn,in,jn,kn,ln,mn;
+
     EditText height,weight;
 
     Button PW1Button,PW2Button,PW3Button,PW4Button;
     String subStageMode;
     Button save;
+    ImageView naButton;
 
     String spinner_consult_selfString,spend_on_bfString,sepndOfFoodString;
     int spinner_consult_selfInteger,spentOnFoodInt;
     TextView textLmpdate;
+    CheckBox checkbox,chcekedNAM;
+    Spinner pw1_yesno;
+    LinearLayout anetalcheck;
+    String pw1_yesnoString;
+    int pw1_yesNoInt;
+    EditText pregnetNumnber;
+
 
 
     String datePresent;
+
+    Spinner placeofDelivery,sexOfchild,wasChildBorn,birthBreast,firstyellowFeed;
+    String DeliveryPlace,childSex,wasChildBornString;
+    int deliveryPlaceItemSelected,childSexItemSelected,wasChildBornPosition;
+    private int mYear2, mMonth2, mDay2;
+
+    EditText nameOfChild,orderOfBirth,childWeight;
+    TextView dateOfDelivery,addchild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,23 +95,97 @@ public class PregantWomenFooter extends AppCompatActivity {
         fragment_preliminary_pw1 = findViewById(R.id.sbcclayout);
         fragment_diatary_pw1 = findViewById(R.id.dietaryLyout);
         fragment_height_weight = findViewById(R.id.heightWeightLayout);
+        fragment_na = findViewById(R.id.NaFormButtonLayout);
+
+        linearMua = (LinearLayout) findViewById(R.id.linearMuac);
+        muachole = (TextView) findViewById(R.id.muacholer);
+
+        if(getIntent().getStringExtra("getstage").equalsIgnoreCase("pw")){
+
+            linearMua.setVisibility(View.INVISIBLE);
+                    muachole.setVisibility(View.INVISIBLE);
+        }
+
         textLmpdate = (TextView) findViewById(R.id.date);
-        textLmpdate.setText(getIntent().getStringExtra("lmpDate"));
+        textLmpdate.setText("LMP : "+getIntent().getStringExtra("lmpDate"));
 
         getSupportActionBar().setTitle(getIntent().getStringExtra("name"));
+
 
         basicclick = (View) findViewById(R.id.basicclick);
         pregnentclick = (View) findViewById(R.id.pregnentclick);
         childclick = (View) findViewById(R.id.childclick);
+        pd = (View)findViewById(R.id.pTod);
+
+
 
         relativessbc = (RelativeLayout) findViewById(R.id.relativessbc);
         relativeDiversity = (RelativeLayout) findViewById(R.id.relativeDiversity);
         relativeHeight = (RelativeLayout) findViewById(R.id.relativeHeight);
+        holdingTabs = (RelativeLayout) findViewById(R.id.holdingTabs);
 
         PW1Button = (Button) findViewById(R.id.PW1Button);
                 PW2Button= (Button) findViewById(R.id.PW2Button);
                 PW3Button= (Button) findViewById(R.id.PW3Button);
                 PW4Button= (Button) findViewById(R.id.PW4Button);
+
+        naButton=(ImageView) findViewById(R.id.naButton);
+
+
+
+        checkbox = (CheckBox)findViewById(R.id.checkbox);
+        chcekedNAM=(CheckBox)findViewById(R.id.chcekedNAM);
+
+        pw1_yesno = (Spinner) findViewById(R.id.pw1_yesno);
+        anetalcheck = (LinearLayout) findViewById(R.id.anetalcheck);
+        List<String> listanetalcheck = new ArrayList<String>();
+        listanetalcheck.add("--Select Options--");
+        listanetalcheck.add("Miscarriage/ abortion");
+        listanetalcheck.add("Death");
+        listanetalcheck.add("Migrated elsewhere");
+
+        ArrayAdapter<String> dataAdapterlistanetalcheck = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listanetalcheck);
+        dataAdapterlistanetalcheck.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pw1_yesno.setAdapter(dataAdapterlistanetalcheck);
+
+        pw1_yesno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                pw1_yesnoString=String.valueOf(parent.getSelectedItem());
+                pw1_yesNoInt = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkbox.isChecked()){
+                    pw1_yesno.setVisibility(View.VISIBLE);
+                    anetalcheck.setVisibility(View.INVISIBLE);
+
+                }
+                else{
+                    anetalcheck.setVisibility(View.VISIBLE);
+                    pw1_yesno.setVisibility(View.INVISIBLE);
+                }
+
+            }
+        });
+
+        if(checkbox.isChecked()){
+            pw1_yesno.setVisibility(View.VISIBLE);
+
+        }
+
+
+
 
 
 
@@ -109,6 +213,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                             }
                         }, mYear, mMonth, mDay);
 //                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
                 dpd.show();
             }
         });
@@ -433,6 +538,181 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
 
+                //add child
+
+        dateOfDelivery= (TextView) findViewById(R.id.dateOfDelivery);
+
+        nameOfChild = (EditText) findViewById(R.id.nameOfChild);
+        orderOfBirth= (EditText) findViewById(R.id.orderOfBirth);
+        childWeight = (EditText) findViewById(R.id.childWeight);
+        addchild = (TextView) findViewById(R.id.addchild);
+        pregnetNumnber = (EditText)findViewById(R.id.pregnetNumnber);
+
+
+
+        dateOfDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Calendar calender = Calendar.getInstance();
+                mYear2 = calender.get(Calendar.YEAR);
+                mMonth2 = calender.get(Calendar.MONTH);
+                mDay2 = calender.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dpd = new DatePickerDialog(PregantWomenFooter.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+                                String month, day;
+                                if ((monthOfYear + 1) < 10) {
+                                    month = "0" + String.valueOf(monthOfYear + 1);
+                                } else {
+                                    month = String.valueOf(monthOfYear + 1);
+                                }
+
+                                if (dayOfMonth < 10) {
+                                    day = "0" + String.valueOf(dayOfMonth);
+
+                                } else {
+                                    day = String.valueOf(dayOfMonth);
+                                }
+                                dateOfDelivery.setText(year + "-"
+                                        + month + "-" + day);
+//                                getAge(year, (monthOfYear + 1),dayOfMonth );
+                            }
+                        }, mYear2, mMonth2, mDay2);
+//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+                dpd.show();
+            }
+        });
+
+
+                placeofDelivery = (Spinner)  findViewById(R.id.placeofDelivery);
+//
+        List<String> listplaceofDelivery = new ArrayList<String>();
+        listplaceofDelivery.add("--Select Options--");
+
+        listplaceofDelivery.add("Hospital/ PHC/CHC/ Private clinic");
+        listplaceofDelivery.add("Home");
+
+        ArrayAdapter<String> postofDelivery = new ArrayAdapter<String>(PregantWomenFooter.this,
+                android.R.layout.simple_spinner_item, listplaceofDelivery);
+        postofDelivery.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        placeofDelivery.setAdapter(postofDelivery);
+
+        placeofDelivery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                DeliveryPlace=String.valueOf(parent.getSelectedItem());
+                deliveryPlaceItemSelected=parent.getSelectedItemPosition();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        sexOfchild= (Spinner) findViewById(R.id.sexOfchild);
+        List<String> listsexOfchild = new ArrayList<String>();
+        listsexOfchild.add("--Select Options--");
+
+        listsexOfchild.add("Male");
+        listsexOfchild.add("Female");
+        listsexOfchild.add("Intersex");
+
+        ArrayAdapter<String> dataAdaptersexOfchild = new ArrayAdapter<String>(PregantWomenFooter.this,
+                android.R.layout.simple_spinner_item, listsexOfchild);
+        dataAdaptersexOfchild.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sexOfchild.setAdapter(dataAdaptersexOfchild);
+
+        sexOfchild.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                childSex=String.valueOf(parent.getSelectedItem());
+                childSexItemSelected=parent.getSelectedItemPosition();
+
+                Log.d("SExofChild",""+childSexItemSelected);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+        wasChildBorn=(Spinner)findViewById(R.id.wasChildBorn);
+//
+        List<String> listwasChildBorn = new ArrayList<String>();
+        listwasChildBorn.add("--Select Options--");
+
+        listwasChildBorn.add("Yes");
+        listwasChildBorn.add("No");
+
+
+        ArrayAdapter<String> dataAdapterwasChildBorn = new ArrayAdapter<String>(PregantWomenFooter.this,
+                android.R.layout.simple_spinner_item, listwasChildBorn);
+        dataAdapterwasChildBorn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        wasChildBorn.setAdapter(dataAdapterwasChildBorn);
+
+        wasChildBorn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                wasChildBornPosition=parent.getSelectedItemPosition();
+                wasChildBornString=String.valueOf(parent.getSelectedItem());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        birthBreast= (Spinner) findViewById(R.id.birthBreast);
+
+        List<String> listbirthBreast = new ArrayList<String>();
+
+        listbirthBreast.add("--Select Options--");
+        listbirthBreast.add("Yes");
+        listbirthBreast.add("No");
+//        listbirthBreast.add("Intersexed");
+
+        ArrayAdapter<String> dataAdapterbirthBreast = new ArrayAdapter<String>(PregantWomenFooter.this,
+                android.R.layout.simple_spinner_item, listbirthBreast);
+        dataAdapterbirthBreast.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        birthBreast.setAdapter(dataAdapterbirthBreast);
+
+
+        firstyellowFeed= (Spinner) findViewById(R.id.firstyellowFeed);
+
+        List<String> listfirstyellowFeed = new ArrayList<String>();
+
+        listfirstyellowFeed.add("--Select Options--");
+        listfirstyellowFeed.add("Yes");
+        listfirstyellowFeed.add("No");
+//        listfirstyellowFeed.add("Intersexed");
+
+        ArrayAdapter<String> dataAdapterfirstyellowFeed = new ArrayAdapter<String>(PregantWomenFooter.this,
+                android.R.layout.simple_spinner_item, listfirstyellowFeed);
+        dataAdapterfirstyellowFeed.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        firstyellowFeed.setAdapter(dataAdapterfirstyellowFeed);
+//
+
+
+
 
         relativessbc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -461,172 +741,246 @@ public class PregantWomenFooter extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(subStageMode.equalsIgnoreCase("add")){
+                if (pwActive_subStage.equalsIgnoreCase("PD")) {
+                    errorCode=childformValidation();
+                    if (errorCode.equalsIgnoreCase("0")) {
 
-                    if(a_food.isChecked()){
-                        String af="Y";
-                        Integer an=Integer.parseInt(a_no.getText().toString());
-                    }
-                    else{
-                        String af="N";
-                        Integer an= null;
-                    }
-                    if(b_food.isChecked()){
-                        String bf="Y";
-                        Integer bn=Integer.parseInt(b_no.getText().toString());
-                    }
-                    else{
-                        String bf="N";
-                        Integer bn= null;
-                    }
+                        String cSex;
+                        if (childSex.equalsIgnoreCase("male")) {
+
+                            cSex="M";
+                        }else if(childSex.equalsIgnoreCase("Female")){
+                            cSex="F";
+                        }else{
+                            cSex="I";
+                        }
+                            String childid=createMemberId(getIntent().getStringExtra("familyId"));
+                        String childIntoMemeber="INSERT INTO memberbasic (MEMBERS_ID,FAMILY_ID,NAME,DOR,DOENTRY,DOB,SEX,MOTHER_ID,STATUS,STAGE,IS_TO_TRACK," +
+                                "SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW) VALUES ('"+ childid +"','" +
+                                ""+getIntent().getStringExtra("familyId")+"','"+ nameOfChild.getText().toString()+ "','" +
+                                ""+ new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()) +"','" +
+                                ""+ new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())+ "','" +
+                                ""+  dateOfDelivery.getText().toString() +"','"+ cSex +"','"+ getIntent().getStringExtra("members_id") +
+                                "','LM','LM','Y','"+ new Login().surveyerId +"','"+
+                                new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) +"','Mobile','','N')";
+
+                        String insertChildExtra="INSERT INTO childextra (MEMBERS_ID,DODELIVERY,DELIVERY_PLACE,CHILD_ORDER,BIRTH_WT,FULL_TERM,IS_APPROVED," +
+                                "IS_NEW) VALUES ('"+ childid +"','"+ dateOfDelivery.getText().toString() +"'," +
+                                "'"+  String.valueOf(deliveryPlaceItemSelected)+ "','"+ orderOfBirth.getText().toString()+ "','" +
+                                ""+ childWeight.getText().toString()+"','"+ String.valueOf(wasChildBornPosition)+ "','','N')";
+
+                        String pwtrackoff="UPDATE memberbasic SET IS_TO_TRACK = 'N',SURVEYOR_ID = '"+ new Login().surveyerId +"',TIME_STAMP = '"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date())  +"',IS_NEW = 'E' WHERE MEMBERS_ID = '"+ getIntent().getStringExtra("members_id") +"'" ;
 
 
-                    if(c_food.isChecked()){
-                        String cf="Y";
-                        Integer cn=Integer.parseInt(c_no.getText().toString());
-                    }
-                    else{
-                        String cf="N";
-                        Integer cn= null;
-                    }
+                        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+                        Cursor c1 = dbs.rawQuery(childIntoMemeber, null);
+                        c1.moveToFirst();
+                        c1.close();
+
+                        Cursor c2 = dbs.rawQuery(insertChildExtra, null);
+                        c2.moveToFirst();
+                        c2.close();
+
+                        Cursor c3 = dbs.rawQuery(pwtrackoff, null);
+                        c3.moveToFirst();
+                        c3.close();
 
 
-                    if(d_food.isChecked()){
-                        String df="Y";
-                        Integer dn=Integer.parseInt(d_no.getText().toString());
-                    }
-                    else{
-                        String df="N";
-                        Integer dn= null;
-                    }
+                        Toast.makeText(PregantWomenFooter.this, "Recorded updated Succesfully", Toast.LENGTH_SHORT).show();
 
-                    if(e_food.isChecked()){
-                        String ef="Y";
-                        Integer en=Integer.parseInt(e_no.getText().toString());
-                    }
-                    else {
-                        String ef = "N";
-                        Integer en = null;
-                    }
 
-                    if(f_food.isChecked()){
-                        String ff="Y";
-                        Integer fn=Integer.parseInt(f_no.getText().toString());
-                    }
-                    else{
-                        String ff="N";
-                        Integer fn=null;
-                    }
-                    if(g_food.isChecked()){
-                        String gf="Y";
-                        Integer gn=Integer.parseInt(g_no.getText().toString());
-                    }
-                    else {
-                        String gf="N";
-                        Integer gn=null;
-                    }
+                        Intent intentbenefit = new Intent(getApplicationContext(),DashBoard.class);
+                        startActivity(intentbenefit);
+                        finish();
 
-                    if(h_food.isChecked()){
-                        String hf="Y";
-                        Integer hn=Integer.parseInt(h_no.getText().toString());
                     }
-                    else{
-                        String hf="N";
-                        Integer hn=null;
-                    }
-                    if(i_food.isChecked()){
-                        String i_f="Y";
-                        Integer in=Integer.parseInt(i_no.getText().toString());
-                    }
-                    else {
-
-                        String i_f="N";
-                        Integer in=null;
                     }
 
 
+                else if (pwActive_subStage.equalsIgnoreCase("na")) {
+                    errorCode = ValidateNa();
+                    if (errorCode.equalsIgnoreCase("0")) {
 
-                    if(j_food.isChecked()){
-                        String jf="Y";
-                        Integer jn=Integer.parseInt(j_no.getText().toString());
-                    }
-                    else{
+                        String is_available, ancValue = "", IS_TO_TRACK;
+                        if (checkbox.isChecked()) {
+                            is_available = "N";
+                            IS_TO_TRACK = "N";
+                        } else {
+                            is_available = "Y";
+                            ancValue = "N";
+                            IS_TO_TRACK = "Y";
+                        }
+                        String checkRecords = "select * from pw_tracking where sub_stage='" + getIntent().getStringExtra("current_sub_stage") + "' and pregnancy_id ='" + getIntent().getStringExtra("pregnancy_id") + "'";
+                        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-                        String j_f="N";
-                        Integer jn=null;
-                    }
+                        Cursor c = dbs.rawQuery(checkRecords, null);
 
-                    if(k_food.isChecked()){
-                        String kf="Y";
-                        Integer kn=Integer.parseInt(k_no.getText().toString());
-                    }
-                    else{
-                        String k_f="N";
-                        Integer kn=null;
-                    }
-
-                    if(l_food.isChecked()){
-                        String lf="Y";
-                        Integer ln=Integer.parseInt(m_no.getText().toString());
-                    }
-                    else{
-                        String l_f="N";
-                        Integer ln=null;
-                    }
-                    if(m_food.isChecked()){
-                        String mf="Y";
-                        Integer mn=Integer.parseInt(m_no.getText().toString());
-                    }
-                    else{
-                        String m_f="N";
-                        Integer mn=null;
-                    }
+                        int count = c.getCount();
+//                        Log.d("")
+                        String NaQuery;
+                        if (count == 0) {
 
 
-                String inseertPwTrack="insert into  pw_tracking(pregnancy_id,members_id,stage,sub_stage,is_available,na_reason,is_anc," +
-                        "anc_date,if_counsel_on_selffeed,if_counsel_on_bf,spend_on_food,height,weight,surveyor_id,time_stamp,source," +
-                        "is_new,is_edited,is_approved) values('"+ getIntent().getStringExtra("pregnancy_id")+"','"
-                        +getIntent().getStringExtra("members_id")+"',"+"'PW'"+",'"+pwActive_subStage+"',"+"'Y'"+","+"'' "+","+"'Y'"+",'"+
-                    anc_date.getText().toString()+"','" + spinner_consult_selfString+"','"+ spend_on_bfString +"'," +spentOnFoodInt+ "," +
-                        Integer.parseInt(height.getText().toString())+","+Integer.parseInt(weight.getText().toString())+","+new Login().surveyerId+","
-                    + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) +","
-                    +"'Mobile'"+","+"'Y'"+","+"''"+","+"''"+")";
+                            NaQuery = "INSERT INTO PW_TRACKING (PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,IS_AVAILABLE,NA_REASON,IS_ANC,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_NEW,IS_EDITED,IS_APPROVED)VALUES ( '" + getIntent().getStringExtra("pregnancy_id") +
+                                    "','" + getIntent().getStringExtra("members_id") + "', 'PW', '" + getIntent().getStringExtra("current_sub_stage") + "','" + is_available + "', " + pw1_yesNoInt + ",'" + ancValue + "', '" + new Login().surveyerId + "','" +
+                                    new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "','Mobile','N','','')";
 
-                    Log.d("insertQuery",inseertPwTrack);
-//
-                    SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+                        } else {
 
-                    Cursor c = dbs.rawQuery(inseertPwTrack,null);
+                            NaQuery = "UPDATE PW_TRACKING SET IS_AVAILABLE = '" + is_available + "', NA_REASON = " + pw1_yesNoInt + ",IS_ANC = '" + ancValue + "',IS_NEW = 'N', TIME_STAMP='" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SURVEYOR_ID='" + new Login().surveyerId + "',SOURCE='Mobile' " +
+                                    "WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + getIntent().getStringExtra("current_sub_stage") + "'";
+                        }
 
-                    c.moveToFirst();
+                        SQLiteDatabase dbs4 = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+                        Cursor cdbs4 = dbs4.rawQuery(NaQuery, null);
+
+                        cdbs4.moveToFirst();
+                        cdbs4.close();
+
+                        String updateSub_StageInMemberBasic = "update memberbasic set sub_stage='" + getIntent().getStringExtra("current_sub_stage") + "', IS_TO_TRACK='" + IS_TO_TRACK + "' WHERE MEMBERS_ID=(SELECT MEMBERS_ID FROM PREGNANT WHERE PREGNANCY_ID='" + getIntent().getStringExtra("pregnancy_id") + "')";
+                        SQLiteDatabase dsbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+                        Cursor cdsbs = dsbs.rawQuery(updateSub_StageInMemberBasic, null);
+                        cdsbs.moveToFirst();
+                        dsbs.close();
+
+                        Toast.makeText(PregantWomenFooter.this, "Record Updated Successfully", Toast.LENGTH_SHORT).show();
+
+
 //                    total = c.getCount();  int
-                    c.close();
+                        c.close();
+                    }
+                } else {
+
+                    errorCode = checkValidation();
+                    if (errorCode.equalsIgnoreCase("0")) {
+
+                        dietSelection();
+
+                        if (subStageMode.equalsIgnoreCase("add")) {
 
 
+                            String inseertPwTrack = "insert into  pw_tracking(pregnancy_id,members_id,stage,sub_stage,is_available,na_reason,is_anc," +
+                                    "anc_date,if_counsel_on_selffeed,if_counsel_on_bf,spend_on_food,height,weight,surveyor_id,time_stamp,source," +
+                                    "is_new,is_edited,is_approved) values('" + getIntent().getStringExtra("pregnancy_id") + "','"
+                                    + getIntent().getStringExtra("members_id") + "'," + "'PW'" + ",'" + pwActive_subStage + "'," + "'Y'" + "," + "'' " + "," + "'Y'" + ",'" +
+                                    anc_date.getText().toString() + "','" + spinner_consult_selfString + "','" + spend_on_bfString + "'," + spentOnFoodInt + "," +
+                                    Integer.parseInt(height.getText().toString()) + "," + Integer.parseInt(weight.getText().toString()) + "," + new Login().surveyerId + ","
+                                    + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + ","
+                                    + "'Mobile'" + "," + "'Y'" + "," + "''" + "," + "''" + ")";
+
+                            Log.d("insertQuery", inseertPwTrack);
+//
+                            SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+                            Cursor c = dbs.rawQuery(inseertPwTrack, null);
+
+                            c.moveToFirst();
+//                    total = c.getCount();  int
+                            c.close();
 
 
+                            String deitInsert = "INSERT INTO DIET (PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,FEED_A,FEED_A_NOS,FEED_B,FEED_B_NOS,FEED_C,FEED_C_NOS,FEED_D,FEED_D_NOS,FEED_E,FEED_E_NOS,FEED_F,FEED_F_NOS,FEED_G,FEED_G_NOS,FEED_H,FEED_H_NOS,FEED_I,FEED_I_NOS,FEED_J,FEED_J_NOS,FEED_K,FEED_K_NOS,FEED_L,FEED_L_NOS,FEED_M,FEED_M_NOS,SOURCE,IS_NEW,IS_EDITED,IS_APPROVED)VALUES" +
+                                    " ('" + getIntent().getStringExtra("pregnancy_id") + "','" + getIntent().getStringExtra("members_id") + "','PW','" + pwActive_subStage + "','" + af + "'," + an + ",'" + bf +
+                                    "'," + bn + ",'" + cf + "'," + cn + ",'" + df + "'," + dn + ",'" + ef + "'," +
+                                    en + ",'" + ff + "'," + fn + ",'" + gf + "'," + gn + ",'" + hf + "'," + hn + ",'"
+                                    + i_f + "'," + in + ",'" + jf + "'," + jn + ",'" + kf + "'," + kn + ",'" + lf + "'," +
+                                    ln + ",'" + mf + "'," + mn + ",'MOBILE','N','','')";
+
+                            Log.d("InsertQuerydiet", deitInsert);
+
+//                    SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+                            Cursor cinsert = dbs.rawQuery(deitInsert, null);
+
+                            if (cinsert.moveToFirst()) {
+
+                            }
+//                    total = c.getCount();  int
+                            cinsert.close();
 
 
-                    String updateSub_StageInMemberBasic="update memberbasic set sub_stage='"+getIntent().getStringExtra("current_sub_stage")+"' WHERE MEMBERS_ID=(SELECT MEMBERS_ID FROM PREGNANT WHERE PREGNANCY_ID='"+getIntent().getStringExtra("pregnancy_id")+"')";
-                    SQLiteDatabase dsbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+                            String updateSub_StageInMemberBasic = "update memberbasic set sub_stage='" + getIntent().getStringExtra("current_sub_stage") + "' WHERE MEMBERS_ID=(SELECT MEMBERS_ID FROM PREGNANT WHERE PREGNANCY_ID='" + getIntent().getStringExtra("pregnancy_id") + "')";
+                            SQLiteDatabase dsbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-                    Cursor c3 = dsbs.rawQuery(updateSub_StageInMemberBasic,null);
-                    c3.moveToFirst();
-                    c3.close();
+                            Cursor c3 = dsbs.rawQuery(updateSub_StageInMemberBasic, null);
 
-                    subStageMode="edit";
+                            if (c3.moveToFirst()) {
 
-                }
+                            }
+//                    c3.moveToFirst();
+                            c3.close();
+                            Toast.makeText(PregantWomenFooter.this, "Record Saved Succesfully", Toast.LENGTH_SHORT).show();
+
+                            subStageMode = "edit";
+
+                        } else if (subStageMode.equalsIgnoreCase("edit")) {
+
+                            String updateTrackingPw = "UPDATE PW_TRACKING SET IS_AVAILABLE = 'Y', NA_REASON = '',IS_ANC = 'Y', " +
+                                    "ANC_DATE = '" + anc_date.getText().toString() + "', IF_COUNSEL_ON_SELFFEED = " +
+                                    "'" + spinner_consult_selfString + "',IF_COUNSEL_ON_BF = '" + spend_on_bfString + "', SPEND_ON_FOOD = '" +
+                                    spentOnFoodInt + "', HEIGHT = '" + Integer.parseInt(height.getText().toString()) + "',WEIGHT = " +
+                                    "'" + Integer.parseInt(weight.getText().toString()) + "', SURVEYOR_ID = '" +
+                                    new Login().surveyerId + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
+
+
+                            SQLiteDatabase dsbss = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+                            Cursor updatedtracking = dsbss.rawQuery(updateTrackingPw, null);
+                            updatedtracking.moveToFirst();
+//                            dsbss.close();
+String checkrecordInDiet= " Select * from diet  WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") +
+        "' AND SUB_STAGE = '" + pwActive_subStage + "'";
+                            String updateDiet;
+Cursor cudiet = dsbss.rawQuery(checkrecordInDiet,null);
+                            cudiet.moveToFirst();
+if(cudiet.getCount()>=1) {
+
+   updateDiet = "UPDATE DIET SET SUB_STAGE = '" + pwActive_subStage + "', FEED_A = '" + af + "',FEED_A_NOS = "
+            + an + ",FEED_B = '" + bf + "',FEED_B_NOS = " + bn + ",FEED_C = '" + cf + "',FEED_C_NOS = " + cn + ",FEED_D = '"
+            + df + "', FEED_D_NOS = " + dn + ", FEED_E = '" + ef + "', FEED_E_NOS =" + en + ",FEED_F = '" + ff + "'," +
+            " FEED_F_NOS = " + fn + ", FEED_G = '" + gf + "', FEED_G_NOS = " + gn + ",FEED_H = '" + hf + "', " +
+            "FEED_H_NOS = " + hn + ",FEED_I = '" + i_f + "',FEED_I_NOS = " + in + ",FEED_J = '" + jf + "'," +
+            "FEED_J_NOS = " + jn + ",FEED_K = '" + kf + "', FEED_K_NOS = " + kn + ",FEED_L = '" + lf + "',FEED_L_NOS = " +
+            "" + ln + ", FEED_M = '" + mf + "',   FEED_M_NOS = " + mn + " WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") +
+            "' AND SUB_STAGE = '" + pwActive_subStage + "'";
+}
+else{
+
+    updateDiet = "INSERT INTO DIET (PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,FEED_A,FEED_A_NOS,FEED_B,FEED_B_NOS,FEED_C,FEED_C_NOS,FEED_D,FEED_D_NOS,FEED_E,FEED_E_NOS,FEED_F,FEED_F_NOS,FEED_G,FEED_G_NOS,FEED_H,FEED_H_NOS,FEED_I,FEED_I_NOS,FEED_J,FEED_J_NOS,FEED_K,FEED_K_NOS,FEED_L,FEED_L_NOS,FEED_M,FEED_M_NOS,SOURCE,IS_NEW,IS_EDITED,IS_APPROVED)VALUES" +
+            " ('" + getIntent().getStringExtra("pregnancy_id") + "','" + getIntent().getStringExtra("members_id") + "','PW','" + pwActive_subStage + "','" + af + "'," + an + ",'" + bf +
+            "'," + bn + ",'" + cf + "'," + cn + ",'" + df + "'," + dn + ",'" + ef + "'," +
+            en + ",'" + ff + "'," + fn + ",'" + gf + "'," + gn + ",'" + hf + "'," + hn + ",'"
+            + i_f + "'," + in + ",'" + jf + "'," + jn + ",'" + kf + "'," + kn + ",'" + lf + "'," +
+            ln + ",'" + mf + "'," + mn + ",'MOBILE','N','','')";
+}
+                            SQLiteDatabase dsbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+                            Log.d("updatedDiet", updateDiet);
+
+
+                            Cursor updatedDiet = dsbs.rawQuery(updateDiet, null);
+                            updatedDiet.moveToFirst();
+                            dsbs.close();
+
+                            Toast.makeText(PregantWomenFooter.this, "Edited Successfully", Toast.LENGTH_SHORT).show();
+
+
+                        }
 //                Intent i = new Intent(getApplicationContext(), DashBoard.class);
 //                startActivity(i);
-
-
+                    }
+                }
             }
         });
         PW1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pwActive_subStage="PW1";
+
+                fragment_na.setVisibility(View.INVISIBLE);
+                holdingTabs.setVisibility(View.VISIBLE);
+                pd.setVisibility(View.INVISIBLE);
 
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
@@ -639,6 +993,9 @@ public class PregantWomenFooter extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pwActive_subStage="PW2";
+                fragment_na.setVisibility(View.INVISIBLE);
+                pd.setVisibility(View.INVISIBLE);
+                holdingTabs.setVisibility(View.VISIBLE);
 
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
@@ -651,6 +1008,10 @@ public class PregantWomenFooter extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pwActive_subStage="PW3";
+                fragment_na.setVisibility(View.INVISIBLE);
+                holdingTabs.setVisibility(View.VISIBLE);
+                pd.setVisibility(View.INVISIBLE);
+
 
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
@@ -662,10 +1023,24 @@ public class PregantWomenFooter extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pwActive_subStage="PW4";
+                fragment_na.setVisibility(View.INVISIBLE);
+                holdingTabs.setVisibility(View.VISIBLE);
+                pd.setVisibility(View.INVISIBLE);
 
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
 
+
+            }
+        });
+
+        naButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pwActive_subStage="na";
+                fragment_na.setVisibility(View.VISIBLE);
+                             holdingTabs.setVisibility(View.INVISIBLE);
+                pd.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -719,49 +1094,87 @@ public class PregantWomenFooter extends AppCompatActivity {
     }
 
 
-    public void checkValidation(){
-
+    public String checkValidation(){
+errorCode="0";
         if(anc_date.getText().length()==0){
-            anc_date.setError("enter date");
+anc_date.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Select ANC Date", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(spinner_consult_selfString.equalsIgnoreCase("--Select Options--")){
-            Toast.makeText(this, "Select if counseled", Toast.LENGTH_SHORT).show();
+            spinner_consult_self.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Select  Counseled", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(spend_on_bfString.equalsIgnoreCase("--Select Options--")){
-            Toast.makeText(this, "Select feeding", Toast.LENGTH_SHORT).show();
+            spinner_spend_on_bf.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Select Feeding", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(sepndOfFoodString.equalsIgnoreCase("--Select Options--")){
-            Toast.makeText(this, "Select amount spend on fooding", Toast.LENGTH_SHORT).show();
-        }else if(a_no.getVisibility()==View.VISIBLE && a_no.getText().length()==0){
-            a_no.setError("");
+            spinner_spend_food.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Select Amount Spend on Fooding", Toast.LENGTH_SHORT).show();
+            errorCode="1";
+        }else  if(a_no.getVisibility()==View.VISIBLE && a_no.getText().length()==0){
+            a_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(b_no.getVisibility()==View.VISIBLE && b_no.getText().length()==0){
-            b_no.setError("");
+            b_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(c_no.getVisibility()==View.VISIBLE && c_no.getText().length()==0){
-            c_no.setError("");
+            c_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(d_no.getVisibility()==View.VISIBLE && d_no.getText().length()==0){
-            d_no.setError("");
+            d_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(e_no.getVisibility()==View.VISIBLE && e_no.getText().length()==0){
-            e_no.setError("");
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(f_no.getVisibility()==View.VISIBLE && f_no.getText().length()==0){
-            f_no.setError("");
+            f_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(g_no.getVisibility()==View.VISIBLE && g_no.getText().length()==0){
-            g_no.setError("");
+            g_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(h_no.getVisibility()==View.VISIBLE && h_no.getText().length()==0){
-            h_no.setError("");
+            h_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(i_no.getVisibility()==View.VISIBLE && i_no.getText().length()==0){
-            i_no.setError("");
+            i_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(j_no.getVisibility()==View.VISIBLE && j_no.getText().length()==0){
-            j_no.setError("");
+            j_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(k_no.getVisibility()==View.VISIBLE && k_no.getText().length()==0){
-            k_no.setError("");
+            k_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(l_no.getVisibility()==View.VISIBLE && l_no.getText().length()==0){
-            l_no.setError("");
+            l_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }else if(m_no.getVisibility()==View.VISIBLE && m_no.getText().length()==0){
-            m_no.setError("");
-        }else if(height.getText().length()==0){
-            height.setError("");
-        }else if(weight.getText().length()==0){
-            weight.setError("");
-        }else{
+            m_no.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
+            errorCode="1";
 
+        }else if(height.getText().length()==0){
+
+            height.requestFocus();
+            Toast.makeText(PregantWomenFooter.this, "Enter Height", Toast.LENGTH_SHORT).show();
+            errorCode="1";
+
+        }else if(weight.getText().length()==0){
+            Toast.makeText(PregantWomenFooter.this, "Enter Weight", Toast.LENGTH_SHORT).show();
+            errorCode="1";
         }
+        return errorCode;
     }
 
 
@@ -843,7 +1256,11 @@ public class PregantWomenFooter extends AppCompatActivity {
 
     public void stageDataByPWID(String pw_id,String sub_stage){
 
-        String query="select is_anc,anc_date,IF_COUNSEL_ON_SELFFEED,IF_COUNSEL_ON_BF,SPEND_ON_FOOD,HEIGHT,WEIGHT,IS_APPROVED,FEED_A,FEED_A_NOS,FEED_B,FEED_B_NOS,FEED_C,FEED_C_NOS,FEED_D,FEED_D_NOS,FEED_E,FEED_E_NOS,FEED_F,FEED_F_NOS,FEED_G,FEED_G_NOS,FEED_H,FEED_H_NOS,FEED_I,FEED_I_NOS,FEED_J,FEED_J_NOS,FEED_K,FEED_K_NOS,FEED_L,FEED_L_NOS,FEED_M,FEED_M_NOS FROM PW_TRACKING T LEFT JOIN DIET D ON T.PREGNANCY_ID=D.PREGNANCY_ID AND T.SUB_STAGE=D.SUB_STAGE WHERE T.PREGNANCY_ID='"+pw_id+"' AND T.SUB_STAGE='"+sub_stage+"' ";
+
+//        c
+//        String
+
+        String query="select is_anc,anc_date,IF_COUNSEL_ON_SELFFEED,IF_COUNSEL_ON_BF,SPEND_ON_FOOD,HEIGHT,WEIGHT,T.IS_APPROVED,FEED_A,FEED_A_NOS,FEED_B,FEED_B_NOS,FEED_C,FEED_C_NOS,FEED_D,FEED_D_NOS,FEED_E,FEED_E_NOS,FEED_F,FEED_F_NOS,FEED_G,FEED_G_NOS,FEED_H,FEED_H_NOS,FEED_I,FEED_I_NOS,FEED_J,FEED_J_NOS,FEED_K,FEED_K_NOS,FEED_L,FEED_L_NOS,FEED_M,FEED_M_NOS FROM PW_TRACKING T LEFT JOIN DIET D ON T.PREGNANCY_ID=D.PREGNANCY_ID AND T.SUB_STAGE=D.SUB_STAGE WHERE T.PREGNANCY_ID='"+pw_id+"' AND T.SUB_STAGE='"+sub_stage+"' ";
 
 
         Log.d("PregnentWomen",query);
@@ -867,173 +1284,203 @@ public class PregantWomenFooter extends AppCompatActivity {
                 do {
 
 //                    Log.d("CheckDate",""+ c.getString(c.getColumnIndex("anc_date")));
-                    anc_date.setText(String.valueOf(c.getString(c.getColumnIndex("anc_date"))));
-                    if(c.getString(c.getColumnIndex("if_counsel_on_selffeed")).equalsIgnoreCase("Y")){
-                        spinner_consult_self.setSelection(1);
-                    }
-                    if(c.getString(c.getColumnIndex("if_counsel_on_selffeed")).equalsIgnoreCase("N")){
-                        spinner_consult_self.setSelection(2);
+                    if(String.valueOf((c.getString(c.getColumnIndex("anc_date"))))!="null"){
+                        anc_date.setText(String.valueOf(c.getString(c.getColumnIndex("anc_date"))));
                     }
 
-                    if(c.getString(c.getColumnIndex("if_counsel_on_bf")).equalsIgnoreCase("Y")){
-                        spinner_spend_on_bf.setSelection(1);
-                    }
-                    if(c.getString(c.getColumnIndex("if_counsel_on_bf")).equalsIgnoreCase("N")){
-                        spinner_spend_on_bf.setSelection(2);
+                    try {
+                        if (c.getString(c.getColumnIndex("if_counsel_on_selffeed")).equalsIgnoreCase("Y")) {
+                            spinner_consult_self.setSelection(1);
+                        }
+                    }catch (Exception e) {
                     }
 
-                                        spinner_spend_food.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("spend_on_food"))));
+                    try {
+                        if (c.getString(c.getColumnIndex("if_counsel_on_selffeed")).equalsIgnoreCase("N")) {
+                            spinner_consult_self.setSelection(2);
+                        }
+                    }catch (Exception e){
 
-                         height.setText(c.getString(c.getColumnIndex("height")));
-                         weight.setText(c.getString(c.getColumnIndex("weight")));
-//
-//                        if(c.getString(c.getColumnIndex("feed_a")).equalsIgnoreCase("Y")){
-//                            a_food.setChecked(true);
-//                            a_no.setVisibility(View.VISIBLE);
-//                            a_no.setText(c.getString(c.getColumnIndex("feed_a_nos")));
-//                        }
-//                        else{
-//                            a_food.setChecked(false);
-//                            a_no.setVisibility(View.INVISIBLE);
-//                            a_no.setText("");
-//                        }
-//
-//
-//
-//
-//
-//                    if(c.getString(c.getColumnIndex("feed_b")).equalsIgnoreCase("Y")){
-//                        b_food.setChecked(true);
-//                        b_no.setVisibility(View.VISIBLE);
-//                        b_no.setText(c.getString(c.getColumnIndex("feed_b_nos")));
-//                    }
-//                    else{
-//                        b_food.setChecked(false);
-//                        b_no.setVisibility(View.INVISIBLE);
-//                        b_no.setText("");
-//                    }
-//
-//                    if(c.getString(c.getColumnIndex("feed_c")).equalsIgnoreCase("Y")){
-//                        c_food.setChecked(true);
-//                        c_no.setVisibility(View.VISIBLE);
-//                        c_no.setText(c.getString(c.getColumnIndex("feed_c_nos")));
-//                    }
-//                    else{
-//                        c_food.setChecked(false);
-//                        c_no.setVisibility(View.INVISIBLE);
-//                        c_no.setText("");
-//                    }
-//                    if(c.getString(c.getColumnIndex("feed_d")).equalsIgnoreCase("Y")){
-//                        d_food.setChecked(true);
-//                        d_no.setVisibility(View.VISIBLE);
-//                        d_no.setText(c.getString(c.getColumnIndex("feed_d_nos")));
-//                    } else{
-//                        d_food.setChecked(false);
-//                        d_no.setVisibility(View.INVISIBLE);
-//                        d_no.setText("");
-//                    }
-//
-//                    if(c.getString(c.getColumnIndex("feed_e")).equalsIgnoreCase("Y")){
-//                        e_food.setChecked(true);
-//                        e_no.setVisibility(View.VISIBLE);
-//                        e_no.setText(c.getString(c.getColumnIndex("feed_e_nos")));
-//                    }
-//
-//                    else{
-//                        e_food.setChecked(false);
-//                        e_no.setVisibility(View.INVISIBLE);
-//                        e_no.setText("");
-//                    }
-//                    if(c.getString(c.getColumnIndex("feed_f")).equalsIgnoreCase("Y")){
-//                        f_food.setChecked(true);
-//                        f_no.setVisibility(View.VISIBLE);
-//                        f_no.setText(c.getString(c.getColumnIndex("feed_f_nos")));
-//                    }
-//
-//                    else{
-//                        f_food.setChecked(false);
-//                        f_no.setVisibility(View.INVISIBLE);
-//                        f_no.setText("");
-//                    }
-//                    if(c.getString(c.getColumnIndex("feed_g")).equalsIgnoreCase("Y")){
-//                        g_food.setChecked(true);
-//                        g_no.setVisibility(View.VISIBLE);
-//                        g_no.setText(c.getString(c.getColumnIndex("feed_g_nos")));
-//                    }
-//                    else{
-//                        g_food.setChecked(false);
-//                        g_no.setVisibility(View.INVISIBLE);
-//                        g_no.setText("");
-//                    }
-//                    if(c.getString(c.getColumnIndex("feed_h")).equalsIgnoreCase("Y")){
-//                        h_food.setChecked(true);
-//                        h_no.setVisibility(View.VISIBLE);
-//                        h_no.setText(c.getString(c.getColumnIndex("feed_h_nos")));
-//                    }
-//                    else{
-//                        h_food.setChecked(false);
-//                        h_no.setVisibility(View.INVISIBLE);
-//                        h_no.setText("");
-//                    }
-//                    if(c.getString(c.getColumnIndex("feed_i")).equalsIgnoreCase("Y")){
-//                        i_food.setChecked(true);
-//                        i_no.setVisibility(View.VISIBLE);
-//                        i_no.setText(c.getString(c.getColumnIndex("feed_i_nos")));
-//                    }
-//                    else{
-//                        i_food.setChecked(false);
-//                        i_no.setVisibility(View.INVISIBLE);
-//                        i_no.setText("");
-//                    }
-//                    if(c.getString(c.getColumnIndex("feed_j")).equalsIgnoreCase("Y")){
-//                        j_food.setChecked(true);
-//                        j_no.setVisibility(View.VISIBLE);
-//                        j_no.setText(c.getString(c.getColumnIndex("feed_j_nos")));
-//                    }
-//
-//                    else{
-//                        j_food.setChecked(false);
-//                        j_no.setVisibility(View.INVISIBLE);
-//                        j_no.setText("");
-//                    }
-//                    if(c.getString(c.getColumnIndex("feed_k")).equalsIgnoreCase("Y")){
-//                        k_food.setChecked(true);
-//                        k_no.setVisibility(View.VISIBLE);
-//                        k_no.setText(c.getString(c.getColumnIndex("feed_k_nos")));
-//                    }
-//                    else{
-//                        k_food.setChecked(false);
-//                        k_no.setVisibility(View.INVISIBLE);
-//                        k_no.setText("");
-//                    }
-//
-//                    if(c.getString(c.getColumnIndex("feed_l")).equalsIgnoreCase("Y")){
-//                        l_food.setChecked(true);
-//                        l_no.setVisibility(View.VISIBLE);
-//                        l_no.setText(c.getString(c.getColumnIndex("feed_l_nos")));
-//                    }
-//                    else{
-//                        l_food.setChecked(false);
-//                        l_no.setVisibility(View.INVISIBLE);
-//                        l_no.setText("");
-//                    }
-//
-//                    if(c.getString(c.getColumnIndex("feed_m")).equalsIgnoreCase("Y")){
-//                        m_food.setChecked(true);
-//                        m_no.setVisibility(View.VISIBLE);
-//                        m_no.setText(c.getString(c.getColumnIndex("feed_m_nos")));
-//                    }
-//                    else{
-//                        m_food.setChecked(false);
-//                        m_no.setVisibility(View.INVISIBLE);
-//                        m_no.setText("");
-//                    }
+                    }
+                    try {
+
+                        if (c.getString(c.getColumnIndex("if_counsel_on_bf")).equalsIgnoreCase("Y")) {
+                            spinner_spend_on_bf.setSelection(1);
+                        }
+                    }catch (Exception e){
+
+                    }
+                    try {
+                        if (c.getString(c.getColumnIndex("if_counsel_on_bf")).equalsIgnoreCase("N")) {
+                            spinner_spend_on_bf.setSelection(2);
+                        }
+                    }catch (Exception e){
+
+                    }
+try {
+    spinner_spend_food.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("spend_on_food"))));
+}catch(Exception e){
+
+}
+try {
+    height.setText(c.getString(c.getColumnIndex("height")));
+    weight.setText(c.getString(c.getColumnIndex("weight")));
+}catch (Exception e){
+
+}
+//}try
+    try {
+        if (c.getString(c.getColumnIndex("feed_a")).equalsIgnoreCase("Y")) {
+            a_food.setChecked(true);
+            a_no.setVisibility(View.VISIBLE);
+            a_no.setText(c.getString(c.getColumnIndex("feed_a_nos")));
+        } else {
+            a_food.setChecked(false);
+            a_no.setVisibility(View.INVISIBLE);
+            a_no.setText("");
+        }
+
+
+                    if(c.getString(c.getColumnIndex("feed_b")).equalsIgnoreCase("Y")){
+                            Log.d("getFeed",c.getString(c.getColumnIndex("feed_b")));
+                            Log.d("getFeed",c.getString(c.getColumnIndex("feed_b_nos")));
+                        b_food.setChecked(true);
+                        b_no.setVisibility(View.VISIBLE);
+                        b_no.setText(c.getString(c.getColumnIndex("feed_b_nos")));
+                    }
+                    else{
+                        b_food.setChecked(false);
+                        b_no.setVisibility(View.INVISIBLE);
+                        b_no.setText("");
+                    }
+
+                    if(c.getString(c.getColumnIndex("feed_c")).equalsIgnoreCase("Y")){
+                        c_food.setChecked(true);
+                        c_no.setVisibility(View.VISIBLE);
+                        c_no.setText(c.getString(c.getColumnIndex("feed_c_nos")));
+                    }
+                    else{
+                        c_food.setChecked(false);
+                        c_no.setVisibility(View.INVISIBLE);
+                        c_no.setText("");
+                    }
+                    if(c.getString(c.getColumnIndex("feed_d")).equalsIgnoreCase("Y")){
+                        d_food.setChecked(true);
+                        d_no.setVisibility(View.VISIBLE);
+                        d_no.setText(c.getString(c.getColumnIndex("feed_d_nos")));
+                    } else{
+                        d_food.setChecked(false);
+                        d_no.setVisibility(View.INVISIBLE);
+                        d_no.setText("");
+                    }
+
+                    if(c.getString(c.getColumnIndex("feed_e")).equalsIgnoreCase("Y")){
+                        e_food.setChecked(true);
+                        e_no.setVisibility(View.VISIBLE);
+                        e_no.setText(c.getString(c.getColumnIndex("feed_e_nos")));
+                    }
+
+                    else{
+                        e_food.setChecked(false);
+                        e_no.setVisibility(View.INVISIBLE);
+                        e_no.setText("");
+                    }
+                    if(c.getString(c.getColumnIndex("feed_f")).equalsIgnoreCase("Y")){
+                        f_food.setChecked(true);
+                        f_no.setVisibility(View.VISIBLE);
+                        f_no.setText(c.getString(c.getColumnIndex("feed_f_nos")));
+                    }
+
+                    else{
+                        f_food.setChecked(false);
+                        f_no.setVisibility(View.INVISIBLE);
+                        f_no.setText("");
+                    }
+                    if(c.getString(c.getColumnIndex("feed_g")).equalsIgnoreCase("Y")){
+                        g_food.setChecked(true);
+                        g_no.setVisibility(View.VISIBLE);
+                        g_no.setText(c.getString(c.getColumnIndex("feed_g_nos")));
+                    }
+                    else{
+                        g_food.setChecked(false);
+                        g_no.setVisibility(View.INVISIBLE);
+                        g_no.setText("");
+                    }
+                    if(c.getString(c.getColumnIndex("feed_h")).equalsIgnoreCase("Y")){
+                        h_food.setChecked(true);
+                        h_no.setVisibility(View.VISIBLE);
+                        h_no.setText(c.getString(c.getColumnIndex("feed_h_nos")));
+                    }
+                    else{
+                        h_food.setChecked(false);
+                        h_no.setVisibility(View.INVISIBLE);
+                        h_no.setText("");
+                    }
+                    if(c.getString(c.getColumnIndex("feed_I")).equalsIgnoreCase("Y")){
+                        i_food.setChecked(true);
+                        i_no.setVisibility(View.VISIBLE);
+                        i_no.setText(c.getString(c.getColumnIndex("feed_i_nos")));
+                    }
+                    else{
+                        i_food.setChecked(false);
+                        i_no.setVisibility(View.INVISIBLE);
+                        i_no.setText("");
+                    }
+                    if(c.getString(c.getColumnIndex("feed_j")).equalsIgnoreCase("Y")){
+                        j_food.setChecked(true);
+                        j_no.setVisibility(View.VISIBLE);
+                        j_no.setText(c.getString(c.getColumnIndex("feed_j_nos")));
+                    }
+
+                    else{
+                        j_food.setChecked(false);
+                        j_no.setVisibility(View.INVISIBLE);
+                        j_no.setText("");
+                    }
+                    if(c.getString(c.getColumnIndex("feed_k")).equalsIgnoreCase("Y")){
+                        k_food.setChecked(true);
+                        k_no.setVisibility(View.VISIBLE);
+                        k_no.setText(c.getString(c.getColumnIndex("feed_k_nos")));
+                    }
+                    else{
+                        k_food.setChecked(false);
+                        k_no.setVisibility(View.INVISIBLE);
+                        k_no.setText("");
+                    }
+
+                    if(c.getString(c.getColumnIndex("feed_l")).equalsIgnoreCase("Y")){
+                        l_food.setChecked(true);
+                        l_no.setVisibility(View.VISIBLE);
+                        l_no.setText(c.getString(c.getColumnIndex("feed_l_nos")));
+                    }
+                    else{
+                        l_food.setChecked(false);
+                        l_no.setVisibility(View.INVISIBLE);
+                        l_no.setText("");
+                    }
+
+                    if(c.getString(c.getColumnIndex("feed_m")).equalsIgnoreCase("Y")){
+                        m_food.setChecked(true);
+                        m_no.setVisibility(View.VISIBLE);
+                        m_no.setText(c.getString(c.getColumnIndex("feed_m_nos")));
+                    }
+                    else{
+                        m_food.setChecked(false);
+                        m_no.setVisibility(View.INVISIBLE);
+                        m_no.setText("");
+                    }
 
                     if(c.getString(c.getColumnIndex("is_approved")).equalsIgnoreCase("Y")){
                         save.setEnabled(true);
 
                     }
 
+
+    }catch (Exception e){
+
+    Log.d("Holi",e.toString());
+
+    }
 
 
                 }while (c.moveToNext());
@@ -1046,4 +1493,264 @@ public class PregantWomenFooter extends AppCompatActivity {
         }
 
     }
-}
+
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+
+        dialogCoupon    = new Dialog(PregantWomenFooter.this);
+        dialogCoupon.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogCoupon.setContentView(R.layout.exit_dialog);
+        dialogCoupon.setCancelable(false);
+        dialogCoupon.setCanceledOnTouchOutside(true);
+//        setFinishOnTouchOutside(true);
+        dialogCoupon.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+
+        Button yes = (Button)dialogCoupon.findViewById(R.id.yes);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                onBackPressed();
+
+                Intent intentback = new Intent(getApplicationContext(),DashBoard.class);
+                startActivity(intentback);
+                finish();
+            }
+        });
+        Button no = (Button)dialogCoupon.findViewById(R.id.no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCoupon.hide();
+            }
+        });
+
+        dialogCoupon.show();
+
+
+    }
+
+    public void dietSelection(){
+
+
+        if (a_food.isChecked()) {
+            af = "Y";
+            an = Integer.parseInt(a_no.getText().toString());
+        } else {
+            af = "N";
+            an = null;
+        }
+        if (b_food.isChecked()) {
+            bf = "Y";
+            bn = Integer.parseInt(b_no.getText().toString());
+        } else {
+            bf = "N";
+            bn = null;
+        }
+
+
+        if (c_food.isChecked()) {
+            cf = "Y";
+            cn = Integer.parseInt(c_no.getText().toString());
+        } else {
+            cf = "N";
+            cn = null;
+        }
+
+
+        if (d_food.isChecked()) {
+            df = "Y";
+            dn = Integer.parseInt(d_no.getText().toString());
+        } else {
+            df = "N";
+            dn = null;
+        }
+
+        if (e_food.isChecked()) {
+            ef = "Y";
+            en = Integer.parseInt(e_no.getText().toString());
+        } else {
+            ef = "N";
+            en = null;
+        }
+
+        if (f_food.isChecked()) {
+            ff = "Y";
+            fn = Integer.parseInt(f_no.getText().toString());
+        } else {
+            ff = "N";
+            fn = null;
+        }
+        if (g_food.isChecked()) {
+            gf = "Y";
+            gn = Integer.parseInt(g_no.getText().toString());
+        } else {
+            gf = "N";
+            gn = null;
+        }
+
+        if (h_food.isChecked()) {
+            hf = "Y";
+            hn = Integer.parseInt(h_no.getText().toString());
+        } else {
+            hf = "N";
+            hn = null;
+        }
+        if (i_food.isChecked()) {
+            i_f = "Y";
+            in = Integer.parseInt(i_no.getText().toString());
+        } else {
+
+            i_f = "N";
+            in = null;
+        }
+
+
+        if (j_food.isChecked()) {
+            jf = "Y";
+            jn = Integer.parseInt(j_no.getText().toString());
+        } else {
+
+            jf = "N";
+            jn = null;
+        }
+
+        if (k_food.isChecked()) {
+            kf = "Y";
+            kn = Integer.parseInt(k_no.getText().toString());
+        } else {
+            kf = "N";
+            kn = null;
+        }
+
+        if (l_food.isChecked()) {
+            lf = "Y";
+            ln = Integer.parseInt(l_no.getText().toString());
+        } else {
+            lf = "N";
+            ln = null;
+        }
+        if (m_food.isChecked()) {
+            mf = "Y";
+            mn = Integer.parseInt(m_no.getText().toString());
+        } else {
+            mf = "N";
+            mn = null;
+        }
+
+    }
+
+
+    public String ValidateNa(){
+        errorCode="0";
+
+        if(!checkbox.isChecked()&&!chcekedNAM.isChecked()){
+errorCode="1";
+            Toast.makeText(PregantWomenFooter.this, "Please One Selection", Toast.LENGTH_SHORT).show();
+        }
+        if(checkbox.isChecked() && pw1_yesnoString.equalsIgnoreCase("--Select Options--")){
+
+            errorCode="1";
+            Toast.makeText(PregantWomenFooter.this, "Select A Value ", Toast.LENGTH_SHORT).show();
+        }
+
+     return   errorCode;
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mymenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.mybutton) {
+
+            pd.setVisibility(View.VISIBLE);
+            fragment_na.setVisibility(View.INVISIBLE);
+            holdingTabs.setVisibility(View.INVISIBLE);
+            pwActive_subStage="PD";
+
+            // do something here
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public String childformValidation(){
+        String error="0";
+        if(error=="0" && nameOfChild.getText().toString().length()==0){
+            error="1";
+            Toast.makeText(PregantWomenFooter.this, "Enter Child Name", Toast.LENGTH_SHORT).show();
+        }
+        if (error == "0" && dateOfDelivery.getText().toString().length() == 0) {
+
+            error ="1";
+            Toast.makeText(PregantWomenFooter.this, "Enter Date of Delivery", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+        if(error=="0" && DeliveryPlace.equalsIgnoreCase("--Select Options--")){
+
+            error="1";
+            Toast.makeText(PregantWomenFooter.this, "Enter Delivery Place", Toast.LENGTH_SHORT).show();
+        }
+
+        if(error=="0" && orderOfBirth.getText().toString().length()==0){
+
+            error="1";
+            Toast.makeText(PregantWomenFooter.this, "Enter Order of Birth", Toast.LENGTH_SHORT).show();
+        }
+
+        if(error=="0" && childSex.equalsIgnoreCase("--Select Options--")){
+
+            error="1";
+            Toast.makeText(PregantWomenFooter.this, "Enter sex of child ", Toast.LENGTH_SHORT).show();
+        }
+
+        if(error=="0" && childWeight.getText().toString().length()==0){
+
+            error="1";
+            Toast.makeText(PregantWomenFooter.this, "Enter Child Weight", Toast.LENGTH_SHORT).show();
+        }
+        if(error=="0" && wasChildBornString.equalsIgnoreCase("--Select Options--")){
+
+            error ="1";
+            Toast.makeText(PregantWomenFooter.this, "Select Full Term", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+
+        return error;
+    }
+
+
+    public String createMemberId(String familyID){
+
+
+        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+        Cursor c = dbs.rawQuery("SELECT * FROM memberbasic where family_id ='"+familyID+"'" , null);
+        c.getCount();
+        int count = c.getCount();
+//   Log.d("countregister",""+ c.getCount());
+        String memberId= familyID+String.format("%02d",count+1);
+//            Log.d("member_id",memberId);
+        return memberId;
+    }
+
+
+
+    }

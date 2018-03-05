@@ -17,6 +17,16 @@ public class BeneficiaryList {
 
     String pregnancy_id;
 
+    public String getIs_anc() {
+        return is_anc;
+    }
+
+    public void setIs_anc(String is_anc) {
+        this.is_anc = is_anc;
+    }
+
+    String is_anc;
+
     public String getMembers_id() {
         return Members_id;
     }
@@ -105,7 +115,7 @@ public class BeneficiaryList {
         this.current_sub_stage = current_sub_stage;
     }
 
-    public BeneficiaryList(String members_id, String family_id, String name, String child_id, String childname, String status, String stage, String sub_stage, String lmp_date, String dedelivery, String current_sub_stage,String pregnancy_id) {
+    public BeneficiaryList(String members_id, String family_id, String name, String child_id, String childname, String status, String stage, String sub_stage, String lmp_date, String dedelivery, String current_sub_stage,String pregnancy_id,String is_anc) {
 
         Members_id = members_id;
         this.family_id = family_id;
@@ -119,5 +129,6 @@ public class BeneficiaryList {
         this.dedelivery = dedelivery;
         this.current_sub_stage = current_sub_stage;
         this.pregnancy_id=pregnancy_id;
+        this.is_anc = is_anc;
     }
 }

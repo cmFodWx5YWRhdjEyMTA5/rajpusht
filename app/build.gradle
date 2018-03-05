@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    useLibrary 'org.apache.http.legacy'
+
 }
 
 dependencies {
@@ -35,4 +38,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     debugCompile 'com.amitshekhar.android:debug-db:1.0.0'
+
+    compile 'com.google.code.gson:gson:2.8.0'
 }

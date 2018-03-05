@@ -24,8 +24,17 @@ public class FamilyDetailGetSet {
 
     String village_code;
 
+    public String getIs_new() {
+        return is_new;
+    }
 
-    public FamilyDetailGetSet(String familyid, int religion, int cast, int rcard, int familytype, String dist_code, String project_code, String sector_code, String awc_code, String surveyor_id,String village_code) {
+    public void setIs_new(String is_new) {
+        this.is_new = is_new;
+    }
+
+    String is_new;
+
+    public FamilyDetailGetSet(String familyid, int religion, int cast, int rcard, int familytype, String dist_code, String project_code, String sector_code, String awc_code, String surveyor_id,String village_code,String is_new) {
         this.familyid = familyid;
         this.religion = religion;
         this.cast = cast;
@@ -37,6 +46,7 @@ public class FamilyDetailGetSet {
         this.awc_code = awc_code;
         this.surveyor_id = surveyor_id;
         this.village_code=village_code;
+        this.is_new=is_new;
     }
 
     public String getFamilyid() {

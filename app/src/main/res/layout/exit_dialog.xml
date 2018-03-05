@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:background="#00000000"
-        android:hint="Do you want to exit from registration ?"
+        android:hint="Do you want to exit  ?"
         android:layout_marginTop="18dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"

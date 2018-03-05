@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.co.rajpusht.rajpusht.NaFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/na1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:text="Mother died "
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/na2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:text="Mother migrated elsewhere" />
+            <RadioButton
+                android:id="@+id/na3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:text="Child died"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/na4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="6dp"
+                android:text="Child migrated elsewhere" />
+
+            <RadioButton
+                android:id="@+id/na5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="6dp"
+                android:text="Both mother and infant died " />
+
+            <RadioButton
+                android:id="@+id/na6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="6dp"
+                android:text="Both migrated elsewhere" />
+        </RadioGroup>
+
+
+
+
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Mother died "-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/checkboxMotherdied"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Mother migrated elsewhere"-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/checkboxMotherMigrated"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Child died"-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/checkboxChildDied"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/checkMigatedElse"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/checkboxBithDieed"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=" "-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/checkboxBothMigratedElse"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+        <!--&lt;!&ndash;<Spinner&ndash;&gt;-->
+            <!--android:id="@+id/pw1_yesno"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:paddingLeft="8dp"-->
+            <!--android:spinnerMode="dropdown"-->
+            <!--android:paddingRight="8dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:textSize="13dp"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:gravity="center_vertical"/>-->
+        <!--<LinearLayout-->
+            <!--android:id="@+id/anetalcheck"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=" Child not available"-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/chcekedNAM"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Spinner-->
+            <!--android:id="@+id/childYEsNo"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:paddingLeft="8dp"-->
+            <!--android:spinnerMode="dropdown"-->
+            <!--android:paddingRight="8dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:textSize="13dp"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:gravity="center_vertical"/>-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/bothnotavailble"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Both not Available"-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                <!--android:textColor="@color/view2"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginRight="3dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_weight="0.1"/>-->
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/chcekedBothNot"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<Spinner-->
+            <!--android:id="@+id/BothYEsNo"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:paddingLeft="8dp"-->
+            <!--android:spinnerMode="dropdown"-->
+            <!--android:paddingRight="8dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:textSize="13dp"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:gravity="center_vertical"/>-->
+    </LinearLayout>
+
+
+
+</FrameLayout>

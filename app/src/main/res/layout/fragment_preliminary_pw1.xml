@@ -21,7 +21,7 @@
                 android:id="@+id/text_acndate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ACN 1 DATE"
+                android:text="ANC DATE"
                 android:layout_marginLeft="7dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2"/>

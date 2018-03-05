@@ -16,7 +16,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"/>
 
     <TextView
         android:id="@+id/profilename"
@@ -36,11 +36,11 @@
         android:layout_height="25dp"
         android:layout_marginLeft="6dp"
         android:gravity="top"
-        android:textSize="15dp"
+        android:textSize="12dp"
         android:textColor="@color/white"
         android:layout_toRightOf="@+id/profilelogo"
         android:layout_below="@id/profilename"
-        android:text="Village : Chorai" />
+        android:text="Enumeration village : Chorai" />
 
     <ImageView
         android:id="@+id/profile"
