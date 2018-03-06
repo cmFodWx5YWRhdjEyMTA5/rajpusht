@@ -81,7 +81,7 @@
             android:layout_height="45dp"
             android:textColor="#ffff"
             android:buttonTint="#ffff"
-            android:text="child"/>
+            android:text="Child"/>
 
         <TextView
             android:layout_weight="1"

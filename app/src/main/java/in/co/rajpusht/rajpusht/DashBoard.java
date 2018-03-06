@@ -41,7 +41,6 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
 import extras.FamilyDetailGetSet;
-import extras.MemberBasicGetSet;
 
 public class DashBoard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -227,50 +226,76 @@ CheckBox checkChild,checkPregnets;
                 drawer.closeDrawer(GravityCompat.START);
 
 
+
+                PullDataWebservice pulldata = new PullDataWebservice();
+                pulldata.execute("1");
+
+
+
 //                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
             }
         });
 
-        TextView pushData = (TextView) findViewById(R.id.pushData);
+        final TextView pushData = (TextView) findViewById(R.id.pushData);
         pushData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
 
+                Log.d("insertedInto","pushdata clicked butotn");
+//                JSONArray familyList = pushdata("SELECT FAMILY_ID as familyId, DIST_CODE as distCode, PROJECT_CODE as projectCode, SECTOR_CODE as sectorCode, AWC_CODE,VILLAGE_CODE,RELIGION,CASTE ,RCARD,FAMILY_TYPE,SURVEYOR_ID,IS_APPROVED, IS_NEW AS recordStatus FROM familydata WHERE recordStatus NOT NULL");
+//
+//
+//                JSONArray memberbasicList =pushdata("SELECT MEMBERS_ID, FAMILY_ID, NAME,DOR, DOENTRY, DOEXIT, DOB, AGE, IF_DOB_ASSUMED, DODEATH,AADDHAR, AADDHAR_ENROL_NO, AADDHAR_DATE_STAMP, AADDHAR_TIME_STAMP,BHAMASHA,\n" +
+//                        " MOBILE, RELATION, SEX, HANDICAP,IF_MARRIED, MOTHER_ID,STATUS, STAGE, SUB_STAGE, IS_TO_TRACK, SURVEYOR_ID,TIME_STAMP,SOURCE, IS_APPROVED, IS_NEW AS recordStatus FROM memberbasic WHERE recordStatus NOT NULL");
+//                JSONArray pwTracking=pushdata("SELECT PREGNANCY_ID,MEMBERS_ID, STAGE,SUB_STAGE,IS_AVAILABLE, NA_REASON,IS_ANC,ANC_DATE,IF_COUNSEL_ON_SELFFEED,IF_COUNSEL_ON_BF,SPEND_ON_FOOD,HEIGHT, WEIGHT,SURVEYOR_ID,\n" +
+//                        " TIME_STAMP, SOURCE,IS_NEW AS recordStatus,IS_APPROVED FROM PW_TRACKING WHERE recordStatus NOT NULL");
+//                JSONArray women_extra=pushdata("SELECT MEMBERS_ID,EDUCATION,COOKING_FUEL, DECISIONMAKER_OWN_HEALTH, DECISIONMAKER_CHILD_HEALTH,if_bank_account,AC_HOLDER_NAME, BANK_NAME,BRANCH,AC_NO,IFSC_CODE,BANK_DISTANCE,POSTOFFICE_NAME,POSTOFFICE_ADDRESS,PIN_CODE,POST_OFFICE_AC, HOEMO_CODE,IS_APPROVED,IS_NEW AS recordStatus FROM womenextra WHERE recordStatus NOT NULL");
+//                JSONArray child_extra=pushdata("SELECT MEMBERS_ID,DODELIVERY,DELIVERY_PLACE,CHILD_ORDER,BIRTH_WT,FULL_TERM,WHEN_FIRST_BF,IF_FEED_KHEES,CURRENTLY_BF,WHEN_STOP_BF,ANYTHING_BEFORE_BF, IF_STARTED_SOLID_FOOD,WHICH_MONTH_SOLID_FOOD,CHILD_IMMUNIZATION_STATUS,IS_APPROVED,IS_NEW AS recordStatus FROM childextra WHERE recordStatus NOT NULL");
+//                JSONArray child_tracking = pushdata("SELECT MEMBERS_ID,STAGE,SUB_STAGE,IS_AVAILABLE,NA_REASON_MOTHER,NA_REASON_CHILD,NA_REASON_BOTH,CURRENTLY_BF,IF_USING_CONTRACEPTIVE,METHOD_CONTRACEPTIVE,IF_COUNSEL_ON_FEED_INFANT,IF_COUNSEL_ON_SELFFEED,LIQUID_OTHER_THAN_BF,IF_STARTED_SOLID_FOOD,SPEND_ON_FOOD,CHILD_IMMUNIZATION_STATUS,CHILD_HEIGHT,CHILD_WEIGHT,\n" +
+//                        "CHILD_MUAC,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW AS recordStatus FROM child_tracking WHERE recordStatus NOT NULL ");
+//                JSONArray diet=pushdata("\n" +
+//                        "SELECT PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,FEED_A,FEED_A_NOS,FEED_B,FEED_B_NOS,FEED_C,FEED_C_NOS,FEED_D,FEED_D_NOS,FEED_E,FEED_E_NOS, FEED_F,FEED_F_NOS,FEED_G, FEED_G_NOS,FEED_H,FEED_H_NOS,FEED_I,FEED_I_NOS,FEED_J,FEED_J_NOS,FEED_K,FEED_K_NOS,FEED_L,FEED_L_NOS,FEED_M,FEED_M_NOS,IS_APPROVED,IS_NEW AS recordStatus FROM DIET WHERE recordStatus  NOT NULL");
+//                JSONArray pregnent=pushdata("SELECT PREGNANCY_ID,MEMBERS_ID,ORDER_OF_PREGNANCY,LMP_DATE,IS_ACTIVE,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW AS recordStatus FROM PREGNANT WHERE recordStatus  NOT NULL");
+//                Log.d("JSONCHECK",pregnent.toString());
 
-                ArrayList<FamilyDetailGetSet> familyList = pushdata();
-//                ArrayList<MemberBasicGetSet> memberbasicList =pushmemberbaisc();
+                JSONArray familyList = pushdata("SELECT FAMILY_ID as familyId, DIST_CODE as distCode, PROJECT_CODE as projectCode, SECTOR_CODE as sectorCode, AWC_CODE as awcCode,VILLAGE_CODE as villageCode,RELIGION as religion,CASTE as cast ,RCARD as rcard,FAMILY_TYPE as familyType,SURVEYOR_ID as surveyorId,IS_APPROVED as isApproved, IS_NEW AS recordStatus FROM familydata WHERE recordStatus NOT NULL");
 
-
-                for (FamilyDetailGetSet s : familyList)
-                {
-                    Toast.makeText(getApplicationContext(),s.getDist_code() , Toast.LENGTH_SHORT).show();
-                }
-
-
-
-                Log.d("PushDdetails",familyList.toString()+"");
-//                Log.d("PushMember", "" + memberbasicList);
-
-                JSONObject json = new JSONObject();
-                JSONArray jsonArray ;
-
+                JSONArray memberbasicList =pushdata("SELECT MEMBERS_ID as membersId, FAMILY_ID as familyId, NAME as name,DOR as dor, DOENTRY as doentry, DOEXIT as doexit, DOB as dob, AGE as age, IF_DOB_ASSUMED as ifDobAssumed, DODEATH as dodeath,AADDHAR as aaddhar, AADDHAR_ENROL_NO as aaddharEnrolNo, AADDHAR_DATE_STAMP as aaddharDateStamp, AADDHAR_TIME_STAMP as aaddharTimeStamp,BHAMASHA as bhamasha,\n" +
+                        " MOBILE as mobile, RELATION as relation, SEX as sex, HANDICAP as handicap,IF_MARRIED as ifMarried, MOTHER_ID as motherId,STATUS as status, STAGE as stage, SUB_STAGE as subStage, IS_TO_TRACK as isToTrack, SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source, IS_APPROVED as isApproved, IS_NEW AS recordStatus FROM memberbasic WHERE recordStatus NOT NULL");
+                JSONArray pwTracking=pushdata("SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId, STAGE as stage,SUB_STAGE as subStage,IS_AVAILABLE as isAvailable, NA_REASON as naReason,IS_ANC as isAnc,ANC_DATE as ancDate,IF_COUNSEL_ON_SELFFEED as ifCounselOnSelffeed,IF_COUNSEL_ON_BF as ifCounselOnBf,SPEND_ON_FOOD as spendOnFood,HEIGHT as height, WEIGHT as weight,SURVEYOR_ID as surveyorId,\n" +
+                        " TIME_STAMP as timeStamp, SOURCE as source,IS_NEW AS recordStatus,IS_APPROVED as isApproved FROM PW_TRACKING WHERE recordStatus NOT NULL");
+                JSONArray women_extra=pushdata("SELECT MEMBERS_ID as membersId,EDUCATION as education,COOKING_FUEL as cookingFuel, DECISIONMAKER_OWN_HEALTH as decisionmakerOwnHealth, DECISIONMAKER_CHILD_HEALTH as decisionmakerChildHealth,if_bank_account as ifBankAccont,AC_HOLDER_NAME as acHolderName, BANK_NAME as bankName,BRANCH as branch,AC_NO as acNo,IFSC_CODE as ifscCode,BANK_DISTANCE as bankDistance,POSTOFFICE_NAME as postofficeName,POSTOFFICE_ADDRESS as postofficeAddress,PIN_CODE as pinCode,POST_OFFICE_AC as postOfficeAc, HOEMO_CODE as hoemoCode,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM womenextra WHERE recordStatus NOT NULL");
+                JSONArray child_extra=pushdata("SELECT MEMBERS_ID as membersId,DODELIVERY as dodelivery,DELIVERY_PLACE as deliveryPlace,CHILD_ORDER as childOrder,BIRTH_WT as birthWt,FULL_TERM as fullTerm,WHEN_FIRST_BF as whenFirstBf,IF_FEED_KHEES as ifFeedKhees,CURRENTLY_BF as currentlyBf,WHEN_STOP_BF as whenStopBf,ANYTHING_BEFORE_BF as anythingBeforeBf, IF_STARTED_SOLID_FOOD as ifStartedSolidFood,WHICH_MONTH_SOLID_FOOD as whichMonthSolidFood,CHILD_IMMUNIZATION_STATUS as childImmunizationStatus,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM childextra WHERE recordStatus NOT NULL");
+                JSONArray child_tracking = pushdata("SELECT MEMBERS_ID as membersId,STAGE as stage,SUB_STAGE as subStage,IS_AVAILABLE as isAvailable,NA_REASON_MOTHER as naReasonMother,NA_REASON_CHILD as naReasonChild,NA_REASON_BOTH as naReasonBoth,CURRENTLY_BF as currentlyBf,IF_USING_CONTRACEPTIVE as ifUsingContraceptive,METHOD_CONTRACEPTIVE as methodContraceptive,IF_COUNSEL_ON_FEED_INFANT as ifCounselOnFeedInfant,IF_COUNSEL_ON_SELFFEED as ifCounselOnSelffeed,LIQUID_OTHER_THAN_BF as liquidOtherThanBf,IF_STARTED_SOLID_FOOD as ifStartedSolidFood,SPEND_ON_FOOD as spendOnFood,CHILD_IMMUNIZATION_STATUS as childImmunizationStatus,CHILD_HEIGHT as childHeight,CHILD_WEIGHT as childWeight,\n" +
+                        "CHILD_MUAC as childMuac,SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM child_tracking WHERE recordStatus NOT NULL ");
+                JSONArray diet=pushdata("\n" +
+                        "SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId,STAGE as stage,SUB_STAGE as subStage,FEED_A as feedA,FEED_A_NOS as feedAnos,FEED_B as feedB,FEED_B_NOS as feedBnos,FEED_C as feedC,FEED_C_NOS as feedCnos,FEED_D as feedD,FEED_D_NOS as feedDnos,FEED_E as feedE,FEED_E_NOS as feedEnos, FEED_F as feedF,FEED_F_NOS as feedFnos,FEED_G as feedG, FEED_G_NOS as feedGnos,FEED_H as feedH,FEED_H_NOS as feedHnos,FEED_I as feedI,FEED_I_NOS as feedInos,FEED_J as feedJ,FEED_J_NOS as feedJnos,FEED_K as feedK,FEED_K_NOS as feedKnos,FEED_L as feedL,FEED_L_NOS as feedLnos,FEED_M as feedM,FEED_M_NOS as feedMnos,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM DIET WHERE recordStatus  NOT NULL");
+                JSONArray pregnent=pushdata("SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId,ORDER_OF_PREGNANCY as orderOfPregnancy,LMP_DATE as lmpDate,IS_ACTIVE as isActive,SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM PREGNANT WHERE recordStatus  NOT NULL");
 try {
-    jsonArray = new JSONArray(familyList);
-    Log.d("PushDdetails","length"+jsonArray.length());
-    json.accumulate("familyDetails",jsonArray);
 
 
+    JSONObject jsonObject = new JSONObject();
+    jsonObject.put("memberBasic", memberbasicList);
+    jsonObject.put("pwTracking", pwTracking);
+    jsonObject.put("diet", diet);
+    jsonObject.put("familyDetails", familyList);
+    jsonObject.put("womenExtra", women_extra);
+    jsonObject.put("childTracking", child_tracking);
+    jsonObject.put("childExtra", child_extra);
+    jsonObject.put("pregnant", pregnent);
 
+    String jsonObjectString= jsonObject.toString(0);
+    Log.d("JSONCHECK",jsonObjectString);
 
-    Log.d("PushDdetails",json.toString());
-}catch(Exception e){
-    Log.d("Ranjeet ",e.toString());
+//  PushData pushDaataClass = new PushData();
+//   pushDaataClass.execute(jsonObjectString);
+
+}catch (Exception e){
+    Log.d("JSONCHECK",e.toString());
 }
 
-//                getPushDate();
-//                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -402,28 +427,19 @@ try {
 
 
 
-        String name=params[0];
-        String lat=params[1];
-        String lon=params[2];
+        String stringName=params[0];
+
 
         try {
 
             HttpResponse response;
 
             JSONObject jsonObject = new JSONObject();
-//            jsonObject.accumulate("UserId",session.getUserID());
-
-            jsonObject.accumulate("Lat",lat);
-            jsonObject.accumulate("Long",lon);
-            jsonObject.accumulate("Remarks",name);
-
-
-
-            json = jsonObject.toString();
+//
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost("http://ecometrix.co.in/api/PmayMobile/InsertUserGeofenceDetails");
             httpPost.setHeader("Content-Type", "application/json");
-            httpPost.setEntity(new StringEntity(json, "UTF-8"));
+            httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
 //  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 //                httpPost.setHeader("Accept-Encoding", "application/json");
@@ -533,61 +549,56 @@ try {
 
     }
 
-    public ArrayList<FamilyDetailGetSet> pushdata(){
+    public JSONArray pushdata(String Query){
         JSONArray jsonArrayFamily = new JSONArray();
         String jsonStr="";
+Log.d("insertedInto","pushdata");
 
         JSONObject jsonObject= new JSONObject();
 
-                String FamiliQuery="SELECT FAMILY_ID, DIST_CODE, PROJECT_CODE, SECTOR_CODE, AWC_CODE,VILLAGE_CODE,RELIGION,CASTE ,RCARD,FAMILY_TYPE,SURVEYOR_ID,IS_APPROVED, IS_NEW AS recordStatus FROM familydata WHERE recordStatus NOT NULL";
+//                String FamiliQuery="SELECT FAMILY_ID, DIST_CODE, PROJECT_CODE, SECTOR_CODE, AWC_CODE,VILLAGE_CODE,RELIGION,CASTE ,RCARD,FAMILY_TYPE,SURVEYOR_ID,IS_APPROVED, IS_NEW AS recordStatus FROM familydata WHERE recordStatus NOT NULL";
         SQLiteDatabase swl = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-        Cursor cfamily = swl.rawQuery(FamiliQuery, null);
-        int total = cfamily.getCount();
-        Log.d("PusfFamily",""+total);
-        if (total >= 1) {
+        JSONArray resultSet = new JSONArray();
+        JSONObject returnObj = new JSONObject();
+        Cursor cursor = swl.rawQuery(Query, null);
+        Log.d("insertedInto","pushdata"+cursor.getCount());
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false) {
 
-            if (cfamily.moveToFirst()) {
-                do {
+            int totalColumn = cursor.getColumnCount();
+            JSONObject rowObject = new JSONObject();
 
+            for (int i = 0; i < totalColumn; i++) {
+                if (cursor.getColumnName(i) != null) {
 
+                    try {
 
-
-                  String  FAMILY_ID =cfamily.getString(cfamily.getColumnIndex("family_id"));
-                    String  DIST_CODE=cfamily.getString(cfamily.getColumnIndex("dist_code"));
-                    String  PROJECT_CODE=cfamily.getString(cfamily.getColumnIndex("project_code"));
-                    String SECTOR_CODE=cfamily.getString(cfamily.getColumnIndex("sector_code"));
-                    String  AWC_CODE=cfamily.getString(cfamily.getColumnIndex("awc_code"));
-                    String   VILLAGE_CODE=cfamily.getString(cfamily.getColumnIndex("village_code"));
-                    String   RELIGION=cfamily.getString(cfamily.getColumnIndex("religion"));
-                    String   CAST=cfamily.getString(cfamily.getColumnIndex("caste"));
-                    String   RCARD=cfamily.getString(cfamily.getColumnIndex("rcard"));
-                    String   FAMILY_TYPE=cfamily.getString(cfamily.getColumnIndex("family_type"));
-                    String   SURVEYOR_ID=cfamily.getString(cfamily.getColumnIndex("surveyor_id"));
-                    String   IS_APPROVED=cfamily.getString(cfamily.getColumnIndex("is_approved"));
-                    String   recordStatus=cfamily.getString(cfamily.getColumnIndex("recordStatus"));
-
-                    Log.d("PusfFamily",FAMILY_ID);
-                    Log.d("PusfFamily",recordStatus);
-                    Log.d("PusfFamily",CAST);
-
-
-                    FamilyDetailGetSet familydetails = new FamilyDetailGetSet(FAMILY_ID,Integer.parseInt(RELIGION),Integer.parseInt(CAST),
-                            Integer.parseInt(RCARD),Integer.parseInt(FAMILY_TYPE),DIST_CODE,PROJECT_CODE,
-                            SECTOR_CODE,AWC_CODE,SURVEYOR_ID,VILLAGE_CODE,recordStatus);
-
-                    ArrayfamilyDetails.add(familydetails);
-
-
-      } while (cfamily.moveToNext());
+                        if (cursor.getString(i) != null) {
+                            Log.d("TAG_NAME", cursor.getString(i));
+                            rowObject.put(cursor.getColumnName(i), cursor.getString(i));
+                        } else {
+                            rowObject.put(cursor.getColumnName(i), "");
+                        }
+                    } catch (Exception e) {
+                        Log.d("TAG_NAME", e.getMessage());
+                    }
+                }
 
             }
+
+            resultSet.put(rowObject);
+            cursor.moveToNext();
         }
-return ArrayfamilyDetails;
+
+        cursor.close();
+        Log.d("TAG_NAME", resultSet.toString());
+
+return resultSet;
 
     }
 
-    public ArrayList<MemberBasicGetSet> pushmemberbaisc() {
+    public JSONArray pushmemberbaisc() {
 
         String memberBaiscQuery = "SELECT MEMBERS_ID, FAMILY_ID, NAME,DOR, DOENTRY, DOEXIT, DOB, AGE, IF_DOB_ASSUMED, DODEATH,AADDHAR, AADDHAR_ENROL_NO, AADDHAR_DATE_STAMP, AADDHAR_TIME_STAMP,BHAMASHA,\n" +
                 " MOBILE, RELATION, SEX, HANDICAP,IF_MARRIED, MOTHER_ID,STATUS, STAGE, SUB_STAGE, IS_TO_TRACK, SURVEYOR_ID,TIME_STAMP,SOURCE, IS_APPROVED, IS_NEW AS recordStatus FROM memberbasic WHERE recordStatus NOT NULL";
@@ -650,4 +661,436 @@ return ArrayfamilyDetails;
         return null;
     }
 
-}
+    public class PullDataWebservice  extends AsyncTask<String, String, String>
+
+    {
+
+        String uid;
+        String result;
+        String value;
+        ProgressDialog asyncDialog ;
+
+        @Override
+        protected String doInBackground(String... params) {
+            HttpURLConnection urlConnection = null;
+            String json = null;
+
+
+
+            String stringName=params[0];
+
+
+            try {
+
+                HttpResponse response;
+
+                JSONObject jsonObject = new JSONObject();
+//
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost("http://103.203.138.163/RAJICDSTRAINING/restservice/surveyor/getSurveyList/"+stringName);
+                httpPost.setHeader("Content-Type", "application/json");
+                httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
+//  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+//                httpPost.setHeader("Accept-Encoding", "application/json");
+//                httpPost.setHeader("Accept-Language", "en-US");
+                response = httpClient.execute(httpPost);
+
+//                String the_string_response = convertResponseToString(response);
+                String sresponse = response.getEntity().toString();
+                Log.w("QueingSystem", sresponse);
+//                Log.w("QueingSystem", EntityUtils.toString(response.getEntity()));
+                value= EntityUtils.toString(response.getEntity());
+
+                Log.w("LoginDetails",value);
+
+
+            } catch (Exception e) {
+                Log.d("InputStream", e.getLocalizedMessage());
+
+            }
+
+            return value;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+
+            asyncDialog = new ProgressDialog(DashBoard.this);
+            asyncDialog.setMessage("Please wait data is sync is going on..");
+            asyncDialog.show();
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String aVoid) {
+            super.onPostExecute(aVoid);
+//            Log.d("LoginDetails",aVoid);
+//
+
+            try {
+
+
+       pullDataMethod(aVoid);
+                }catch(Exception e){
+
+                    Log.d("syncActivity",e.toString()) ;
+                    asyncDialog.dismiss();
+
+                }
+            asyncDialog.dismiss();
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+
+
+        }
+
+
+    }
+
+
+
+    public  String pullDataMethod(String userId){
+
+        String completed="";
+        try {
+
+            String deletemember ="DELETE FROM memberbasic";
+            String deletefamily ="DELETE FROM familydata";
+            String deletePREGNANT ="DELETE FROM PREGNANT";
+            String deleteCHILD_EXTRA ="DELETE FROM CHILDEXTRA";
+            String deleteWOMEN_EXTRA =" DELETE FROM WOMENEXTRA";
+            String deleteCHILD_TRACKING ="DELETE FROM CHILD_TRACKING";
+            String deletePW_TRACKING ="DELETE FROM PW_TRACKING";
+            String deleteDIET ="DELETE FROM DIET";
+
+
+            ExeuteQuery(deletemember);
+            ExeuteQuery(deletefamily);
+            ExeuteQuery(deletePREGNANT);
+            ExeuteQuery(deleteCHILD_EXTRA);
+            ExeuteQuery(deleteWOMEN_EXTRA);
+            ExeuteQuery(deleteCHILD_TRACKING);
+            ExeuteQuery(deletePW_TRACKING);
+            ExeuteQuery(deleteDIET);
+
+            JSONObject jsonObject = new JSONObject(userId);
+            JSONArray jsonArrayMember = jsonObject.getJSONArray("memberBasic");
+
+            for(int i =0;i<jsonArrayMember.length();i++){
+                JSONObject jsonobjectMember = jsonArrayMember.getJSONObject(i);
+
+                String   dodeath = jsonobjectMember.getString("dodeath");
+                String    aaddharTimeStamp = jsonobjectMember.getString("aaddharTimeStamp");
+                String   isToTrack = jsonobjectMember.getString("isToTrack");
+                String     dor = jsonobjectMember.getString("dor");
+                String       aaddharDateStamp = jsonobjectMember.getString("aaddharDateStamp");
+                String      source = jsonobjectMember.getString("source");
+                String      aaddhar = jsonobjectMember.getString("aaddhar");
+                String   relation = jsonobjectMember.getString("relation");
+                String      membersId = jsonobjectMember.getString("membersId");
+                String   surveyorId = jsonobjectMember.getString("surveyorId");
+                String     doexit = jsonobjectMember.getString("doexit");
+                String     doentry = jsonobjectMember.getString("doentry");
+                String      ifMarried = jsonobjectMember.getString("ifMarried");
+                String     isApproved = jsonobjectMember.getString("isApproved");
+                String      aaddharEnrolNo = jsonobjectMember.getString("aaddharEnrolNo");
+                String     ifDobAssumed = jsonobjectMember.getString("ifDobAssumed");
+                String    handicap = jsonobjectMember.getString("handicap");
+                String    sex = jsonobjectMember.getString("sex");
+                String     mobile = jsonobjectMember.getString("mobile");
+                String    timeStamp = jsonobjectMember.getString("timeStamp");
+                String    familyId = jsonobjectMember.getString("familyId");
+                String     motherId = jsonobjectMember.getString("motherId");
+                String      bhamasha = jsonobjectMember.getString("bhamasha");
+                String      recordStatus = jsonobjectMember.getString("recordStatus");
+                String     stage = jsonobjectMember.getString("stage");
+                String      dob = jsonobjectMember.getString("dob");
+                String      name = jsonobjectMember.getString("name");
+                String     subStage = jsonobjectMember.getString("subStage");
+                String    age = jsonobjectMember.getString("age");
+                String     status = jsonobjectMember.getString("status");
+
+
+String insertmemberBasic="INSERT INTO memberbasic (MEMBERS_ID,FAMILY_ID,NAME,DOR,DOENTRY,DOEXIT,DOB,AGE,IF_DOB_ASSUMED,DODEATH," +
+        "AADDHAR,AADDHAR_ENROL_NO,AADDHAR_DATE_STAMP,AADDHAR_TIME_STAMP,BHAMASHA, MOBILE,RELATION,SEX,HANDICAP," +
+        "IF_MARRIED,MOTHER_ID,STATUS,STAGE,SUB_STAGE,IS_TO_TRACK,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW) VALUES (" +
+        "' " +membersId +"','"+ familyId + "','"+ name +"','"+ dor +"','"+ doentry +"','"+ doexit +"','"
+                        + dob +"','"+ age +"','"+ ifDobAssumed +"','"+ dodeath +"','"+ aaddhar +"','"
+                        + aaddharEnrolNo +"','"+ aaddharDateStamp+ "','"+ aaddharTimeStamp +"','"+ bhamasha +"','"
+                        + mobile + "',"+ relation +",'"+ sex +"','"+ handicap +"','"+ ifMarried +"','"+ motherId +"','"
+                        + status +"','"+ stage +"','"+ subStage +"','"+ isToTrack +"','"+ surveyorId +"','"+ timeStamp +"','"
+                        + source +"','"+ isApproved +"','')";
+
+                ExeuteQuery(insertmemberBasic);
+
+
+
+            }
+
+            JSONArray jsonarraypwTracking = jsonObject.getJSONArray("pwTracking");
+
+            for(int pw=0;pw<jsonarraypwTracking.length();pw++){
+
+                JSONObject jsonObjectTracking = jsonarraypwTracking.getJSONObject(pw);
+                String ancDate= jsonObjectTracking.getString("ancDate");
+                String isAvailable= jsonObjectTracking.getString("isAvailable");
+                String pregnancyId= jsonObjectTracking.getString("pregnancyId");
+                String ifCounselOnBf= jsonObjectTracking.getString("ifCounselOnBf");
+                String weight= jsonObjectTracking.getString("weight");
+                String source= jsonObjectTracking.getString("source");
+                String timeStamp= jsonObjectTracking.getString("timeStamp");
+                String isAnc= jsonObjectTracking.getString("isAnc");
+                String recordStatus= jsonObjectTracking.getString("recordStatus");
+                String stage= jsonObjectTracking.getString("stage");
+                String membersId= jsonObjectTracking.getString("membersId");
+                String spendOnFood= jsonObjectTracking.getString("spendOnFood");
+                String surveyorId= jsonObjectTracking.getString("surveyorId");
+                String ifCounselOnSelffeed= jsonObjectTracking.getString("ifCounselOnSelffeed");
+                String subStage= jsonObjectTracking.getString("subStage");
+                String isApproved= jsonObjectTracking.getString("isApproved");
+                String height= jsonObjectTracking.getString("height");
+                String naReason= jsonObjectTracking.getString("naReason");
+
+
+
+                String pw_tracking="INSERT INTO PW_TRACKING (PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,IS_AVAILABLE,NA_REASON," +
+                        "IS_ANC,ANC_DATE,IF_COUNSEL_ON_SELFFEED,IF_COUNSEL_ON_BF,SPEND_ON_FOOD,HEIGHT,WEIGHT, SURVEYOR_ID,TIME_STAMP,SOURCE," +
+                        "IS_APPROVED,IS_NEW) VALUES ('"+ pregnancyId +"','"+ membersId +"','"+ stage +"','"+ subStage +"','"+
+                        isAvailable +
+                        "','"+ naReason +"','"+ isAnc +"','"+ ancDate +"','"+ ifCounselOnSelffeed +"','"+ ifCounselOnBf +"',"+
+                        spendOnFood +","+ height+ ","+ weight +"," +surveyorId +",'"+ timeStamp +"','"+ source +"','"+ isApproved +"','')";
+                ExeuteQuery(pw_tracking);
+            }
+
+
+            JSONArray jsonArraydiet = jsonObject.getJSONArray("diet");
+
+            for(int diet= 0;diet<jsonArraydiet.length();diet++){
+
+                JSONObject jsonObjectDiet = jsonArraydiet.getJSONObject(diet);
+                String feedGnos = jsonObjectDiet.getString("feedGnos");
+                String feedEnos  = jsonObjectDiet.getString("feedEnos");
+                String feedCnos  = jsonObjectDiet.getString("feedCnos");
+                String feedAnos = jsonObjectDiet.getString("feedAnos");
+                String feedInos  = jsonObjectDiet.getString("feedInos");
+                String feedKnos  = jsonObjectDiet.getString("feedKnos");
+                String feedMnos  = jsonObjectDiet.getString("feedMnos");
+                String membersId  = jsonObjectDiet.getString("membersId");
+                String isApproved  = jsonObjectDiet.getString("isApproved");
+                String feedJ  = jsonObjectDiet.getString("feedJ");
+                String feedK  = jsonObjectDiet.getString("feedK");
+                String feedL  = jsonObjectDiet.getString("feedL");
+                String feedHnos  = jsonObjectDiet.getString("feedHnos");
+                String feedM  = jsonObjectDiet.getString("feedM");
+                String pregnancyId  = jsonObjectDiet.getString("pregnancyId");
+                String feedFnos  = jsonObjectDiet.getString("feedFnos");
+                String feedDnos  = jsonObjectDiet.getString("feedDnos");
+                String feedF  = jsonObjectDiet.getString("feedF");
+                String feedG  = jsonObjectDiet.getString("feedG");
+                String feedH  = jsonObjectDiet.getString("feedH");
+                String feedI  = jsonObjectDiet.getString("feedI");
+                String feedLnos  = jsonObjectDiet.getString("feedLnos");
+                String feedB  = jsonObjectDiet.getString("feedB");
+                String feedC  = jsonObjectDiet.getString("feedC");
+                String feedBnos = jsonObjectDiet.getString("feedBnos");
+                String feedD  = jsonObjectDiet.getString("feedD");
+                String feedE  = jsonObjectDiet.getString("feedE");
+                String feedJnos= jsonObjectDiet.getString("feedJnos");
+                String feedA  = jsonObjectDiet.getString("feedA");
+                String recordStatus  = jsonObjectDiet.getString("recordStatus");
+                String stage  = jsonObjectDiet.getString("stage");
+                String subStage  = jsonObjectDiet.getString("subStage");
+
+                String dietQuery="INSERT INTO DIET (PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,FEED_A,FEED_A_NOS,FEED_B,FEED_B_NOS," +
+                        "FEED_C,FEED_C_NOS,FEED_D,FEED_D_NOS,FEED_E, FEED_E_NOS, FEED_F,FEED_F_NOS,FEED_G, FEED_G_NOS, FEED_H," +
+                        "FEED_H_NOS,FEED_I,FEED_I_NOS,FEED_J,FEED_J_NOS,FEED_K,FEED_K_NOS,FEED_L,FEED_L_NOS,FEED_M,FEED_M_NOS," +
+                        "IS_APPROVED,IS_NEW) VALUES ('"+ pregnancyId +"','"+ membersId +"','"+ stage +"','"+ subStage +"','"+
+                        feedA +"','" + feedAnos +"','"+ feedB +"','"+ feedBnos +"','"+ feedC +"','"+ feedCnos +"','"+ feedD +
+                        "','"+ feedDnos +"','"+ feedE +"','"+feedEnos+"','"+ feedF +"','"+ feedFnos +"','"+ feedG +"','"+
+                        feedGnos +"','"+ feedH +"','"+ feedHnos +"','"+ feedI +"','"+ feedInos+"','"+ feedJ+ "','"+
+                        feedJnos +"','"+ feedK + "','"+ feedKnos+"','"+ feedL +"','"+ feedLnos +"','"+ feedM +"','"+
+                        feedMnos +"','"+ isApproved +"','')";
+
+ExeuteQuery(dietQuery);
+            }
+
+            JSONArray jsonArrayfamilyDetails=jsonObject.getJSONArray("familyDetails");
+            for(int fdetails=0;fdetails<jsonArrayfamilyDetails.length();fdetails++){
+
+                JSONObject jsonObjectFDetails= jsonArrayfamilyDetails.getJSONObject(fdetails);
+                String familyType = jsonObjectFDetails.getString("familyType");
+                String sectorCode=jsonObjectFDetails.getString("sectorCode");
+                String religion=jsonObjectFDetails.getString("religion");
+                String villageCode=jsonObjectFDetails.getString("villageCode");
+                String distCode=jsonObjectFDetails.getString("distCode");
+                String familyId=jsonObjectFDetails.getString("familyId");
+                String cast=jsonObjectFDetails.getString("cast");
+                String recordStatus=jsonObjectFDetails.getString("recordStatus");
+                String projectCode=jsonObjectFDetails.getString("projectCode");
+                String rcard=jsonObjectFDetails.getString("rcard");
+                String surveyorId=jsonObjectFDetails.getString("surveyorId");
+                String awcCode=jsonObjectFDetails.getString("awcCode");
+                String isApproved=jsonObjectFDetails.getString("isApproved");
+
+            String familyQuery="INSERT INTO familydata (FAMILY_ID,DIST_CODE,PROJECT_CODE,SECTOR_CODE,AWC_CODE,VILLAGE_CODE,RELIGION," +
+                    "CASTE,RCARD,FAMILY_TYPE,SURVEYOR_ID,IS_APPROVED,IS_NEW) VALUES ('"+ familyId +"','"+ distCode +"','"+ projectCode +
+                    "','"+ sectorCode +"','"+ awcCode +"','"+ villageCode +"',"+ religion +","+ cast +","+ rcard +","+ familyType +"," +
+                    ""+surveyorId+",'"+isApproved+"','')";
+                ExeuteQuery(familyQuery);
+
+            }
+
+            JSONArray jsonArraywomenExtra=jsonObject.getJSONArray("womenExtra");
+            for(int wExtrs =0 ; wExtrs<jsonArraywomenExtra.length();wExtrs++){
+
+                JSONObject jsonWExtra= jsonArraywomenExtra.getJSONObject(wExtrs);
+                String postOfficeAc = jsonWExtra.getString("postOfficeAc");
+                String education= jsonWExtra.getString("education");
+                String decisionmakerOwnHealth= jsonWExtra.getString("decisionmakerOwnHealth");
+                String bankName= jsonWExtra.getString("bankName");
+                String postofficeName= jsonWExtra.getString("postofficeName");
+                String hoemoCode= jsonWExtra.getString("hoemoCode");
+                String bankDistance= jsonWExtra.getString("bankDistance");
+                String postofficeAddress= jsonWExtra.getString("postofficeAddress");
+                String branch= jsonWExtra.getString("branch");
+                String acNo= jsonWExtra.getString("acNo");
+                String decisionmakerChildHealth= jsonWExtra.getString("decisionmakerChildHealth");
+                String ifBankAccont= jsonWExtra.getString("ifBankAccont");
+                String recordStatus= jsonWExtra.getString("recordStatus");
+                String cookingFuel= jsonWExtra.getString("cookingFuel");
+                String membersId= jsonWExtra.getString("membersId");
+                String pinCode= jsonWExtra.getString("pinCode");
+                String isApproved= jsonWExtra.getString("isApproved");
+                String ifscCode= jsonWExtra.getString("ifscCode");
+                String acHolderName= jsonWExtra.getString("acHolderName");
+
+
+                String womenExtraQuery="INSERT INTO WOMENEXTRA (MEMBERS_ID,EDUCATION,COOKING_FUEL,DECISIONMAKER_OWN_HEALTH,DECISIONMAKER_CHILD_HEALTH,if_bank_account,AC_HOLDER_NAME,BANK_NAME,BRANCH,AC_NO, IFSC_CODE,BANK_DISTANCE,POSTOFFICE_NAME,POSTOFFICE_ADDRESS,PIN_CODE,POST_OFFICE_AC,HOEMO_CODE,IS_APPROVED,IS_NEW) VALUES (" +
+                        "'"+ membersId +"','"+ education +"','"+ cookingFuel +"','"+ decisionmakerOwnHealth +"','"+ decisionmakerChildHealth +"'," +
+                        "'"+ ifBankAccont +"','"+ acHolderName +"','"+ bankName +"','"+ branch +"','"+ acNo +"','"+ ifscCode +"'," +
+                        ""+bankDistance+",'"+ postofficeName +"','"+ postofficeAddress +"','"+ pinCode +"','"+ postOfficeAc +"'," +
+                        "'"+ hoemoCode +"','"+ isApproved +"','')";
+ExeuteQuery(womenExtraQuery);
+
+            }
+            JSONArray jsonArraychildTracking=jsonObject.getJSONArray("childTracking");
+            for(int cTrak=0;cTrak<jsonArraychildTracking.length();cTrak++){
+
+                JSONObject jsonObjectChildTRacking = jsonArraychildTracking.getJSONObject(cTrak);
+                String liquidOtherThanBf= jsonObjectChildTRacking.getString("liquidOtherThanBf");
+                String isAvailable = jsonObjectChildTRacking.getString("isAvailable");
+                String naReasonBoth = jsonObjectChildTRacking.getString("naReasonBoth");
+                String ifCounselOnFeedInfant= jsonObjectChildTRacking.getString("ifCounselOnFeedInfant");
+                String childHeight = jsonObjectChildTRacking.getString("childHeight");
+                String childWeight = jsonObjectChildTRacking.getString("childWeight");
+                String ifStartedSolidFood =jsonObjectChildTRacking.getString("ifStartedSolidFood");
+                String childImmunizationStatus = jsonObjectChildTRacking.getString("childImmunizationStatus");
+                String source = jsonObjectChildTRacking.getString("source");
+                String currentlyBf = jsonObjectChildTRacking.getString("currentlyBf");
+                String ifUsingContraceptive = jsonObjectChildTRacking.getString("ifUsingContraceptive");
+                String timeStamp= jsonObjectChildTRacking.getString("timeStamp");
+                String recordStatus= jsonObjectChildTRacking.getString("recordStatus");
+                String naReasonChild = jsonObjectChildTRacking.getString("naReasonChild");
+                String stage = jsonObjectChildTRacking.getString("stage");
+                String membersId = jsonObjectChildTRacking.getString("membersId");
+                String childMuac= jsonObjectChildTRacking.getString("childMuac");
+                String naReasonMother= jsonObjectChildTRacking.getString("naReasonMother");
+                String methodContraceptive= jsonObjectChildTRacking.getString("methodContraceptive");
+                String spendOnFood = jsonObjectChildTRacking.getString("spendOnFood");
+                String surveyorId = jsonObjectChildTRacking.getString("surveyorId");
+                String ifCounselOnSelffeed = jsonObjectChildTRacking.getString("ifCounselOnSelffeed");
+                String subStage= jsonObjectChildTRacking.getString("subStage");
+                String isApproved= jsonObjectChildTRacking.getString("isApproved");
+
+                String childTracking="INSERT INTO CHILD_TRACKING (MEMBERS_ID,STAGE,SUB_STAGE,IS_AVAILABLE,NA_REASON_MOTHER,NA_REASON_CHILD,NA_REASON_BOTH,CURRENTLY_BF,IF_USING_CONTRACEPTIVE,METHOD_CONTRACEPTIVE,IF_COUNSEL_ON_FEED_INFANT,IF_COUNSEL_ON_SELFFEED,LIQUID_OTHER_THAN_BF,IF_STARTED_SOLID_FOOD,SPEND_ON_FOOD, CHILD_IMMUNIZATION_STATUS,CHILD_HEIGHT,CHILD_WEIGHT,CHILD_MUAC,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW) VALUES (" +
+                        "'"+ membersId +"','"+ stage + "','"+ subStage +"','"+ isAvailable +"','"+ naReasonMother + "', " +
+                        "'"+ naReasonChild +"','"+ naReasonBoth +"','"+ currentlyBf +"','"+ ifUsingContraceptive + "','"+ methodContraceptive +"','"+ ifCounselOnFeedInfant +"','"+ ifCounselOnSelffeed +"'," +
+                        "'"+ liquidOtherThanBf +"','"+ ifStartedSolidFood +"','"+ spendOnFood +"','"+ childImmunizationStatus +"'," +
+                        "'"+ childHeight +"','"+ childWeight +"','"+ childMuac +"','" + surveyorId +"','"+ timeStamp +"','"+ source +"'," +
+                        "'"+ isApproved +"','')";
+
+                ExeuteQuery(childTracking);
+            }
+
+            JSONArray jsonArraychildExtra =jsonObject.getJSONArray("childExtra");
+
+            for(int cExtra=0;cExtra<jsonArraychildExtra.length();cExtra++){
+
+                JSONObject jsonObjeCExtra = jsonArraychildExtra.getJSONObject(cExtra);
+                String whichMonthSolidFood=jsonObjeCExtra.getString("whichMonthSolidFood");
+                String childImmunizationStatus=jsonObjeCExtra.getString("childImmunizationStatus");
+                String currentlyBf=jsonObjeCExtra.getString("currentlyBf");
+                String whenStopBf=jsonObjeCExtra.getString("whenStopBf");
+                String fullTerm =jsonObjeCExtra.getString("fullTerm");
+                String dodelivery =jsonObjeCExtra.getString("dodelivery");
+                String deliveryPlace =jsonObjeCExtra.getString("deliveryPlace");
+                String ifStartedSolidFood =jsonObjeCExtra.getString("ifStartedSolidFood");
+                String birthWt =jsonObjeCExtra.getString("birthWt");
+                String childOrder =jsonObjeCExtra.getString("childOrder");
+                String fFeedKhees =jsonObjeCExtra.getString("ifFeedKhees");
+                String recordStatus =jsonObjeCExtra.getString("recordStatus");
+                String membersId =jsonObjeCExtra.getString("membersId");
+                String anythingBeforeBf=jsonObjeCExtra.getString("anythingBeforeBf");
+                String whenFirstBf=jsonObjeCExtra.getString("whenFirstBf");
+                String isApproved=jsonObjeCExtra.getString("isApproved");
+
+                String childExtraQuery="INSERT INTO CHILDEXTRA (MEMBERS_ID,DODELIVERY,DELIVERY_PLACE,CHILD_ORDER,BIRTH_WT,FULL_TERM,WHEN_FIRST_BF,IF_FEED_KHEES,CURRENTLY_BF,WHEN_STOP_BF,ANYTHING_BEFORE_BF,IF_STARTED_SOLID_FOOD, WHICH_MONTH_SOLID_FOOD,CHILD_IMMUNIZATION_STATUS,IS_APPROVED,IS_NEW) VALUES (" +
+                        "'"+ membersId +"','"+ dodelivery + "','"+ deliveryPlace + "','"+ childOrder +"','"+ birthWt +"'," +
+                        "'"+ fullTerm +"','"+ whenFirstBf +"'," +
+                        "'"+ fFeedKhees +"','"+ currentlyBf +"','"+ whenStopBf +"','"+ anythingBeforeBf +"'," +
+                        "'"+ ifStartedSolidFood + "','"+ whichMonthSolidFood + "','"+ childImmunizationStatus +"','"+ isApproved +"','')";
+           ExeuteQuery(childExtraQuery);
+
+            }
+            JSONArray jsonArraypregnant=jsonObject.getJSONArray("pregnant");
+            for(int preg=0;preg<jsonArraypregnant.length();preg++){
+
+                JSONObject jsonObPregbnent = jsonArraypregnant.getJSONObject(preg);
+
+                String timeStamp= jsonObPregbnent.getString("timeStamp");
+                String recordStatus= jsonObPregbnent.getString("recordStatus");
+                String pregnancyId= jsonObPregbnent.getString("pregnancyId");
+                String membersId= jsonObPregbnent.getString("membersId");
+                String lmpDate= jsonObPregbnent.getString("lmpDate");
+                String surveyorId= jsonObPregbnent.getString("surveyorId");
+                String source= jsonObPregbnent.getString("source");
+                String isApproved= jsonObPregbnent.getString("isApproved");
+                String isActive= jsonObPregbnent.getString("isActive");
+                String orderOfPregnancy= jsonObPregbnent.getString("orderOfPregnancy");
+
+                String QueryPregnent="INSERT INTO PREGNANT (PREGNANCY_ID,MEMBERS_ID,ORDER_OF_PREGNANCY,LMP_DATE,IS_ACTIVE,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW) VALUES (" +
+                        "'"+ pregnancyId +"','"+ membersId +"','"+ orderOfPregnancy +"','"+ lmpDate +"','"+ isActive +"'," +
+                        "'"+ surveyorId+"','" + timeStamp +"','"+ source +"','"+ isApproved +"','')";
+
+                ExeuteQuery(QueryPregnent);
+            }
+
+
+
+        }catch (Exception e){
+            Log.d("RanjeetPullData",e.toString());
+        }
+
+        return completed;
+
+    }
+
+
+    public void ExeuteQuery(String query){
+        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+        Cursor c1 = dbs.rawQuery(query,null);
+        c1.moveToFirst();
+    }
+
+
+
+    }
+

@@ -101,124 +101,136 @@
                 android:layout_marginTop="5dp"
                 android:background="@color/view2"/>
 
-            <RelativeLayout
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_marginBottom="8dp">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/choria"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:paddingLeft="12dp"-->
+
+                            <!--android:paddingRight="8dp"-->
+                            <!--android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+                            <!--android:text="Choria"/>-->
+                    <!--<Space-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="2dp" />-->
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0.5dp"-->
+                        <!--android:layout_marginLeft="7dp"-->
+                        <!--android:layout_marginRight="7dp"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:background="@color/view2"/>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/depur"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:paddingLeft="12dp"-->
+
+                        <!--android:paddingRight="8dp"-->
+                        <!--android:text="Dhepur"-->
+                        <!--android:textAppearance="@style/TextAppearance.AppCompat.Small" />-->
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0.5dp"-->
+                        <!--android:layout_marginLeft="7dp"-->
+                        <!--android:layout_marginRight="7dp"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:background="@color/view2"/>-->
+
+                    <!--<Space-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="2dp" />-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/dhelana"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:paddingLeft="12dp"-->
+
+                        <!--android:paddingRight="8dp"-->
+                        <!--android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+                        <!--android:text="Dhelana"/>-->
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="0.5dp"-->
+                        <!--android:layout_marginLeft="7dp"-->
+                        <!--android:layout_marginRight="7dp"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:background="@color/view2"/>-->
+
+
+                <!--</LinearLayout>-->
+
+                <!--<RadioGroup-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/choriar"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:alpha="0.5"-->
+                        <!--android:checked="true"-->
+                        <!--android:gravity="center"/>-->
+
+                    <!--<Space-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="2dp" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/depurr"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:alpha="0.5"-->
+                        <!--android:gravity="center"/>-->
+
+                    <!--<Space-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="2dp" />-->
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/dhelanar"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:alpha="0.5"-->
+                        <!--android:gravity="center"/>-->
+
+
+
+                <!--</RadioGroup>-->
+
+            <!--</RelativeLayout>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerviewSelectLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
 
 
-                        <TextView
-                            android:id="@+id/choria"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="12dp"
-
-                            android:paddingRight="8dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="Choria"/>
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp" />
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/view2"/>
-
-                    <TextView
-                        android:id="@+id/depur"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="12dp"
-
-                        android:paddingRight="8dp"
-                        android:text="Dhepur"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/view2"/>
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp" />
-                    <TextView
-                        android:id="@+id/dhelana"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="12dp"
-
-                        android:paddingRight="8dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Dhelana"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/view2"/>
-
-
-                </LinearLayout>
-
-                <RadioGroup
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/choriar"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:alpha="0.5"
-                        android:checked="true"
-                        android:gravity="center"/>
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp" />
-
-                    <RadioButton
-                        android:id="@+id/depurr"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:alpha="0.5"
-                        android:gravity="center"/>
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp" />
-                    <RadioButton
-                        android:id="@+id/dhelanar"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:alpha="0.5"
-                        android:gravity="center"/>
-
-
-
-                </RadioGroup>
-
-            </RelativeLayout>
+                />
 
             <TextView
                 android:layout_width="match_parent"

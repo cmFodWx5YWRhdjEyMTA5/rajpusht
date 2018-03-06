@@ -208,8 +208,25 @@ public class PregantWomenFooter extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // Display Selected date in textbox
-                                anc_date.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
+                                String month,day;
+                                if((monthOfYear+1)<10){
+                                    month="0"+String.valueOf(monthOfYear+1) ;
+                                }
+                                else {
+                                    month=String.valueOf(monthOfYear+1);
+                                }
+
+                                if(dayOfMonth<10){
+                                    day="0"+String.valueOf(dayOfMonth);
+
+                                }
+                                else{
+                                    day=String.valueOf(dayOfMonth);
+                                }
+
+
+                                anc_date.setText(year + "-"
+                                        + (month + 1) + "-" + day );
                             }
                         }, mYear, mMonth, mDay);
 //                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
@@ -865,9 +882,9 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     "is_new,is_edited,is_approved) values('" + getIntent().getStringExtra("pregnancy_id") + "','"
                                     + getIntent().getStringExtra("members_id") + "'," + "'PW'" + ",'" + pwActive_subStage + "'," + "'Y'" + "," + "'' " + "," + "'Y'" + ",'" +
                                     anc_date.getText().toString() + "','" + spinner_consult_selfString + "','" + spend_on_bfString + "'," + spentOnFoodInt + "," +
-                                    Integer.parseInt(height.getText().toString()) + "," + Integer.parseInt(weight.getText().toString()) + "," + new Login().surveyerId + ","
-                                    + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + ","
-                                    + "'Mobile'" + "," + "'Y'" + "," + "''" + "," + "''" + ")";
+                                    Integer.parseInt(height.getText().toString()) + "," + Integer.parseInt(weight.getText().toString()) + "," + new Login().surveyerId + ",'"
+                                    + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',"
+                                    + "'Mobile'" + "," + "'N'" + "," + "''" + "," + "''" + ")";
 
                             Log.d("insertQuery", inseertPwTrack);
 //
@@ -921,7 +938,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     "'" + spinner_consult_selfString + "',IF_COUNSEL_ON_BF = '" + spend_on_bfString + "', SPEND_ON_FOOD = '" +
                                     spentOnFoodInt + "', HEIGHT = '" + Integer.parseInt(height.getText().toString()) + "',WEIGHT = " +
                                     "'" + Integer.parseInt(weight.getText().toString()) + "', SURVEYOR_ID = '" +
-                                    new Login().surveyerId + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
+                                    new Login().surveyerId + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
 
 
                             SQLiteDatabase dsbss = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);

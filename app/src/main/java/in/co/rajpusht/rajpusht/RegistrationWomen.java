@@ -175,8 +175,28 @@ public class RegistrationWomen extends AppCompatActivity  {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // Display Selected date in textbox
-                                datee.setText(dayOfMonth + "-"
-                                        + (monthOfYear + 1) + "-" + year);
+
+                                String month,day;
+                                if((monthOfYear+1)<10){
+                                    month="0"+String.valueOf(monthOfYear+1) ;
+                                }
+                                else {
+                                    month=String.valueOf(monthOfYear+1);
+                                }
+
+                                if(dayOfMonth<10){
+                                    day="0"+String.valueOf(dayOfMonth);
+
+                                }
+                                else{
+                                    day=String.valueOf(dayOfMonth);
+                                }
+
+
+
+
+                                datee.setText(year + "-"
+                                        + (month + 1) + "-" + day);
 
                             }
                         }, mYear, mMonth, mDay);
@@ -1142,7 +1162,7 @@ return familyCode;
         public String insertMemberMaster(String familyId,String memberId,String mode){
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString() ,aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "Y", "", "");
+      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString() ,aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
             String inserted = "0";
       if(mode.equals("ADD")) {
           long id = db.addMemberBasic(memberbasic);
@@ -1193,7 +1213,7 @@ return  inserted;
 
         public String inserWomenExtra(String memberID,String mode){
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-            WomenBasicGetSet womenExtra = new WomenBasicGetSet(memberID, String.valueOf(eductionItemPosition), String.valueOf(fuelItemPosition), String.valueOf(decisionItemPosition), String.valueOf(doctorvisitItemPosition), accountype, nameaccountholder.getText().toString(), nameofbank.getText().toString(), branchname.getText().toString(),  bankaccountnumber.getText().toString(), ifsccode.getText().toString(), distancetobranch.getText().toString(), nameofpostoffice.getText().toString(), addressofpostoffice.getText().toString(), postofficepincode.getText().toString(),postofficeaccount.getText().toString(), hoemocode.getText().toString()," "," Y"," ",distancenearestatm.getText().toString());
+            WomenBasicGetSet womenExtra = new WomenBasicGetSet(memberID, String.valueOf(eductionItemPosition), String.valueOf(fuelItemPosition), String.valueOf(decisionItemPosition), String.valueOf(doctorvisitItemPosition), accountype, nameaccountholder.getText().toString(), nameofbank.getText().toString(), branchname.getText().toString(),  bankaccountnumber.getText().toString(), ifsccode.getText().toString(), distancetobranch.getText().toString(), nameofpostoffice.getText().toString(), addressofpostoffice.getText().toString(), postofficepincode.getText().toString(),postofficeaccount.getText().toString(), hoemocode.getText().toString()," ","N"," ",distancenearestatm.getText().toString());
             String inserted = "0";
 
 
@@ -1530,7 +1550,7 @@ public String insertPregnent(String memberId,String pregnentID){
 
     if(counted==0){
 Log.d("checkInsretd","Pregrncy Insreted");
-        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime()),"mobile","Y","","Y","");
+        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime()),"mobile","Y","","N","");
        long id= db.addPregnant(pregnent);
        Log.d("CountPregnent","sucieesrate"+id);
 
@@ -1859,7 +1879,7 @@ return error;
         }
 
         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "Y", "", "");
+        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
 
        db.addMemberBasic(memberbasic);
 try {
@@ -1888,7 +1908,7 @@ idhj.close();
 }catch(Exception e){
     Log.d("Raw query","inserted");
 }
-        ChildExtraGetSet childextra = new   ChildExtraGetSet(childID, dateOfDelivery.getText().toString(), String.valueOf(deliveryPlaceItemSelected), orderOfBirth.getText().toString(),childWeight.getText().toString() , String.valueOf(wasChildBornPosition), "", "","", "", "", " ","","", "","Y","");
+        ChildExtraGetSet childextra = new   ChildExtraGetSet(childID, dateOfDelivery.getText().toString(), String.valueOf(deliveryPlaceItemSelected), orderOfBirth.getText().toString(),childWeight.getText().toString() , String.valueOf(wasChildBornPosition), "", "","", "", "", " ","","", "","N","");
 
          db.addChildExtra(childextra);
 

@@ -53,6 +53,9 @@ public class ChildExtraGetSet {
         this.ifstarted_solidfood = ifstarted_solidfood;
         this.whichmonth_solidfood = whichmonth_solidfood;
         this.childimmunization_status = childimmunization_status;
+        this.isApproved=isApproved;
+        this.isNew=isNew;
+        this.ISEdited=ISEdited;
     }
 
 

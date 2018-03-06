@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 22;
 
     SQLiteDatabase db;
 
@@ -20,7 +20,6 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ranjeettest";
 
     private Context context;
-
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,6 +37,10 @@ db=getWritableDatabase();
     private static final String PREGNANT = "pregnant";
     private static final String PW_TRACKING="pw_tracking";
     private static final String DIET="diet";
+    private static final String ASSIGNED_LOCATION="assigned_location";
+    private static final String SURVEYOR_LOGIN="surveyor_login";
+    private static final String CHILD_TRACKING="child_tracking";
+
 
 //Family memebr table
     // Contacts Table Columns names
@@ -196,9 +199,71 @@ private static final String FEED_L_NOS="feed_l_nos";
 private static final String FEED_M_NOS="feed_m_nos";
 
 
+//survey_ID
+private static final String USER_ID="user_id";
+private static final String PASSWORD="password";
+private static final String LOGED="loged";
 
+//   assigned_Location
 
+    private static final String ID="id";
+    private static final String VILLAGE_ENG="village_eng";
+    private static final String VILLAGE_HINDI="village_hindi";
+    private static final String SURVEYOR_NAME="surveyor_name";
+    private static final String LOGIN="login";
 
+   public static final String CREATE_ASSIGNED_LOCTION= "CREATE TABLE " + ASSIGNED_LOCATION +
+   " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+
+           +  DIST_CODE + " VARCHAR, "
+    + PROJECT_CODE + " VARCHAR, "
+             + SECTOR_CODE + " VARCHAR, "
+           + VILLAGE_CODE + " VARCHAR, "
+              + VILLAGE_ENG + " VARCHAR, "
+     + VILLAGE_HINDI + " VARCHAR, "
+    + AWC_CODE + " VARCHAR, "
+        + SURVEYOR_NAME + " VARCHAR, "
+     + SURVEYOR_ID + " VARCHAR, "
+        + LOGIN + " VARCHAR)";
+//CHILD_TRACKING
+
+    private static final String IS_AVAILABLE="is_available";
+    private static final String NA_REASON_MOTHER="na_reason_mother";
+    private static final String NA_REASON_CHILD="na_reason_child";
+    private static final String NA_REASON_BOTH="na_reason_both";
+    private static final String IF_USING_CONTRACEPTIVE="if_using_contraceptive";
+    private static final String METHOD_CONTRACEPTIVE="method_contraceptive";
+    private static final String IF_COUNSEL_ON_FEED_INFANT="if_counsel_on_feed_infant";
+    private static final String LIQUID_OTHER_THAN_BF="liquid_other_than_bf";
+    private static final String CHILD_HEIGHT="child_height";
+    private static final String CHILD_WEIGHT="child_weight";
+    private static final String CHILD_MUAC="child_muac";
+
+  public static final String CREATE_CHILD_TRACKING= "CREATE TABLE " + CHILD_TRACKING +
+          " ( " + MEMBERS_ID + " VARCHAR, "
+             + STAGE + " VARCHAR, "
+            + SUB_STAGE + " VARCHAR, "
+            + IS_AVAILABLE + " VARCHAR, "
+            + NA_REASON_MOTHER + " INT, "
+     + NA_REASON_CHILD + " INT, "
+            + NA_REASON_BOTH + " INT, "
+            + CURRENTLY_BF + " VARCHAR, "
+            + IF_USING_CONTRACEPTIVE + " VARCHAR, "
+            + METHOD_CONTRACEPTIVE + " INT, "
+            + IF_COUNSEL_ON_FEED_INFANT + " VARCHAR, "
+            + IF_COUNSEL_ON_SELFFEED + " VARCHAR, "
+            + LIQUID_OTHER_THAN_BF + " VARCHAR, "
+            + IF_STARTED_SOLID_FOOD + " VARCHAR, "
+            + SPEND_ON_FOOD + " INT, "
+            + CHILD_IMMUNIZATION_STATUS + " VARCHAR, "
+            + CHILD_HEIGHT + " INT, "
+            + CHILD_WEIGHT + " INT, "
+            + CHILD_MUAC + " INT, "
+            + SURVEYOR_ID + " INT, "
+            + TIME_STAMP + " TIMESTAMP, "
+            + SOURCE + " VARCHAR, "
+            + IS_APPROVED + " VARCHAR, "
+            + IS_NEW + " VARCHAR)";
 
 
 
@@ -277,6 +342,10 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
             + IS_EDITED + " VARCHAR, "
             + IS_APPROVED + " VARCHAR)";
 
+    public static final String SURVEYOR_LOGIN_TABLE= "CREATE TABLE " + SURVEYOR_LOGIN + "( "
+            + USER_ID + " VARCHAR, "
+            + PASSWORD + " VARCHAR, "
+            + LOGED + " VARCHAR)";
 
 
 
@@ -382,7 +451,7 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 + PREGNANCY_ID + " VARCHAR, "
                 + MEMBERS_ID + " VARCHAR, "
                 + ORDER_OF_PREGNANCY + " INTEGER, "
-                + LMP_DATE + " DATE,"
+                + LMP_DATE + " DATE, "
                 + IS_ACTIVE + " VARCHAR, "
                 + SURVEYOR_ID + " VARCHAR, "
                 + TIME_STAMP + " DATETIME,"
@@ -393,6 +462,9 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 db.execSQL(CREATE_PREGNANT);
                 db.execSQL(CREATE_DIET_TABLE);
                 db.execSQL(TRACKING_TABLE);
+                db.execSQL(SURVEYOR_LOGIN_TABLE);
+                db.execSQL(CREATE_ASSIGNED_LOCTION);
+                db.execSQL(CREATE_CHILD_TRACKING);
     }
 
 
@@ -407,6 +479,9 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
         db.execSQL("DROP TABLE IF EXISTS " + PREGNANT);
         db.execSQL("DROP TABLE IF EXISTS " + DIET);
         db.execSQL("DROP TABLE IF EXISTS " + PW_TRACKING);
+        db.execSQL("DROP TABLE IF EXISTS " + SURVEYOR_LOGIN);
+        db.execSQL("DROP TABLE IF EXISTS " + ASSIGNED_LOCATION);
+        db.execSQL("DROP TABLE IF EXISTS " + CHILD_TRACKING);
 
         // Create tables again
         onCreate(db);
@@ -549,10 +624,10 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
         values.put(SURVEYOR_ID, pregnantGetSet.getSurveyorid());
         values.put(TIME_STAMP, pregnantGetSet.getTimestamp());
 
-        values.put(IS_ACTIVE, "Y");
-        values.put(IS_EDITED, "");
-        values.put(IS_NEW,"Y");
-        values.put(IS_APPROVED, "");
+        values.put(IS_ACTIVE, pregnantGetSet.getIS_ACTIVE());
+        values.put(IS_EDITED, pregnantGetSet.getIS_EDITED());
+        values.put(IS_NEW,pregnantGetSet.getIS_NEW());
+        values.put(IS_APPROVED, pregnantGetSet.getIS_APPROVED());
         values.put(SOURCE, pregnantGetSet.getSource());
 
         // Inserting Row

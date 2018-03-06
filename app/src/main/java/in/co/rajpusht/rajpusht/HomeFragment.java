@@ -39,23 +39,41 @@ public class HomeFragment extends Fragment {
     ArrayList<BeneficiaryList> arraybeneficiary = new ArrayList<BeneficiaryList>();
     private SearchView searchView;
 
-    String beneficiaryQuery="select a.Members_id ,a.family_id,a.name,b.members_id as mother_id,b.name as mother,ifnull(a.status,b.status)status,ifnull(a.stage,b.stage)as stage,ifnull(a.sub_stage,b.sub_stage)as sub_stage,strftime('%d/%m/%Y', lmp_date)lmp_date,strftime('%d/%m/%Y', dodelivery)dodelivery,p.PREGNANCY_ID,is_anc,case\n" +
-            "when  julianday('now') - julianday(lmp_date)<=98 then 'PW1'\n" +
-            "when  julianday('now') - julianday(lmp_date)<=196 then 'PW2'\n" +
-            "when  julianday('now') - julianday(lmp_date)<=252 then 'PW3'\n" +
-            "when  julianday('now') - julianday(lmp_date)<=280 then 'PW4'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+3 month',cast(strftime('%d',DODELIVERY)as text) ||' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM1'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+6 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM2'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+12 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM3'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+18 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY1'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+24 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY2'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+30 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY3'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+36 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY4'\n" +
-            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+38 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY5'\n" +
-            "END\n" +
-            "current_sub_stage \n" +
-            "FROM memberbasic a left join memberbasic b on a.mother_id=b.members_id left join (select * from pregnant where is_active='Y') p on a.members_id=p.MEMBERS_ID left join childextra c on a.MEMBERS_ID=c.MEMBERS_ID" +
-            " left join (select * from pw_tracking) t on p.PREGNANCY_ID=t.PREGNANCY_ID and t.SUB_STAGE=current_sub_stage where a.is_to_track='Y' and current_sub_stage<>'' order by a.sub_stage asc,a.name desc";
+//    String beneficiaryQuery="select a.Members_id ,a.family_id,a.name,b.members_id as mother_id,b.name as mother,ifnull(a.status,b.status)status,ifnull(a.stage,b.stage)as stage,ifnull(a.sub_stage,b.sub_stage)as sub_stage,strftime('%d/%m/%Y', lmp_date)lmp_date,strftime('%d/%m/%Y', dodelivery)dodelivery,p.PREGNANCY_ID,is_anc,case\n" +
+//            "when  julianday('now') - julianday(lmp_date)<=98 then 'PW1'\n" +
+//            "when  julianday('now') - julianday(lmp_date)<=196 then 'PW2'\n" +
+//            "when  julianday('now') - julianday(lmp_date)<=252 then 'PW3'\n" +
+//            "when  julianday('now') - julianday(lmp_date)<=280 then 'PW4'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+3 month',cast(strftime('%d',DODELIVERY)as text) ||' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM1'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+6 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM2'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+12 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM3'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+18 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY1'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+24 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY2'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+30 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY3'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+36 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY4'\n" +
+//            "when CAST(strftime('%s',date(DODELIVERY,'start of month','+38 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY5'\n" +
+//            "END\n as " +
+//            "current_sub_stage \n" +
+//            "FROM memberbasic a left join memberbasic b on a.mother_id=b.members_id left join (select * from pregnant where is_active='Y') p on a.members_id=p.MEMBERS_ID left join childextra c on a.MEMBERS_ID=c.MEMBERS_ID" +
+//            " left join (select * from pw_tracking) t on p.PREGNANCY_ID=t.PREGNANCY_ID and t.SUB_STAGE=current_sub_stage where a.is_to_track='Y' and current_sub_stage<>'' order by a.sub_stage asc,a.name desc";
+//
+String beneficiaryQuery="select a.Members_id ,a.family_id,a.name,b.members_id as mother_id,b.name as mother,ifnull(a.status,b.status)status,ifnull(a.stage,b.stage)as stage,ifnull(a.sub_stage,b.sub_stage)as sub_stage,strftime('%d/%m/%Y', lmp_date)lmp_date,strftime('%d/%m/%Y', dodelivery)dodelivery,p.PREGNANCY_ID,is_anc,(case\n" +
+        "when  julianday('now') - julianday(lmp_date)<=98 then 'PW1'\n" +
+        "when  julianday('now') - julianday(lmp_date)<=196 then 'PW2'\n" +
+        "when  julianday('now') - julianday(lmp_date)<=252 then 'PW3'\n" +
+        "when  julianday('now') - julianday(lmp_date)<=280 then 'PW4'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+3 month',cast(strftime('%d',DODELIVERY)as text) ||' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM1'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+6 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM2'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+12 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'LM3'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+18 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY1'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+24 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY2'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+30 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY3'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+36 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY4'\n" +
+        "when CAST(strftime('%s',date(DODELIVERY,'start of month','+38 month',cast(strftime('%d',DODELIVERY)as text) || ' DAY')) AS integer) > CAST(strftime('%s',date('now')) as integer) then 'MY5'\n" +
+        "END\n) as " +
+        "current_sub_stage \n" +
+        "FROM memberbasic a left join memberbasic b on a.mother_id=b.members_id left join (select * from pregnant where is_active='Y') p on a.members_id=p.MEMBERS_ID left join childextra c on a.MEMBERS_ID=c.MEMBERS_ID" +
+        " left join (select * from pw_tracking) t on p.PREGNANCY_ID=t.PREGNANCY_ID and t.SUB_STAGE=current_sub_stage where a.is_to_track='Y'  order by a.sub_stage asc,a.name desc";
 
 
 
@@ -207,6 +225,7 @@ public class HomeFragment extends Fragment {
         SQLiteDatabase dbs = getActivity().openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
         Cursor c = dbs.rawQuery(beneficiaryQuery , null);
+        Log.d("beneficiaryQuery",beneficiaryQuery);
 
         int total = c.getCount();
 
