@@ -6,7 +6,7 @@ package extras;
 
 public class ProfileGetSetMethod {
 
-    String id,village_name,surveyor_name,surveyor_id;
+    String id,village_name,surveyor_name,surveyor_id,loginchecked;
 
     public String getSurveyor_id() {
         return surveyor_id;
@@ -16,11 +16,12 @@ public class ProfileGetSetMethod {
         this.surveyor_id = surveyor_id;
     }
 
-    public ProfileGetSetMethod(String id, String village_name, String surveyor_name, String surveyor_id) {
+    public ProfileGetSetMethod(String id, String village_name, String surveyor_name, String surveyor_id,String loginchecked) {
         this.id = id;
         this.village_name = village_name;
         this.surveyor_name = surveyor_name;
         this.surveyor_id=surveyor_id;
+        this.loginchecked=loginchecked;
 
     }
 
@@ -46,5 +47,13 @@ public class ProfileGetSetMethod {
 
     public void setSurveyor_name(String surveyor_name) {
         this.surveyor_name = surveyor_name;
+    }
+
+    public String getLoginchecked() {
+        return loginchecked;
+    }
+
+    public void setLoginchecked(String loginchecked) {
+        this.loginchecked = loginchecked;
     }
 }

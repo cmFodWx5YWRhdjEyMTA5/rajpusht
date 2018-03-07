@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 24;
 
     SQLiteDatabase db;
 
@@ -56,6 +56,7 @@ db=getWritableDatabase();
     private static final String RCARD = "rcard";
     private static final String FAMILY_TYPE = "family_type";
     private static final String SURVEYOR_ID = "surveyor_id";
+
 //    private static final String IS_EDITED= "is_edited";
     private static final String IS_NEW_FAMILY= "is_new";
     private static final String IS_APPROVED_FAMILY = "is_approved";
@@ -203,6 +204,10 @@ private static final String FEED_M_NOS="feed_m_nos";
 private static final String USER_ID="user_id";
 private static final String PASSWORD="password";
 private static final String LOGED="loged";
+//private static final String NAME="name";
+private static final String EMAIL="email";
+//private static final String MOBILE="mobile";
+
 
 //   assigned_Location
 
@@ -211,20 +216,23 @@ private static final String LOGED="loged";
     private static final String VILLAGE_HINDI="village_hindi";
     private static final String SURVEYOR_NAME="surveyor_name";
     private static final String LOGIN="login";
+    private static final String AWC_ENG = "awc_eng";
+    private static final String AWC_HINDI = "awc_hindi";
 
    public static final String CREATE_ASSIGNED_LOCTION= "CREATE TABLE " + ASSIGNED_LOCATION +
    " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-
-           +  DIST_CODE + " VARCHAR, "
+   +  DIST_CODE + " VARCHAR, "
     + PROJECT_CODE + " VARCHAR, "
-             + SECTOR_CODE + " VARCHAR, "
-           + VILLAGE_CODE + " VARCHAR, "
-              + VILLAGE_ENG + " VARCHAR, "
+      + SECTOR_CODE + " VARCHAR, "
+     + VILLAGE_CODE + " VARCHAR, "
+     + VILLAGE_ENG + " VARCHAR, "
      + VILLAGE_HINDI + " VARCHAR, "
     + AWC_CODE + " VARCHAR, "
-        + SURVEYOR_NAME + " VARCHAR, "
+   + SURVEYOR_NAME + " VARCHAR, "
      + SURVEYOR_ID + " VARCHAR, "
-        + LOGIN + " VARCHAR)";
+           + AWC_HINDI + " VARCHAR, "
+           + AWC_ENG + " VARCHAR, "
+     + LOGIN + " VARCHAR)";
 //CHILD_TRACKING
 
     private static final String IS_AVAILABLE="is_available";
@@ -345,6 +353,9 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
     public static final String SURVEYOR_LOGIN_TABLE= "CREATE TABLE " + SURVEYOR_LOGIN + "( "
             + USER_ID + " VARCHAR, "
             + PASSWORD + " VARCHAR, "
+            + NAME + " VARCHAR, "
+            + EMAIL + " VARCHAR, "
+            + MOBILE + " VARCHAR, "
             + LOGED + " VARCHAR)";
 
 

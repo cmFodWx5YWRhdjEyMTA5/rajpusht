@@ -34,6 +34,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import extras.SessionManager;
+
 public class PregantWomenFooter extends AppCompatActivity {
 
     View fragment_preliminary_pw1, fragment_diatary_pw1, fragment_height_weight,fragment_na;
@@ -75,6 +77,8 @@ public class PregantWomenFooter extends AppCompatActivity {
     EditText pregnetNumnber;
 
 
+    SessionManager session;
+
 
     String datePresent;
 
@@ -91,7 +95,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pregant_women_footer);
 
-
+        session = new SessionManager(PregantWomenFooter.this);
         fragment_preliminary_pw1 = findViewById(R.id.sbcclayout);
         fragment_diatary_pw1 = findViewById(R.id.dietaryLyout);
         fragment_height_weight = findViewById(R.id.heightWeightLayout);
@@ -198,6 +202,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 
                 anc_date.setError(null);
                 final Calendar calender = Calendar.getInstance();
+
                 mYear = calender.get(Calendar.YEAR);
                 mMonth = calender.get(Calendar.MONTH);
                 mDay = calender.get(Calendar.DAY_OF_MONTH);
@@ -229,8 +234,11 @@ public class PregantWomenFooter extends AppCompatActivity {
                                         + (month + 1) + "-" + day );
                             }
                         }, mYear, mMonth, mDay);
-//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+
+
                 dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+                calender.add(Calendar.DATE,-300);
+                dpd.getDatePicker().setMinDate(calender.getTimeInMillis());
                 dpd.show();
             }
         });
@@ -245,6 +253,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         list1.add("Rs. 2000 – 4000 per month");
         list1.add("Rs. 4000 – 5,000 per month");
         list1.add("Rs. 5,000 and above");
+        list1.add("Do not Know");
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list1);
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -778,7 +787,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                 ""+ new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()) +"','" +
                                 ""+ new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())+ "','" +
                                 ""+  dateOfDelivery.getText().toString() +"','"+ cSex +"','"+ getIntent().getStringExtra("members_id") +
-                                "','LM','LM','Y','"+ new Login().surveyerId +"','"+
+                                "','LM','LM','Y','"+ session.getSurveyorId() +"','"+
                                 new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) +"','Mobile','','N')";
 
                         String insertChildExtra="INSERT INTO childextra (MEMBERS_ID,DODELIVERY,DELIVERY_PLACE,CHILD_ORDER,BIRTH_WT,FULL_TERM,IS_APPROVED," +
@@ -786,7 +795,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                 "'"+  String.valueOf(deliveryPlaceItemSelected)+ "','"+ orderOfBirth.getText().toString()+ "','" +
                                 ""+ childWeight.getText().toString()+"','"+ String.valueOf(wasChildBornPosition)+ "','','N')";
 
-                        String pwtrackoff="UPDATE memberbasic SET IS_TO_TRACK = 'N',SURVEYOR_ID = '"+ new Login().surveyerId +"',TIME_STAMP = '"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date())  +"',IS_NEW = 'E' WHERE MEMBERS_ID = '"+ getIntent().getStringExtra("members_id") +"'" ;
+                        String pwtrackoff="UPDATE memberbasic SET IS_TO_TRACK = 'N',SURVEYOR_ID = '"+ session.getSurveyorId() +"',TIME_STAMP = '"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date())  +"',IS_NEW = 'E' WHERE MEMBERS_ID = '"+ getIntent().getStringExtra("members_id") +"'" ;
 
 
                         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
@@ -840,12 +849,12 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
                             NaQuery = "INSERT INTO PW_TRACKING (PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,IS_AVAILABLE,NA_REASON,IS_ANC,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_NEW,IS_EDITED,IS_APPROVED)VALUES ( '" + getIntent().getStringExtra("pregnancy_id") +
-                                    "','" + getIntent().getStringExtra("members_id") + "', 'PW', '" + getIntent().getStringExtra("current_sub_stage") + "','" + is_available + "', " + pw1_yesNoInt + ",'" + ancValue + "', '" + new Login().surveyerId + "','" +
+                                    "','" + getIntent().getStringExtra("members_id") + "', 'PW', '" + getIntent().getStringExtra("current_sub_stage") + "','" + is_available + "', " + pw1_yesNoInt + ",'" + ancValue + "', '" + session.getSurveyorId()+ "','" +
                                     new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "','Mobile','N','','')";
 
                         } else {
 
-                            NaQuery = "UPDATE PW_TRACKING SET IS_AVAILABLE = '" + is_available + "', NA_REASON = " + pw1_yesNoInt + ",IS_ANC = '" + ancValue + "',IS_NEW = 'N', TIME_STAMP='" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SURVEYOR_ID='" + new Login().surveyerId + "',SOURCE='Mobile' " +
+                            NaQuery = "UPDATE PW_TRACKING SET IS_AVAILABLE = '" + is_available + "', NA_REASON = " + pw1_yesNoInt + ",IS_ANC = '" + ancValue + "',IS_NEW = 'N', TIME_STAMP='" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SURVEYOR_ID='" + session.getSurveyorId() + "',SOURCE='Mobile' " +
                                     "WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + getIntent().getStringExtra("current_sub_stage") + "'";
                         }
 
@@ -882,7 +891,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     "is_new,is_edited,is_approved) values('" + getIntent().getStringExtra("pregnancy_id") + "','"
                                     + getIntent().getStringExtra("members_id") + "'," + "'PW'" + ",'" + pwActive_subStage + "'," + "'Y'" + "," + "'' " + "," + "'Y'" + ",'" +
                                     anc_date.getText().toString() + "','" + spinner_consult_selfString + "','" + spend_on_bfString + "'," + spentOnFoodInt + "," +
-                                    Integer.parseInt(height.getText().toString()) + "," + Integer.parseInt(weight.getText().toString()) + "," + new Login().surveyerId + ",'"
+                                    Integer.parseInt(height.getText().toString()) + "," + Integer.parseInt(weight.getText().toString()) + "," + session.getSurveyorId() + ",'"
                                     + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',"
                                     + "'Mobile'" + "," + "'N'" + "," + "''" + "," + "''" + ")";
 
@@ -938,7 +947,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     "'" + spinner_consult_selfString + "',IF_COUNSEL_ON_BF = '" + spend_on_bfString + "', SPEND_ON_FOOD = '" +
                                     spentOnFoodInt + "', HEIGHT = '" + Integer.parseInt(height.getText().toString()) + "',WEIGHT = " +
                                     "'" + Integer.parseInt(weight.getText().toString()) + "', SURVEYOR_ID = '" +
-                                    new Login().surveyerId + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
+                                    session.getSurveyorId() + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
 
 
                             SQLiteDatabase dsbss = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);

@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import extras.ProfileGetSetMethod;
+import extras.SessionManager;
+import in.co.rajpusht.rajpusht.Login;
 import in.co.rajpusht.rajpusht.R;
 
 /**
@@ -22,6 +24,8 @@ public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelec
 
     private List<ProfileGetSetMethod> horizontalList;
     Context context;
+    SessionManager session ;
+    String status="0";
 
     private int   selectedPosition=-1;
 
@@ -42,6 +46,7 @@ public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelec
 
     public LocationSelectionAdapter(List<ProfileGetSetMethod> horizontalList) {
         this.horizontalList = horizontalList;
+
     }
 
     @Override
@@ -62,14 +67,26 @@ public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelec
         final ProfileGetSetMethod profile = horizontalList.get(position);
 
         holder.radiobutton.setChecked(position == selectedPosition);
-        holder.radiobutton.setTag(position);
+       if(status.equalsIgnoreCase("0") && profile.getLoginchecked().equalsIgnoreCase("y")) {
+           holder.radiobutton.setChecked(true);
+status="1";
+       }
 
+        holder.radiobutton.setTag(position);
 holder.textviewLocation.setText(profile.getVillage_name());
 
 holder.radiobutton.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        selectedPosition = (Integer) v.getTag();
+
+      holder.radiobutton.setChecked(false);
+//        if(profile.getLoginchecked().equalsIgnoreCase("y")) {
+//            holder.radiobutton.setChecked(false);
+//        }
+            selectedPosition = (Integer) v.getTag();
+//        session.setLocationId(profile.getId());
+        new Login().selectedId=profile.getId();
+
         notifyDataSetChanged();
 Log.d("SelectedPosition",""+position+ profile.getVillage_name());
     }

@@ -48,12 +48,14 @@
 
 
             <TextView
+                android:id="@+id/visibiltytext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="If NO, when did you stop breastfeeding the child ? "
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
+                android:visibility="gone"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2"/>
             <Spinner
@@ -64,12 +66,14 @@
                 android:spinnerMode="dropdown"
                 android:paddingRight="8dp"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:textSize="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"/>
             <View
+                android:id="@+id/viewunderline"
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
                 android:layout_marginTop="-2dp"

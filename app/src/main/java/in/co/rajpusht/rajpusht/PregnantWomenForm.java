@@ -99,7 +99,7 @@ public class PregnantWomenForm extends AppCompatActivity {
 
 
     public void p1Clicked(){
-        session.setOtpKey("ACN 1 DATE");
+//        session.setOtpKey("ACN 1 DATE");
         Fragment fragment = null;
         fragment = new Pw1Fragment();
             p1.setVisibility(View.GONE);
@@ -125,7 +125,7 @@ public class PregnantWomenForm extends AppCompatActivity {
 
     public void p2Clicked(){
 
-        session.setOtpKey("ACN 2 DATE");
+//        session.setOtpKey("ACN 2 DATE");
         Fragment fragment = null;
         fragment = new Pw1Fragment();
         p1.setVisibility(View.GONE);

@@ -40,7 +40,9 @@ import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
+import extras.BaseUrl;
 import extras.FamilyDetailGetSet;
+import extras.SessionManager;
 
 public class DashBoard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -54,8 +56,8 @@ public class DashBoard extends AppCompatActivity
 
     ArrayList<FamilyDetailGetSet> ArrayfamilyDetails = new ArrayList<FamilyDetailGetSet>();
 
-
-
+TextView profilenametext;
+SessionManager session;
 
 CheckBox checkChild,checkPregnets;
 
@@ -67,10 +69,12 @@ CheckBox checkChild,checkPregnets;
         setSupportActionBar(toolbar);
 
        String vid = getIntent().getStringExtra("vid");
-
+        session= new SessionManager(DashBoard.this);
 
         checkChild = (CheckBox) findViewById(R.id.checkChild);
         checkPregnets= (CheckBox) findViewById(R.id.checkPregnet);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +97,12 @@ CheckBox checkChild,checkPregnets;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView =  navigationView.getHeaderView(0);
 //        pfname = (TextView)hView.findViewById(R.id.pfnm) ;
+        profilenametext = (TextView) hView.findViewById(R.id.profilename);
+        profilenametext.setText(session.getSurveyorName());
+
+       TextView textLoction= (TextView) hView.findViewById(R.id.textLoction);
+       textLoction.setText("Enumeration AWC :"+session.getAwcEng());
+
         profile = (ImageView)hView.findViewById(R.id.profile) ;
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,7 +238,7 @@ CheckBox checkChild,checkPregnets;
 
 
                 PullDataWebservice pulldata = new PullDataWebservice();
-                pulldata.execute("1");
+                pulldata.execute(session.getSurveyorId());
 
 
 
@@ -289,8 +299,8 @@ try {
     String jsonObjectString= jsonObject.toString(0);
     Log.d("JSONCHECK",jsonObjectString);
 
-//  PushData pushDaataClass = new PushData();
-//   pushDaataClass.execute(jsonObjectString);
+  PushData pushDaataClass = new PushData();
+   pushDaataClass.execute(jsonObjectString);
 
 }catch (Exception e){
     Log.d("JSONCHECK",e.toString());
@@ -429,6 +439,8 @@ try {
 
         String stringName=params[0];
 
+Log.d("DashPushJson",stringName);
+Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata/userid/"+session.getSurveyorId());
 
         try {
 
@@ -437,7 +449,8 @@ try {
             JSONObject jsonObject = new JSONObject();
 //
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://ecometrix.co.in/api/PmayMobile/InsertUserGeofenceDetails");
+            HttpPost httpPost = new HttpPost(
+                    new BaseUrl().base_url+"restservice/surveyor/sendsurveydata/userid/"+session.getSurveyorId());
             httpPost.setHeader("Content-Type", "application/json");
             httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
 //  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -687,7 +700,7 @@ return resultSet;
                 JSONObject jsonObject = new JSONObject();
 //
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://103.203.138.163/RAJICDSTRAINING/restservice/surveyor/getSurveyList/"+stringName);
+                HttpPost httpPost = new HttpPost(new BaseUrl().base_url+"restservice/surveyor/getSurveyList/"+stringName);
                 httpPost.setHeader("Content-Type", "application/json");
                 httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
 //  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

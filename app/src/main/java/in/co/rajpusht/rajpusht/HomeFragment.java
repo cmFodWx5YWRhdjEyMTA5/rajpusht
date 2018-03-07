@@ -116,6 +116,8 @@ String beneficiaryQuery="select a.Members_id ,a.family_id,a.name,b.members_id as
 
                     Intent intentLm = new Intent(getActivity().getApplicationContext(),LM_actvity.class);
                     intentLm.putExtra("name",beneficiaryList.getName());
+                    intentLm.putExtra("memberId",beneficiaryList.getMembers_id());
+                    intentLm.putExtra("current_sub_stage",beneficiaryList.getCurrent_sub_stage());
                     startActivity(intentLm);
                     getActivity().finish();
                 }
@@ -262,3 +264,4 @@ String beneficiaryQuery="select a.Members_id ,a.family_id,a.name,b.members_id as
     }
 
 }
+

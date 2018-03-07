@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="Sulochana Devi"
+                   android:id="@+id/profileName"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
@@ -228,8 +228,6 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-
-
                 />
 
             <TextView

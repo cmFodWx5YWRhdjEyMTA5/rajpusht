@@ -26,16 +26,20 @@ import java.net.HttpURLConnection;
 
 import extras.BaseUrl;
 import extras.DbHelper;
+import extras.SessionManager;
 
 public class Login extends AppCompatActivity {
-
-    public static String awc_code="08110080101";
-    public static String dist_code="08";
-    public static String project_code="11";
-    public static String sector_code="008";
-    public static String village_code="101";
-    public static  String surveyerId="1";
+    SessionManager session;
 //    public static String awc_code="08110080101";
+//    public static String dist_code="08";
+//    public static String project_code="11";
+//    public static String sector_code="008";
+//    public static String village_code="101";
+////    if()
+//    public   String surveyerId="11";
+//    public static String awc_code="08110080101";
+
+public static String selectedId="";
 
     EditText username,password;
 
@@ -46,11 +50,13 @@ public class Login extends AppCompatActivity {
 
         DbHelper db = new DbHelper(this);
 
+        session= new SessionManager(Login.this);
+
+
         getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        username = (EditText) findViewById(R.id.username
-        );
+        username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 
         Button login = (Button)findViewById(R.id.login);
@@ -145,6 +151,8 @@ public class Login extends AppCompatActivity {
 
             asyncDialog = new ProgressDialog(Login.this);
             asyncDialog.setMessage("Please wait data Validating..");
+            asyncDialog.setCanceledOnTouchOutside(false);
+            asyncDialog.setCancelable(false);
             asyncDialog.show();
 
 
@@ -171,6 +179,7 @@ public class Login extends AppCompatActivity {
 
                 JSONObject josnMainObject = new JSONObject(aVoid);
                 JSONArray jsonArrayAssignedLocation = josnMainObject.getJSONArray("assignedLocation");
+                JSONArray jsonArraySurveyorDetails = josnMainObject.getJSONArray("surveyorData");
                 for(int i=0;i<jsonArrayAssignedLocation.length();i++){
 
                     JSONObject jsonSubObject = jsonArrayAssignedLocation.getJSONObject(i);
@@ -185,10 +194,11 @@ public class Login extends AppCompatActivity {
                     String villageNameHindi = jsonSubObject.getString("villageNameHindi");
                     String villageCode = jsonSubObject.getString("villageCode");
 
+
                     String insertLocation="INSERT INTO ASSIGNED_LOCATION (DIST_CODE,PROJECT_CODE,SECTOR_CODE,VILLAGE_CODE," +
-                            "VILLAGE_ENG,VILLAGE_HINDI,AWC_CODE,SURVEYOR_NAME,SURVEYOR_ID) VALUES ('"
+                            "VILLAGE_ENG,VILLAGE_HINDI,AWC_CODE,SURVEYOR_NAME,SURVEYOR_ID,AWC_ENG,AWC_HINDI) VALUES ('"
                             + distcode +"','"+projectcode +"','"+ sectorcode + "','"+ villageCode +"','"+ villageName +
-                            "','"+ villageNameHindi + "','"+ awccode +"','soumya',"+surveyorId +")";
+                            "','"+ villageNameHindi + "','"+ awccode +"','soumya',"+surveyorId +",'"+awcName+"','"+awcNameHindi+"')";
 
                     SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
@@ -196,15 +206,45 @@ public class Login extends AppCompatActivity {
                     c.moveToFirst();
                     c.close();
 
+                }
+
+                for(int survid= 0;survid<jsonArraySurveyorDetails.length();survid++){
+
+                    JSONObject jsonObjectSurvey = jsonArraySurveyorDetails.getJSONObject(survid);
+
+                    String Name=jsonObjectSurvey.getString("name");
+//                     String password=jsonObjectSurvey.getString("");
+                     String  email=jsonObjectSurvey.getString("email");
+                    String phone=jsonObjectSurvey.getString("mobile");
+//                            String loged=jsonObjectSurvey.getString("Yes");
+                            String userId=jsonObjectSurvey.getString("surveyorId");
+                    session.setLogin();
+                    session.setSurveyorName(Name);
+session.setUserID(userId);
+                            String insertSurvoyourId="INSERT INTO SURVEYOR_LOGIN (USER_ID,PASSWORD,LOGED,EMAIL,MOBILE,NAME) VALUES ("+userId+",'"+ password.getText().toString() +"','Y','"+email+"','"+phone+"','"+Name+"')";
+                    SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+                    Cursor c = dbs.rawQuery(insertSurvoyourId,null);
+                    c.moveToFirst();
+                    c.close();
+                }
 
 
+String loginStatus = locationcheck();
+                if(loginStatus.equalsIgnoreCase("true")){
+                    Intent intentprofile = new Intent(getApplicationContext(),DashBoard.class);
+                    startActivity(intentprofile);
+                    finish();
+
+                }
+                else{
+
+                    Intent intentProfile = new Intent(getApplicationContext(),Profile.class);
+                    startActivity(intentProfile);
+                    finish();
                 }
 
                 asyncDialog.dismiss();
-                Intent i = new Intent(getApplicationContext(), DashBoard.class);
-                    startActivity(i);
-                    finish();
-
 
             } catch (Exception e) {
                 Log.d("Ranjeet", "ranjeet Error" + e.toString());
@@ -228,5 +268,40 @@ public class Login extends AppCompatActivity {
 
     }
 
+
+    public String  locationcheck(){
+        String status;
+
+        String checkQuery="SELECT * FROM ASSIGNED_LOCATION WHERE LOGIN='Y'";
+        SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+        Cursor c = dbs.rawQuery(checkQuery,null);
+        if(c.getCount()>0){
+
+            if (c.moveToFirst()) {
+                do {
+
+                    session.setAwcCode(c.getString(c.getColumnIndex("awc_code")));
+                    session.setDistCode(c.getString(c.getColumnIndex("dist_code")));
+                    session.setProjectCode(c.getString(c.getColumnIndex("project_code")));
+                    session.setSectorCode(c.getString(c.getColumnIndex("sector_code")));
+                    session.setVillageCode(c.getString(c.getColumnIndex("village_code")));
+                    session.setVillageEng(c.getString(c.getColumnIndex("village_eng")));
+                    session.setVillageHindi(c.getString(c.getColumnIndex("village_hindi")));
+                    session.setSurveyorName(c.getString(c.getColumnIndex("surveyor_name")));
+                    session.setSurveyorId(c.getString(c.getColumnIndex("surveyor_id")));
+
+
+                } while (c.moveToNext());
+            }
+
+            status="true";
+        }else{
+            status="false";
+
+        }
+
+        return status;
+    }
 
 }

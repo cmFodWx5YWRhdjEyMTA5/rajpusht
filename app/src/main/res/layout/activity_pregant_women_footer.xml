@@ -117,14 +117,14 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/date"
             android:layout_alignParentRight="true">
             <ImageView
                 android:id="@+id/naButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:gravity="center"
                 android:enabled="false"
                 android:src="@drawable/na"/>

@@ -47,6 +47,7 @@ import extras.FamilyDetailGetSet;
 import extras.MemberBasicGetSet;
 import extras.PregnantGetSet;
 import extras.RecyclerTouchListener;
+import extras.SessionManager;
 import extras.WomenBasicGetSet;
 
 public class RegistrationWomen extends AppCompatActivity  {
@@ -86,6 +87,7 @@ public class RegistrationWomen extends AppCompatActivity  {
     int activatedREgistrationForm;
     RecyclerView recyclerViewChild;
     ArrayList<String>  arrayNoOfChild = new ArrayList<String>();
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class RegistrationWomen extends AppCompatActivity  {
         getSupportActionBar().setTitle("BASIC");
 
         db= new DbHelper(this);
+        session = new SessionManager(RegistrationWomen.this);
 
         fragment_young_mother_basic_details = (View)findViewById(R.id.pregnentbasic);
         fragment_pregnant_lady_detail = (View)findViewById(R.id.pregnentDetails);
@@ -625,7 +628,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listcastSpinner.add(" Scheduled caste");
         listcastSpinner.add("Scheduled tribe");
         listcastSpinner.add("OBC");
-        listcastSpinner.add("None of them");
+        listcastSpinner.add("General");
         ArrayAdapter<String> dataAdaptercastSpinner = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listcastSpinner);
         dataAdaptercastSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -890,7 +893,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
                                                     int errorCode=validateBasicForm();
                                                     if(errorCode==0) {
 //                                                        Log.d("awc_code", new Login().awc_code);
-                                                        familyID = createFamilyId(new Login().awc_code);
+                                                        familyID = createFamilyId(session.getAwcCode());
 
                                                         insertFamily(familyID, "ADD");
                                                         String memberId = createMemberId(familyID);
@@ -1100,7 +1103,7 @@ return familyCode;
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-            FamilyDetailGetSet family = new FamilyDetailGetSet(familyId,religionitemposi, castitem, rationcardItem, familyttypeItem, new Login().dist_code, new Login().project_code,new Login().sector_code,new Login().awc_code, "1",new Login().village_code,"N");
+            FamilyDetailGetSet family = new FamilyDetailGetSet(familyId,religionitemposi, castitem, rationcardItem, familyttypeItem, session.getDistCode(), session.getProjectCode(),session.getSectorCode(),session.getAwcCode(), session.getSurveyorId(),session.getVillageCode(),"N");
            if(mode.equals("ADD")) {
             long id = db.addFamilyData(family);
              }
@@ -1162,7 +1165,7 @@ return familyCode;
         public String insertMemberMaster(String familyId,String memberId,String mode){
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString() ,aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
+      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString() ,aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y",session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
             String inserted = "0";
       if(mode.equals("ADD")) {
           long id = db.addMemberBasic(memberbasic);
@@ -1550,7 +1553,7 @@ public String insertPregnent(String memberId,String pregnentID){
 
     if(counted==0){
 Log.d("checkInsretd","Pregrncy Insreted");
-        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime()),"mobile","Y","","N","");
+        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime()),"mobile","Y","","N","");
        long id= db.addPregnant(pregnent);
        Log.d("CountPregnent","sucieesrate"+id);
 
@@ -1879,7 +1882,7 @@ return error;
         }
 
         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", new Login().surveyerId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
+        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
 
        db.addMemberBasic(memberbasic);
 try {
