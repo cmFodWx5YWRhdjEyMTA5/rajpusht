@@ -78,6 +78,7 @@ else{
 try {
     if (movie.getIs_anc().equalsIgnoreCase("n")) {
         holder.imageFlags.setBackgroundResource(R.drawable.flag);
+        holder.buttonststuss.setBackgroundResource(R.color.yellow);
     }
 }catch (Exception e){
     Log.d("IS_anc",e.toString());

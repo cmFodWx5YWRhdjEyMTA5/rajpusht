@@ -63,7 +63,7 @@ db=getWritableDatabase();
 
     //MEMBER _ BASIC
 
-    private static final String MEMBERS_ID= "Members_id";
+    private static final String MEMBERS_ID="Members_id";
 
     private static final String NAME = "name";
     private static final String DOR = "dor";

@@ -67,10 +67,14 @@ public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelec
         final ProfileGetSetMethod profile = horizontalList.get(position);
 
         holder.radiobutton.setChecked(position == selectedPosition);
-       if(status.equalsIgnoreCase("0") && profile.getLoginchecked().equalsIgnoreCase("y")) {
-           holder.radiobutton.setChecked(true);
-status="1";
-       }
+        try {
+            if (status.equalsIgnoreCase("0") && profile.getLoginchecked().equalsIgnoreCase("y")) {
+                holder.radiobutton.setChecked(true);
+                status = "1";
+            }
+        }catch (Exception e){
+
+        }
 
         holder.radiobutton.setTag(position);
 holder.textviewLocation.setText(profile.getVillage_name());

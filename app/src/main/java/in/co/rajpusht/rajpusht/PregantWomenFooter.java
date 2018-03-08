@@ -89,6 +89,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 
     EditText nameOfChild,orderOfBirth,childWeight;
     TextView dateOfDelivery,addchild;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +109,16 @@ public class PregantWomenFooter extends AppCompatActivity {
 
             linearMua.setVisibility(View.INVISIBLE);
                     muachole.setVisibility(View.INVISIBLE);
+        }
+
+        if(getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW1")||getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW2")){
+
+//            Log.d("Menu","inserted");
+//            MenuItem item = (MenuItem) findViewById(R.id.mybutton);
+//            item.setVisible(false);
+//            this.invalidateOptionsMenu();
+//            }
+
         }
 
         textLmpdate = (TextView) findViewById(R.id.date);
@@ -173,7 +184,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                 if(checkbox.isChecked()){
                     pw1_yesno.setVisibility(View.VISIBLE);
                     anetalcheck.setVisibility(View.INVISIBLE);
-
+                    chcekedNAM.setChecked(false);
                 }
                 else{
                     anetalcheck.setVisibility(View.VISIBLE);
@@ -795,7 +806,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                 "'"+  String.valueOf(deliveryPlaceItemSelected)+ "','"+ orderOfBirth.getText().toString()+ "','" +
                                 ""+ childWeight.getText().toString()+"','"+ String.valueOf(wasChildBornPosition)+ "','','N')";
 
-                        String pwtrackoff="UPDATE memberbasic SET IS_TO_TRACK = 'N',SURVEYOR_ID = '"+ session.getSurveyorId() +"',TIME_STAMP = '"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date())  +"',IS_NEW = 'E' WHERE MEMBERS_ID = '"+ getIntent().getStringExtra("members_id") +"'" ;
+                        String pwtrackoff="UPDATE memberbasic SET IS_TO_TRACK = 'N',SURVEYOR_ID = '"+ session.getSurveyorId() +"',TIME_STAMP = '"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date())  +"',IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end) WHERE MEMBERS_ID = '"+ getIntent().getStringExtra("members_id") +"'" ;
 
 
                         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
@@ -854,7 +865,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 
                         } else {
 
-                            NaQuery = "UPDATE PW_TRACKING SET IS_AVAILABLE = '" + is_available + "', NA_REASON = " + pw1_yesNoInt + ",IS_ANC = '" + ancValue + "',IS_NEW = 'N', TIME_STAMP='" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SURVEYOR_ID='" + session.getSurveyorId() + "',SOURCE='Mobile' " +
+                            NaQuery = "UPDATE PW_TRACKING SET IS_AVAILABLE = '" + is_available + "', NA_REASON = " + pw1_yesNoInt + ",IS_ANC = '" + ancValue + "',IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end), TIME_STAMP='" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SURVEYOR_ID='" + session.getSurveyorId() + "',SOURCE='Mobile' " +
                                     "WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + getIntent().getStringExtra("current_sub_stage") + "'";
                         }
 
@@ -947,7 +958,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     "'" + spinner_consult_selfString + "',IF_COUNSEL_ON_BF = '" + spend_on_bfString + "', SPEND_ON_FOOD = '" +
                                     spentOnFoodInt + "', HEIGHT = '" + Integer.parseInt(height.getText().toString()) + "',WEIGHT = " +
                                     "'" + Integer.parseInt(weight.getText().toString()) + "', SURVEYOR_ID = '" +
-                                    session.getSurveyorId() + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
+                                    session.getSurveyorId() + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' ,IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end) WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
 
 
                             SQLiteDatabase dsbss = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
@@ -968,7 +979,7 @@ if(cudiet.getCount()>=1) {
             " FEED_F_NOS = " + fn + ", FEED_G = '" + gf + "', FEED_G_NOS = " + gn + ",FEED_H = '" + hf + "', " +
             "FEED_H_NOS = " + hn + ",FEED_I = '" + i_f + "',FEED_I_NOS = " + in + ",FEED_J = '" + jf + "'," +
             "FEED_J_NOS = " + jn + ",FEED_K = '" + kf + "', FEED_K_NOS = " + kn + ",FEED_L = '" + lf + "',FEED_L_NOS = " +
-            "" + ln + ", FEED_M = '" + mf + "',   FEED_M_NOS = " + mn + " WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") +
+            "" + ln + ", FEED_M = '" + mf + "',   FEED_M_NOS = " + mn + ",IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end) WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") +
             "' AND SUB_STAGE = '" + pwActive_subStage + "'";
 }
 else{
@@ -1680,7 +1691,7 @@ errorCode="1";
         if(checkbox.isChecked() && pw1_yesnoString.equalsIgnoreCase("--Select Options--")){
 
             errorCode="1";
-            Toast.makeText(PregantWomenFooter.this, "Select A Value ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PregantWomenFooter.this, "Select an Option", Toast.LENGTH_SHORT).show();
         }
 
      return   errorCode;
@@ -1690,6 +1701,7 @@ errorCode="1";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu=menu;
         getMenuInflater().inflate(R.menu.mymenu, menu);
         return super.onCreateOptionsMenu(menu);
     }

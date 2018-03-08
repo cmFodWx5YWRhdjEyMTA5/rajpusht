@@ -54,6 +54,8 @@ public class DashBoard extends AppCompatActivity
     String selectionstatus=null;
     RelativeLayout relativePregnent,realtiveYoungMother,relativeLactingMother;
 
+    Fragment fragmentt = null;
+
     ArrayList<FamilyDetailGetSet> ArrayfamilyDetails = new ArrayList<FamilyDetailGetSet>();
 
 TextView profilenametext;
@@ -225,6 +227,8 @@ CheckBox checkChild,checkPregnets;
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
 //                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
+                session.logoutUser();
+
             }
         });
 
@@ -298,12 +302,16 @@ try {
 
     String jsonObjectString= jsonObject.toString(0);
     Log.d("JSONCHECK",jsonObjectString);
+    Log.d("JSONCHECK",pregnent.toString());
+    Log.d("JSONCHECK",women_extra.toString());
 
   PushData pushDaataClass = new PushData();
    pushDaataClass.execute(jsonObjectString);
 
 }catch (Exception e){
-    Log.d("JSONCHECK",e.toString());
+
+    Log.d("JSONCHECK",e.toString()+"Error pusjh");
+
 }
 
             }
@@ -395,7 +403,6 @@ try {
 
     private void displaySelectedScreen(int itemId) {
 
-        Fragment fragmentt = null;
 
         //initializing the fragment object which is selected
         switch (itemId) {
@@ -440,7 +447,7 @@ try {
         String stringName=params[0];
 
 Log.d("DashPushJson",stringName);
-Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata/userid/"+session.getSurveyorId());
+Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata/"+session.getSurveyorId());
 
         try {
 
@@ -450,7 +457,7 @@ Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata
 //
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(
-                    new BaseUrl().base_url+"restservice/surveyor/sendsurveydata/userid/"+session.getSurveyorId());
+                    new BaseUrl().base_url+"restservice/surveyor/sendsurveydata/"+session.getSurveyorId());
             httpPost.setHeader("Content-Type", "application/json");
             httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
 //  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -495,6 +502,21 @@ Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata
 //
 
         try {
+
+            if(aVoid.equalsIgnoreCase("true")){
+
+
+                ExeuteQuery("update family set is_new=null");
+                ExeuteQuery("update members set is_new=null");
+                ExeuteQuery("update pregnant set is_new=null");
+                ExeuteQuery("update women_extra set is_new=null");
+                ExeuteQuery("update child_extra set is_new=null");
+                ExeuteQuery("update pw_tracking set is_new=null");
+                ExeuteQuery("update child_tracking set is_new=null");
+                ExeuteQuery("update diet set is_new=null");
+
+
+            }
 
 //                uid="ranjeet";
 
@@ -698,6 +720,8 @@ return resultSet;
                 HttpResponse response;
 
                 JSONObject jsonObject = new JSONObject();
+
+                Log.d("dashboradUrl",new BaseUrl().base_url+"restservice/surveyor/getSurveyList/"+stringName);
 //
                 HttpClient httpClient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(new BaseUrl().base_url+"restservice/surveyor/getSurveyList/"+stringName);
@@ -705,8 +729,8 @@ return resultSet;
                 httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
 //  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-//                httpPost.setHeader("Accept-Encoding", "application/json");
-//                httpPost.setHeader("Accept-Language", "en-US");
+                httpPost.setHeader("Accept", "application/json");
+                httpPost.setHeader("Accept-Language", "en-US");
                 response = httpClient.execute(httpPost);
 
 //                String the_string_response = convertResponseToString(response);
@@ -715,7 +739,7 @@ return resultSet;
 //                Log.w("QueingSystem", EntityUtils.toString(response.getEntity()));
                 value= EntityUtils.toString(response.getEntity());
 
-                Log.w("LoginDetails",value);
+                Log.w("LoginDetails",value.toString());
 
 
             } catch (Exception e) {
@@ -834,10 +858,10 @@ return resultSet;
 String insertmemberBasic="INSERT INTO memberbasic (MEMBERS_ID,FAMILY_ID,NAME,DOR,DOENTRY,DOEXIT,DOB,AGE,IF_DOB_ASSUMED,DODEATH," +
         "AADDHAR,AADDHAR_ENROL_NO,AADDHAR_DATE_STAMP,AADDHAR_TIME_STAMP,BHAMASHA, MOBILE,RELATION,SEX,HANDICAP," +
         "IF_MARRIED,MOTHER_ID,STATUS,STAGE,SUB_STAGE,IS_TO_TRACK,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW) VALUES (" +
-        "' " +membersId +"','"+ familyId + "','"+ name +"','"+ dor +"','"+ doentry +"','"+ doexit +"','"
+        "'" +membersId +"','"+ familyId + "','"+ name +"','"+ dor +"','"+ doentry +"','"+ doexit +"','"
                         + dob +"','"+ age +"','"+ ifDobAssumed +"','"+ dodeath +"','"+ aaddhar +"','"
                         + aaddharEnrolNo +"','"+ aaddharDateStamp+ "','"+ aaddharTimeStamp +"','"+ bhamasha +"','"
-                        + mobile + "',"+ relation +",'"+ sex +"','"+ handicap +"','"+ ifMarried +"','"+ motherId +"','"
+                        + mobile + "','"+ relation +"','"+ sex +"','"+ handicap +"','"+ ifMarried +"','"+ motherId +"','"
                         + status +"','"+ stage +"','"+ subStage +"','"+ isToTrack +"','"+ surveyorId +"','"+ timeStamp +"','"
                         + source +"','"+ isApproved +"','')";
 
@@ -938,6 +962,7 @@ ExeuteQuery(dietQuery);
             for(int fdetails=0;fdetails<jsonArrayfamilyDetails.length();fdetails++){
 
                 JSONObject jsonObjectFDetails= jsonArrayfamilyDetails.getJSONObject(fdetails);
+
                 String familyType = jsonObjectFDetails.getString("familyType");
                 String sectorCode=jsonObjectFDetails.getString("sectorCode");
                 String religion=jsonObjectFDetails.getString("religion");
@@ -988,7 +1013,7 @@ ExeuteQuery(dietQuery);
                 String womenExtraQuery="INSERT INTO WOMENEXTRA (MEMBERS_ID,EDUCATION,COOKING_FUEL,DECISIONMAKER_OWN_HEALTH,DECISIONMAKER_CHILD_HEALTH,if_bank_account,AC_HOLDER_NAME,BANK_NAME,BRANCH,AC_NO, IFSC_CODE,BANK_DISTANCE,POSTOFFICE_NAME,POSTOFFICE_ADDRESS,PIN_CODE,POST_OFFICE_AC,HOEMO_CODE,IS_APPROVED,IS_NEW) VALUES (" +
                         "'"+ membersId +"','"+ education +"','"+ cookingFuel +"','"+ decisionmakerOwnHealth +"','"+ decisionmakerChildHealth +"'," +
                         "'"+ ifBankAccont +"','"+ acHolderName +"','"+ bankName +"','"+ branch +"','"+ acNo +"','"+ ifscCode +"'," +
-                        ""+bankDistance+",'"+ postofficeName +"','"+ postofficeAddress +"','"+ pinCode +"','"+ postOfficeAc +"'," +
+                        "'"+bankDistance+"','"+ postofficeName +"','"+ postofficeAddress +"','"+ pinCode +"','"+ postOfficeAc +"'," +
                         "'"+ hoemoCode +"','"+ isApproved +"','')";
 ExeuteQuery(womenExtraQuery);
 
@@ -1085,7 +1110,13 @@ ExeuteQuery(womenExtraQuery);
                 ExeuteQuery(QueryPregnent);
             }
 
-
+            fragmentt = new HomeFragment();
+            if (fragmentt != null) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.mainframe, fragmentt);
+                fragmentTransaction.commit();
+            }
 
         }catch (Exception e){
             Log.d("RanjeetPullData",e.toString());
