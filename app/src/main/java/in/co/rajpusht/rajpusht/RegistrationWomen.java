@@ -15,6 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ActionMode.Callback;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -65,14 +68,14 @@ public class RegistrationWomen extends AppCompatActivity  {
    DbHelper db;
     EditText nameBenificery,phoneNumber,usidNumber,nameaccountholder, bhamashahNumber,aadharNumber,aadharenrollment,personAge, nameofbank, branchname,
             bankaccountnumber, ifsccode, distancetobranch, distancenearestatm, nameofpostoffice, addressofpostoffice, postofficeaccount, postofficepincode,
-            hoemocode;
+            confirmnameaccountholder,confirmbankaccountnumber, confirmifsccode, hoemocode;
     TextView datee, time, lmpdate, dob;
     RadioGroup bankgroup;
     Spinner personaReligion,castSpinner,rationcardColorSpinner,relationshipHeadSpinner,typeFamilySpinner,educationComplted,fuelSelectionSpinner,
             decsionSpinner,decsionVisitDoctorSpinner;
     View fragment_pregnant_lady_detail,fragment_young_mother_basic_details,childDetails;
     EditText pregnetNumnber;
-    String educationItem, accountype = "N", reli, cst, rati, rela, fami, fuel, deci, visi;
+    String educationItem, accountype = "N", reli, cst, rati, rela, fami, fuel, deci, visi,ageS;
     private int mYear, mMonth, mDay, mHour, mMinute, mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2;
     Dialog dialogCoupon;
 
@@ -346,9 +349,12 @@ public class RegistrationWomen extends AppCompatActivity  {
         postofficeaccount = (EditText) findViewById(R.id.postofficeaccount);
         postofficepincode = (EditText) findViewById(R.id.postofficepincode);
         hoemocode = (EditText) findViewById(R.id.hoemocode);
+        confirmnameaccountholder = (EditText) findViewById(R.id.confirmnameaccountholder);
+        confirmbankaccountnumber = (EditText) findViewById(R.id.confirmbankaccountnumber);
+        confirmifsccode = (EditText) findViewById(R.id.confirmifsccode);
 
         //child name
-
+        edittextValidate();
 
 
 
@@ -1165,7 +1171,7 @@ return familyCode;
         public String insertMemberMaster(String familyId,String memberId,String mode){
 
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString(),aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y",session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
+      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString(),aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y",session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
             String inserted = "0";
       if(mode.equals("ADD")) {
           long id = db.addMemberBasic(memberbasic);
@@ -1179,7 +1185,7 @@ return familyCode;
           ContentValues contentValue = new ContentValues();
           contentValue.put("name",nameBenificery.getText().toString());
 //          contentValue.put("dor",new SimpleDateFormat("yyy-MM-dd", Locale.getDefault()).format(new Date()));
-          contentValue.put("doentry",new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
+          contentValue.put("doentry",new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()));
 //          Log.d("updateValue",memberId);
 //          Log.d("MemberID",nameBenificery.getText().toString());
 
@@ -1331,6 +1337,10 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
         error =1;
     }
 
+    if(Integer.parseInt(personAge.getText().toString())< 12){
+               Toast.makeText(this, "Age must not be less then 12", Toast.LENGTH_SHORT).show();
+         }
+
 
     if(error==0 && reli.equalsIgnoreCase("--Select Options--")){
         personaReligion.requestFocus();
@@ -1388,6 +1398,13 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
             Toast.makeText(this, "Enter Account Holder Name", Toast.LENGTH_SHORT).show();
             error =1;
         }
+
+        if(error==0 && !confirmnameaccountholder.getText().toString().equalsIgnoreCase(nameaccountholder.getText().toString())){
+            confirmnameaccountholder.requestFocus();
+            imm.showSoftInput(confirmnameaccountholder, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Confirm Bank Account Holder Name", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
         if(error == 0 && nameofbank.getText().toString().length()==0 ){
             nameofbank.requestFocus();
             imm.showSoftInput(nameofbank, InputMethodManager.SHOW_IMPLICIT);
@@ -1401,18 +1418,35 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
             Toast.makeText(this, "Enter Branch Name", Toast.LENGTH_SHORT).show();
             error =1;
         }
-        if(error == 0 && bankaccountnumber.getText().toString().length()==0 ){
+        if((error == 0 && bankaccountnumber.getText().toString().length()==0 ) ){
             bankaccountnumber.requestFocus();
             imm.showSoftInput(bankaccountnumber, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Bank Account Number", Toast.LENGTH_SHORT).show();
             error =1;
         }
-        if(error == 0 && ifsccode.getText().toString().length()==0 ){
+        if(error == 0 &&!confirmbankaccountnumber.getText().toString().equalsIgnoreCase(bankaccountnumber.getText().toString())){
+            confirmbankaccountnumber.requestFocus();
+            imm.showSoftInput(confirmbankaccountnumber, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Correct  Account Number", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
+        if((error == 0 && ifsccode.getText().toString().length()==0) ){
             ifsccode.requestFocus();
             imm.showSoftInput(ifsccode, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Bank IFSC Code", Toast.LENGTH_SHORT).show();
             error =1;
-        }if(error == 0 && distancetobranch.getText().toString().length()==0 ){
+        }
+
+        if(error == 0 && !confirmifsccode.getText().toString().equalsIgnoreCase(ifsccode.getText().toString())){
+
+            confirmifsccode.requestFocus();
+            imm.showSoftInput(ifsccode, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Confirm Bank IFSC Code", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
+
+
+        if(error == 0 && distancetobranch.getText().toString().length()==0 ){
             distancetobranch.requestFocus();
             imm.showSoftInput(distancetobranch, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Distance", Toast.LENGTH_SHORT).show();
@@ -1521,7 +1555,13 @@ return error;
         }
 
         Integer ageInt = new Integer(age);
-        String ageS = ageInt.toString();
+
+        if(ageInt<0){
+                   ageS = "0";
+                  }else {
+                    ageS = ageInt.toString();
+                 }
+//        String ageS = ageInt.toString();
         personAge.setText(ageS);
         personAge.setEnabled(false);
 //        Log.d("age",ageS);
@@ -1553,7 +1593,7 @@ public String insertPregnent(String memberId,String pregnentID){
 
     if(counted==0){
 Log.d("checkInsretd","Pregrncy Insreted");
-        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString()+" 00:00:00.0",  session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime()),"mobile","Y","","N","");
+        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()),"mobile","Y","","N","");
        long id= db.addPregnant(pregnent);
        Log.d("CountPregnent","sucieesrate"+id);
 
@@ -1882,7 +1922,7 @@ return error;
         }
 
         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
+        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
 
        db.addMemberBasic(memberbasic);
 try {
@@ -2085,15 +2125,14 @@ public void clearChildForm(){
 
 }
 
-public void getChildDetails(String childidfromDatabase){
+public void getChildDetails(String childidfromDatabase) {
 
-    childSavingMode="edit";
-
+    childSavingMode = "edit";
 
 
     SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
-    Cursor c = dbs.rawQuery("select b.members_id, b.name,b.sex,c.dodelivery,c.delivery_place,c.child_order,c.birth_wt,c.full_term  from memberbasic b left join childextra c on b.Members_id=c.Members_id where b.Members_id='"+childidfromDatabase+"'",null);
+    Cursor c = dbs.rawQuery("select b.members_id, b.name,b.sex,c.dodelivery,c.delivery_place,c.child_order,c.birth_wt,c.full_term  from memberbasic b left join childextra c on b.Members_id=c.Members_id where b.Members_id='" + childidfromDatabase + "'", null);
     int total = c.getCount();
     if (total >= 1) {
 
@@ -2101,7 +2140,7 @@ public void getChildDetails(String childidfromDatabase){
         if (c.moveToFirst()) {
             do {
 //             arrayNoOfChild.add(c.getString(c.getColumnIndex("Members_id")));
-                 Log.d("NumberOFChild", "orderofPRegncy" + c.getString(c.getColumnIndex("Members_id")));
+                Log.d("NumberOFChild", "orderofPRegncy" + c.getString(c.getColumnIndex("Members_id")));
 
                 dateOfDelivery.setText(c.getString(c.getColumnIndex("dodelivery")));
                 nameOfChild.setText(c.getString(c.getColumnIndex("name")));
@@ -2109,19 +2148,16 @@ public void getChildDetails(String childidfromDatabase){
 
                 childWeight.setText(c.getString(c.getColumnIndex("birth_wt")));
 
-                Log.d("spinnerSelection",""+c.getString(c.getColumnIndex("delivery_place")));
-                Log.d("spinnerSelection",""+c.getColumnIndex("delivery_place"));
+                Log.d("spinnerSelection", "" + c.getString(c.getColumnIndex("delivery_place")));
+                Log.d("spinnerSelection", "" + c.getColumnIndex("delivery_place"));
                 placeofDelivery.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("delivery_place"))));
-                if(c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("M"))
-                {
+                if (c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("M")) {
                     sexOfchild.setSelection(1);
                 }
-                if(c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("F"))
-                {
+                if (c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("F")) {
                     sexOfchild.setSelection(2);
                 }
-                if(c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("I"))
-                {
+                if (c.getString(c.getColumnIndex("sex")).equalsIgnoreCase("I")) {
                     sexOfchild.setSelection(3);
                 }
 //                sexOfchild.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("sex"))));
@@ -2134,11 +2170,163 @@ public void getChildDetails(String childidfromDatabase){
         }
 
 
-
     }
 
 
+}
+
+    public void edittextValidate(){
+//    nameaccountholder,bankaccountnumber, ifsccode, confirmnameaccountholder,confirmbankaccountnumber, confirmifsccode
+
+        nameaccountholder.setCustomSelectionActionModeCallback(new Callback() {
+
+
+            @Override
+            public boolean onCreateActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(android.view.ActionMode mode, MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(android.view.ActionMode mode) {
+
+            }
+        });
+
+        confirmnameaccountholder.setCustomSelectionActionModeCallback(new Callback() {
+
+
+            @Override
+            public boolean onCreateActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(android.view.ActionMode mode, MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(android.view.ActionMode mode) {
+
+            }
+        });
+
+        bankaccountnumber.setCustomSelectionActionModeCallback(new Callback() {
+
+
+            @Override
+            public boolean onCreateActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(android.view.ActionMode mode, MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(android.view.ActionMode mode) {
+
+            }
+        });
+
+        confirmbankaccountnumber.setCustomSelectionActionModeCallback(new Callback() {
+
+
+            @Override
+            public boolean onCreateActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(android.view.ActionMode mode, MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(android.view.ActionMode mode) {
+
+            }
+        });
+
+        ifsccode.setCustomSelectionActionModeCallback(new Callback() {
+
+
+            @Override
+            public boolean onCreateActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(android.view.ActionMode mode, MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(android.view.ActionMode mode) {
+
+            }
+        });
+
+        confirmifsccode.setCustomSelectionActionModeCallback(new Callback() {
+
+
+            @Override
+            public boolean onCreateActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(android.view.ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(android.view.ActionMode mode, MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(android.view.ActionMode mode) {
+
+            }
+        });
+
+
+
+    }
 
 }
 
-}
+
+

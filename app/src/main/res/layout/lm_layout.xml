@@ -17,6 +17,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/breastfeedingTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Are you currently breastfeeding ?"
@@ -81,43 +82,11 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/gray"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on how to feed your infant after delivery, how and when to breastfeed, what to feed the child in the first six months, etc. ? "
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="15dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@color/view2"/>
-            <Spinner
-                android:id="@+id/ngoinfantfeed"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:paddingLeft="8dp"
-                android:spinnerMode="dropdown"
-                android:paddingRight="8dp"
-                android:singleLine="true"
-                android:textSize="13dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.75dp"
-                android:layout_marginTop="-2dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/gray"/>
 
-            <LinearLayout
-                android:id="@+id/zerothree"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+
 
                 <TextView
+                    android:id="@+id/childBreastTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="After birth, when did you FIRST put your child to breast ? "
@@ -148,6 +117,7 @@
                     android:background="@color/gray"/>
 
                 <TextView
+                    android:id="@+id/khesstest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Did you feed your child the first yellow, thick breast milk (khees)? "
@@ -178,6 +148,7 @@
                     android:background="@color/gray"/>
 
                 <TextView
+                    android:id="@+id/otherfoodbeforebreastfeedTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Did you or anyone else give anything such as honey, water, tea, jaggary, ghutti, etc. before initiating breastfeeding ? "
@@ -208,6 +179,7 @@
                     android:background="@color/gray"/>
 
                 <TextView
+                    android:id="@+id/liquidotherthenbreastfeedingtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Have you or anyone else ever given any liquid other than breastmilk (such as water, gripe water, sugar-water, fruit juice, honey, tea/coffee, infant formula, etc.) since the child was born ?"
@@ -237,15 +209,10 @@
                     android:layout_marginRight="10dp"
                     android:background="@color/gray"/>
 
-            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/threesix"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/ngoownfoodtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on what YOU need to eat and how much while you are breastfeeding ? "
@@ -276,6 +243,38 @@
                 android:background="@color/gray"/>
 
             <TextView
+                android:id="@+id/ngoinfantfeedtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on how to feed your infant after delivery, how and when to breastfeed, what to feed the child in the first six months, etc. ? "
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
+            <Spinner
+                android:id="@+id/ngoinfantfeed"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="8dp"
+                android:spinnerMode="dropdown"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:id="@+id/householdexpencetext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="On an average, how much does your entire household spend per month on buying foods and food items ? "
@@ -306,17 +305,11 @@
                 android:background="@color/gray"/>
 
 
-            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/six"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
+
 
             <TextView
+                android:id="@+id/semisolidfoodtochildtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Have you started giving your child any solid, semi-solid, or soft-food (such as mashed potato, rice, daal, cerelac, mashed eggs, roti, vegetables, etc.) ?"
@@ -347,6 +340,7 @@
                 android:background="@color/gray"/>
 
             <TextView
+                android:id="@+id/solidfoodmonthtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="If yes, at which month did you first give the child the solid, semi-solid or soft food ? "
@@ -356,18 +350,19 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2"/>
             <EditText
-                android:id="@+id/height"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:inputType="numberDecimal"
+                android:id="@+id/solidfoodmonth"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/box1"
-                android:gravity="center" />
 
-            </LinearLayout>
+                android:inputType="numberDecimal" />
+
 
         </LinearLayout>
+
+
 
     </ScrollView>
 

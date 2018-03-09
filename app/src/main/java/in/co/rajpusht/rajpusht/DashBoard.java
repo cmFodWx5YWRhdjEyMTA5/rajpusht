@@ -503,21 +503,21 @@ Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata
 
         try {
 
-            if(aVoid.equalsIgnoreCase("true")){
+            if(aVoid.equalsIgnoreCase("true")|| aVoid.equalsIgnoreCase("false")){
 
 
-                ExeuteQuery("update family set is_new=null");
-                ExeuteQuery("update members set is_new=null");
+                ExeuteQuery("update familydata set is_new=null");
+                ExeuteQuery("update memberbasic set is_new=null");
                 ExeuteQuery("update pregnant set is_new=null");
-                ExeuteQuery("update women_extra set is_new=null");
-                ExeuteQuery("update child_extra set is_new=null");
+                ExeuteQuery("update womenextra set is_new=null");
+                ExeuteQuery("update childextra set is_new=null");
                 ExeuteQuery("update pw_tracking set is_new=null");
                 ExeuteQuery("update child_tracking set is_new=null");
                 ExeuteQuery("update diet set is_new=null");
 
 
             }
-
+//
 //                uid="ranjeet";
 
 //                if(arraydata!=null){
@@ -525,10 +525,9 @@ Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata
 //                }
 //                getCaptured();
             try {
+
                 Toast.makeText(DashBoard.this, "Inserted Succesfully", Toast.LENGTH_SHORT).show();
-
                 asyncDialog.cancel();
-
                 onBackPressed();
 
             }catch(Exception e){

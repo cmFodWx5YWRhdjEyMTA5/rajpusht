@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearMotherForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="Mother Form"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Foods made from grains – Khichdi, bread/roti, rice, noodles, pasta, baati, naan, bazra, makka, oat, millet, panjari (THR), or others"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/a_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:id="@+id/a_no"
+                        android:maxLength="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="number"
+                        android:visibility="invisible"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any foods made from pulses, beans, peas, lentils, nuts, or seeds (Any Daal, razma, chhole, mattar, soyabean, urad, besan pakoda, kaadi, sambhar, vada, mungfali, kaaju, pista, badam, akhrot, sunflower seeds, teel, watermelon seed, peanut butter, etc.)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/b_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+                        android:id="@+id/b_no"
+                        android:maxLength="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="number"
+                        android:visibility="invisible"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any dark green leafy vegetables, such as palak, methi, bathua, sarson ka saag, gajar/mooli ka patta, lauki ka patta, brocoli, chana/mutter saag, drumstick, lettuce, pootato leaves, etc."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/c_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+                        android:maxLength="2"
+                        android:visibility="invisible"
+                        android:id="@+id/c_no"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="White roots and tubers – Aaloo, mooli, aarbi, white yam, salgham, lotus root, singhara."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/d_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:maxLength="2"
+                        android:visibility="invisible"
+                        android:id="@+id/d_no"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any milk or milk products (dahi, chhena, paneer, burfi, lassi, raita, kheer) (Do not include butter or ice-cream)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/e_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/e_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Other Vitamin A-rich fruits and vegetables (Pumpkin, carrots, beetroot, squash, sweet potatoes, red/yellow peppers, mango, papaya, kharbooja, aadoo, khubani, tomato,  that are yellow or orange inside)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/f_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/f_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any type of meat or poultry including lamb, goat, chicken, birds, and gurda-kaleeji"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/g_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/g_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Eggs – eggs from chicken, ducks, or other birds"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/h_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/h_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any fresh or dried fish, shell-fish, or seafood"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/i_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/i_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="All other fruits and vegetables – Apple, kela, jamoon, babbugosa, nariyal, khajoor, angoor, amroot, tarbooj, amla, kathal, litchi, orange, neembu, annanas, peach, strawberry, starfruit, imli, pattagobi, phoolgobi, bengan, simla mirch, mushroom, bhindi, peyaz, lauki, all other subzi."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/j_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/j_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any fried, or deep fried foods, such as poori, pakoda, bada, bonda, potato-chips, bhujia, samosa, or food with added oil, fats, butter, ghee."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/k_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/k_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any sugary foods and drink such as packed juice-drink, chocolates, sweets, candies, pastries, cakes, biscuits, cookies, ice-cream, halwa, honey, jam, besan/boondi laddu, jalebi, gulab jamoon, all other sweets not made from milk"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/l_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/l_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:maxLength="2"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Other foods and Liquids (thin porridge, soups, fresh squeezed juice, mattha, jal-jeera, cold-drinks, pepsi, daal-ka-paani, chawal-ka-maad, chhaye, coffee, etc.)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/m_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/m_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/linearChildForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="Child Form"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Foods made from grains – Khichdi, bread/roti, rice, noodles, pasta, baati, naan, bazra, makka, oat, millet, panjari (THR), or others"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/ca_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:id="@+id/ca_no"
+                        android:maxLength="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="number"
+                        android:visibility="invisible"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any foods made from pulses, beans, peas, lentils, nuts, or seeds (Any Daal, razma, chhole, mattar, soyabean, urad, besan pakoda, kaadi, sambhar, vada, mungfali, kaaju, pista, badam, akhrot, sunflower seeds, teel, watermelon seed, peanut butter, etc.)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+                        android:id="@+id/cb_no"
+                        android:maxLength="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="number"
+                        android:visibility="invisible"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any dark green leafy vegetables, such as palak, methi, bathua, sarson ka saag, gajar/mooli ka patta, lauki ka patta, brocoli, chana/mutter saag, drumstick, lettuce, pootato leaves, etc."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cc_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+                        android:maxLength="2"
+                        android:visibility="invisible"
+                        android:id="@+id/cc_no"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="White roots and tubers – Aaloo, mooli, aarbi, white yam, salgham, lotus root, singhara."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cd_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:maxLength="2"
+                        android:visibility="invisible"
+                        android:id="@+id/cd_no"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any milk or milk products (dahi, chhena, paneer, burfi, lassi, raita, kheer) (Do not include butter or ice-cream)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/ce_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/ce_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Other Vitamin A-rich fruits and vegetables (Pumpkin, carrots, beetroot, squash, sweet potatoes, red/yellow peppers, mango, papaya, kharbooja, aadoo, khubani, tomato,  that are yellow or orange inside)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cf_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/cf_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any type of meat or poultry including lamb, goat, chicken, birds, and gurda-kaleeji"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cg_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/cg_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Eggs – eggs from chicken, ducks, or other birds"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/ch_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/ch_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any fresh or dried fish, shell-fish, or seafood"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/ci_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+                        android:visibility="invisible"
+                        android:id="@+id/ci_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="All other fruits and vegetables – Apple, kela, jamoon, babbugosa, nariyal, khajoor, angoor, amroot, tarbooj, amla, kathal, litchi, orange, neembu, annanas, peach, strawberry, starfruit, imli, pattagobi, phoolgobi, bengan, simla mirch, mushroom, bhindi, peyaz, lauki, all other subzi."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cj_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/cj_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any fried, or deep fried foods, such as poori, pakoda, bada, bonda, potato-chips, bhujia, samosa, or food with added oil, fats, butter, ghee."
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/ck_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/ck_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Any sugary foods and drink such as packed juice-drink, chocolates, sweets, candies, pastries, cakes, biscuits, cookies, ice-cream, halwa, honey, jam, besan/boondi laddu, jalebi, gulab jamoon, all other sweets not made from milk"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cl_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/cl_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:maxLength="2"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+
+                    android:background="@color/view2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Other foods and Liquids (thin porridge, soups, fresh squeezed juice, mattha, jal-jeera, cold-drinks, pepsi, daal-ka-paani, chawal-ka-maad, chhaye, coffee, etc.)"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textColor="@color/view2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:id="@+id/cm_food"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="3"/>
+
+                    <EditText
+
+                        android:visibility="invisible"
+                        android:id="@+id/cm_no"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

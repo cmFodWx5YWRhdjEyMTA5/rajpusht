@@ -659,7 +659,6 @@
                     android:text=" Name of account holder "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
-
                 <EditText
                     android:id="@+id/nameaccountholder"
                     android:layout_width="match_parent"
@@ -667,6 +666,30 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
+                    android:inputType="textPassword"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Confirm Name of account holder "
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+                <EditText
+                    android:id="@+id/confirmnameaccountholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
@@ -682,7 +705,6 @@
                     android:text=" Name of bank "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
-
                 <EditText
                     android:id="@+id/nameofbank"
                     android:layout_width="match_parent"
@@ -705,7 +727,6 @@
                     android:text=" Branch name "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
-
                 <EditText
                     android:id="@+id/branchname"
                     android:layout_width="match_parent"
@@ -728,9 +749,31 @@
                     android:text=" Account number "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
-
                 <EditText
                     android:id="@+id/bankaccountnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:inputType="numberPassword"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Confirm Account number "
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+                <EditText
+                    android:id="@+id/confirmbankaccountnumber"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
@@ -752,7 +795,6 @@
                     android:text=" IFSC code "
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
-
                 <EditText
                     android:id="@+id/ifsccode"
                     android:layout_width="match_parent"
@@ -760,6 +802,30 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
+                    android:inputType="textPassword"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Confirm IFSC code "
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+                <EditText
+                    android:id="@+id/confirmifsccode"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
@@ -921,6 +987,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
+                    android:maxLength="6"
+                    android:inputType="number"
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
@@ -934,6 +1002,7 @@
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
                     android:text=" HOEMO code "
+                    android:visibility="gone"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
@@ -944,6 +1013,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
+                    android:text="0"
+                    android:visibility="gone"
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"

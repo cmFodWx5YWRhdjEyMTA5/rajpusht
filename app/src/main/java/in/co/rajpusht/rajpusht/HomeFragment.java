@@ -120,6 +120,7 @@ public class HomeFragment extends Fragment {
                     intentLm.putExtra("name",beneficiaryList.getName());
                     intentLm.putExtra("memberId",beneficiaryList.getMembers_id());
                     intentLm.putExtra("current_sub_stage",beneficiaryList.getCurrent_sub_stage());
+                    intentLm.putExtra("motherId",beneficiaryList.getMotherId());
                     startActivity(intentLm);
                     getActivity().finish();
                 }
@@ -241,7 +242,8 @@ public class HomeFragment extends Fragment {
                     BeneficiaryList benefic = new BeneficiaryList(c.getString(c.getColumnIndex("Members_id")), c.getString(c.getColumnIndex("family_id")), c.getString(c.getColumnIndex("name")), c.getString(c.getColumnIndex("mother_id")),
                             c.getString(c.getColumnIndex("mother")), c.getString(c.getColumnIndex("status")),
                                     c.getString(c.getColumnIndex("stage")), c.getString(c.getColumnIndex("sub_stage")),
-                                            c.getString(c.getColumnIndex("lmp_date")), c.getString(c.getColumnIndex("dodelivery")), c.getString(c.getColumnIndex("current_sub_stage")),c.getString(c.getColumnIndex("pregnancy_id")),c.getString(c.getColumnIndex("is_anc")));
+                                            c.getString(c.getColumnIndex("lmp_date")), c.getString(c.getColumnIndex("dodelivery")), c.getString(c.getColumnIndex("current_sub_stage")),c.getString(c.getColumnIndex("pregnancy_id")),c.getString(c.getColumnIndex("is_anc")),
+                            c.getString(c.getColumnIndex("mother_id")));
                     arraybeneficiary.add(benefic);
 
 

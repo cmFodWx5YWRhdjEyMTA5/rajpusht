@@ -242,7 +242,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
                                 anc_date.setText(year + "-"
-                                        + (month + 1) + "-" + day );
+                                        + (month) + "-" + day );
                             }
                         }, mYear, mMonth, mDay);
 
