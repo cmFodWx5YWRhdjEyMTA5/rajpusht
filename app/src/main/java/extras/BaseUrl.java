@@ -6,5 +6,9 @@ package extras;
 
 public class BaseUrl {
 
-    public static String base_url="http://103.203.138.163/RAJICDSTRAINING/";
+    //public static String base_url="http://103.203.138.163/RAJICDSTRAINING/";
+    public static String base_url="http://103.203.138.163/";
+
+
+
 }

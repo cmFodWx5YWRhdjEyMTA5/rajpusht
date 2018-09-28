@@ -14,6 +14,8 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ActionMode.Callback;
 import android.view.Menu;
@@ -36,6 +38,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,28 +66,30 @@ public class RegistrationWomen extends AppCompatActivity  {
     View basicclick, pregnentclick, childclick;
     CheckBox adhaaravailable;
     String registerMemeberId,familyID,pregnentId;
-    int castitem,relationitem,rationcardItem,familyttypeItem,eductionItemPosition, religionitemposi, fuelItemPosition, decisionItemPosition, doctorvisitItemPosition;
+    int castitem,relationitem,rationcardItem,familyttypeItem,eductionItemPosition, religionitemposi, decisionItemPosition, doctorvisitItemPosition;
     LinearLayout noadhaar, banklayout, postofficeaccountdetail;
     RelativeLayout bas, preg, chi;
+    String ChildWeightFinal="";
+    String fuelItemPosition="";
    DbHelper db;
     EditText nameBenificery,phoneNumber,usidNumber,nameaccountholder, bhamashahNumber,aadharNumber,aadharenrollment,personAge, nameofbank, branchname,
             bankaccountnumber, ifsccode, distancetobranch, distancenearestatm, nameofpostoffice, addressofpostoffice, postofficeaccount, postofficepincode,
-            confirmnameaccountholder,confirmbankaccountnumber, confirmifsccode, hoemocode;
+            confirmnameaccountholder,confirmbankaccountnumber, confirmifsccode, hoemocode,confirmpostofficeAccount,confirmpostpincode;
     TextView datee, time, lmpdate, dob;
     RadioGroup bankgroup;
     Spinner personaReligion,castSpinner,rationcardColorSpinner,relationshipHeadSpinner,typeFamilySpinner,educationComplted,fuelSelectionSpinner,
             decsionSpinner,decsionVisitDoctorSpinner;
     View fragment_pregnant_lady_detail,fragment_young_mother_basic_details,childDetails;
     EditText pregnetNumnber;
-    String educationItem, accountype = "N", reli, cst, rati, rela, fami, fuel, deci, visi,ageS;
-    private int mYear, mMonth, mDay, mHour, mMinute, mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2;
+    String educationItem, accountype = "", reli, cst, rati, rela, fami, fuel, deci, visi,ageS;
+    private int mYear, mMonth, mDay, mHour, mMinute,mSec, mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2;
     Dialog dialogCoupon;
 
     Spinner placeofDelivery,sexOfchild,wasChildBorn,birthBreast,firstyellowFeed;
     String DeliveryPlace,childSex,wasChildBornString;
     int deliveryPlaceItemSelected,childSexItemSelected,wasChildBornPosition;
 
-    EditText nameOfChild,orderOfBirth,childWeight;
+    EditText nameOfChild,orderOfBirth,childWeight,childWeightGram;
     TextView dateOfDelivery,addchild;
     String childIdrecyclerviewPosition;
 
@@ -91,6 +97,16 @@ public class RegistrationWomen extends AppCompatActivity  {
     RecyclerView recyclerViewChild;
     ArrayList<String>  arrayNoOfChild = new ArrayList<String>();
     SessionManager session;
+    Float chweightvalue;
+    LinearLayout linearCyrrentlyUsing;
+    String methodcontra="";
+
+    CheckBox f1,f2,f3,f4,f5,f6,f7,f8,f9;
+    TextView beneficairyTest,dateofbirthMother;
+
+    EditText timeHour,timeMin,timeSec;
+
+    EditText beneficiaryHusband, pctsId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +114,13 @@ public class RegistrationWomen extends AppCompatActivity  {
         setContentView(R.layout.activity_young_mother);
 
 //        getSupportActionBar().hide();
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setTitle("BASIC");
+
+
+
+
 
         db= new DbHelper(this);
         session = new SessionManager(RegistrationWomen.this);
@@ -109,6 +128,11 @@ public class RegistrationWomen extends AppCompatActivity  {
         fragment_young_mother_basic_details = (View)findViewById(R.id.pregnentbasic);
         fragment_pregnant_lady_detail = (View)findViewById(R.id.pregnentDetails);
         childDetails = findViewById(R.id.childDetails);
+        beneficairyTest = (TextView) findViewById(R.id.beneficairyTest);
+        dateofbirthMother= (TextView) findViewById(R.id.dateofbirthMother);
+
+
+        linearCyrrentlyUsing = (LinearLayout) findViewById(R.id.linearCyrrentlyUsing);
 
         noadhaar = (LinearLayout) findViewById(R.id.noadhaar) ;
         banklayout = (LinearLayout) findViewById(R.id.banklayout) ;
@@ -147,8 +171,11 @@ public class RegistrationWomen extends AppCompatActivity  {
                 // update your model (or other business logic) based on isChecked
                 if(adhaaravailable.isChecked()){
                     noadhaar.setVisibility(View.VISIBLE);
+                    aadharNumber.setEnabled(false);
+                    aadharNumber.setText("");
                 }else {
                     noadhaar.setVisibility(View.GONE);
+                    aadharNumber.setEnabled(true);
                 }
             }
         });
@@ -157,6 +184,10 @@ public class RegistrationWomen extends AppCompatActivity  {
         preg= (RelativeLayout) findViewById(R.id.relativePregnent);
         chi= (RelativeLayout) findViewById(R.id.relativeChild);
 
+               timeHour= (EditText) findViewById(R.id.timeHour);
+                timeMin= (EditText) findViewById(R.id.timeMin);
+                timeSec= (EditText) findViewById(R.id.timeSec);
+
 
         status = getIntent().getStringExtra("status");
 //        Log.d("Ranjeet",status);
@@ -164,6 +195,18 @@ public class RegistrationWomen extends AppCompatActivity  {
         basicclick= (View) findViewById(R.id.basicclick);
         pregnentclick= (View) findViewById(R.id.pregnentclick);
         childclick= (View) findViewById(R.id.childclick);
+
+
+        f1= (CheckBox) findViewById(R.id.f1);
+        f2= (CheckBox) findViewById(R.id.f2);
+        f3= (CheckBox) findViewById(R.id.f3);
+        f4= (CheckBox) findViewById(R.id.f4);
+        f5= (CheckBox) findViewById(R.id.f5);
+        f6= (CheckBox) findViewById(R.id.f6);
+        f7= (CheckBox) findViewById(R.id.f7);
+        f8= (CheckBox) findViewById(R.id.f8);
+        f9= (CheckBox) findViewById(R.id.f9);
+
 
         datee = (TextView) findViewById(R.id.datee);
         datee.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +245,7 @@ public class RegistrationWomen extends AppCompatActivity  {
 
 
                                 datee.setText(year + "-"
-                                        + (month + 1) + "-" + day);
+                                        + (month) + "-" + day);
 
                             }
                         }, mYear, mMonth, mDay);
@@ -220,10 +263,13 @@ public class RegistrationWomen extends AppCompatActivity  {
                 final Calendar c = Calendar.getInstance();
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
+                mSec =c.get(Calendar.SECOND);
 
                 // Launch Time Picker Dialog
                 TimePickerDialog tpd = new TimePickerDialog(RegistrationWomen.this,
                         new TimePickerDialog.OnTimeSetListener() {
+
+
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
@@ -240,6 +286,8 @@ public class RegistrationWomen extends AppCompatActivity  {
                             }
                         }, mHour, mMinute, false);
                 tpd.show();
+
+
 
 
             }
@@ -281,8 +329,10 @@ public class RegistrationWomen extends AppCompatActivity  {
                             }
                         }, mYear2, mMonth2, mDay2);
 //                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
 
+                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+                calender.add(Calendar.DATE,-279);
+                dpd.getDatePicker().setMinDate(calender.getTimeInMillis());
                 dpd.show();
             }
         });
@@ -291,7 +341,7 @@ public class RegistrationWomen extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 datee.setError(null);
-                final Calendar calender = Calendar.getInstance();
+               Calendar calender = Calendar.getInstance();
                 mYear1 = calender.get(Calendar.YEAR);
                 mMonth1 = calender.get(Calendar.MONTH);
                 mDay1 = calender.get(Calendar.DAY_OF_MONTH);
@@ -303,9 +353,13 @@ public class RegistrationWomen extends AppCompatActivity  {
                                                   int monthOfYear, int dayOfMonth) {
                                 // Display Selected date in textbox
                                 String month,day;
-                                if((monthOfYear+1)<10){
-                                    month="0"+String.valueOf(monthOfYear+1) ;
+                                if((monthOfYear+1)<10)
+                                {
+
+                                    month="0"+String.valueOf(monthOfYear+1);
+
                                 }
+
                                 else {
                                     month=String.valueOf(monthOfYear+1);
                                 }
@@ -323,14 +377,32 @@ public class RegistrationWomen extends AppCompatActivity  {
                                 getAge(year, (monthOfYear + 1),dayOfMonth );
                             }
                         }, mYear1, mMonth1, mDay1);
-//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+
+
+//          calender.add(Calendar.DAY_OF_MONTH,-48);
+//          String dod= (calender.get(Calendar.MONTH) + 1) + "-"
+//                        + calender.get(Calendar.DATE) + "-" + calender.get(Calendar.YEAR);
+//                calender.add(Calendar.DATE,-281);
+
+                Calendar cal = Calendar.getInstance();
+
+                cal.add(Calendar.DAY_OF_MONTH, -4745);
+                Date result = cal.getTime();
+//                dpd.getDatePicker().setMinDate(calender.getTimeInMillis());
+                dpd.getDatePicker().setMaxDate(result.getTime());
+                dpd.show();
+
 
                 dpd.show();
             }
         });
 
         nameBenificery = (EditText) findViewById(R.id.nameBenificery);
+
+        beneficiaryHusband = (EditText)findViewById(R.id.nameBenificeryhusband);
+        pctsId = (EditText)findViewById(R.id.nameBenificerypctsId);
+
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         usidNumber = (EditText) findViewById(R.id.usidNumber);
         nameaccountholder = (EditText) findViewById(R.id.nameaccountholder);
@@ -350,8 +422,122 @@ public class RegistrationWomen extends AppCompatActivity  {
         postofficepincode = (EditText) findViewById(R.id.postofficepincode);
         hoemocode = (EditText) findViewById(R.id.hoemocode);
         confirmnameaccountholder = (EditText) findViewById(R.id.confirmnameaccountholder);
+        confirmnameaccountholder.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(nameaccountholder.getText().toString().equals(confirmnameaccountholder.getText().toString())){
+
+                }else{
+                    confirmnameaccountholder.setError("Invalid Holder Name");
+                }
+            }
+        });
+
         confirmbankaccountnumber = (EditText) findViewById(R.id.confirmbankaccountnumber);
+        confirmbankaccountnumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+if(bankaccountnumber.getText().toString().equals(confirmbankaccountnumber.getText().toString())){
+
+}
+else{
+    confirmbankaccountnumber.setError("Invalid Account No.");
+}
+            }
+        });
         confirmifsccode = (EditText) findViewById(R.id.confirmifsccode);
+        confirmifsccode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+if(confirmifsccode.getText().toString().equals(ifsccode.getText().toString())){
+
+}
+else{
+    confirmifsccode.setError("Invalid IFSC Code");
+}
+
+            }
+        });
+        confirmpostofficeAccount= (EditText) findViewById(R.id.comfirmPostofficeaccount);
+        confirmpostofficeAccount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(postofficeaccount.getText().toString().equals(confirmpostofficeAccount.getText().toString())){
+
+                }
+                else{
+                    confirmpostofficeAccount.setError("Invalid Account No.");
+                }
+
+            }
+        });
+                confirmpostpincode= (EditText) findViewById(R.id.confirmpostofficepincode);
+
+        confirmpostpincode.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                        if(postofficepincode.getText().toString().equals(confirmpostpincode.getText().toString())){
+
+                        }
+                        else{
+                            confirmpostpincode.setError("Invalid pincode");
+//                            Toast.makeText(RegistrationWomen.this, "Postal Pincode Mismatch", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
         //child name
         edittextValidate();
@@ -385,6 +571,7 @@ public class RegistrationWomen extends AppCompatActivity  {
         nameOfChild = (EditText) findViewById(R.id.nameOfChild);
         orderOfBirth= (EditText) findViewById(R.id.orderOfBirth);
         childWeight = (EditText) findViewById(R.id.childWeight);
+        childWeightGram = (EditText) findViewById(R.id.childWeightGram);
         addchild = (TextView) findViewById(R.id.addchild);
 
         addchild.setOnClickListener(new View.OnClickListener() {
@@ -430,10 +617,19 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
 //                        getAge(year, (monthOfYear + 1),dayOfMonth );
                     }
                 }, mYear2, mMonth2, mDay2);
-//                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-        dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+//      dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+//        calender.add(Calendar.DATE,-1464);
+//        calender.add(Calendar.DATE,4392);
+//        dpd.getDatePicker().setMaxDate(Calendar.DATE,4392);
 
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, -1095);
+        Date result = cal.getTime();
+        dpd.getDatePicker().setMaxDate(calender.getTimeInMillis());
+        dpd.getDatePicker().setMinDate(result.getTime());
         dpd.show();
+
+
 
     }
 });
@@ -487,7 +683,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listplaceofDelivery.add("Home");
 
         ArrayAdapter<String> postofDelivery = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listplaceofDelivery);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_birthplace));
         postofDelivery.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         placeofDelivery.setAdapter(postofDelivery);
 
@@ -516,7 +712,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listsexOfchild.add("Intersex");
 
         ArrayAdapter<String> dataAdaptersexOfchild = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listsexOfchild);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_childgender));
         dataAdaptersexOfchild.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sexOfchild.setAdapter(dataAdaptersexOfchild);
 
@@ -548,7 +744,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
 
 
         ArrayAdapter<String> dataAdapterwasChildBorn = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listwasChildBorn);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_birthbefore9month));
         dataAdapterwasChildBorn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wasChildBorn.setAdapter(dataAdapterwasChildBorn);
 
@@ -578,7 +774,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
 //        listbirthBreast.add("Intersexed");
 
         ArrayAdapter<String> dataAdapterbirthBreast = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listbirthBreast);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_childtobreast));
         dataAdapterbirthBreast.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         birthBreast.setAdapter(dataAdapterbirthBreast);
 
@@ -593,7 +789,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
 //        listfirstyellowFeed.add("Intersexed");
 
         ArrayAdapter<String> dataAdapterfirstyellowFeed = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listfirstyellowFeed);
+                android.R.layout.simple_spinner_item,  getResources().getStringArray(R.array.array_khees));
         dataAdapterfirstyellowFeed.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         firstyellowFeed.setAdapter(dataAdapterfirstyellowFeed);
 //
@@ -610,7 +806,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         list1.add("Buddhists");
         list1.add("No religion");
         ArrayAdapter<String> dataAdapterpersonaReligion = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list1);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_Religion));
         dataAdapterpersonaReligion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         personaReligion.setAdapter(dataAdapterpersonaReligion);
 
@@ -636,7 +832,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listcastSpinner.add("OBC");
         listcastSpinner.add("General");
         ArrayAdapter<String> dataAdaptercastSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listcastSpinner);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_cast));
         dataAdaptercastSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         castSpinner.setAdapter(dataAdaptercastSpinner);
 
@@ -664,7 +860,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listrationcardColorSpinner.add("Yellow (Antodyaya/ Poorest)");
 
         ArrayAdapter<String> dataAdapterrationcardColorSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listrationcardColorSpinner);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_rationcardColor));
         dataAdapterrationcardColorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         rationcardColorSpinner.setAdapter(dataAdapterrationcardColorSpinner);
 
@@ -698,7 +894,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listrelationshipHeadSpinner.add("Niece");
         listrelationshipHeadSpinner.add("Other relative");
         ArrayAdapter<String> dataAdapterrelationshipHeadSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listrelationshipHeadSpinner);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_relationshipHead));
         dataAdapterrelationshipHeadSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         relationshipHeadSpinner.setAdapter(dataAdapterrelationshipHeadSpinner);
 
@@ -728,7 +924,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listtypeFamilySpinner.add("Other");
 
         ArrayAdapter<String> dataAdaptertypeFamilySpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listtypeFamilySpinner);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_typeFamily));
         dataAdaptertypeFamilySpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeFamilySpinner.setAdapter(dataAdaptertypeFamilySpinner);
         typeFamilySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -757,7 +953,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listeducationComplted.add("Undergrad/ Bachelors/ Prof degree");
         listeducationComplted.add("Masters degree and above");
         ArrayAdapter<String> dataAdaptereducationComplted = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listeducationComplted);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_education));
         dataAdaptereducationComplted.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         educationComplted.setAdapter(dataAdaptereducationComplted);
 
@@ -795,7 +991,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listfuelSelectionSpinner.add("Bio-gas");
         listfuelSelectionSpinner.add("Others");
         ArrayAdapter<String> dataAdapterfuelSelectionSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listfuelSelectionSpinner);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_fuelSelection));
         dataAdapterfuelSelectionSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fuelSelectionSpinner.setAdapter(dataAdapterfuelSelectionSpinner);
 
@@ -804,7 +1000,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 fuel = String.valueOf(parent.getItemAtPosition(position));
-                fuelItemPosition=parent.getSelectedItemPosition();
+//                fuelItemPosition=parent.getSelectedItemPosition();
 
             }
 
@@ -828,7 +1024,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listdecsionSpinner.add("Someone else in the family");
         listdecsionSpinner.add("Other relative");
         ArrayAdapter<String> dataAdapterdecsionSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listdecsionSpinner);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_decsion));
         dataAdapterdecsionSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         decsionSpinner.setAdapter(dataAdapterdecsionSpinner);
 
@@ -858,7 +1054,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
         listdecsionVisitDoctorSpinner.add("Someone else in the family");
         listdecsionVisitDoctorSpinner.add("Other relative");
         ArrayAdapter<String> dataAdapterdecsionVisitDoctorSpinner = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listdecsionVisitDoctorSpinner);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_decsion_child));
         dataAdapterdecsionVisitDoctorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         decsionVisitDoctorSpinner.setAdapter(dataAdapterdecsionVisitDoctorSpinner);
 
@@ -888,11 +1084,20 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
 
 //                                        if(fragment_young_mother_basic_details.getVisibility()==View.VISIBLE){
+try {
+     ChildWeightFinal = childWeight.getText().toString() + "." + childWeightGram.getText().toString();
+
+//    chweightvalue = Float.parseFloat(ChildWeightFinal);
 
 
+//    Log.d("RegButton",chweightvalue+"");
 
 
-                                                if (registerMemeberId == null) {
+}catch (Exception e){
+
+}
+
+                                        if (registerMemeberId == null) {
 
 
                                                     Log.d("insertedValue","inserted Ito regsitertion");
@@ -959,7 +1164,8 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
                                                     if(status.equalsIgnoreCase("checkedChild")){
 
 
-
+                                                        beneficairyTest.setText(R.string.nameofbeneficiary);
+                                                        dateofbirthMother.setText(R.string.dateofbirthbeneficary);
                                                         int  errorCode=  validateBasicForm();
                                                         Log.d("ErrorCode",""+errorCode);
                                                         if(errorCode==0) {
@@ -968,9 +1174,7 @@ dateOfDelivery.setOnClickListener(new View.OnClickListener() {
                                                             Log.d("ErrorCode","childform validationn"+errorCode);
                                                         if(errorCode==0){
 
-
                                                              insertFamily(familyID,"EDIT");
-
                                                             insertMemberMaster(familyID,registerMemeberId,"EDIT");
                                                             inserWomenExtra(registerMemeberId,"EDIT");
 
@@ -1170,8 +1374,10 @@ return familyCode;
 
         public String insertMemberMaster(String familyId,String memberId,String mode){
 
+            String finalTime= timeHour.getText().toString() + ":" + timeMin.getText().toString() + ":" + timeSec.getText().toString();
+
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(), new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault()).format(new Date()), "", dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString(),aadharenrollment.getText().toString(), datee.getText().toString(), time.getText().toString(), bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "LM", "LM", "", "Y",session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
+      MemberBasicGetSet memberbasic = new MemberBasicGetSet(memberId, familyId,nameBenificery.getText().toString(),beneficiaryHusband.getText().toString(), pctsId.getText().toString(), "", new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), dob.getText().toString(), personAge.getText().toString(), "N", "",aadharNumber.getText().toString(),aadharenrollment.getText().toString(), datee.getText().toString(),finalTime, bhamashahNumber.getText().toString(), phoneNumber.getText().toString(), String.valueOf(relationitem), "F", "N", "M", "", "", "", "", "Y",session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "M", "N", "", "");
             String inserted = "0";
       if(mode.equals("ADD")) {
           long id = db.addMemberBasic(memberbasic);
@@ -1185,7 +1391,7 @@ return familyCode;
           ContentValues contentValue = new ContentValues();
           contentValue.put("name",nameBenificery.getText().toString());
 //          contentValue.put("dor",new SimpleDateFormat("yyy-MM-dd", Locale.getDefault()).format(new Date()));
-          contentValue.put("doentry",new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()));
+          contentValue.put("doentry",new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()));
 //          Log.d("updateValue",memberId);
 //          Log.d("MemberID",nameBenificery.getText().toString());
 
@@ -1222,25 +1428,35 @@ return  inserted;
 
         public String inserWomenExtra(String memberID,String mode){
             SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-            WomenBasicGetSet womenExtra = new WomenBasicGetSet(memberID, String.valueOf(eductionItemPosition), String.valueOf(fuelItemPosition), String.valueOf(decisionItemPosition), String.valueOf(doctorvisitItemPosition), accountype, nameaccountholder.getText().toString(), nameofbank.getText().toString(), branchname.getText().toString(),  bankaccountnumber.getText().toString(), ifsccode.getText().toString(), distancetobranch.getText().toString(), nameofpostoffice.getText().toString(), addressofpostoffice.getText().toString(), postofficepincode.getText().toString(),postofficeaccount.getText().toString(), hoemocode.getText().toString()," ","N"," ",distancenearestatm.getText().toString());
+            WomenBasicGetSet womenExtra = new WomenBasicGetSet(memberID, String.valueOf(eductionItemPosition), fuelItemPosition, String.valueOf(decisionItemPosition), String.valueOf(doctorvisitItemPosition), accountype, nameaccountholder.getText().toString(), nameofbank.getText().toString(), branchname.getText().toString(),  bankaccountnumber.getText().toString(), ifsccode.getText().toString(), distancetobranch.getText().toString(), nameofpostoffice.getText().toString(), addressofpostoffice.getText().toString(), postofficepincode.getText().toString(),postofficeaccount.getText().toString(), hoemocode.getText().toString()," ","N"," ",distancenearestatm.getText().toString());
             String inserted = "0";
-
-
             if(mode.equals("ADD")) {
                 long id = db.addWomenExtra(womenExtra);
 //                Log.d("insertMember", " " + id);
-
-                if (id != -1) {
+                if (id != -1)
+                {
                     inserted = "1";
                 }
             }
-
             else{
-
-
                 ContentValues contentValue = new ContentValues();
                 contentValue.put("education",eductionItemPosition);
                 contentValue.put("ac_holder_name",nameaccountholder.getText().toString());
+                contentValue.put("cooking_fuel",fuelItemPosition);
+                contentValue.put("decisionmaker_own_health",String.valueOf(decisionItemPosition));
+                contentValue.put("decisionmaker_child_health",String.valueOf(doctorvisitItemPosition));
+                contentValue.put("if_bank_account",accountype);
+                 contentValue.put("ac_holder_name",nameaccountholder.getText().toString());
+              contentValue.put( "bank_name",nameofbank.getText().toString());
+                      contentValue.put("branch",branchname.getText().toString());
+                contentValue.put("ac_no",bankaccountnumber.getText().toString());
+                        contentValue.put("ifsc_code",ifsccode.getText().toString());
+                contentValue.put("bank_distance",distancetobranch.getText().toString());
+                contentValue.put("bank_atm_distance",distancenearestatm.getText().toString());
+                contentValue.put("postoffice_name",nameofpostoffice.getText().toString());
+                contentValue.put("postoffice_address",addressofpostoffice.getText().toString());
+                contentValue.put("pin_code",postofficepincode.getText().toString());
+                contentValue.put("post_office_ac",postofficeaccount.getText().toString());
 
 
                 long uid=dbs.update("womenextra",contentValue,"Members_id=?",new String[]{registerMemeberId});
@@ -1276,7 +1492,7 @@ return  inserted;
 public int validateBasicForm(){
 
     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
+    fuelItemPosition="";
 
         int error =0;
 if(nameBenificery.getText().toString().length()==0){
@@ -1297,12 +1513,6 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
     error=1;
 }
 
-//if(error==0 && usidNumber.getText().toString().length()==0){
-//    usidNumber.requestFocus();
-//    imm.showSoftInput(usidNumber, InputMethodManager.SHOW_IMPLICIT);
-//    Toast.makeText(this, "Enter UID Numnber", Toast.LENGTH_SHORT).show();
-//error=1;
-//}
 
 
     if(error == 0 && bhamashahNumber.getText().toString().length()==0 ){
@@ -1318,6 +1528,28 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
             imm.showSoftInput(aadharenrollment, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Aadharenrollment Number", Toast.LENGTH_SHORT).show();
             error =1;
+        }
+
+        if(error==0 && datee.getText().length()==0){
+
+            Toast.makeText(this, "Select Adhar Time Stamp ", Toast.LENGTH_SHORT).show();
+            error=1;
+        }
+        if(error==0 && (timeHour.getText().length()==0 ||Integer.parseInt(timeHour.getText().toString())>24 )){
+            Toast.makeText(this, "Enter Correct Hour ", Toast.LENGTH_SHORT).show();
+            error=1;
+        }
+
+        if(error==0  &&(timeMin.getText().length()==0 || Integer.parseInt(timeMin.getText().toString())>60)){
+            Toast.makeText(this, "Enter Correct Minute ", Toast.LENGTH_SHORT).show();
+            error=1;
+        }
+
+        if(error==0  &&(timeSec.getText().length()==0 || Integer.parseInt(timeSec.getText().toString())>60)){
+
+            Toast.makeText(this, "Enter Correct Sec", Toast.LENGTH_SHORT).show();
+            error=1;
+
         }
 //
     }else{
@@ -1337,7 +1569,7 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
         error =1;
     }
 
-    if(Integer.parseInt(personAge.getText().toString())< 12){
+    if(error==0 && Integer.parseInt(personAge.getText().toString())< 12){
                Toast.makeText(this, "Age must not be less then 12", Toast.LENGTH_SHORT).show();
          }
 
@@ -1373,11 +1605,86 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
         Toast.makeText(this, "Select Education", Toast.LENGTH_SHORT).show();
         error=1;
     }
-    if(error==0 && fuel.equalsIgnoreCase("--Select Options--")){
-        fuelSelectionSpinner.requestFocus();
-        Toast.makeText(this, "Select Fuel", Toast.LENGTH_SHORT).show();
-        error=1;
+//    if(error==0 && fuel.equalsIgnoreCase("--Select Options--")){
+//        fuelSelectionSpinner.requestFocus();
+//        Toast.makeText(this, "Select Fuel", Toast.LENGTH_SHORT).show();
+//        error=1;
+//    }
+
+    if (f1.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(1);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(1);
+        }
+        Log.d("MYActivity", fuelItemPosition);
     }
+    if (f2.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(2);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(2);
+        }
+        Log.d("MYActivity", fuelItemPosition);
+    } if (f3.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(3);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(3);
+        }
+        Log.d("MYActivity", fuelItemPosition);
+    } if (f4.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(4);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(4);
+        }
+        Log.d("MYActivity", fuelItemPosition);
+    } if (f5.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(5);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(5);
+        }
+        Log.d("MYActivity", fuelItemPosition);
+    } if (f6.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(6);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(6);
+        }
+        Log.d("MYActivity", fuelItemPosition);
+    } if (f7.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(7);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(7);
+        }
+        Log.d("MYActivity", fuelItemPosition);
+    } if (f8.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(8);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(8);
+        }
+//        Log.d("MYActivity", fuelItemPosition);
+    }
+
+    if (f9.isChecked()) {
+        if (fuelItemPosition.length() == 0) {
+            fuelItemPosition = String.valueOf(8);
+        } else {
+            fuelItemPosition = fuelItemPosition + "," + String.valueOf(8);
+        }
+//        Log.d("MYActivity", fuelItemPosition);
+    }
+
+//    Log.d("MYActivity", fuelItemPosition);
+    if (error==0 && fuelItemPosition.equalsIgnoreCase("")) {
+        error = 1;
+        Toast.makeText(this, "Select the Cooking  Fuel", Toast.LENGTH_SHORT).show();
+    }
+
     if(error==0 && deci.equalsIgnoreCase("--Select Options--")){
         decsionSpinner.requestFocus();
         Toast.makeText(this, "Select Decision Maker for own health", Toast.LENGTH_SHORT).show();
@@ -1387,6 +1694,13 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
         Toast.makeText(this, "Select decision maker for child health", Toast.LENGTH_SHORT).show();
         error=1;
     }
+
+    if(error==0 && accountype.equalsIgnoreCase("")){
+        Toast.makeText(this, "Select Bank Account", Toast.LENGTH_SHORT).show();
+
+        error=1;
+    }
+
 
     if( accountype.equalsIgnoreCase("B")){
 
@@ -1418,12 +1732,14 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
             Toast.makeText(this, "Enter Branch Name", Toast.LENGTH_SHORT).show();
             error =1;
         }
+
         if((error == 0 && bankaccountnumber.getText().toString().length()==0 ) ){
             bankaccountnumber.requestFocus();
             imm.showSoftInput(bankaccountnumber, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Bank Account Number", Toast.LENGTH_SHORT).show();
             error =1;
         }
+
         if(error == 0 &&!confirmbankaccountnumber.getText().toString().equalsIgnoreCase(bankaccountnumber.getText().toString())){
             confirmbankaccountnumber.requestFocus();
             imm.showSoftInput(confirmbankaccountnumber, InputMethodManager.SHOW_IMPLICIT);
@@ -1446,17 +1762,7 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
         }
 
 
-        if(error == 0 && distancetobranch.getText().toString().length()==0 ){
-            distancetobranch.requestFocus();
-            imm.showSoftInput(distancetobranch, InputMethodManager.SHOW_IMPLICIT);
-            Toast.makeText(this, "Enter Distance", Toast.LENGTH_SHORT).show();
-            error =1;
-        }if(error == 0 && distancenearestatm.getText().toString().length()==0 ){
-            distancenearestatm.requestFocus();
-            imm.showSoftInput(distancenearestatm, InputMethodManager.SHOW_IMPLICIT);
-            Toast.makeText(this, "Enter Distance from ATM", Toast.LENGTH_SHORT).show();
-            error =1;
-        }
+
     }
     if (accountype.equalsIgnoreCase("P")){
         if(error == 0 && nameofpostoffice.getText().toString().length()==0 ){
@@ -1474,17 +1780,54 @@ if(error==0 && phoneNumber.getText().toString().length()!=10){
             imm.showSoftInput(postofficeaccount, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Post Office Account Number", Toast.LENGTH_SHORT).show();
             error =1;
-        }if(error == 0 && postofficepincode.getText().toString().length()==0 ){
+        }
+
+        if(error == 0 && !confirmpostofficeAccount.getText().toString().equalsIgnoreCase(postofficeaccount.getText().toString()) ){
+            confirmpostofficeAccount.requestFocus();
+        imm.showSoftInput(confirmpostofficeAccount, InputMethodManager.SHOW_IMPLICIT);
+        Toast.makeText(this, "Enter Post Office Account Number", Toast.LENGTH_SHORT).show();
+        error =1;
+    }
+
+        if(error == 0 && postofficepincode.getText().toString().length()==0 ){
             postofficepincode.requestFocus();
             imm.showSoftInput(postofficepincode, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Post Office Pincode", Toast.LENGTH_SHORT).show();
             error =1;
-        }if(error == 0 && hoemocode.getText().toString().length()==0 ){
+        }
+
+
+        if(error == 0 && !confirmpostpincode.getText().toString().equalsIgnoreCase(postofficepincode.getText().toString()) ){
+            confirmpostofficeAccount.requestFocus();
+            imm.showSoftInput(confirmpostofficeAccount, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Post Office Account Number", Toast.LENGTH_SHORT).show();
+            error =1;
+        }
+
+
+        if(error == 0 && hoemocode.getText().toString().length()==0 ){
             hoemocode.requestFocus();
             imm.showSoftInput(hoemocode, InputMethodManager.SHOW_IMPLICIT);
             Toast.makeText(this, "Enter Hoemo Code", Toast.LENGTH_SHORT).show();
             error =1;
+        }if(error == 0 && confirmpostpincode.getText().toString().length()==0 ){
+            confirmpostpincode.requestFocus();
+            imm.showSoftInput(confirmpostpincode, InputMethodManager.SHOW_IMPLICIT);
+            Toast.makeText(this, "Enter Confirm pincode", Toast.LENGTH_SHORT).show();
+            error =1;
         }
+    }
+
+    if(error == 0 && distancetobranch.getText().toString().length()==0 ){
+        distancetobranch.requestFocus();
+        imm.showSoftInput(distancetobranch, InputMethodManager.SHOW_IMPLICIT);
+        Toast.makeText(this, "Enter Distance", Toast.LENGTH_SHORT).show();
+        error =1;
+    }if(error == 0 && distancenearestatm.getText().toString().length()==0 ){
+        distancenearestatm.requestFocus();
+        imm.showSoftInput(distancenearestatm, InputMethodManager.SHOW_IMPLICIT);
+        Toast.makeText(this, "Enter Distance from ATM", Toast.LENGTH_SHORT).show();
+        error =1;
     }
 
 return error;
@@ -1504,8 +1847,6 @@ public int childformValidation(){
         Toast.makeText(this, "Enter Date of Delivery", Toast.LENGTH_SHORT).show();
     }
 
-
-
      if(error==0 && DeliveryPlace.equalsIgnoreCase("--Select Options--")){
 
          error=1;
@@ -1524,7 +1865,7 @@ public int childformValidation(){
         Toast.makeText(this, "Enter sex of child ", Toast.LENGTH_SHORT).show();
     }
 
-    if(error==0 && childWeight.getText().toString().length()==0){
+    if(error==0 && childWeight.getText().toString().length()==0 && childWeightGram.getText().toString().length()==0){
 
         error=1;
         Toast.makeText(this, "Enter Child Weight", Toast.LENGTH_SHORT).show();
@@ -1593,7 +1934,7 @@ public String insertPregnent(String memberId,String pregnentID){
 
     if(counted==0){
 Log.d("checkInsretd","Pregrncy Insreted");
-        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()),"mobile","Y","","N","");
+        PregnantGetSet pregnent = new PregnantGetSet(pregnentId, memberId, Integer.valueOf(pregnetNumnber.getText().toString()), lmpdate.getText().toString(),  session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()),"M","Y","","N","");
        long id= db.addPregnant(pregnent);
        Log.d("CountPregnent","sucieesrate"+id);
 
@@ -1717,6 +2058,8 @@ public String generatePregnentID(String memberID){
 //    Log.d("memberVAlue",member+ " "+mode+" "+ activatedREgistrationForm);
     if(mode.equals("checkedChild")){
         preg.setVisibility(View.GONE);
+        beneficairyTest.setText(R.string.nameofbeneficiary);
+//        dateofbirthMother.setText(R.string.dateofbirthbeneficary);
          if(member==null) {
 
              Log.d("activatedForm","Enterered"+"");
@@ -1912,17 +2255,21 @@ return error;
 
         String childID=createMemberId(familyID);
         String cSex;
-        if (childSex.equalsIgnoreCase("male")) {
+        if (childSexItemSelected==1) {
 
             cSex="M";
-        }else if(childSex.equalsIgnoreCase("Female")){
+        }else if(childSexItemSelected==2){
             cSex="F";
         }else{
             cSex="I";
         }
 
+
+
+
+
         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
-        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(), new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()), new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "Mobile", "N", "", "");
+        MemberBasicGetSet memberbasic = new MemberBasicGetSet(childID, familyID,nameOfChild.getText().toString(),beneficiaryHusband.getText().toString(),pctsId.getText().toString(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()), "", dateOfDelivery.getText().toString(), "", "", "","" ,"", "","", "", " ", "", cSex, "", "", motherId,"" , null, null, "Y", session.getSurveyorId(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()), "M", "N", "", "");
 
        db.addMemberBasic(memberbasic);
 try {
@@ -1951,12 +2298,10 @@ idhj.close();
 }catch(Exception e){
     Log.d("Raw query","inserted");
 }
-        ChildExtraGetSet childextra = new   ChildExtraGetSet(childID, dateOfDelivery.getText().toString(), String.valueOf(deliveryPlaceItemSelected), orderOfBirth.getText().toString(),childWeight.getText().toString() , String.valueOf(wasChildBornPosition), "", "","", "", "", "","","", "","N","");
 
+
+        ChildExtraGetSet childextra = new   ChildExtraGetSet(childID, dateOfDelivery.getText().toString(), String.valueOf(deliveryPlaceItemSelected), orderOfBirth.getText().toString(),ChildWeightFinal, String.valueOf(wasChildBornPosition), "", "","", "", "", "","","", "","N","");
          db.addChildExtra(childextra);
-
-
-
 
     }
 
@@ -1964,10 +2309,10 @@ idhj.close();
         Log.d("ChildEdit","Inserted in edit part database");
         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
         String cSex;
-        if (childSex.equalsIgnoreCase("male")) {
+        if (childSexItemSelected==1) {
 
             cSex="M";
-        }else if(childSex.equalsIgnoreCase("Female")){
+        }else if(childSexItemSelected==2){
             cSex="F";
         }else{
             cSex="I";
@@ -1984,11 +2329,10 @@ idhj.close();
 
             ContentValues contentValuesChild = new ContentValues();
 
-
             contentValuesChild.put("delivery_place", String.valueOf(deliveryPlaceItemSelected));
             contentValuesChild.put("dodelivery", dateOfDelivery.getText().toString());
             contentValuesChild.put("child_order", orderOfBirth.getText().toString());
-            contentValuesChild.put("birth_wt", childWeight.getText().toString());
+            contentValuesChild.put("birth_wt", ChildWeightFinal);
             contentValuesChild.put("full_term", String.valueOf(wasChildBornPosition));
             jk = dbs.update("childextra", contentValuesChild, "Members_id='" + childSelectedId + "'", null);
         }
@@ -1999,7 +2343,6 @@ if(jk==1){
         Log.d("Updated VAlue",jk+" ");
     }
 
-
     public String calculateStage( Date mindate,Date maxDate,Date compareDate){
 if(compareDate.after(mindate) && compareDate.before(maxDate)){
     return "LM";
@@ -2007,7 +2350,6 @@ if(compareDate.after(mindate) && compareDate.before(maxDate)){
 else{
     return "MY";
 }
-
 
     }
 
@@ -2023,7 +2365,6 @@ else{
             int i = 0;
             if (c.moveToFirst()) {
                 do {
-
 
                     arrayNoOfChild.add(c.getString(c.getColumnIndex("Members_id")));
 
@@ -2129,7 +2470,6 @@ public void getChildDetails(String childidfromDatabase) {
 
     childSavingMode = "edit";
 
-
     SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
     Cursor c = dbs.rawQuery("select b.members_id, b.name,b.sex,c.dodelivery,c.delivery_place,c.child_order,c.birth_wt,c.full_term  from memberbasic b left join childextra c on b.Members_id=c.Members_id where b.Members_id='" + childidfromDatabase + "'", null);
@@ -2146,7 +2486,28 @@ public void getChildDetails(String childidfromDatabase) {
                 nameOfChild.setText(c.getString(c.getColumnIndex("name")));
                 orderOfBirth.setText(c.getString(c.getColumnIndex("child_order")));
 
-                childWeight.setText(c.getString(c.getColumnIndex("birth_wt")));
+
+                        String childWeightValue = c.getString(c.getColumnIndex("birth_wt"));
+
+                        if(childWeightValue.contains(".")){
+                double amount = Double.parseDouble(childWeightValue);
+                NumberFormat numberFormat = new DecimalFormat("##.###");
+           String     str = numberFormat.format(amount);
+//                if(childWeightValue.contains(".")){
+
+                Log.d("NumberFormat",str);
+                            String[] separated = str.split("\\.");
+                           String weight= separated[0]; // this will contain "Fruit"
+                            String gram = separated[1];
+
+                            childWeight.setText(weight);
+                            childWeightGram.setText(gram);
+                        }
+                        else{
+                            childWeight.setText(childWeightValue);
+//                            childWeightGram.setText("000");
+                        }
+
 
                 Log.d("spinnerSelection", "" + c.getString(c.getColumnIndex("delivery_place")));
                 Log.d("spinnerSelection", "" + c.getColumnIndex("delivery_place"));
@@ -2164,7 +2525,7 @@ public void getChildDetails(String childidfromDatabase) {
                 wasChildBorn.setSelection(Integer.parseInt(c.getString(c.getColumnIndex("full_term"))));
 //                birthBreast.setSelection(0);
 //                firstyellowFeed.setSelection(0);
-                childWeight.setText(c.getString(c.getColumnIndex("birth_wt")));
+//                childWeight.setText(c.getString(c.getColumnIndex("birth_wt")));
 //
             } while (c.moveToNext());
         }
@@ -2324,6 +2685,19 @@ public void getChildDetails(String childidfromDatabase) {
 
 
 
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; go home
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/your_group"
     android:background="@color/white"
   >
 
@@ -36,7 +37,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="LM1"
-                    android:enabled="false"
+android:enabled="false"
                     android:textColor="@color/white"
                     android:background="@drawable/graycircularbutton"
                     android:gravity="center"
@@ -244,6 +245,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="4dp"
+                android:visibility="gone"
                 android:layout_weight="1">
 
 
@@ -323,6 +325,15 @@
         android:id="@+id/NaFormButtonLayout"
         />
 
+    <include layout="@layout/fragment_pregnant_lady_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:visibility="gone"
+        android:layout_below="@+id/topLinear"
+        android:id="@+id/pTod"
+        />
+
 
 
     <RelativeLayout
@@ -347,13 +358,19 @@
             app:srcCompat="@drawable/back" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_alignBaseline="@+id/save"
+            android:layout_alignBottom="@+id/save"
+            android:clickable="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/box3"
+            android:gravity="center_vertical|center_horizontal"
             android:text="PROFILE"
-            android:visibility="gone"
+            android:id="@+id/profilePage"
+            android:layout_margin="10dp"
             android:textColor="@color/white"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/save"

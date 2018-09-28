@@ -5,7 +5,17 @@
     <item
         android:id="@+id/mybutton"
         android:title="D"
+        android:visible="false"
+        app:showAsAction="always"
+        android:icon="@drawable/babyround"
+        />
+    <item
+        android:id="@+id/mymotherTrack"
+        android:title="D"
+        android:visible="false"
         app:showAsAction="always"
         android:icon="@drawable/d1"
         />
+
+
 </menu>

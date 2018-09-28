@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/box_form">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/dimen_1dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FormLinearLayout">
+
+
+
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_weight="1"
+                    android:text="@string/pg1"
+                    style="@style/FormTextMini"/>
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center">
+
+                    <EditText
+                        android:id="@+id/epg1"
+                        android:ems="10"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="date"
+                        style="@style/EditTextStyle" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/epg1"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:padding="@dimen/dimes_8dp"
+                        app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include layout="@layout/view_divider"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FormLinearLayout">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="@string/pg2"
+                    style="@style/FormTextMini"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FormLinearLayout"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="@string/pg2_2"
+                    style="@style/FormTextMini"
+                    />
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center">
+
+                    <EditText
+                        android:id="@+id/epg2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="date"
+                        style="@style/EditTextStyle" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPg2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:padding="@dimen/dimes_8dp"
+                        android:layout_marginRight="@dimen/text_10dp"
+                        android:layout_gravity="right"
+                        app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <include layout="@layout/view_divider"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FormLinearLayout">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_weight="1"
+                    android:text="@string/pg3"
+                    style="@style/FormTextMini"/>
+
+                <EditText
+                    android:id="@+id/epg3"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/hpg3"
+                    android:maxLength="3"
+                    android:inputType="number"
+                    style="@style/EditTextStyle" />
+            </LinearLayout>
+
+            <include layout="@layout/view_divider"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FormLinearLayout">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_weight="1"
+                    android:text="@string/pg4"
+                    style="@style/FormTextMini"/>
+
+                <EditText
+                    android:id="@+id/epg4"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/hpg4"
+                    android:maxLength="3"
+                    android:inputType="number"
+                    style="@style/EditTextStyle" />
+            </LinearLayout>
+
+            <include layout="@layout/view_divider"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FormLinearLayout">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_weight="1"
+                    android:text="@string/pg5"
+                    style="@style/FormTextMini"/>
+
+                <EditText
+                    android:id="@+id/epg5"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/hpg5"
+                    android:inputType="textPersonName"
+                    style="@style/EditTextStyle" />
+            </LinearLayout>
+
+
+
+
+
+
+
+
+        </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutPreview">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fabPreview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:alpha="0.05"
+        android:background="@null"
+        android:padding="@dimen/nav_header_vertical_spacing"
+        android:text="Preview Form"
+        android:textAllCaps="false"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_doc"
+        android:visibility="gone"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
+        app:borderWidth="0dp"
+        app:elevation="5dp"
+        app:rippleColor="@color/ripple"
+        app:srcCompat="@drawable/ic_description_black_24dp" />
+
+
+</RelativeLayout>

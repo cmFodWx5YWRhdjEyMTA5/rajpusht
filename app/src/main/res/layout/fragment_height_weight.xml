@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/viewgroup3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -25,7 +26,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Height in centimeters"
+                android:text="@string/pw3q1"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -75,7 +76,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Weight in Kilograms"
+                android:text="@string/pw3q2"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 

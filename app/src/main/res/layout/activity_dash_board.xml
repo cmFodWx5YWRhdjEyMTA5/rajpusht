@@ -25,33 +25,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="121dp">
 
             <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+
+            android:paddingRight="8dp">
+
+            <TextView
+                android:id="@+id/home"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="Home"/>
 
-                android:paddingRight="8dp">
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/forwrd"/>
 
-                <TextView
-                    android:id="@+id/home"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:text="Home"/>
-                
-                <ImageView
-                    android:layout_width="23dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/forwrd"/>
-
-            </RelativeLayout>
+        </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -93,6 +93,41 @@
 
                 android:background="@color/view2"/>
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:id="@+id/OtherWomenList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:text="Other Women List"/>
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/forwrd"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+
+                android:background="@color/view2"/>
+
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -130,7 +165,7 @@
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-
+android:visibility="gone"
                 android:paddingRight="8dp">
 
                 <TextView
@@ -169,7 +204,44 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:text="Push Data"/>
+                    android:text="Sync Data"/>
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/forwrd"/>
+
+            </RelativeLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+
+                android:background="@color/view2"/>
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:id="@+id/cashLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:text="Cash Beneficiary"/>
 
                 <ImageView
                     android:layout_width="23dp"
@@ -224,8 +296,20 @@
 
                 android:background="@color/view2"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="140dp"
+                android:text="App Version : 1.6.7"
+                android:gravity="center_horizontal|center_vertical"
+                />
+
 
         </LinearLayout>
+
+
+
 
     </android.support.design.widget.NavigationView>
 

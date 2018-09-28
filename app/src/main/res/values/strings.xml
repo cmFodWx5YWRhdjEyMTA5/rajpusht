@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RajPusht</string>
+    <string name="app_name" translatable="false">RajPusht</string>
     <string name="title_activity_dash_board">DashBoard</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -14,5 +14,622 @@
     <!--<item>No</item>-->
     <!--<item>Can't Remember</item>-->
     <!--</string-array>-->
+    <string name="radioselecteng">English</string>
+    <string name="radioselecthin">Hindi</string>
+
+    <string name="set_location">Select AWC </string>
+    <string name="set_language">Select Language</string>
+    <!--<string name="radioselecteng">English</string>-->
+    <!--<string name="radioselecthin">Hindi</string>-->
+
+    <!--Basic Form-->
+    <string name="basicq1">Name of the Woman</string>
+    <string name="basicq1_1">Name of Husband/Father</string>
+    <string name="basicq1_2">Enter PCTS-ID</string>
+    <string name="basicq3">Mobile number</string>
+    <string name="basicq4">UID</string>
+    <string name="basicq5">Bhamashah No.</string>
+    <string name="basicq6">Aadhar No.  </string>
+    <string name="adhar1">if aadhar card not available</string>
+    <string name="adhar2">Aadhar Enrolment No.</string>
+    <string name="adhar3">Date Stamp</string>
+    <string name="adhar4">Time Stamp</string>
+    <string name="adhar5">Date of Birth </string>
+    <string name="basicq7">Age (in completed years)</string>
+    <string name="basicq8">What is your religion?</string>
+    <string-array name="array_Religion">
+        <item>--Select Options--</item>
+        <item>Hindu</item>
+        <item>Muslim</item>
+        <item>Christian</item>
+        <item>Sikh</item>
+        <item>Jain</item>
+        <item>Parsi</item>
+        <item>Buddhist</item>
+        <item>No religion</item>
+    </string-array>
+    <string name="basicq9">Do you belong to a scheduled caste, scheduled tribe, other backward class, or none of these ?</string>
+    <string-array name="array_cast">
+        <item>--Select Options--</item>
+        <item>Scheduled Caste</item>
+        <item>Scheduled Tribe</item>
+        <item>OBC</item>
+        <item>General</item>
+    </string-array>
+    <string-array name="array_rationcardColor">
+        <item>--Select Options--</item>
+        <item>Blue/Green (APL)</item>
+        <item>Dark Pink (BPL)</item>
+        <item>Yellow (Antodyaya/Poorest)</item>
+        <item>No card</item>
+    </string-array>
+    <string name="basicq11">What is your relationship with the head of the household ?</string>
+    <string-array name="array_relationshipHead">
+        <item>--Select Options--</item>
+        <item>Head</item>
+        <item>Wife</item>
+        <item>Daughter</item>
+        <item>Daughter in law</item>
+        <item>GrandChild</item>
+        <item>Mother</item>
+        <item>Sister</item>
+        <item>Sister in Law</item>
+        <item>Aunt</item>
+        <item>Niece</item>
+        <item>Other Relative</item>
+    </string-array>
+    <string name="basicq12">What type of family do you live in ?</string>
+    <string-array name="array_typeFamily">
+        <item>--Select Options--</item>
+        <item>Nuclear Family</item>
+        <item>Joint Family</item>
+        <item>Other</item>
+    </string-array>
+    <string name="basicq13">Highest education completed</string>
+    <string-array name="array_education">
+        <item>--Select Options--</item>
+        <item>No Schooling/illiterate</item>
+        <item>Primary Education(upto class 4)</item>
+        <item>Middle School (upto class 8)</item>
+        <item>High School (upto class 10)</item>
+        <item>Higher Secondary (10 + 2)</item>
+        <item>Undergrad/ Bachelors/ Prof degree</item>
+        <item>Master degree and above</item>
+    </string-array>
+    <string name="basicq14">What type of fuel does your household most commonly use for cooking ?</string>
+    <string-array name="array_fuelSelection">
+        <item>--Select Options--</item>
+        <item>Wood</item>
+        <item>Crop residue</item>
+        <item>Dung cakes</item>
+        <item>Coal / Charcoal</item>
+        <item>Kerosene / Diesel</item>
+        <item>Electricity</item>
+        <item>Liquified Petroleum gas / PNG</item>
+        <item>Bio-gas</item>
+        <item>Others</item>
+    </string-array>
+    <string name="basicq15">In your household, who usually makes decision for visiting doctor when your child is sick</string>
+    <string name="basicq15a">(a)Visiting doctor for your own health</string>
+    <string name="basicq15b">(b)Visiting doctor for your child’s health</string>
+    <string-array name="array_decsion">
+        <item>--Select Options--</item>
+        <item>Self</item>
+        <item>Husband</item>
+        <item>Mother in law</item>
+        <item>Father in law</item>
+        <item>Someone else in the family</item>
+        <item>Other relative</item>
+    </string-array>
+
+    <string-array name="array_decsion_child">
+        <item>--Select Options--</item>
+        <item>Self</item>
+        <item>Husband</item>
+        <item>Mother in law</item>
+        <item>Father in law</item>
+        <item>Someone else in the family</item>
+        <item>Other relative</item>
+        <item>Beneficiary has no child </item>
+    </string-array>
+    <string name="basicq16">Which type of account do you have in your name ?</string>
+    <string name="basicq16a">Bank Account</string>
+    <string name="basicq16a1">Bank Details</string>
+    <string name="basicq16a2">Name of account holder</string>
+    <string name="confirmbasicq16a2">Confirm Name of account holder </string>
+    <string name="basicq16a3">Name of bank</string>
+    <string name="basicq16a4">Branch name</string>
+    <string name="basicq16a5">Account number</string>
+    <string name="confirmbasicq16a5">Confirm Account number </string>
+    <string name="basicq16a6">IFSC code</string>
+    <string name="confirmbasicq16a6">Confirm IFSC code</string>
+    <string name="basicq16a7">Distance of the nearest bank branch (in Km)</string>
+    <string name="basicq16a8">Distance of the nearest ATM (in Km)</string>
+
+    <string name="basicq16b">Post Office Account</string>
+    <string name="basicq16b1">Post Office Account Details</string>
+    <string name="basicq16b2">Name of post office in which account is held</string>
+    <string name="basicq16b3">Address of post office</string>
+    <string name="basicq16b4">Post office account number</string>
+    <string name="basicq16b5">Post office pincode</string>
+    <string name="confirmpostaccount">Confirm Post office Account Number</string>
+    <string name="confirmpostpincode">Confirm Post office Pincode</string>
+
+
+    <string name="basicq16c">No Account</string>
+
+    <!--pregnancy detals-->
+    <string name="pd1">How many pregnancies did you have before the current pregnancy ?</string>
+    <string name="pd2">LMP (Last menstrual Period) Date.
+The LMP Date should be the FIRST day of the LAST menstrual period.  DO NOT count the first day when she first missed her period. Help the woman to remember the date by associating it with major events in the village such as puja, festival, etc
+</string>
+
+    <!--young mother details-->
+    <string name="ym1">Name of the child</string>
+    <string name="ym2">Date of delivery of the Child</string>
+    <string name="ym3">Place of delivery</string>
+    <string-array name="array_birthplace">
+        <item>--Select Options--</item>
+        <item>Hospital/ PHC/CHC/ Private clinic</item>
+        <item>Home</item>
+    </string-array>
+    <string name="ym4">Order of birth of the child</string>
+    <string name="ym5">Sex of the child</string>
+    <string-array name="array_childgender">
+        <item>--Select Options--</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Intersex</item>
+    </string-array>
+    <string name="ym6">Birth weight of the child</string>
+    <string name="ym7">Was this child born before completing the full-term? (9 months 10 days)</string>
+    <string-array name="array_birthbefore9month">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="ym8">After birth, when did you FIRST put your child to breast ?</string>
+    <string-array name="array_childtobreast">
+        <item>--Select Options--</item>
+        <item>Within one hour of birth</item>
+        <item>Within seven hours of birth</item>
+        <item>Within the first 24 hours of birth</item>
+        <item>Between 1-3 days of birth</item>
+        <item>Between 3-7 days of birth</item>
+        <item>7 days after birth</item>
+    </string-array>
+    <string name="ym9">Did you feed your child the first yellow, thick breast milk (khees) ? </string>
+    <string-array name="array_khees">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+
+    <!--PW1-->
+    <string name="pw1q1">In the last three months, were you counseled by an NGO/ASHA or a health worker on what to eat and how much during your pregnancy? </string>
+    <string-array name="array_counseledNGOASHApw">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+
+    </string-array>
+    <string name="pw1q2">In the last three months, were you counseled by an NGO/ASHA or a health worker on how to feed your infant after delivery, how and when to breastfeed, what to feed the child in the first six months, etc.? </string>
+    <string-array name="array_ngofeedinfant">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw1q3">On an average, how much does your entire household spend per month on buying foods and food items ?</string>
+    <string-array name="array_expencelmpw">
+        <item>--Select Options--</item>
+        <item>Less than Rs. 500 per month</item>
+        <item>Rs. 500- 1,000 per month</item>
+        <item>Rs. 1000 – 2000 per month</item>
+        <item>Rs. 2000 – 4000 per month</item>
+        <item>Rs. 4000 – 5,000 per month</item>
+        <item>Rs. 5,000 and above</item>
+        <item>Do not know</item>
+    </string-array>
+    <string name="pw2q4">Foods made from grains – Khichdi, bread/roti, rice, noodles, pasta, baati, naan, bazra, makka, oat, millet, panjari (THR), or others</string>
+    <string-array name="array_foodgrain">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="bfood">"Any foods made from pulses, beans, peas, lentils, nuts, or seeds (Any Daal, razma, chhole, mattar, soyabean, urad, besan pakoda, kaadi, sambhar, vada, mungfali, kaaju, pista, badam, akhrot, sunflower seeds, teel, watermelon seed, peanut butter, etc.)</string>
+    <string-array name="b_food_array">
+
+    </string-array>
+
+    <string name="pw2q5">Any dark green leafy vegetables, such as palak, methi, bathua, sarson ka saag, gajar/mooli ka patta, lauki ka patta, brocoli, chana/mutter saag, drumstick, lettuce, pootato leaves, etc.</string>
+    <string-array name="array_greenvegi">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q6">White roots and tubers – Aaloo, mooli, aarbi, white yam, salgham, lotus root, singhara.</string>
+    <string-array name="array_whiteroot">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q7">Any milk or milk products (dahi, chhena, paneer, burfi, lassi, raita, kheer) (Do not include butter or ice-cream)</string>
+    <string-array name="array_milkproduct">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q8">Other Vitamin A-rich fruits and vegetables (Pumpkin, carrots, beetroot, squash, sweet potatoes, red/yellow peppers, mango, papaya, kharbooja, aadoo, khubani, tomato,  that are yellow or orange inside)</string>
+    <string-array name="array_vitaminfood">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q9">Any type of meat or poultry including lamb, goat, chicken, birds, and gurda-kaleeji</string>
+    <string-array name="array_meat">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q10">Eggs – eggs from chicken, ducks, or other birds</string>
+    <string-array name="array_eggs">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q11">Any fresh or dried fish, shell-fish, or seafood</string>
+    <string-array name="array_fish">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q12">All other fruits and vegetables – Apple, kela, jamoon, babbugosa, nariyal, khajoor, angoor, amroot, tarbooj, amla, kathal, litchi, orange, neembu, annanas, peach, strawberry, starfruit, imli, pattagobi, phoolgobi, bengan, simla mirch, mushroom, bhindi, peyaz, lauki, all other subzi.</string>
+    <string-array name="array_fruits">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q13">Any fried, or deep fried foods, such as poori, pakoda, bada, bonda, potato-chips, bhujia, samosa, or food with added oil, fats, butter, ghee.</string>
+    <string-array name="array_friedfood">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q14">Any sugary foods and drink such as packed juice-drink, chocolates, sweets, candies, pastries, cakes, biscuits, cookies, ice-cream, halwa, honey, jam, besan/boondi laddu, jalebi, gulab jamoon, all other sweets not made from milk</string>
+    <string-array name="array_sweetfood">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="pw2q15">Other foods and Liquids (thin porridge, soups, fresh squeezed juice, mattha, jal-jeera, cold-drinks, pepsi, daal-ka-paani, chawal-ka-maad, chhaye, coffee, etc.)</string>
+    <string-array name="array_otherfoodpw">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="pw3q1">Height in centimeters</string>
+    <string name="pw3q2">Weight in Kilograms</string>
+
+    <!--Lm-->
+
+    <string name="Lm1">Are you currently breastfeeding ?</string>
+    <string-array name="array_breastfeeding">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+        <item>Within 12 months after birth</item>
+    </string-array>
+    <string name="Lm2">If NO, when did you stop breastfeeding the child ?</string>
+    <string-array name="array_stopbreastfeeding">
+        <item>--Select Options--</item>
+        <item>Within one week after birth</item>
+        <item>Within one month after birth</item>
+        <item>Within three months after birth</item>
+        <item>Within six months after birth</item>
+        <item>Within 12-18 months after birth</item>
+        <item>Never breastfed</item>
+    </string-array>
+    <string name="Lm3">In the last three months, were you counseled by an NGO/ASHA or a health worker on how to feed your infant after delivery, how and when to breastfeed, what to feed the child in the first six months, etc. ?</string>
+    <string-array name="array_counseledNGOASHA">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+
+    </string-array>
+    <string name="Lm4">After birth, when did you FIRST put your child to breast ?</string>
+    <string-array name="array_childtobreastlm">
+        <item>--Select Options--</item>
+        <item>Within one hour of birth</item>
+        <item>Within seven hours of birth</item>
+        <item>Within the first 24 hours of birth</item>
+        <item>Between 1-3 days of birth</item>
+        <item>Between 3-7 days of birth</item>
+        <item>7 days after birth</item>
+    </string-array>
+    <string name="Lm5">Did you feed your child the first yellow, thick breast milk (khees)?</string>
+    <string-array name="array_kheeslm">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="Lm6">Did you or anyone else give anything such as honey, water, tea, jaggary, ghutti, etc. before initiating breastfeeding ?</string>
+    <string-array name="array_otherfood">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="Lm7">Have you or anyone else ever given any liquid other than breastmilk (such as water, gripe water, sugar-water, fruit juice, honey, tea/coffee, infant formula, etc.) since the child was born ?</string>
+    <string-array name="array_liquidfood">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="Lm8">In the last three months, were you counseled by an NGO/ASHA or a health worker on what YOU need to eat and how much while you are breastfeeding ?</string>
+    <string-array name="array_ongoingfood">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="Lm9">On an average, how much does your entire household spend per month on buying foods and food items ?</string>
+    <string-array name="array_expencelm">
+        <item>--Select Options--</item>
+        <item>Less than Rs. 500 per month</item>
+        <item>Rs. 500- 1,000 per month</item>
+        <item>Rs. 1000 – 2000 per month</item>
+        <item>Rs. 2000 – 4000 per month</item>
+        <item>Rs. 4000 – 5,000 per month</item>
+        <item>Rs. 5,000 and above</item>
+        <item>Do not know</item>
+    </string-array>
+    <string name="Lm10">Have you started giving your child any solid, semi-solid, or soft-food (such as mashed potato, rice, daal, cerelac, mashed eggs, roti, vegetables, etc.) ?</string>
+    <string-array name="array_semisolidfood">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="Lm11">If yes, at which month did you first give the child the solid, semi-solid or soft food ?</string>
+
+    <!--YM-->
+
+    <string name="Ym1">Are you currently breastfeeding ?</string>
+    <string-array name="array_breastfeedingym">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+        <item>Within 12 months after birth</item>
+    </string-array>
+    <string name="Ym2">If NO, when did you stop breastfeeding the child ?</string>
+    <string-array name="array_stopbreastfeedingym">
+        <item>--Select Options--</item>
+        <item>Within one week after birth</item>
+        <item>Within one month after birth</item>
+        <item>Within three months after birth</item>
+        <item>Within six months after birth</item>
+        <item>Within 12-18 months after birth</item>
+        <item>Never breastfed</item>
+    </string-array>
+    <string name="Ym3">Are you currently using any contraceptive to delay or avoid getting pregnant ?</string>
+    <string-array name="array_usingcontraceptive">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="Ym4">If yes, which of the following methods are you currently using ?</string>
+    <string-array name="array_typeofcontracevtive">
+        <item>--Select Options--</item>
+        <item>Female sterilization</item>
+        <item>Male sterilization</item>
+        <item>IUCD/ PPIUCD</item>
+        <item>Injectables</item>
+        <item>Oral pills</item>
+        <item>Condom/Nirodh</item>
+        <item>Withdrawal method</item>
+        <item>Other traditional method</item>
+        <item>Other modern method</item>
+    </string-array>
+    <string name="Ym5">In the last three months, were you counseled by an NGO/ASHA or a health worker on what to feed your child, how much, and when, etc ?</string>
+    <string-array name="array_colseledngoym">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+
+    </string-array>
+    <string name="Ym6">On an average, how much does your entire household spend per month on buying foods and food items ?</string>
+    <string-array name="array_expenceym">
+        <item>--Select Options--</item>
+        <item>Less than Rs. 500 per month</item>
+        <item>Rs. 500- 1,000 per month</item>
+        <item>Rs. 1000 – 2000 per month</item>
+        <item>Rs. 2000 – 4000 per month</item>
+        <item>Rs. 4000 – 5,000 per month</item>
+        <item>Rs. 5,000 and above</item>
+        <item>Do not know</item>
+    </string-array>
+    <string name="mucaic">MUAC(Centimeter)</string>
+
+
+    <string name="c1">Female sterilization</string>
+    <string name="c2">Male sterilization</string>
+    <string name="c3">IUCD/ PPIUCD</string>
+    <string name="c4">Injectables</string>
+    <string name="c5">Oral pills</string>
+    <string name="c6">Condom/Nirodh</string>
+    <string name="c7">Withdrawal method</string>
+    <string name="c8">Other traditional method</string>
+    <string name="c9">Other modern method</string>
+    <string name="basicq10">What color of Ration Card do you hold ?</string>
+
+    <string name="napwq1">The respondent/ pregnant woman not available for interview</string>
+    <string name="napw2"> The respondent/ pregnant woman not done antenatal checkup (ANC)</string>
+
+    <string-array name="array_na_question">
+        <item>--Select Options--</item>
+        <item>Miscarriage/ abortion</item>
+        <item>Death</item>
+        <item>Migrated elsewhere</item>
+
+    </string-array>
+
+    <string name="na1"> Mother died </string>
+    <string name="na2">Mother migrated elsewhere</string>
+    <string name="na3">Child died</string>
+    <string name="na4">Child migrated elsewhere</string>
+    <string name="na5">Both mother and infant died</string>
+    <string name="na6">Both migrated elsewhere</string>
+
+    <string name="f1">Wood</string>
+    <string name="f2">Crop residue</string>
+    <string name="f3">Dung cakes</string>
+    <string name="f4">Coal / Charcoal</string>
+    <string name="f5">Kerosene / Diesel</string>
+    <string name="f6">Electricity</string>
+    <string name="f7">Liquified Petroleum gas / PNG</string>
+    <string name="f8">Bio-gas</string>
+    <string name="f9">Others</string>
+    <string name="nameofbeneficiary">Name of the Mother</string>
+    <string name="dateofbirthbeneficary">Date of Birth of mother</string>
+    <string name="current_password">Enter Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="anc">ANC DATE</string>
+    <string name="immunization">Has The Child been Fully Immunized ?</string>
+
+
+    <string name="beneficiary_cash_login">Beneficiary Cash Login</string>
+    <string name="title_activity_cash_beneficiary">CashBeneficiaryActivity</string>
+    <string name="title_activity_cash_add_new_benefeciary">CashAddNewBenefeciaryActivity</string>
+
+
+    <string name="tab1">CALLS</string>
+    <string name="tab2">CHATS</string>
+    <string name="tab3">CONTACTS</string>
+    <string name="tab4">GALLERY</string>
+    <string name="tab5">PHOTOS</string>
+
+
+    <string name="personal_details">PERSONAL DETAILS</string>
+    <string name="p1"><b>1. Name of Beneficiary:</b></string>
+    <string name="p2"><b>2. Beneficiary Husband\'s Name:</b></string>
+    <string name="p3"><b>3. Age (years):</b></string>
+    <string name="p4"><b>4. Mobile Number:</b></string>
+    <string name="p5"><b>5. Date of Registration:</b></string>
+    <string name="p6"><b>6. Bhamashah No:</b></string>
+    <string name="p7"><b>7. No. of Children (Living):</b></string>
+    <string name="p8"><b>8. Caste(ST-1, SC-2, OBC-3, others-4):</b></string>
+    <string name="p9"><b>9. BPL (YES/NO)(Check mamta card/Ration card:</b></string>
+    <string-array name="caste">
+        <item>--Select Options--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="p10"><b>10. Date Stamp:</b></string>
+    <string name="p11"><b>11. Time Stamp:</b></string>
+    <string name="p12"><b>10. Aadhar Number</b></string>
+    <string name="p13"><b>11. Aadhar Enrollment Number</b></string>
+
+
+    <string name="hp1">Enter beneficiary\'s name</string>
+    <string name="hp2">Enter husband\'s name</string>
+   <string name="hp3">Enter age (e.g 25)</string>
+    <string name="hp4">Enter mobile number (10 digits only)</string>
+    <string name="hp5">Enter date.</string>
+    <string name="hp6">Enter bhamashah no.</string>
+    <string name="hp12">Enter Aadhar Number</string>
+    <string name="hp13">Enter Enrollment Number</string>
+
+
+
+
+    <string name="bank_account_details">BANK ACCOUNT DETAILS</string>
+    <string name="b1"><b>1. Do you have a bank account in your name?(YES/NO)</b></string>
+    <string name="b1_1"><b>(If NO, please facilitate the opening of bank account for the respondent):</b></string>
+    <string name="b2"><b>2. Name of the account holder (as appearing in bank records):</b></string>
+    <string name="b3"><b>3. Name of the Bank in which account is held:</b></string>
+    <string name="b4"><b>4. Branch Name:</b></string>
+    <string name="b5"><b>5. Account Number:</b></string>
+    <string name="b6"><b>6. IFSC Code:</b></string>
+
+    <string name="hb2">Enter account holder\'s name</string>
+    <string name="hb3">Enter name of the bank</string>
+    <string name="hb4">Enter branch name</string>
+    <string name="hb5">Enter account number</string>
+    <string name="hb6">Enter IFSC code</string>
+
+
+
+
+   <string name="pregnancy_details">PREGNANCY DETAILS</string>
+    <string name="pg1"><b>1. Enter the date of the last Menstrual Period (LMP) as metioned in the Mamta Card:</b></string>
+    <string name="pg2"><b>2. ANC Details (Last ANC entered in Mamta Card):</b></string>
+    <string name="pg2_1"><b>ANC</b></string>
+    <string name="pg2_1_1"><b>1st</b></string>
+    <string name="pg2_2"><b>Date of Last ANC as per Mamta Card:</b></string>
+    <string name="pg2_3"><b>No. of eligible Installments:</b></string>
+    <string name="pg2_3_1"><b>5</b></string>
+    <string name="pg3"><b>3. Weight (kg) (as mentioned in MAMTA CARD:</b></string>
+    <string name="pg4"><b>4. Height (cm):</b></string>
+    <string name="pg5"><b>5. Place of ANC\n\t\tGovt. Facility (1) \n\t\tMCHN Day (2) \n\t\tPrivate Hospital (3)</b></string>
+
+    <string name="hpg1"></string>
+    <string name="hpg2"></string>
+    <string name="hpg3">Enter weight</string>
+    <string name="hpg4">Enter height</string>
+    <string name="hpg5">Enter place of ANC</string>
+    <string name="hpg6"></string>
+
+    <string name="second_third_installment">Second - Third Inastallment</string>
+    <string name="cc">CONDITIONALITY COMPLIANCE</string>
+    <string name="cc1"><b>1. ANC Details (Last ANC entered in Mamta Card)</b></string>
+    <string name="cc1_2"><b>Date of Last ANC as per Mamta Card</b></string>
+    <string name="cc1_3"><b>Total Weeks</b></string>
+    <string name="cc_2"><b>2. Weight (kg) (as mentioned in MAMTA Card)</b></string>
+    <string name="cc_3"><b>IN CASE OF INELIGIBILITY\n(EXIT CASE)</b></string>
+    <string name="cc3_1"><b>If No ANC has been done then mention the reason for non-compliance\n\tMiscarriage/abortion (1)\n\tMaternal Death (2)\n\tMigrated elsewhere (3)\n\tOther (please specify) (4)</b></string>
+
+    <string name="hcc1_2">Enter Date</string>
+    <string name="hcc1_3">Elapsed Weeks</string>
+    <string name="hcc2">Enter Weight</string>
+    <string name="hcc3_1">Enter reason</string>
+    
+    <string name="fourth_installation">Fourth Installment</string>
+    <string name="fi_1">1. Date of delivery of the child (enter actual delivery date from discharge slip/birth certificate)</string>
+    <string name="fi_2">Is Child Alive?</string>
+    <string name="fi_3">Gender of the child</string>
+    <string name="fi_4">Birth weight of the child (from discharge slip/birth certificate)</string>
+    <string name="fi_5">IN CASE OF INELIGIBILITY\n(EXIT CASE</string>
+    <string name="fi_6">if No ANC has been done then mention reason for non-compliance\n\t(1) Miscarriage/Stillborn \n\t(2) Maternal Death\n\t(3) Migrated elsewhere\n\t(4)Home Delivery\n\t(5) Rajshree Beneficiary\n\t(6) Other (please specify)</string>
+
+    <string name="hfi_1">Enter date</string>
+    <string name="hfi_2">Is child Alive?</string>
+    <string name="hfi_3">Specify Gender</string>
+    <string name="hfi_4">Enter weight</string>
+    <string name="hfi_6">Enter valid reason</string>
+    
+    <string name="fifth_installment">Fifth Installment</string>
+    <string name="ffi_1">1. Is child alive?</string>
+    <string name="ffi_2">Current weight of the child(kg)</string>
+    <string name="ffi_3">Has child received first cycle of vaccinations</string>
+    <string name="ffi_3_1">(BCG)</string>
+    <string name="ffi_3_2">(Hepatitis)</string>
+    <string name="ffi_3_3">(OPV- 0,1,2)</string>
+    <string name="ffi_3_4">(Pentavelent 1 and 2)</string>
+    <string name="ffi_4">IN CASE OF INELIGIBILITY\n(EXIT CASE)</string>
+    <string name="ffi_4_1">If beneficiary not eligible any more, enter reason\n\t(1) Rajshree Beneficiary\n\t(2) Maternal Death\n\t(3) Migrated elsewhere\n\t(4) Other(please specify)</string>
+
+    <string name="hffi_2">Enter child\'s weight</string>
+    <string name="hffi_4_1">Enter reason</string>
+
+
+
+    <string name="onBackPressed">Sure to exit, data won\'t save?</string>
+    <string name="onSavePressed">Are you sure to save?</string>
+    <string name="beneficiary_name">Beneficiary Name</string>
+    <string name="current_phase">Current Phase</string>
+    <string name="installment">Installment</string>
+    <string name="cash_transfer_due_list">Cash Transfer Due List</string>
+    <string name="onUpdatePressed">Are you sure to update?</string>
 
 </resources>

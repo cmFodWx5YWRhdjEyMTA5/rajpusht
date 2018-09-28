@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/box_form">
+
+    <!--<Button-->
+        <!--android:id="@+id/button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="193dp"-->
+        <!--android:padding="@dimen/nav_header_vertical_spacing"-->
+        <!--android:background="@null"-->
+        <!--android:text="Preview Form"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textSize="16sp"-->
+        <!--android:textStyle="bold" />-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/imageButton4"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_above="@+id/button"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="@null"-->
+        <!--app:srcCompat="@drawable/ic_doc" />-->
+</RelativeLayout>

@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/box_form">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dimen_1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:text="@string/p1"
+                        style="@style/FormTextMini"/>
+
+
+                    <EditText
+                        android:id="@+id/eP1"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:hint="@string/hp1"
+                        style="@style/EditTextStyle" />
+
+
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_weight="1"
+                        android:text="@string/p2"
+                        style="@style/FormTextMini"/>
+
+                    <EditText
+                        android:id="@+id/eP2"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="@string/hp2"
+                        android:inputType="textPersonName"
+                        style="@style/EditTextStyle" />
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_weight="1"
+                        android:text="@string/p3"
+                        style="@style/FormTextMini"/>
+
+                    <EditText
+                        android:id="@+id/eP3"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="@string/hp3"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        style="@style/EditTextStyle" />
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_weight="1"
+                        android:text="@string/p4"
+                        style="@style/FormTextMini"/>
+
+                    <EditText
+                        android:id="@+id/eP4"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="@string/hp4"
+                        android:maxLength="10"
+                        android:inputType="number"
+                        style="@style/EditTextStyle" />
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        style="@style/FormTextMini"
+                        android:layout_weight="1"
+                        android:text="@string/p5" />
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_width="300dp"
+                        android:layout_gravity="center">
+
+                        <EditText
+                            android:id="@+id/eP5"
+                            style="@style/EditTextStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:ems="10"
+                            android:hint="@string/hp5"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:inputType="date" />
+
+                        <ImageButton
+                            android:id="@+id/imageButtonP5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="11dp"
+                            android:background="@null"
+                            app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:text="@string/p6"
+                        style="@style/FormTextMini"/>
+
+                    <EditText
+                        android:id="@+id/eP6"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="@string/hp6"
+                        android:inputType="textPersonName"
+                        style="@style/EditTextStyle" />
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_weight="1"
+                        android:text="@string/p7"
+                        style="@style/FormTextMini"/>
+
+                    <EditText
+                        android:id="@+id/eP7"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:maxLength="2"
+                        android:inputType="number"
+                        style="@style/EditTextStyle" />
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_weight="1"
+                        android:text="@string/p8"
+                        style="@style/FormTextMini"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerP8"
+                        android:layout_gravity="right"
+                        android:padding="@dimen/dimes_8dp"
+                        android:spinnerMode="dropdown"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/text_10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_weight="1"
+                        android:text="@string/p9"
+                        style="@style/FormTextMini"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerP9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"
+                        android:prompt="@string/adhar1"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dimes_8dp"
+                        android:layout_marginRight="@dimen/text_10dp"
+                        android:layout_gravity="right"
+                        />
+                </LinearLayout>
+
+                <include layout="@layout/view_divider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    style="@style/FormLinearLayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_weight="1"
+                        android:text="@string/p10"
+                        style="@style/FormTextMini"/>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_width="300dp"
+                        android:layout_gravity="center">
+
+                    <EditText
+                        android:id="@+id/eP10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="date"
+                        style="@style/EditTextStyle" />
+
+                        <ImageButton
+                            android:id="@+id/imageButtonP10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:layout_marginRight="@dimen/text_10dp"
+                            app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!--<include layout="@layout/view_divider"/>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    style="@style/FormLinearLayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_weight="1"
+                        android:text="@string/p11"
+                        style="@style/FormTextMini"/>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                    <EditText
+                        android:id="@+id/eP11"
+                        android:ems="10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="time"
+                        style="@style/EditTextStyle"/>
+
+                        <ImageButton
+                            android:id="@+id/imageButtonP11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_weight="1"
+                            android:layout_marginRight="@dimen/text_10dp"
+                            android:background="@null"
+                            app:srcCompat="@drawable/ic_access_time_black_24dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--<include layout="@layout/view_divider"/>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal"-->
+                <!--style="@style/FormLinearLayout">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/textView30"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="Select Method"-->
+                    <!--style="@style/FormTextMini"/>-->
+
+
+
+                <!--<RadioGroup-->
+                    <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
+                    <!--android:id="@+id/radioGroupAadharEnrol"-->
+                    <!--android:layout_width="300dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/radioLive"-->
+                        <!--android:layout_width="140dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@drawable/box_edittext"-->
+                        <!--android:layout_margin="@dimen/dimens_5dp"-->
+                        <!--android:padding="@dimen/dimen_10dp"-->
+                        <!--android:textColor="@color/colorHalfBlack"-->
+                        <!--android:text="Aadhar"-->
+                        <!--android:textSize="16sp" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/radioStill"-->
+                        <!--android:layout_width="140dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@drawable/box_edittext"-->
+                        <!--android:layout_margin="@dimen/dimens_5dp"-->
+                        <!--android:padding="@dimen/dimen_10dp"-->
+                        <!--android:textColor="@color/colorHalfBlack"-->
+                        <!--android:text="Enrollment"-->
+                        <!--android:textSize="16sp" />-->
+
+                <!--</RadioGroup>-->
+                <!---->
+            <!--</LinearLayout>-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/layoutAadhar"
+                    style="@style/FormLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_weight="1"
+                        android:text="@string/p12"
+                        style="@style/FormTextMini"/>
+
+                    <EditText
+                        android:id="@+id/eP12"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="@string/hp12"
+                        android:inputType="number"
+                        android:maxLength="12"
+                        style="@style/EditTextStyle" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/layoutEnrollment"
+                    style="@style/FormLinearLayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_weight="1"
+                        android:text="@string/p13"
+                        style="@style/FormTextMini"/>
+
+                    <EditText
+                        android:id="@+id/eP13"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="@string/hp13"
+                        android:inputType="number"
+                        style="@style/EditTextStyle" />
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

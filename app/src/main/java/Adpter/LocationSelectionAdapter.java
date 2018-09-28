@@ -6,46 +6,55 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import extras.ProfileGetSetMethod;
 import extras.SessionManager;
 import in.co.rajpusht.rajpusht.Login;
+import in.co.rajpusht.rajpusht.Profile;
 import in.co.rajpusht.rajpusht.R;
 
 /**
  * Created by Ranjeet on 3/5/2018.
  */
 
-public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelectionAdapter.MyViewHolder> {
+public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelectionAdapter.MyViewHolder>
+implements Filterable{
 
     private List<ProfileGetSetMethod> horizontalList;
+    private List<ProfileGetSetMethod> horizontalListFiltered;
     Context context;
-    SessionManager session ;
-    String status="0";
+    SessionManager session;
+    String status = "0";
 
-    private int   selectedPosition=-1;
+    private int selectedPosition = -1;
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView textviewLocation;
+        public TextView textviewLocation, textviewSector;
         RadioButton radiobutton;
 
         public MyViewHolder(View view) {
             super(view);
-      textviewLocation = (TextView) view.findViewById(R.id.textviewLocation);
+            textviewLocation = (TextView) view.findViewById(R.id.textviewLocation);
+            textviewSector = (TextView) view.findViewById(R.id.textviewSector);
             radiobutton = (RadioButton) view.findViewById(R.id.radiobutton);
 
         }
     }
 
 
-
-
-    public LocationSelectionAdapter(List<ProfileGetSetMethod> horizontalList) {
+    public LocationSelectionAdapter(Context context ,List<ProfileGetSetMethod> horizontalList) {
+        this.context = context;
         this.horizontalList = horizontalList;
+        this.horizontalListFiltered = horizontalList;
+//        session = new SessionManager(context);
 
     }
 
@@ -55,7 +64,7 @@ public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelec
                 .inflate(R.layout.locationlayout, parent, false);
 
 
-                LocationSelectionAdapter.MyViewHolder holder =     new LocationSelectionAdapter.MyViewHolder(itemView);
+        LocationSelectionAdapter.MyViewHolder holder = new LocationSelectionAdapter.MyViewHolder(itemView);
         return holder;
     }
 
@@ -64,7 +73,9 @@ public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelec
         Log.d("PositinVAlaue", "" + position);
 //        holder.txtView.setText(String.valueOf(position + 1));
 
-        final ProfileGetSetMethod profile = horizontalList.get(position);
+       // final ProfileGetSetMethod profile = horizontalList.get(position);
+        final ProfileGetSetMethod profile = horizontalListFiltered.get(position);
+
 
         holder.radiobutton.setChecked(position == selectedPosition);
         try {
@@ -72,55 +83,77 @@ public class LocationSelectionAdapter extends RecyclerView.Adapter<LocationSelec
                 holder.radiobutton.setChecked(true);
                 status = "1";
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
         holder.radiobutton.setTag(position);
-holder.textviewLocation.setText(profile.getVillage_name());
+        holder.textviewLocation.setText(profile.getVillage_name());
+        holder.textviewSector.setText(profile.getSectorName() + " , " + profile.getProjectName());
 
-holder.radiobutton.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
+        holder.radiobutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-      holder.radiobutton.setChecked(false);
+                holder.radiobutton.setChecked(false);
 //        if(profile.getLoginchecked().equalsIgnoreCase("y")) {
 //            holder.radiobutton.setChecked(false);
 //        }
-            selectedPosition = (Integer) v.getTag();
+                selectedPosition = (Integer) v.getTag();
 //        session.setLocationId(profile.getId());
-        new Login().selectedId=profile.getId();
-
-        notifyDataSetChanged();
-Log.d("SelectedPosition",""+position+ profile.getVillage_name());
-    }
-});
-//        holder.radiobutton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-
-//                if(holder.radiobutton.isChecked())
-//                {
-// holder.radiobutton.setChecked(false);
-//// value=1;
-//                }
-//                else{
-//                    holder.radiobutton.setChecked(true);
-//                }
-
-
-
-//            }
-//        });
-
+                new Login().selectedId = profile.getId();
+//        session.setVillageSelectedId(profile.getId());
+                notifyDataSetChanged();
+                Log.d("SelectedPosition", "" + position + profile.getVillage_name());
+            }
+        });
 
 
     }
+
 
     @Override
     public int getItemCount() {
-        return horizontalList.size();
+        //return horizontalList.size();
+        return  horizontalListFiltered.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    horizontalListFiltered = horizontalList;
+                } else {
+                    List<ProfileGetSetMethod> filteredList = new ArrayList<>();
+                    for (ProfileGetSetMethod row : horizontalList) {
+
+                        // name match condition. this might differ depending on your requirement
+                        if (row.getVillage_name().toLowerCase().contains(charString.toLowerCase()) || row.getSurveyor_name().contains(charSequence)) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    horizontalListFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = horizontalListFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                horizontalListFiltered = (ArrayList<ProfileGetSetMethod>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+
+
+    }
 }
+
+
+

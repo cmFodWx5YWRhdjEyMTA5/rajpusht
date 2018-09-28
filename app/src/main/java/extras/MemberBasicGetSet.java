@@ -31,17 +31,57 @@ public class MemberBasicGetSet {
         this.isApprovedMember = isApprovedMember;
     }
 
+    public String getIsApprove() {
+        return isApprove;
+    }
+
+    public void setIsApprove(String isApprove) {
+        this.isApprove = isApprove;
+    }
+
     String isEditedMember;
     String isApprovedMember;
 
     String MemberId;
-    String family_id, name, dor, doentry, doexit, dob, age, ifdobasum, dod, aadhar, aadharenrol, aadhardate, aadhartime, bhamasha, mobile, relation, sex, handicap, ifmarried, motherid, status, stage, substage, trackstatus, surveyor_id, timestamp, source;
+    String family_id;
+    String name;
+    String husband;
+    String isApprove;
+    String pctsid;
+    String dor;
+    String doentry;
+    String doexit;
+    String dob;
+    String age;
+    String ifdobasum;
+    String dod;
+    String aadhar;
+    String aadharenrol;
+    String aadhardate;
+    String aadhartime;
+    String bhamasha;
+    String mobile;
+    String relation;
+    String sex;
+    String handicap;
+    String ifmarried;
+    String motherid;
+    String status;
+    String stage;
+    String substage;
+    String trackstatus;
+    String surveyor_id;
+    String timestamp;
+    String source;
 
-    public MemberBasicGetSet(String MemberId, String family_id, String name, String dor, String doentry, String doexit, String dob, String age, String ifdobasum, String dod, String aadhar, String aadharenrol, String aadhardate, String aadhartime, String bhamasha, String mobile, String relation, String sex, String handicap, String ifmarried, String motherid, String status, String stage, String substage, String trackstatus, String surveyor_id, String timestamp, String source,
+    public MemberBasicGetSet(String MemberId, String family_id, String name, String husband, String pctsid, String dor, String doentry, String doexit, String dob, String age, String ifdobasum, String dod, String aadhar, String aadharenrol, String aadhardate, String aadhartime, String bhamasha, String mobile, String relation, String sex, String handicap, String ifmarried, String motherid, String status, String stage, String substage, String trackstatus, String surveyor_id, String timestamp, String source,
                              String isNew,String isEditedMember,String isApprovedMember) {
         this.MemberId = MemberId;
         this.family_id = family_id;
         this.name = name;
+        this.husband = husband;
+        this.pctsid = pctsid;
+      //  this.isApprove = isApprove;
         this.dor = dor;
         this.doentry = doentry;
         this.doexit = doexit;
@@ -94,6 +134,22 @@ public class MemberBasicGetSet {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getHusband() {
+        return husband;
+    }
+
+    public void setHusband(String husband) {
+        this.husband = husband;
+    }
+
+    public String getPctsid() {
+        return pctsid;
+    }
+
+    public void setPctsid(String pctsid) {
+        this.pctsid = pctsid;
     }
 
     public String getDor() {

@@ -61,7 +61,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:id="@+id/profile_relative_layout">
 
                 <ImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -88,10 +89,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Set Location"
                 android:layout_marginLeft="7dp"
+                android:text="@string/set_location"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/view2"/>
+                android:textColor="@color/view2" />
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searcView_profile"
+                android:queryHint="Search for AWC"
+                android:layoutDirection="rtl"/>
 
             <View
                 android:layout_width="match_parent"
@@ -233,7 +241,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Set Language"
+                android:text="@string/set_language"
                 android:layout_marginLeft="7dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@color/view2"/>
@@ -248,6 +256,7 @@
 
 
             <RadioGroup
+                android:id="@+id/languageRadiogroup"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
@@ -260,8 +269,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="0.5"
-                    android:text="English"
-                    android:checked="true"
+                    android:text="@string/radioselecteng"
+
                     android:gravity="center"/>
 
                 <Space
@@ -273,7 +282,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="0.5"
-                    android:text="Hindi"
+
+                    android:text="@string/radioselecthin"
                     android:gravity="center"/>
 
 
@@ -306,13 +316,20 @@
             app:srcCompat="@drawable/back" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="PROFILE"
-            android:visibility="gone"
+            android:layout_alignBaseline="@+id/save"
+            android:layout_alignBottom="@+id/save"
+            android:clickable="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/box3"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="LOGOUT"
+            android:id="@+id/logout"
+            android:layout_margin="10dp"
+
             android:textColor="@color/white"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/save"

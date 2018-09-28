@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
+
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/layoutchecki"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -20,7 +23,7 @@
                 android:id="@+id/breastfeedingTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Are you currently breastfeeding ?"
+                android:text="@string/Lm1"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
@@ -52,7 +55,7 @@
                 android:id="@+id/visibiltytext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="If NO, when did you stop breastfeeding the child ? "
+                android:text="@string/Lm2"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
@@ -89,7 +92,7 @@
                     android:id="@+id/childBreastTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="After birth, when did you FIRST put your child to breast ? "
+                    android:text="@string/Lm4"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -109,6 +112,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"/>
                 <View
+                    android:id="@+id/childbreastNow"
                     android:layout_width="match_parent"
                     android:layout_height="0.75dp"
                     android:layout_marginTop="-2dp"
@@ -120,7 +124,7 @@
                     android:id="@+id/khesstest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Did you feed your child the first yellow, thick breast milk (khees)? "
+                    android:text="@string/Lm5"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -151,7 +155,7 @@
                     android:id="@+id/otherfoodbeforebreastfeedTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Did you or anyone else give anything such as honey, water, tea, jaggary, ghutti, etc. before initiating breastfeeding ? "
+                    android:text="@string/Lm6"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -171,6 +175,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"/>
                 <View
+                    android:id="@+id/otherfoodbeforebreastfeedView"
                     android:layout_width="match_parent"
                     android:layout_height="0.75dp"
                     android:layout_marginTop="-2dp"
@@ -182,7 +187,7 @@
                     android:id="@+id/liquidotherthenbreastfeedingtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Have you or anyone else ever given any liquid other than breastmilk (such as water, gripe water, sugar-water, fruit juice, honey, tea/coffee, infant formula, etc.) since the child was born ?"
+                    android:text="@string/Lm7"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -215,7 +220,7 @@
                 android:id="@+id/ngoownfoodtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on what YOU need to eat and how much while you are breastfeeding ? "
+                android:text="@string/Lm8"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
@@ -249,7 +254,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on how to feed your infant after delivery, how and when to breastfeed, what to feed the child in the first six months, etc. ? "
+                android:text="@string/Lm3"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
             <Spinner
@@ -277,7 +282,7 @@
                 android:id="@+id/householdexpencetext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="On an average, how much does your entire household spend per month on buying foods and food items ? "
+                android:text="@string/Lm9"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
@@ -312,7 +317,7 @@
                 android:id="@+id/semisolidfoodtochildtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have you started giving your child any solid, semi-solid, or soft-food (such as mashed potato, rice, daal, cerelac, mashed eggs, roti, vegetables, etc.) ?"
+                android:text="@string/Lm10"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
@@ -343,12 +348,13 @@
                 android:id="@+id/solidfoodmonthtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="If yes, at which month did you first give the child the solid, semi-solid or soft food ? "
+                android:text="@string/Lm11"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2"/>
+
             <EditText
                 android:id="@+id/solidfoodmonth"
                 android:layout_width="match_parent"
@@ -356,7 +362,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/box1"
-
+                android:paddingLeft="8dp"
+                android:visibility="gone"
                 android:inputType="numberDecimal" />
 
 

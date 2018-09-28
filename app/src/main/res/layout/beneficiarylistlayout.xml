@@ -2,23 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="8dp"
-    android:layout_height="55dp">
+    android:layout_height="75dp">
 
     <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="80dp"
     android:background="@color/white"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:paddingBottom="3dp">
 
-    <TextView
-    android:id="@+id/womenname"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_marginLeft="9dp"
-    android:text="Sulochana Devi"
-    android:textSize="14dp" />
+        <TextView
+            android:id="@+id/womenname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="14dp"
+            android:text="Sulochana Devi"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/husbanName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/date"
+            android:layout_below="@+id/date"
+            tools:text="(w/o) Mr. XYZ"
+            android:textSize="12dp" />
+
 
         <TextView
             android:id="@+id/date"
@@ -30,16 +43,17 @@
             android:text="LMP Date : 10-06-2017"
             android:textSize="12dp" />
 
-    <Button
-        android:id="@+id/buttonststus"
-    android:layout_width="60dp"
-    android:layout_height="30dp"
-    android:layout_alignParentRight="true"
-    android:layout_marginRight="9dp"
-    android:background="@color/gray"
-    android:text="PW 3"
-    android:textColor="@color/white"
-    android:textSize="12dp" />
+        <Button
+            android:id="@+id/buttonststus"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/husbanName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="13dp"
+            android:background="@color/gray"
+            android:text="PW 3"
+            android:textColor="@color/white"
+            android:textSize="12dp" />
 
         <ImageView
             android:id="@+id/imageFlag"
@@ -53,6 +67,15 @@
             android:layout_alignBottom="@+id/buttonststus"
 
             />
+
+        <TextView
+            android:id="@+id/pctsId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/husbanName"
+            android:layout_below="@+id/husbanName"
+            android:textSize="12dp"
+            tools:text="ID: 12345678" />
 
     </RelativeLayout>
 

@@ -2,11 +2,14 @@ package in.co.rajpusht.rajpusht;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -29,20 +32,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 import extras.BaseUrl;
 import extras.FamilyDetailGetSet;
 import extras.SessionManager;
+import in.co.rajpusht.rajpusht.activity.CashProfileActivity;
+
+import static in.co.rajpusht.rajpusht.tool.Constants.CASH_BASE_URL;
 
 public class DashBoard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,8 +77,14 @@ public class DashBoard extends AppCompatActivity
 
 TextView profilenametext;
 SessionManager session;
+String syncValue="";
 
 CheckBox checkChild,checkPregnets;
+
+
+
+    boolean isSuccessful;
+    String value2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,7 +239,25 @@ CheckBox checkChild,checkPregnets;
             public void onClick(View v) {
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
+
+                Intent intentPassword = new Intent(getApplicationContext(),ChagePassword.class);
+                startActivity(intentPassword);
 //                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        TextView textOtherWomenDetails= (TextView) findViewById(R.id.OtherWomenList);
+        textOtherWomenDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+
+                Intent intentPassword = new Intent(getApplicationContext(),OtherWomenList.class);
+                startActivity(intentPassword);
+
             }
         });
 
@@ -227,7 +268,30 @@ CheckBox checkChild,checkPregnets;
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
 //                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
-                session.logoutUser();
+
+//                pushDataToserver("logoutSelected");
+                pushDataToserver("logoutSelected");//Checking if data is send
+
+               // session.logoutUser();
+               // finish();
+
+
+            }
+        });
+
+        TextView cashLogin = (TextView)findViewById(R.id.cashLogin);
+        cashLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String usernameCash = preferences.getString("username_cash", "NUll");
+                String passwordCash = preferences.getString("password_cash", "Null");
+                new CashLogin().execute(usernameCash, passwordCash);
+
+
 
             }
         });
@@ -249,6 +313,7 @@ CheckBox checkChild,checkPregnets;
 //                Toast.makeText(DashBoard.this, "CLicked", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         final TextView pushData = (TextView) findViewById(R.id.pushData);
         pushData.setOnClickListener(new View.OnClickListener() {
@@ -274,45 +339,9 @@ CheckBox checkChild,checkPregnets;
 //                JSONArray pregnent=pushdata("SELECT PREGNANCY_ID,MEMBERS_ID,ORDER_OF_PREGNANCY,LMP_DATE,IS_ACTIVE,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW AS recordStatus FROM PREGNANT WHERE recordStatus  NOT NULL");
 //                Log.d("JSONCHECK",pregnent.toString());
 
-                JSONArray familyList = pushdata("SELECT FAMILY_ID as familyId, DIST_CODE as distCode, PROJECT_CODE as projectCode, SECTOR_CODE as sectorCode, AWC_CODE as awcCode,VILLAGE_CODE as villageCode,RELIGION as religion,CASTE as cast ,RCARD as rcard,FAMILY_TYPE as familyType,SURVEYOR_ID as surveyorId,IS_APPROVED as isApproved, IS_NEW AS recordStatus FROM familydata WHERE recordStatus NOT NULL");
 
-                JSONArray memberbasicList =pushdata("SELECT MEMBERS_ID as membersId, FAMILY_ID as familyId, NAME as name,DOR as dor, DOENTRY as doentry, DOEXIT as doexit, DOB as dob, AGE as age, IF_DOB_ASSUMED as ifDobAssumed, DODEATH as dodeath,AADDHAR as aaddhar, AADDHAR_ENROL_NO as aaddharEnrolNo, AADDHAR_DATE_STAMP as aaddharDateStamp, AADDHAR_TIME_STAMP as aaddharTimeStamp,BHAMASHA as bhamasha,\n" +
-                        " MOBILE as mobile, RELATION as relation, SEX as sex, HANDICAP as handicap,IF_MARRIED as ifMarried, MOTHER_ID as motherId,STATUS as status, STAGE as stage, SUB_STAGE as subStage, IS_TO_TRACK as isToTrack, SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source, IS_APPROVED as isApproved, IS_NEW AS recordStatus FROM memberbasic WHERE recordStatus NOT NULL");
-                JSONArray pwTracking=pushdata("SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId, STAGE as stage,SUB_STAGE as subStage,IS_AVAILABLE as isAvailable, NA_REASON as naReason,IS_ANC as isAnc,ANC_DATE as ancDate,IF_COUNSEL_ON_SELFFEED as ifCounselOnSelffeed,IF_COUNSEL_ON_BF as ifCounselOnBf,SPEND_ON_FOOD as spendOnFood,HEIGHT as height, WEIGHT as weight,SURVEYOR_ID as surveyorId,\n" +
-                        " TIME_STAMP as timeStamp, SOURCE as source,IS_NEW AS recordStatus,IS_APPROVED as isApproved FROM PW_TRACKING WHERE recordStatus NOT NULL");
-                JSONArray women_extra=pushdata("SELECT MEMBERS_ID as membersId,EDUCATION as education,COOKING_FUEL as cookingFuel, DECISIONMAKER_OWN_HEALTH as decisionmakerOwnHealth, DECISIONMAKER_CHILD_HEALTH as decisionmakerChildHealth,if_bank_account as ifBankAccont,AC_HOLDER_NAME as acHolderName, BANK_NAME as bankName,BRANCH as branch,AC_NO as acNo,IFSC_CODE as ifscCode,BANK_DISTANCE as bankDistance,POSTOFFICE_NAME as postofficeName,POSTOFFICE_ADDRESS as postofficeAddress,PIN_CODE as pinCode,POST_OFFICE_AC as postOfficeAc, HOEMO_CODE as hoemoCode,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM womenextra WHERE recordStatus NOT NULL");
-                JSONArray child_extra=pushdata("SELECT MEMBERS_ID as membersId,DODELIVERY as dodelivery,DELIVERY_PLACE as deliveryPlace,CHILD_ORDER as childOrder,BIRTH_WT as birthWt,FULL_TERM as fullTerm,WHEN_FIRST_BF as whenFirstBf,IF_FEED_KHEES as ifFeedKhees,CURRENTLY_BF as currentlyBf,WHEN_STOP_BF as whenStopBf,ANYTHING_BEFORE_BF as anythingBeforeBf, IF_STARTED_SOLID_FOOD as ifStartedSolidFood,WHICH_MONTH_SOLID_FOOD as whichMonthSolidFood,CHILD_IMMUNIZATION_STATUS as childImmunizationStatus,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM childextra WHERE recordStatus NOT NULL");
-                JSONArray child_tracking = pushdata("SELECT MEMBERS_ID as membersId,STAGE as stage,SUB_STAGE as subStage,IS_AVAILABLE as isAvailable,NA_REASON_MOTHER as naReasonMother,NA_REASON_CHILD as naReasonChild,NA_REASON_BOTH as naReasonBoth,CURRENTLY_BF as currentlyBf,IF_USING_CONTRACEPTIVE as ifUsingContraceptive,METHOD_CONTRACEPTIVE as methodContraceptive,IF_COUNSEL_ON_FEED_INFANT as ifCounselOnFeedInfant,IF_COUNSEL_ON_SELFFEED as ifCounselOnSelffeed,LIQUID_OTHER_THAN_BF as liquidOtherThanBf,IF_STARTED_SOLID_FOOD as ifStartedSolidFood,SPEND_ON_FOOD as spendOnFood,CHILD_IMMUNIZATION_STATUS as childImmunizationStatus,CHILD_HEIGHT as childHeight,CHILD_WEIGHT as childWeight,\n" +
-                        "CHILD_MUAC as childMuac,SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM child_tracking WHERE recordStatus NOT NULL ");
-                JSONArray diet=pushdata("\n" +
-                        "SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId,STAGE as stage,SUB_STAGE as subStage,FEED_A as feedA,FEED_A_NOS as feedAnos,FEED_B as feedB,FEED_B_NOS as feedBnos,FEED_C as feedC,FEED_C_NOS as feedCnos,FEED_D as feedD,FEED_D_NOS as feedDnos,FEED_E as feedE,FEED_E_NOS as feedEnos, FEED_F as feedF,FEED_F_NOS as feedFnos,FEED_G as feedG, FEED_G_NOS as feedGnos,FEED_H as feedH,FEED_H_NOS as feedHnos,FEED_I as feedI,FEED_I_NOS as feedInos,FEED_J as feedJ,FEED_J_NOS as feedJnos,FEED_K as feedK,FEED_K_NOS as feedKnos,FEED_L as feedL,FEED_L_NOS as feedLnos,FEED_M as feedM,FEED_M_NOS as feedMnos,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM DIET WHERE recordStatus  NOT NULL");
-                JSONArray pregnent=pushdata("SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId,ORDER_OF_PREGNANCY as orderOfPregnancy,LMP_DATE as lmpDate,IS_ACTIVE as isActive,SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM PREGNANT WHERE recordStatus  NOT NULL");
-try {
+//                pushDataToserver("pushCalled");
 
-
-    JSONObject jsonObject = new JSONObject();
-    jsonObject.put("memberBasic", memberbasicList);
-    jsonObject.put("pwTracking", pwTracking);
-    jsonObject.put("diet", diet);
-    jsonObject.put("familyDetails", familyList);
-    jsonObject.put("womenExtra", women_extra);
-    jsonObject.put("childTracking", child_tracking);
-    jsonObject.put("childExtra", child_extra);
-    jsonObject.put("pregnant", pregnent);
-
-    String jsonObjectString= jsonObject.toString(0);
-    Log.d("JSONCHECK",jsonObjectString);
-    Log.d("JSONCHECK",pregnent.toString());
-    Log.d("JSONCHECK",women_extra.toString());
-
-  PushData pushDaataClass = new PushData();
-   pushDaataClass.execute(jsonObjectString);
-
-}catch (Exception e){
-
-    Log.d("JSONCHECK",e.toString()+"Error pusjh");
-
-}
 
             }
         });
@@ -448,9 +477,7 @@ try {
 
 Log.d("DashPushJson",stringName);
 Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata/"+session.getSurveyorId());
-
         try {
-
             HttpResponse response;
 
             JSONObject jsonObject = new JSONObject();
@@ -461,7 +488,6 @@ Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata
             httpPost.setHeader("Content-Type", "application/json");
             httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
 //  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
 //                httpPost.setHeader("Accept-Encoding", "application/json");
 //                httpPost.setHeader("Accept-Language", "en-US");
             response = httpClient.execute(httpPost);
@@ -476,12 +502,14 @@ Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata
 
 
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+
+            Log.d("pushdatajsonErrorr", e.toString());
 
         }
 
         return value;
-    }
+
+        }
 
         @Override
         protected void onPreExecute() {
@@ -506,21 +534,26 @@ Log.d("DashPushJson",new BaseUrl().base_url+"restservice/surveyor/sendsurveydata
             if(aVoid.equalsIgnoreCase("true")|| aVoid.equalsIgnoreCase("false")){
 
 
-                ExeuteQuery("update familydata set is_new=null");
-                ExeuteQuery("update memberbasic set is_new=null");
-                ExeuteQuery("update pregnant set is_new=null");
-                ExeuteQuery("update womenextra set is_new=null");
-                ExeuteQuery("update childextra set is_new=null");
-                ExeuteQuery("update pw_tracking set is_new=null");
-                ExeuteQuery("update child_tracking set is_new=null");
-                ExeuteQuery("update diet set is_new=null");
+                ExeuteQuery("update familydata set is_new='',IS_APPROVED='Y' ");
+                ExeuteQuery("update memberbasic set is_new='',IS_APPROVED='Y'");
+                ExeuteQuery("update pregnant set is_new='', IS_APPROVED='Y'");
+                ExeuteQuery("update womenextra set is_new='', IS_APPROVED='Y'");
+                ExeuteQuery("update childextra set is_new='' , IS_APPROVED='Y'");
+                ExeuteQuery("update pw_tracking set is_new='', IS_APPROVED='Y'");
+                ExeuteQuery("update child_tracking set is_new='', IS_APPROVED='Y'");
+                ExeuteQuery("update diet set is_new='', IS_APPROVED='Y'");
 
+                Log.d("checkTRack","Value inserted track alu ");
+
+                if(syncValue.equalsIgnoreCase("logoutSelected")){
+                    session.logoutUser();
+                }
 
             }
 //
 //                uid="ranjeet";
 
-//                if(arraydata!=null){
+//                if(arraydata!=null){W
 //                    arraydata.clear();
 //                }
 //                getCaptured();
@@ -634,7 +667,7 @@ return resultSet;
 
     public JSONArray pushmemberbaisc() {
 
-        String memberBaiscQuery = "SELECT MEMBERS_ID, FAMILY_ID, NAME,DOR, DOENTRY, DOEXIT, DOB, AGE, IF_DOB_ASSUMED, DODEATH,AADDHAR, AADDHAR_ENROL_NO, AADDHAR_DATE_STAMP, AADDHAR_TIME_STAMP,BHAMASHA,\n" +
+        String memberBaiscQuery = "SELECT MEMBERS_ID, FAMILY_ID, NAME,HUSBAND, PCTSID,DOR, DOENTRY, DOEXIT, DOB, AGE, IF_DOB_ASSUMED, DODEATH,AADDHAR, AADDHAR_ENROL_NO, AADDHAR_DATE_STAMP, AADDHAR_TIME_STAMP,BHAMASHA,\n" +
                 " MOBILE, RELATION, SEX, HANDICAP,IF_MARRIED, MOTHER_ID,STATUS, STAGE, SUB_STAGE, IS_TO_TRACK, SURVEYOR_ID,TIME_STAMP,SOURCE, IS_APPROVED, IS_NEW AS recordStatus FROM memberbasic WHERE recordStatus NOT NULL";
 
         SQLiteDatabase swl = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
@@ -670,6 +703,9 @@ return resultSet;
                             String age=cfamily.getString(cfamily.getColumnIndex("age"));
                             String status=cfamily.getString(cfamily.getColumnIndex("status"));
                             String doexit=cfamily.getString(cfamily.getColumnIndex("doexit"));
+
+                            String husband = cfamily.getString(cfamily.getColumnIndex("husband"));
+                            String pctsid = cfamily.getString(cfamily.getColumnIndex("pctsid"));
 
 
 
@@ -853,11 +889,15 @@ return resultSet;
                 String    age = jsonobjectMember.getString("age");
                 String     status = jsonobjectMember.getString("status");
 
+                String husband = jsonobjectMember.getString("husband");
+                String pctsid = jsonobjectMember.getString("pctsid");
 
-String insertmemberBasic="INSERT INTO memberbasic (MEMBERS_ID,FAMILY_ID,NAME,DOR,DOENTRY,DOEXIT,DOB,AGE,IF_DOB_ASSUMED,DODEATH," +
+
+
+String insertmemberBasic="INSERT INTO memberbasic (MEMBERS_ID,FAMILY_ID,NAME,husband,pctsid,DOR,DOENTRY,DOEXIT,DOB,AGE,IF_DOB_ASSUMED,DODEATH," +
         "AADDHAR,AADDHAR_ENROL_NO,AADDHAR_DATE_STAMP,AADDHAR_TIME_STAMP,BHAMASHA, MOBILE,RELATION,SEX,HANDICAP," +
         "IF_MARRIED,MOTHER_ID,STATUS,STAGE,SUB_STAGE,IS_TO_TRACK,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_APPROVED,IS_NEW) VALUES (" +
-        "'" +membersId +"','"+ familyId + "','"+ name +"','"+ dor +"','"+ doentry +"','"+ doexit +"','"
+        "'" +membersId +"','"+ familyId + "','"+ name +"','"+ husband +"','"+ pctsid +"','"+ dor +"','"+ doentry +"','"+ doexit +"','"
                         + dob +"','"+ age +"','"+ ifDobAssumed +"','"+ dodeath +"','"+ aaddhar +"','"
                         + aaddharEnrolNo +"','"+ aaddharDateStamp+ "','"+ aaddharTimeStamp +"','"+ bhamasha +"','"
                         + mobile + "','"+ relation +"','"+ sex +"','"+ handicap +"','"+ ifMarried +"','"+ motherId +"','"
@@ -995,6 +1035,7 @@ ExeuteQuery(dietQuery);
                 String postofficeName= jsonWExtra.getString("postofficeName");
                 String hoemoCode= jsonWExtra.getString("hoemoCode");
                 String bankDistance= jsonWExtra.getString("bankDistance");
+                String bank_atm_distance = jsonWExtra.getString("atmDistance");
                 String postofficeAddress= jsonWExtra.getString("postofficeAddress");
                 String branch= jsonWExtra.getString("branch");
                 String acNo= jsonWExtra.getString("acNo");
@@ -1009,10 +1050,10 @@ ExeuteQuery(dietQuery);
                 String acHolderName= jsonWExtra.getString("acHolderName");
 
 
-                String womenExtraQuery="INSERT INTO WOMENEXTRA (MEMBERS_ID,EDUCATION,COOKING_FUEL,DECISIONMAKER_OWN_HEALTH,DECISIONMAKER_CHILD_HEALTH,if_bank_account,AC_HOLDER_NAME,BANK_NAME,BRANCH,AC_NO, IFSC_CODE,BANK_DISTANCE,POSTOFFICE_NAME,POSTOFFICE_ADDRESS,PIN_CODE,POST_OFFICE_AC,HOEMO_CODE,IS_APPROVED,IS_NEW) VALUES (" +
+                String womenExtraQuery="INSERT INTO WOMENEXTRA (MEMBERS_ID,EDUCATION,COOKING_FUEL,DECISIONMAKER_OWN_HEALTH,DECISIONMAKER_CHILD_HEALTH,if_bank_account,AC_HOLDER_NAME,BANK_NAME,BRANCH,AC_NO, IFSC_CODE,BANK_DISTANCE,BANK_ATM_DISTANCE,POSTOFFICE_NAME,POSTOFFICE_ADDRESS,PIN_CODE,POST_OFFICE_AC,HOEMO_CODE,IS_APPROVED,IS_NEW) VALUES (" +
                         "'"+ membersId +"','"+ education +"','"+ cookingFuel +"','"+ decisionmakerOwnHealth +"','"+ decisionmakerChildHealth +"'," +
                         "'"+ ifBankAccont +"','"+ acHolderName +"','"+ bankName +"','"+ branch +"','"+ acNo +"','"+ ifscCode +"'," +
-                        "'"+bankDistance+"','"+ postofficeName +"','"+ postofficeAddress +"','"+ pinCode +"','"+ postOfficeAc +"'," +
+                        "'"+bankDistance+"','"+ bank_atm_distance +"','"+ postofficeName +"','"+ postofficeAddress +"','"+ pinCode +"','"+ postOfficeAc +"'," +
                         "'"+ hoemoCode +"','"+ isApproved +"','')";
 ExeuteQuery(womenExtraQuery);
 
@@ -1120,7 +1161,6 @@ ExeuteQuery(womenExtraQuery);
         }catch (Exception e){
             Log.d("RanjeetPullData",e.toString());
         }
-
         return completed;
 
     }
@@ -1134,6 +1174,314 @@ ExeuteQuery(womenExtraQuery);
     }
 
 
+    public void pushDataToserver(String pusgValue){
+
+        syncValue=pusgValue;
+        JSONArray familyList = pushdata("SELECT FAMILY_ID as familyId, DIST_CODE as distCode, PROJECT_CODE as projectCode, SECTOR_CODE as sectorCode, AWC_CODE as awcCode,VILLAGE_CODE as villageCode,RELIGION as religion,CASTE as cast ,RCARD as rcard,FAMILY_TYPE as familyType,SURVEYOR_ID as surveyorId,IS_APPROVED as isApproved, IS_NEW AS recordStatus FROM familydata WHERE recordStatus <>''");
+        JSONArray memberbasicList =pushdata("SELECT MEMBERS_ID as membersId, FAMILY_ID as familyId, NAME as name,HUSBAND as husband,PCTSID as pctsid,DOR as dor, DOENTRY as doentry, DOEXIT as doexit, DOB as dob, AGE as age, IF_DOB_ASSUMED as ifDobAssumed, DODEATH as dodeath,AADDHAR as aaddhar, AADDHAR_ENROL_NO as aaddharEnrolNo, AADDHAR_DATE_STAMP as aaddharDateStamp, AADDHAR_TIME_STAMP as aaddharTimeStamp,BHAMASHA as bhamasha,\n" +
+                " MOBILE as mobile, RELATION as relation, SEX as sex, HANDICAP as handicap,IF_MARRIED as ifMarried, MOTHER_ID as motherId,STATUS as status, STAGE as stage, SUB_STAGE as subStage, IS_TO_TRACK as isToTrack, SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source, IS_APPROVED as isApproved, IS_NEW AS recordStatus FROM memberbasic WHERE recordStatus <>''");
+        JSONArray pwTracking=pushdata("SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId, STAGE as stage,SUB_STAGE as subStage,IS_AVAILABLE as isAvailable, NA_REASON as naReason,IS_ANC as isAnc,ANC_DATE as ancDate,IF_COUNSEL_ON_SELFFEED as ifCounselOnSelffeed,IF_COUNSEL_ON_BF as ifCounselOnBf,SPEND_ON_FOOD as spendOnFood,HEIGHT as height, WEIGHT as weight,SURVEYOR_ID as surveyorId,\n" +
+                " TIME_STAMP as timeStamp, SOURCE as source,IS_NEW AS recordStatus,IS_APPROVED as isApproved FROM PW_TRACKING WHERE recordStatus <>''");
+        JSONArray women_extra=pushdata("SELECT MEMBERS_ID as membersId,EDUCATION as education,COOKING_FUEL as cookingFuel, DECISIONMAKER_OWN_HEALTH as decisionmakerOwnHealth, DECISIONMAKER_CHILD_HEALTH as decisionmakerChildHealth,if_bank_account as ifBankAccont,AC_HOLDER_NAME as acHolderName, BANK_NAME as bankName,BRANCH as branch,AC_NO as acNo,IFSC_CODE as ifscCode,BANK_DISTANCE as bankDistance,bank_atm_distance as atmDistance,POSTOFFICE_NAME as postofficeName,POSTOFFICE_ADDRESS as postofficeAddress,PIN_CODE as pinCode,POST_OFFICE_AC as postOfficeAc, HOEMO_CODE as hoemoCode,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM womenextra WHERE recordStatus <>''");
+        JSONArray child_extra=pushdata("SELECT MEMBERS_ID as membersId,DODELIVERY as dodelivery,DELIVERY_PLACE as deliveryPlace,CHILD_ORDER as childOrder,BIRTH_WT as birthWt,FULL_TERM as fullTerm,WHEN_FIRST_BF as whenFirstBf,IF_FEED_KHEES as ifFeedKhees,CURRENTLY_BF as currentlyBf,WHEN_STOP_BF as whenStopBf,ANYTHING_BEFORE_BF as anythingBeforeBf, IF_STARTED_SOLID_FOOD as ifStartedSolidFood,WHICH_MONTH_SOLID_FOOD as whichMonthSolidFood,CHILD_IMMUNIZATION_STATUS as childImmunizationStatus,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM childextra WHERE recordStatus  <>''");
+        JSONArray child_tracking = pushdata("SELECT MEMBERS_ID as membersId,STAGE as stage,SUB_STAGE as subStage,IS_AVAILABLE as isAvailable,NA_REASON_MOTHER as naReasonMother,NA_REASON_CHILD as naReasonChild,NA_REASON_BOTH as naReasonBoth,CURRENTLY_BF as currentlyBf,IF_USING_CONTRACEPTIVE as ifUsingContraceptive,METHOD_CONTRACEPTIVE as methodContraceptive,IF_COUNSEL_ON_FEED_INFANT as ifCounselOnFeedInfant,IF_COUNSEL_ON_SELFFEED as ifCounselOnSelffeed,LIQUID_OTHER_THAN_BF as liquidOtherThanBf,IF_STARTED_SOLID_FOOD as ifStartedSolidFood,SPEND_ON_FOOD as spendOnFood,CHILD_IMMUNIZATION_STATUS as childImmunizationStatus,CHILD_HEIGHT as childHeight,CHILD_WEIGHT as childWeight,\n" +
+                "CHILD_MUAC as childMuac,SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM child_tracking WHERE recordStatus <>''");
+        JSONArray diet=pushdata("\n" +
+                "SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId,STAGE as stage,SUB_STAGE as subStage,FEED_A as feedA,FEED_A_NOS as feedAnos,FEED_B as feedB,FEED_B_NOS as feedBnos,FEED_C as feedC,FEED_C_NOS as feedCnos,FEED_D as feedD,FEED_D_NOS as feedDnos,FEED_E as feedE,FEED_E_NOS as feedEnos, FEED_F as feedF,FEED_F_NOS as feedFnos,FEED_G as feedG, FEED_G_NOS as feedGnos,FEED_H as feedH,FEED_H_NOS as feedHnos,FEED_I as feedI,FEED_I_NOS as feedInos,FEED_J as feedJ,FEED_J_NOS as feedJnos,FEED_K as feedK,FEED_K_NOS as feedKnos,FEED_L as feedL,FEED_L_NOS as feedLnos,FEED_M as feedM,FEED_M_NOS as feedMnos,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM DIET WHERE recordStatus <>''");
+        JSONArray pregnent=pushdata("SELECT PREGNANCY_ID as pregnancyId,MEMBERS_ID as membersId,ORDER_OF_PREGNANCY as orderOfPregnancy,LMP_DATE as lmpDate,IS_ACTIVE as isActive,SURVEYOR_ID as surveyorId,TIME_STAMP as timeStamp,SOURCE as source,IS_APPROVED as isApproved,IS_NEW AS recordStatus FROM PREGNANT WHERE recordStatus <>''");
+        try {
+
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("memberBasic", memberbasicList);
+            jsonObject.put("pwTracking", pwTracking);
+            jsonObject.put("diet", diet);
+            jsonObject.put("familyDetails", familyList);
+            jsonObject.put("womenExtra", women_extra);
+            jsonObject.put("childTracking", child_tracking);
+            jsonObject.put("childExtra", child_extra);
+            jsonObject.put("pregnant", pregnent);
+
+
+         //   Toast.makeText(this, "JSONCHECK", Toast.LENGTH_SHORT).show();
+            Log.d("JSONCHECK",jsonObject.toString(0));
+
+            logLargeString(jsonObject.toString(0));
+//
+//            ExeuteQuery("update familydata set is_new=null");
+//            ExeuteQuery("update memberbasic set is_new=null");
+//            ExeuteQuery("update pregnant set is_new=null");
+//            ExeuteQuery("update womenextra set is_new=null");
+//            ExeuteQuery("update childextra set is_new=null");
+//            ExeuteQuery("update pw_tracking set is_new=null");
+//            ExeuteQuery("update child_tracking set is_new=null");
+//            ExeuteQuery("update diet set is_new=null");
+//            ExeuteQuery("update diet set is_new=null");
+
+
+
+  PushData pushDaataClass = new PushData();
+   pushDaataClass.execute(jsonObject.toString(0));
+
+        }catch (Exception e){
+
+            Log.d("JSONCHECK",e.toString()+"Error pusjh");
+
+        }
+
+
+
 
     }
+
+
+    private void writeToFile(String data) {
+        try {
+            FileOutputStream fileout=openFileOutput("rajphut.txt", MODE_PRIVATE);
+            OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+            outputWriter.write(data);
+            outputWriter.close();
+
+            //display file saved message
+            Toast.makeText(getBaseContext(), "File saved successfully!",
+                    Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    private void checkExternalMedia(){
+        boolean mExternalStorageAvailable = false;
+        boolean mExternalStorageWriteable = false;
+        String state = Environment.getExternalStorageState();
+
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            // Can read and write the media
+            mExternalStorageAvailable = mExternalStorageWriteable = true;
+        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            // Can only read the media
+            mExternalStorageAvailable = true;
+            mExternalStorageWriteable = false;
+        } else {
+            // Can't read or write
+            mExternalStorageAvailable = mExternalStorageWriteable = false;
+        }
+//        tv.append("\n\nExternal Media: readable="
+//                +mExternalStorageAvailable+" writable="+mExternalStorageWriteable);
+    }
+
+    /** Method to write ascii text characters to file on SD card. Note that you must add a
+     WRITE_EXTERNAL_STORAGE permission to the manifest file or this method will throw
+     a FileNotFound Exception because you won't have write permission. */
+
+    private void writeToSDFile(String value){
+
+        // Find the root of the external storage.
+        // See http://developer.android.com/guide/topics/data/data-  storage.html#filesExternal
+
+        File root = android.os.Environment.getExternalStorageDirectory();
+//        tv.append("\nExternal file system root: "+root);
+
+        // See http://stackoverflow.com/questions/3551821/android-write-to-sd-card-folder
+
+        File dir = new File (root.getAbsolutePath() + "/download");
+        dir.mkdirs();
+        File file = new File(dir, "myData.txt");
+
+        try {
+            FileOutputStream f = new FileOutputStream(file);
+            PrintWriter pw = new PrintWriter(f);
+            pw.println(value);
+            pw.println("Hello");
+            pw.flush();
+            pw.close();
+            f.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Log.i("TAG", "******* File not found. Did you" +
+                    " add a WRITE_EXTERNAL_STORAGE permission to the   manifest?");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void logLargeString(String str)
+
+    { if(str.length() > 3000)
+    { Log.i("TAG104", str.substring(0, 3000));
+    logLargeString(str.substring(3000));
+    }
+    else { Log.i("TAG104", str);
+//     continuation
+    } }
+
+
+
+
+    /**** Cash Login ***/
+
+    public  class CashLogin extends AsyncTask<String, String, String>
+    {
+        String value;
+        ProgressDialog progressDialog;
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = new ProgressDialog(DashBoard.this);
+            progressDialog.setMessage("Please wait Validating data");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            HttpURLConnection urlConnection = null;
+            String json = null;
+
+            String name = params[0];
+            String password = params[1];
+
+
+            try {
+            /*    HttpResponse response;
+                JSONObject jsonObject = new JSONObject();
+                json = jsonObject.toString();
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost(Constants.BASE_URL + "restservice/surveyor/user/"+name+"/"+password);
+                httpPost.setHeader("Content-Type", "application/json");
+                httpPost.setEntity(new StringEntity(json, "UTF-8"));
+
+                response = httpClient.execute(httpPost);
+                String sresponse = response.getEntity().toString();
+                value = EntityUtils.toString(response.getEntity());  */
+
+
+                HttpResponse response;
+                JSONObject jsonObject = new JSONObject();
+                json = jsonObject.toString();
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(CASH_BASE_URL+"login?type=aww");
+                httppost.setEntity(new StringEntity(json, "UTF-8"));
+
+                //add data
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                nameValuePairs.add(new BasicNameValuePair("username",name ));
+                nameValuePairs.add(new BasicNameValuePair("password", password));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                //execute http post
+
+                response = httpclient.execute(httppost);
+
+                String sresponse = response.getEntity().toString();
+                value = EntityUtils.toString(response.getEntity());
+                Log.d("loginResponse", sresponse);
+                Log.d("loginResponseValue", value);
+
+
+                JSONObject jsonObj = new JSONObject(value);
+
+                isSuccessful = jsonObj.getBoolean("success");
+                //Log.d("loginresSuccess", String.valueOf(isSuccessFul));
+
+                JSONObject data = jsonObj.getJSONObject("data");
+                String token = data.getString("loginToken");
+                Log.d("loginresponse", token);
+                // Toast.makeText(Login.this,token, Toast.LENGTH_SHORT).show();
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("token",token);
+                editor.apply();
+
+
+
+                HttpResponse responseget;
+
+                JSONObject jsonObjectget = new JSONObject();
+//
+                HttpClient httpClientget = new DefaultHttpClient();
+                HttpGet httpPostget = new HttpGet(CASH_BASE_URL+"beneficiary/assignedLocationList");
+                httpPostget.setHeader("Content-Type", "application/json");
+                //  httpPost.setEntity(new StringEntity(stringName, "UTF-8"));
+//  httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                httpPostget.setHeader("Accept", "application/json");
+                httpPostget.setHeader("Accept-Language", "en-US");
+
+                SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String mtoken = preferences2.getString("token", "Not Saved");
+                Log.d("loginresponseMToken", mtoken);
+
+                httpPostget.setHeader("Authorization", "Bearer "+ mtoken);
+
+
+                responseget = httpClientget.execute(httpPostget);
+
+//                String the_string_response = convertResponseToString(response);
+                String sresponseget = responseget.getEntity().toString();
+                Log.w("QueingSystem2", sresponseget);
+//                Log.w("QueingSystem", EntityUtils.toString(response.getEntity()));
+                value2 = EntityUtils.toString(responseget.getEntity());
+                Log.d("loginresponseget", value2);
+
+
+
+
+            }catch (Exception e) {
+
+            }
+
+            return value2;//Mine
+            // return value;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            populateData(s);
+
+            progressDialog.dismiss();
+            //Toast.makeText(CashLoginActivity.this, s, Toast.LENGTH_SHORT).show();
+
+
+
+        }
+
+
+
+    }
+
+    private void populateData(String json) {
+        // Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
+
+      /*  Intent intent = new Intent(this, CashProfileActivity.class);
+        intent.putExtra("json_awc_data", json);
+        startActivity(intent);
+        finish();  */
+
+        if(isSuccessful==true) {
+            Intent intent = new Intent(this, CashProfileActivity.class);
+            intent.putExtra("json_awc_data", json);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Authorization Failed!", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
+
+
+
+
+
+}
 

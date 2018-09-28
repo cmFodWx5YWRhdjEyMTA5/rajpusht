@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutPreviewInstallation"
+    xmlns:layout="http://schemas.android.com/apk/res-auto">
+
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/text_10dp"
+        android:padding="@dimen/dimens_5dp"
+        android:background="@drawable/box_form">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dimens_5dp"
+                android:background="@drawable/box_shadow">
+
+                <TextView
+                    android:id="@+id/previewTextViewHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/colorTextViewHeader"
+                    android:gravity="center"
+                    android:padding="@dimen/dimen_10dp"
+                    android:textSize="@dimen/text_18sp"
+                    android:text="Installation Preview"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="163dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <TextView
+                    android:id="@+id/previewTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:textSize="16sp"
+                    android:layout_margin="@dimen/dimens_12dp"
+                    android:layout_below="@+id/textView4"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    tools:text="Preview will go here!" />
+
+
+            </LinearLayout>
+
+            <include layout="@layout/view_divider"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageViewCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        layout:srcCompat="@drawable/ic_cancel_black_24dp" />
+
+
+</RelativeLayout>

@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <RadioGroup
+            android:id="@+id/radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
@@ -19,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="6dp"
-                android:text="Mother died "
+                android:text="@string/na1"
                 android:layout_weight="1"/>
 
             <RadioButton
@@ -28,13 +29,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 android:layout_weight="1"
-                android:text="Mother migrated elsewhere" />
+                android:text="@string/na2" />
             <RadioButton
                 android:id="@+id/na3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="6dp"
-                android:text="Child died"
+                android:text="@string/na3"
                 android:layout_weight="1"/>
 
             <RadioButton
@@ -43,7 +44,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="6dp"
-                android:text="Child migrated elsewhere" />
+                android:text="@string/na4" />
 
             <RadioButton
                 android:id="@+id/na5"
@@ -51,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="6dp"
-                android:text="Both mother and infant died " />
+                android:text="@string/na5" />
 
             <RadioButton
                 android:id="@+id/na6"
@@ -59,7 +60,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="6dp"
-                android:text="Both migrated elsewhere" />
+                android:text="@string/na6" />
         </RadioGroup>
 
 

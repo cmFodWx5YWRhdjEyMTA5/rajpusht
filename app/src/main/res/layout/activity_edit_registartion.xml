@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+
+    android:focusableInTouchMode="true">
+    <!--<TextView-->
+    <!--android:id="@+id/textView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:text="Registration"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="23dp"-->
+    <!--tools:layout_editor_absoluteY="0dp" />-->
+
+
+
+
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/header"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="55dp"-->
+    <!--android:background="@color/colorPrimary">-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/back"-->
+    <!--android:layout_width="50dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_weight="1"-->
+    <!--android:clickable="true"-->
+    <!--android:padding="11dp"-->
+    <!--android:layout_marginRight="5dp"-->
+    <!--app:srcCompat="@drawable/back" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/nameCandiate"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_toRightOf="@+id/back"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:text="BIMALA AGARWAL"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/buttonName"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_weight="1"-->
+    <!--android:clickable="true"-->
+    <!--android:padding="13dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="PW 1"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"-->
+    <!--android:layout_marginRight="5dp" />-->
+    <!--</RelativeLayout>-->
+
+
+    <!--<android.support.v4.view.ViewPager-->
+
+    <!--android:id="@+id/pager"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginBottom="100dp"-->
+    <!--android:background="@color/white"-->
+    <!--android:layout_below="@+id/textView"-->
+    <!--android:layout_marginLeft="5dp"-->
+    <!--android:layout_marginRight="5dp"-->
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+
+    <!--<in.co.rajpusht.rajpusht.CustomTabLayout-->
+    <!--android:id="@+id/tab_layout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--app:tabIndicatorColor="@color/view2"-->
+    <!--app:tabIndicatorHeight="4dp"-->
+    <!--android:background="#00000000"-->
+    <!--app:tabTextColor="@color/view2"-->
+    <!--app:tabMode="fixed"-->
+    <!--android:layout_above="@+id/footer"-->
+    <!--app:tabSelectedTextColor="@color/colorPrimary"-->
+    <!--android:elevation="6dp"/>-->
+    <include
+        android:id="@+id/pregnentbasic"
+        layout="@layout/fragment_young_mother_basic_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttom"
+        android:layout_alignParentStart="true" />
+
+    <include layout="@layout/fragment_pregnant_lady_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttom"
+        android:visibility="gone"
+        android:id="@+id/pregnentDetails"
+        />
+
+    <include layout="@layout/fragment_young_mother_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttom"
+        android:visibility="gone"
+        android:id="@+id/childDetails"
+        />
+
+    <LinearLayout
+        android:id="@+id/buttom"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+
+        android:layout_above="@+id/footer"
+
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/relativeBasic"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="#00000000"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/basicimg"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:src="@drawable/women"/>
+
+            <TextView
+                android:id="@+id/basictext"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:lines="2"
+                android:text="BASIC"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_below="@id/basicimg"/>
+            <TextView
+                android:id="@+id/basic"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="bgdfrrg"
+                android:textColor="#00000000"
+                android:gravity="center"/>
+            <View
+                android:id="@+id/basicclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativePregnent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/pregnentimg"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:src="@drawable/pw_icon"/>
+
+            <TextView
+                android:id="@+id/pregnenttext"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:lines="2"
+                android:text="PREGNANT"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_below="@id/pregnentimg"/>
+            <TextView
+
+                android:id="@+id/basicPregment"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="PREGNANCY"
+                android:textColor="#00000000"
+                android:gravity="center"/>
+
+            <View
+                android:id="@+id/pregnentclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeChild"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/childimg"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:src="@drawable/child"/>
+
+            <TextView
+                android:id="@+id/childtext"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:lines="2"
+                android:text="CHILD"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_below="@id/childimg"/>
+
+            <TextView
+                android:id="@+id/child"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textColor="#00000000"
+                android:text="CHILD"
+                android:gravity="center"/>
+            <View
+                android:id="@+id/childclick"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"/>
+
+        </RelativeLayout>
+
+        <!--<TextView-->
+        <!--android:id="@+id/basic"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="BASIC "-->
+        <!--android:textColor="@color/white"-->
+        <!--android:gravity="center"/>-->
+
+        <!--<TextView-->
+
+        <!--android:id="@+id/basicPregment"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="PREGNANCY"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/gray"-->
+        <!--android:gravity="center"/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/child"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="CHILD"-->
+        <!--android:background="@color/gray"-->
+        <!--android:gravity="center"/>-->
+
+    </LinearLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="11dp"
+            android:visibility="gone"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="EDIT "
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <Button
+            android:id="@+id/youngMotherSave"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:text="save"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:background="@drawable/box3"
+            android:layout_marginRight="5dp" />
+    </RelativeLayout>
+</RelativeLayout>

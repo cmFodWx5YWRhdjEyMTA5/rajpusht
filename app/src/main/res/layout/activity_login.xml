@@ -30,7 +30,17 @@
         android:gravity="center">
 
 
-    <ImageView
+        <ImageView
+            android:id="@+id/cash_login_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/textView"
+            android:padding="@dimen/activity_horizontal_margin"
+            app:srcCompat="@drawable/ic_person"
+            android:visibility="gone"/>
+
+        <ImageView
         android:id="@+id/imageView4"
         android:layout_width="100dp"
         android:layout_height="120dp"
@@ -99,6 +109,43 @@
             android:layout_alignParentLeft="true"/>
 
         </RelativeLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:visibility="invisible"
+        tools:visibility="visible">
+
+
+        <RadioGroup
+            android:id="@+id/radioLoginChooser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioBene"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Beneficiary Login"
+                android:checked="true"
+                android:padding="@dimen/nav_header_vertical_spacing"
+                android:background="@drawable/box"/>
+
+            <RadioButton
+                android:id="@+id/radioCash"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dimes_8dp"
+                android:text="Cash Beneficiary Login" />
+
+        </RadioGroup>
     </LinearLayout>
 
 

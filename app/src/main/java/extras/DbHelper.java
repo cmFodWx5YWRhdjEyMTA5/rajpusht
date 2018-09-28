@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 24;
+    private static final int DATABASE_VERSION = 29;
 
     SQLiteDatabase db;
 
@@ -66,6 +66,9 @@ db=getWritableDatabase();
     private static final String MEMBERS_ID="Members_id";
 
     private static final String NAME = "name";
+    private static final String HUSBAND_NAME = "husband";///NewEntries
+    private static final String PCTS_ID = "pctsid";///NewEntries
+    public static final String IS_APPROVE = "isApproved";  ///NewEntries
     private static final String DOR = "dor";
     private static final String DOENRTY = "doentry";
     private static final String DOEXIT = "doexit";
@@ -218,6 +221,8 @@ private static final String EMAIL="email";
     private static final String LOGIN="login";
     private static final String AWC_ENG = "awc_eng";
     private static final String AWC_HINDI = "awc_hindi";
+    private static final String SECTOR_NAME = "sector_name";
+    private static final String PROJECT_NAME = "project_name";
 
    public static final String CREATE_ASSIGNED_LOCTION= "CREATE TABLE " + ASSIGNED_LOCATION +
    " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -230,6 +235,8 @@ private static final String EMAIL="email";
     + AWC_CODE + " VARCHAR, "
    + SURVEYOR_NAME + " VARCHAR, "
      + SURVEYOR_ID + " VARCHAR, "
+     + SECTOR_NAME + " VARCHAR, "
+     + PROJECT_NAME + " VARCHAR, "
            + AWC_HINDI + " VARCHAR, "
            + AWC_ENG + " VARCHAR, "
      + LOGIN + " VARCHAR)";
@@ -257,7 +264,7 @@ private static final String EMAIL="email";
             + NA_REASON_BOTH + " INT, "
             + CURRENTLY_BF + " VARCHAR, "
             + IF_USING_CONTRACEPTIVE + " VARCHAR, "
-            + METHOD_CONTRACEPTIVE + " INT, "
+            + METHOD_CONTRACEPTIVE + " VARCHAR, "
             + IF_COUNSEL_ON_FEED_INFANT + " VARCHAR, "
             + IF_COUNSEL_ON_SELFFEED + " VARCHAR, "
             + LIQUID_OTHER_THAN_BF + " VARCHAR, "
@@ -381,6 +388,9 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 MEMBERS_ID+ " VARCHAR, "
                 + FAMILY_ID + " VARCHAR, "
                 + NAME + " VARCHAR,"
+                + HUSBAND_NAME + " VARCHAR, "
+             //   + IS_APPROVE + " VARCHAR, "
+                + PCTS_ID + " VARCHAR, "
                 + DOR + " DATE, "
                 + DOENRTY + " DATE, "
                 + DOEXIT + " DATE, "
@@ -415,7 +425,7 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
 //                + WOMENUID + " INTEGER PRIMARY KEY,"
                 + MEMBERS_ID + " VARCHAR, "
                 + EDUCATION + " INTEGER, "
-                + COOKING_FUEL + " INTEGER, "
+                + COOKING_FUEL + " VARCHAR, "
                 + DECISIONMAKER_OWN_HEALTH + " INTEGER, "
                 + DECISIONMAKER_CHILD_HEALTH + " INTEGER, "
                 + IF_BANK_ACCONT + " VARCHAR, "
@@ -425,7 +435,7 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 + AC_NO + " VARCHAR, "
                 + IFSC_CODE + " VARCHAR, "
                 + BANK_DISTANCE + " FLOAT, "
-                + BANK_ATM_DISTANCE + " FLOAT, "
+                + BANK_ATM_DISTANCE + " VARCHAR, "
                 + POSTOFFICE_NAME + " VARCHAR, "
                 + POSTOFFICE_ADDRESS + " VARCHAR, "
                 + PIN_CODE + " VARCHAR, "
@@ -442,7 +452,7 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
                 + DODELIVERY + " DATE, "
                 + DELIVERY_PLACE + " INTEGER, "
                 + CHILD_ORDER + " INTEGER, "
-                + BIRTH_WT + " FLOAT,"
+                + BIRTH_WT + " VARCHAR, "
                 + FULL_TERM + " VARCHAR, "
                 + WHEN_FIRST_BF + " INTEGER, "
                 + IF_FEED_KHEES + " VARCHAR, "
@@ -530,6 +540,9 @@ public static final String CREATE_DIET_TABLE= "CREATE TABLE " + DIET + " ( "
         values.put(MEMBERS_ID, memberBasicGetSet.getmemberId());
         values.put(FAMILY_ID, memberBasicGetSet.getFamily_id());
         values.put(NAME, memberBasicGetSet.getName());
+        values.put(HUSBAND_NAME, memberBasicGetSet.getHusband());  ///NewEntries
+        values.put(PCTS_ID, memberBasicGetSet.getPctsid());        ///NewEntries
+        //values.put(IS_APPROVE, memberBasicGetSet.getIsApprove());   /// NewEntries
         values.put(DOR, memberBasicGetSet.getDor());
         values.put(DOENRTY, memberBasicGetSet.getDoentry());
         values.put(DOEXIT, memberBasicGetSet.getDoexit());

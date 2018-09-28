@@ -15,12 +15,13 @@
 
             <!-- TODO: Update blank fragment layout -->
             <TextView
+                android:id="@+id/beneficairyTest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text=" Name of the benificiary "
+                android:text="@string/basicq1"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -38,6 +39,33 @@
                 android:spinnerMode="dropdown"
                 android:textSize="13dp" />
 
+            <TextView
+                android:id="@+id/beneficairyhusband"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/basicq1_1"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
+
+            <EditText
+                android:id="@+id/nameBenificeryhusband"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
+
+
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -45,7 +73,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Mobile number "
+                android:text="@string/basicq3"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -71,7 +99,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text=" UID "
+                android:text="@string/basicq4"
                 android:visibility="gone"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
@@ -91,6 +119,31 @@
                 android:visibility="gone"
                 android:textSize="13dp" />
 
+            <TextView
+                android:id="@+id/beneficairypctsId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/basicq1_2"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
+
+            <EditText
+                android:id="@+id/nameBenificerypctsId"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:textSize="13dp" />
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,7 +151,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Bhamashah No.  "
+                android:text="@string/basicq5"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -107,10 +160,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
-
+android:maxLength="20"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:inputType="number"
+
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:singleLine="true"
@@ -122,7 +175,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Aadhar No.  "
+                android:text="@string/basicq6"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -144,7 +197,7 @@
                 android:id="@+id/adhaaravailable"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:text="if aadhar card not available"
+                android:text="@string/adhar1"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -161,7 +214,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text="Aadhar Enrolment No.  "
+                    android:text="@string/adhar2"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
@@ -170,7 +223,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
-
+                    android:maxLength="28"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
                     android:inputType="number"
@@ -183,7 +236,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
-                    android:text="Date Stamp"
+                    android:text="@string/adhar3"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
@@ -210,10 +263,68 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
                     android:layout_marginTop="5dp"
-                    android:text="Time Stamp"
+                    android:text="@string/adhar4"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableRight="@drawable/timee"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/timeHour"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="35dp"
+                        android:paddingLeft="8dp"
+                        android:hint="Hr"
+                        android:inputType="number"
+                        android:paddingRight="8dp"
+                        android:singleLine="true"
+                        android:textSize="13dp"
+                        android:maxLength="2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        />
+
+                    <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/timeMin"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:paddingLeft="8dp"
+                    android:hint="Min"
+                    android:inputType="number"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp"
+                    android:maxLength="2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    />
+
+                    <EditText
+                        android:layout_weight="1"
+                        android:id="@+id/timeSec"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:paddingLeft="8dp"
+                        android:hint="Sec"
+                        android:inputType="number"
+                        android:paddingRight="8dp"
+                        android:singleLine="true"
+                        android:textSize="13dp"
+                        android:maxLength="2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        />
+
+                </LinearLayout>
                 <TextView
                     android:id="@+id/time"
                     android:layout_width="match_parent"
@@ -221,26 +332,28 @@
                     android:layout_marginRight="3dp"
                     android:background="#00000000"
                     android:paddingLeft="10dp"
+                    android:visibility="gone"
                     android:drawableRight="@drawable/timee"
                     android:gravity="center_vertical" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.75dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="-2dp"
-                    android:background="@color/gray" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0.75dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:layout_marginTop="-2dp"-->
+                    <!--android:background="@color/gray" />-->
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/dateofbirthMother"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Date of Birth"
+                android:text=  "@string/adhar5"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -267,7 +380,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Age (in completed years)"
+                android:text="@string/basicq7"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -293,7 +406,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="What is your religion? "
+                android:text="@string/basicq8"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -325,7 +438,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Do you belong to a scheduled caste, scheduled tribe, other backward class, or none of these? "
+                android:text="@string/basicq9"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -357,7 +470,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text=" What color of Ration Card do you hold?  "
+                android:text="@string/basicq10"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -389,7 +502,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text=" What is your relationship with the head of the household?  "
+                android:text="@string/basicq11"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -421,7 +534,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="What type of family do you live in?"
+                android:text="@string/basicq12"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -453,7 +566,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Highest education completed "
+                android:text="@string/basicq13"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -485,7 +598,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text=" What type of fuel does your household most commonly use for cooking?  "
+                android:text="@string/basicq14"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -500,8 +613,83 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:spinnerMode="dropdown"
                 android:textSize="13dp" />
+
+            <LinearLayout
+                android:id="@+id/linearCyrrentlyUsing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                >
+
+                <CheckBox
+                    android:id="@+id/f1"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f1"/>
+
+                <CheckBox
+                    android:id="@+id/f2"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f2"/>
+
+                <CheckBox
+                    android:id="@+id/f3"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f3"/>
+
+                <CheckBox
+                    android:id="@+id/f4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f4"/>
+
+                <CheckBox
+                    android:id="@+id/f5"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f5"/>
+
+                <CheckBox
+                    android:id="@+id/f6"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f6"/>
+
+                <CheckBox
+                    android:id="@+id/f7"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f7"/>
+
+                <CheckBox
+                    android:id="@+id/f8"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f8"/>
+                <CheckBox
+                    android:id="@+id/f9"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="@string/f9"/>
+
+
+
+            </LinearLayout>
+
+
 
             <View
                 android:layout_width="match_parent"
@@ -517,7 +705,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="In your household, who usually makes decision for"
+                android:text="@string/basicq15"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -527,7 +715,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Visiting doctor for your own health"
+                android:text="@string/basicq15a"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -560,7 +748,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Visiting doctor for your child’s health"
+                android:text="@string/basicq15b"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -593,7 +781,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
-                android:text="Which type of account do you have in your name ?"
+                android:text="@string/basicq16"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2" />
 
@@ -609,7 +797,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Bank Account"
+                    android:text="@string/basicq16a"
                     android:textColor="@color/view2" />
 
                 <RadioButton
@@ -617,7 +805,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Post Office Account"
+                    android:text="@string/basicq16b"
                     android:textColor="@color/view2" />
 
                 <RadioButton
@@ -625,7 +813,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="No Account"
+                    android:text="@string/basicq16c"
                     android:textColor="@color/view2" />
 
             </RadioGroup>
@@ -646,9 +834,9 @@
                     android:layout_marginTop="19dp"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:text="Bank Details"
+                    android:text="@string/basicq16a1"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2" />
+                    android:textColor="@color/view2"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -656,9 +844,10 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Name of account holder "
+                    android:text="@string/basicq16a2"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2" />
+                    android:textColor="@color/view2"/>
+
                 <EditText
                     android:id="@+id/nameaccountholder"
                     android:layout_width="match_parent"
@@ -679,7 +868,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Confirm Name of account holder "
+                    android:text="@string/confirmbasicq16a2"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
                 <EditText
@@ -702,7 +891,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Name of bank "
+                    android:text="@string/basicq16a3"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
                 <EditText
@@ -724,7 +913,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Branch name "
+                    android:text="@string/basicq16a4"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
                 <EditText
@@ -746,7 +935,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Account number "
+                    android:text="@string/basicq16a5"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
                 <EditText
@@ -761,6 +950,7 @@
                     android:inputType="numberPassword"
                     android:paddingRight="8dp"
                     android:singleLine="true"
+                    android:maxLength="16"
                     android:textSize="13dp" />
 
                 <TextView
@@ -769,7 +959,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Confirm Account number "
+                    android:text="@string/confirmbasicq16a5"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
                 <EditText
@@ -784,6 +974,7 @@
                     android:inputType="number"
                     android:paddingRight="8dp"
                     android:singleLine="true"
+                    android:maxLength="16"
                     android:textSize="13dp" />
 
                 <TextView
@@ -792,7 +983,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" IFSC code "
+                    android:text="@string/basicq16a6"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
                 <EditText
@@ -815,7 +1006,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Confirm IFSC code "
+                    android:text="@string/confirmbasicq16a6"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
                 <EditText
@@ -832,53 +1023,7 @@
                     android:singleLine="true"
                     android:textSize="13dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginRight="7dp"
-                    android:layout_marginTop="15dp"
-                    android:text=" Distance of the nearest bank branch (Km) "
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2" />
 
-                <EditText
-                    android:id="@+id/distancetobranch"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
-                    android:inputType="numberDecimal"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginRight="7dp"
-                    android:layout_marginTop="15dp"
-                    android:text=" Distance of the nearest ATM "
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/view2" />
-
-                <EditText
-                    android:id="@+id/distancenearestatm"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:inputType="numberDecimal"
-                    android:paddingRight="8dp"
-                    android:singleLine="true"
-                    android:textSize="13dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -896,7 +1041,7 @@
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text=" Post Office Account Details "
+                    android:text="@string/basicq16b1"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2"
                     android:textStyle="bold" />
@@ -907,7 +1052,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Name of post office in which account is held "
+                    android:text="@string/basicq16b2"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
@@ -930,7 +1075,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Address of post office "
+                    android:text="@string/basicq16b3"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
@@ -953,7 +1098,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Post office account number "
+                    android:text="@string/basicq16b4"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
@@ -967,6 +1112,33 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/confirmpostaccount"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+
+                <EditText
+                    android:id="@+id/comfirmPostofficeaccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+
                     android:singleLine="true"
                     android:textSize="13dp" />
 
@@ -976,12 +1148,39 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
-                    android:text=" Post office pincode "
+                    android:text="@string/basicq16b5"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/view2" />
 
                 <EditText
                     android:id="@+id/postofficepincode"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:maxLength="6"
+
+                    android:inputType="numberPassword"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/confirmpostpincode"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2" />
+
+
+                <EditText
+                    android:id="@+id/confirmpostofficepincode"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
@@ -1022,6 +1221,54 @@
                     android:textSize="13dp" />
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/basicq16a7"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
+
+            <EditText
+                android:id="@+id/distancetobranch"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/basicq16a8"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/view2" />
+
+            <EditText
+                android:id="@+id/distancenearestatm"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:inputType="numberDecimal"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textSize="13dp"/>
 
 
         </LinearLayout>

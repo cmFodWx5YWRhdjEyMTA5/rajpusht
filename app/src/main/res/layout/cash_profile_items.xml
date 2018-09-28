@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/box_shadow"
+    android:layout_marginBottom="@dimen/dimen_1dp">
+
+    <RelativeLayout
+        android:id="@+id/cashProfileSelectLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textviewLocation"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+
+                android:paddingRight="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="Choria"/>
+
+            <TextView
+                android:id="@+id/textviewSector"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="top"
+                android:textSize="12dp"
+                android:paddingLeft="12dp"
+                android:textAllCaps="false"
+                android:paddingRight="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="Choria"/>
+
+            <!--<Space-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp" />-->
+
+
+        </LinearLayout>
+
+
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/radiobutton"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:alpha="0.5"-->
+            <!--android:layout_alignParentRight="true"-->
+
+            <!--android:gravity="bottom"/>-->
+
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/toolbarHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/toolbarBack"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimes_8dp"
+        android:text="Cash Transfer Status"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/toolbarBack"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/toolbarHeader"
+        android:layout_alignParentStart="true"
+        android:padding="@dimen/dimen_10dp"
+        app:srcCompat="@drawable/ic_back" />
+
+</RelativeLayout>

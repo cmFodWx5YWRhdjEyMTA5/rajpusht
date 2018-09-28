@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RajPusht</string>
+
+    <string name="radioselecteng">अंग्रेज़ी</string>
+    <string name="radioselecthin">हिन्दी</string>
+
+
+    <!--Profile Page-->
+    <string name="set_location">स्थान चुनें</string>
+    <string name="set_language">भाषा चुनिए</string>
+
+    <!--Basic Form-->
+    <string name="basicq1">लाभार्थी का नाम</string>
+    <string name="basicq3">मोबाइल नंबर</string>
+    <string name="basicq4">यूआईडी</string>
+    <string name="basicq5">भामाशाह नं</string>
+    <string name="basicq6">आधार नंबर</string>
+    <string name="adhar1">अगर आधार कार्ड उपलब्ध नहीं है</string>
+    <string name="adhar2">आधार नामांकन संख्या</string>
+    <string name="adhar3">तारीख मोहर</string>
+    <string name="adhar4">समय टिकट</string>
+    <string name="adhar5">जन्म की तारीख</string>
+    <string name="basicq7">आयु (पूर्ण वर्ष में)</string>
+    <string name="basicq8">आपका धर्म क्या है?</string>
+    <string-array name="array_Religion">
+        <item>--Select Options--</item>
+        <item>हिंदू</item>
+        <item>मुस्लिम</item>
+        <item>ईसाई</item>
+        <item>सिख</item>
+        <item>जैन</item>
+        <item>पारसी</item>
+        <item>बौद्ध</item>
+        <item>कोई धर्म नहीं</item>
+    </string-array>
+    <string name="basicq9">क्या आप अनुसूचित जाति, अनुसूचित जनजाति, अन्य पिछड़े वर्ग मैं से हैं या इनमें से कोई भी नहीं हैं ?</string>
+    <string-array name="array_cast">
+        <item>--Select Options--</item>
+        <item>अनुसूचित जाति </item>
+        <item>अनुसूचित जनजाति </item>
+        <item>पिछड़े वर्ग</item>
+        <item>सामान्य</item>
+    </string-array>
+    <string name="basicq10">आप के राशन कार्ड का कौन सा रंग हैं?</string>
+    <string-array name="array_rationcardColor">
+        <item>--Select Options--</item>
+        <item>ब्लू / ग्रीन (एपीएल)</item>
+        <item>डार्क पिंक (बीपीएल)</item>
+        <item>पीला(अन्तोदय / सबसे गरीब)</item>
+        <item>कोई कार्ड नहीं</item>
+    </string-array>
+
+
+    <string name="basicq11">घर के प्रमुख के साथ आपका संबंध क्या है ?</string>
+    <string-array name="array_relationshipHead">
+        <item>--Select Options--</item>
+        <item>प्रमुख</item>
+        <item>पत्नी</item>
+        <item>बेटी</item>
+        <item>बहु</item>
+        <item>पोती</item>
+        <item>मां</item>
+        <item>बहन</item>
+        <item>ननंद</item>
+        <item>चाची</item>
+        <item>भांजी</item>
+        <item>अन्य रिश्तेदार</item>
+    </string-array>
+    <string name="basicq12">आप किस प्रकार के परिवार में रहते हैं ?</string>
+    <string-array name="array_typeFamily">
+        <item>--Select Options--</item>
+        <item>एकल परिवार</item>
+        <item>संयुक्त परिवार</item>
+        <item>अन्य</item>
+    </string-array>
+    <string name="basicq13">उच्चतम शिक्षा जो पूरी हुई है</string>
+    <string-array name="array_education">
+        <item>--Select Options--</item>
+        <item>कोई स्कूली शिक्षा नहीं / अशिक्षित नहीं</item>
+        <item>प्राथमिक शिक्षा (कक्षा 4 तक)</item>
+        <item>मध्य विद्यालय (कक्षा 8 तक)</item>
+        <item>हाई स्कूल (कक्षा 10 तक)</item>
+        <item>उच्च माध्यमिक (10 + 2)</item>
+        <item>स्नातक से नीचे / स्नातक / प्रोफेसर डिग्री</item>
+        <item>स्नातकोत्तर और आगे</item>
+    </string-array>
+    <string name="basicq14">खाना पकाने के लिए सबसे अधिक किस प्रकार का ईंधन उपयोग करते है ?</string>
+    <string-array name="array_fuelSelection">
+        <item>--Select Options--</item>
+        <item>लकड़ी</item>
+        <item>फसल के अवशेष</item>
+        <item>गोबर टिकिया </item>
+        <item>कोयला / चारकोल</item>
+        <item>मिट्टी के तेल / डीजल</item>
+        <item>बिजली</item>
+        <item>रसोई गैस/ पीएनजी</item>
+        <item>जैवगैस / बायोगैस</item>
+        <item>अन्य</item>
+    </string-array>
+    <string name="basicq15">आपके घर में, जो आमतौर पर निर्णय लेता है:</string>
+    <string name="basicq15a">क. अपने स्वयं के स्वास्थ्य के लिए डॉक्टर के पास जाते हैं</string>
+    <string name="basicq15b">ख. अपने बच्चे के स्वास्थ्य के लिए डॉक्टर के पास जाते हैं</string>
+    <string-array name="array_decsion">
+    <item>--Select Options--</item>
+    <item>स्वयं</item>
+    <item>पति</item>
+    <item>सास</item>
+    <item>ससुर</item>
+    <item>परिवार में कोई दूसरा</item>
+    <item>अन्य रिश्तेदार</item>
+</string-array>
+
+    <string-array name="array_decsion_child">
+        <item>--Select Options--</item>
+        <item>स्वयं</item>
+        <item>पति</item>
+        <item>सास</item>
+        <item>ससुर</item>
+        <item>परिवार में कोई दूसरा</item>
+        <item>अन्य रिश्तेदार</item>
+        <item>लाभार्थी के पास कोई बच्चा नहीं है</item>
+    </string-array>
+
+    <string name="basicq16">आपके नाम पर किस प्रकार का खाता है ?</string>
+    <string name="basicq16a">बैंक खाता</string>
+    <string name="basicq16a1">बैंक विवरण</string>
+    <string name="basicq16a2">खाताधारक का नाम</string>
+    <string name="confirmbasicq16a2">खाताधारक के नाम की पुष्टि करें</string>
+
+    <string name="basicq16a3">बैंक का नाम</string>
+    <string name="basicq16a4">शाखा का नाम</string>
+    <string name="basicq16a5">खाता संख्या</string>
+    <string name="confirmbasicq16a5">खाता नंबर की पुष्टि करें</string>
+
+    <string name="basicq16a6">आईएफएससी कोड</string>
+    <string name="confirmbasicq16a6">आईएफएससी कोड की पुष्टि करें</string>
+    <string name="basicq16a7">निकटतम बैंक शाखा से दूरी (कि.मी. में)</string>
+    <string name="basicq16a8">निकटतम एटीएम से दूरी (कि.मी. में)</string>
+
+    <string name="basicq16b">डाकघर का खाता</string>
+    <string name="basicq16b1">डाकघर के विवरण का विवरण</string>
+    <string name="basicq16b2">डाकघर का नाम जिसमें खाता आयोजित किया जाता है</string>
+    <string name="basicq16b3">डाकघर का पता</string>
+    <string name="basicq16b4">डाकघर खाता संख्या</string>
+    <string name="basicq16b5">पोस्ट ऑफिस पिनकोड</string>
+
+    <string name="basicq16c">कोई खाता नहीं</string>
+
+    <string name="confirmpostaccount">डाकघर खाता नंबर की पुष्टि करें</string>
+    <string name="confirmpostpincode">डाकघर पिनकोड की पुष्टि करें</string>
+
+    <!--pregnancy detals-->
+    <string name="pd1">वर्तमान गर्भावस्था से पहले आपके कितने गर्भधारण थे ?</string>
+    <string name="pd2"> एलएमपी तिथि पिछले मासिक धर्म का पहला दिन होना चाहिए। कृपया उस दिन की गिनती न करें जब उसे माहवारी नहीं हुई लेकिन उम्मीद की गई थी</string>
+
+    <!--young mother details-->
+    <string name="ym1">बच्चे का नाम</string>
+    <string name="ym2">बच्चे की जन्म की तिथि</string>
+    <string name="ym3">जन्म का स्थान</string>
+    <string-array name="array_birthplace">
+        <item>--Select Options--</item>
+        <item>अस्पताल / पीएचसी / सीएचसी / निजी क्लिनिक</item>
+        <item>घर</item>
+    </string-array>
+    <string name="ym4">बच्चे के जन्म का क्रमांक</string>
+    <string name="ym5">बच्चे का लिंग</string>
+    <string-array name="array_childgender">
+        <item>--Select Options--</item>
+        <item>लड़का</item>
+        <item>लड़की</item>
+        <item>अन्य</item>
+    </string-array>
+    <string name="ym6">जन्म के समय बच्चे का का वजन</string>
+    <string name="ym7">क्या यह बच्चा पूर्णकालिक पूरा करने से पहले पैदा हुआ था? (9 महीने 10 दिन)</string>
+    <string-array name="array_birthbefore9month">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="ym8">" जन्म के बाद, आपने अपने बच्चे को पहली बार कब स्तन में रखा था?"</string>
+    <string-array name="array_childtobreast">
+        <item>--Select Options--</item>
+        <item>जन्म के एक घंटे के भीतर</item>
+        <item>जन्म के सात घंटे के भीतर</item>
+        <item>जन्म के पहले 24 घंटों के भीतर</item>
+        <item>जन्म के 1-3 दिनों के बीच</item>
+        <item>जन्म के 3-7 दिनों के बीच</item>
+        <item>जन्म से 7 दिनों के बाद</item>
+    </string-array>
+    <string name="ym9">क्या आपने अपने बच्चे को पहला पीला, मोटी स्तन का दूध खिलाया था ?</string>
+    <string-array name="array_khees">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+
+    <!--PW1-->
+    <string name="pw1q1">पिछले तीन महीनों में, क्या आपको आपकी गर्भावस्था के दौरान क्या खाया गया और कितना खाया गया के बारे मैं एनजीओ / आशा या स्वास्थ्य कर्मचारी द्वारा सलाह दी गई थी ?</string>
+    <string-array name="array_counseledNGOASHApw">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+
+    </string-array>
+    <string name="pw1q2">पिछले तीन महीनों में, क्या आप डिलीवरी, कैसे और कब तक स्तनपान करते हैं, पहले छह महीनों में बच्चे को खिलाने के लिए, आदि के बाद अपने शिशु को खिलाने के लिए एनजीओ / आशा या एक स्वास्थ्य कर्मचारी द्वारा सलाह दी गई थी।</string>
+    <string-array name="array_ngofeedinfant">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw1q3">औसतन, आपके पूरे घर में खाद्य पदार्थ और खाद्य पदार्थों की खरीद पर हर महीने कितना खर्च होता है?</string>
+    <string-array name="array_expencelmpw">
+        <item>--Select Options--</item>
+        <item>रु। से कम 500 प्रति माह</item>
+        <item>रुपये 500 - 1,000 प्रति माह</item>
+        <item>रुपये 1000 - 2000 प्रति माह</item>
+        <item>रुपये 2000 - 4000 प्रति माह </item>
+        <item>रुपये 4000 - 5,000 प्रति माह</item>
+        <item>रुपये 5,000 और ऊपर</item>
+        <item>पता नहीं</item>
+    </string-array>
+    <string name="pw2q4">अनाज से बने खाद्य पदार्थ - खिचड़ी, रोटी / रोटी, चावल, नूडल्स, पास्ता, बाती, नान, बाज़रा, मक्का, जई, बाजरा, पानजारी (थ्रृ), या अन्य</string>
+    <string-array name="array_foodgrain">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="bfood">दाल, सेम, मटर, दाल, नट, या बीज (कोई भी दाल, रज्जा, छाल, मटार, सोयाबीन, उडद, बेसना पकोडा, काडी, सांभर, वडा, मुंगफाली, काजू, पिस्ता, बुराम, अखात्र, सूरजमुखी के बीज, टीले, तरबूज के बीज, मूंगफली का मक्खन) आदि से बने किसी भी खाद्य पदार्थ</string>
+
+    <string name="pw2q5">किसी भी गहरे हरे पत्तेदार सब्जियां, जैसे कि पालिका, मेथी, स्नानुआ, सरसों का साग, गजर / मूली का पत्ता, लौकी का पत्ता, ब्रोकोली, चना / मटर साग, ड्रमस्टिक, सलाद, आलू के पत्ते आदि।</string>
+    <string-array name="array_greenvegi">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q6">सफेद जड़ों और कंद - आलू, मूली, अरबी, सफेद याम, सल्गम, कमल जड़, सिंहारा</string>
+    <string-array name="array_whiteroot">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q7">किसी भी दूध या दूध उत्पादों (दही, चना, पनीर, बूर्ई, लस्सी, राइट, खीर) (मक्खन या आइसक्रीम शामिल न करें)</string>
+    <string-array name="array_milkproduct">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q8">अन्य प्रचुर विटामिन ए वाली फलों और सब्जियां (कद्दू, गाजर, चुकंदर, फल रस पेय, मीठे आलू, लाल / पीले मिर्च, आम, पपीता, खरबोज़, आदु, खाउबानी, टमाटर, जो पीले या नारंगी होते हैं)</string>
+    <string-array name="array_vitaminfood">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q9">सी भी प्रकार के मांस या मुर्गी सहित मेमने, बकरी, चिकन, पक्षी, और गुर्दा-कालीजी</string>
+    <string-array name="array_meat">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q10">अंडे - चिकन, बतख, या अन्य पक्षियों से अंडे</string>
+    <string-array name="array_eggs">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q11">कोई ताजा या सूखे मछली, शेल-मछली या समुद्री भोजन</string>
+    <string-array name="array_fish">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q12">अन्य सभी फलों और सब्जियां - सेव, केला, जामून, बबूगोशा, नारीयाल, खजूर, अंगूर, अमरूत, तरबुज, आमला, काठल, लीची, नारंगी, निम्बू अनानास, सतालू, स्ट्रॉबेरी, स्टारफ्रूट, इमली, पत्तागोभी, फूलगोभी, बैंगन, सिमला मिर्च, मशरूम, भिंडी, पीयाज़,लौकी, अन्य सभी सबजी</string>
+    <string-array name="array_fruits">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q13">कोई तली हुई या गहरी तली हुई खाद्य पदार्थ, जैसे कि पूरी, पकोडा, बड़ा, बोम्दा, आलू-चिप्स, भुजिया, समोसा या अतिरिक्त तेल वाला खाना वसा, मक्खन, घी के साथ</string>
+    <string-array name="array_friedfood">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q14">िसी भी मीठा भोजन और पेय जैसे जूस-ड्रिंक, चॉकलेट, मिठाई, कैंडीज, पेस्ट्री, केक, बिस्कुट, कुकीज, आइसक्रीम, हलवा, शहद, जाम, बेसन / बूंदी लाडू, जलेबी, गुलाब जामुन, या  अन्य सभी मिठाइयां दूध से न बनि हो</string>
+    <string-array name="array_sweetfood">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="pw2q15">अन्य खाद्य पदार्थ और तरल पदार्थ (पतली दलिया, सूप, ताजा निचोड़ा हुआ रस, मथा, जला-जीरा, शीतल पेय, पेप्सी, दाल-का-पानी, चावल-का-मौड, चाय, कॉफी आदि)</string>
+    <string-array name="array_otherfoodpw">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+
+    <string name="pw3q1">ऊँचाई सेंटीमीटर में</string>
+    <string name="pw3q2">वजन किलोग्राम में</string>
+
+    <!--Lm-->
+
+    <string name="Lm1">क्या आप वर्तमान में स्तनपान कर रहे हैं?</string>
+    <string-array name="array_breastfeeding">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+        <item>जन्म के 12 महीनों के भीतर</item>
+    </string-array>
+    <string name="Lm2">यदि नहीं, तो आपने बच्चे को स्तनपान कब रोक दिया?</string>
+    <string-array name="array_stopbreastfeeding">
+        <item>--Select Options--</item>
+        <item>जन्म के एक हफ्ते के भीतर</item>
+        <item>जन्म के एक महीने के भीतर</item>
+        <item>जन्म के तीन महीने के भीतर</item>
+        <item>जन्म के छह महीने के भीतर</item>
+        <item>जन्म के 12-18 महीनों के भीतर</item>
+        <item>कभी स्तनपान नहीं करते</item>
+    </string-array>
+    <string name="Lm3">पिछले तीन महीनों में, क्या आप डिलीवरी, कैसे और कब तक स्तनपान करते हैं, पहले छह महीनों में बच्चे को क्या खाना खिलाते हैं, आदि के बारे में एक एनजीओ / आशा या एक स्वास्थ्य कर्मचारी से सलाह दी है।</string>
+    <string-array name="array_counseledNGOASHA">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+
+    </string-array>
+    <string-array name="array_childtobreastlm">
+        <item>--Select Options--</item>
+        <item>जन्म के एक घंटे के भीतर</item>
+        <item>जन्म के सात घंटे के भीतर</item>
+        <item>जन्म के पहले 24 घंटों के भीतर</item>
+        <item>जन्म के 1-3 दिनों के बीच</item>
+        <item>जन्म के 3-7 दिनों के बीच</item>
+        <item>जन्म के 7 दिन बाद</item>
+    </string-array>
+    <string name="Lm5">क्या आपने अपने बच्चे को पहला पीला, मोटी स्तन का दूध खिलाया था?</string>
+    <string-array name="array_kheeslm">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="Lm6">स्तनपान शुरू करने से पहले क्या आप या कोई अन्य व्यक्ति शहद, पानी, चाय, गुड़गरी, घुटती इत्यादि कुछ भी दे सकता है?</string>
+    <string-array name="array_otherfood">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="Lm7">बच्चा पैदा होने के बाद से क्या आपने या किसी ने कभी भी स्तनपान (जैसे पानी, मिट्टी के पानी, शर्करा-पानी, फलों का रस, शहद, चाय / कॉफी, शिशु फार्मूला आदि) के अलावा किसी भी तरल को दिया है?</string>
+    <string-array name="array_liquidfood">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="Lm8">पिछले तीन महीनों में, क्या आपको एनजीओ / आशा या एक स्वास्थ्य कर्मचारी द्वारा सलाह दी गई थी कि आपको खाने की कितनी आवश्यकता है और आप स्तनपान कब करते हैं?</string>
+    <string-array name="array_ongoingfood">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="Lm9">औसतन, आपके पूरे घर में खाद्य पदार्थ और खाद्य पदार्थों की खरीद पर हर महीने कितना खर्च होता है?</string>
+    <string-array name="array_expencelm">
+        <item>--Select Options--</item>
+        <item>रु। से कम 500 प्रति माह</item>
+        <item>रुपये 500 - 1,000 प्रति माह</item>
+        <item>रुपये 1000 - 2000 प्रति माह</item>
+        <item>रुपये 2000 -  4000 प्रति माह</item>
+        <item>रुपये 4000 - 5,000 प्रति माह</item>
+        <item>रुपये 5,000 और ऊपर</item>
+        <item>पता नहीं</item>
+    </string-array>
+    <string name="Lm10">क्या आपने अपने बच्चे को किसी भी ठोस, अर्द्ध-ठोस या नरम भोजन (जैसे मैश्ड आलू, चावल, दाल, सरलीक, मसला हुआ अंडे, रोटी, सब्जियां आदि) देना शुरू कर दिया है?</string>
+    <string-array name="array_semisolidfood">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="Lm11">यदि हां, तो किस महीने में आपने पहले बच्चे को ठोस, अर्द्ध ठोस या नरम भोजन दिया?</string>
+
+
+    <!--YM-->
+
+    <string name="Ym1">क्या आप वर्तमान में स्तनपान कर रहे हैं?</string>
+    <string-array name="array_breastfeedingym">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+        <item>जन्म के 12 महीनों के भीतर </item>
+    </string-array>
+    <string name="Ym2">यदि नहीं, तो आपने बच्चे को स्तनपान कब रोक दिया?</string>
+    <string-array name="array_stopbreastfeedingym">
+        <item>--Select Options--</item>
+        <item>जन्म के एक हफ्ते के भीतर</item>
+        <item>जन्म के एक महीने के भीतर</item>
+        <item>जन्म के तीन महीने के भीतर</item>
+        <item>जन्म के छह महीने के भीतर</item>
+        <item>जन्म के 12-18 महीनों के भीतर</item>
+        <item>कभी स्तनपान नहीं करते</item>
+    </string-array>
+    <string name="Ym3">क्या आप वर्तमान में किसी गर्भनिरोधक का उपयोग कर रहे हैं या गर्भवती होने से बचने के लिए?</string>
+    <string-array name="array_usingcontraceptive">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+    </string-array>
+    <string name="Ym4">यदि हां, तो आप इनमें से कौन सी पद्धतियां वर्तमान में प्रयोग कर रहे हैं?</string>
+    <string-array name="array_typeofcontracevtive">
+        <item>--Select Options--</item>
+        <item>स्त्री नसबंदी</item>
+        <item>पुरुष नसबंदी</item>
+        <item>आईयूसीडी / पीपीआईयूडीडी</item>
+        <item>इंजेक्शन</item>
+        <item>ओरल गोलियां</item>
+        <item>कंडोम/Nirodh</item>
+        <item>निकासी विधि</item>
+        <item>अन्य पारंपरिक विधि</item>
+        <item>अन्य आधुनिक विधि</item>
+    </string-array>
+    <string name="Ym5">पिछले तीन महीनों में, क्या आप एक एनजीओ / आशा या एक स्वास्थ्य कर्मचारी द्वारा अपने बच्चे, कितना, और कब, आदि को खिलाने के लिए सलाह दे रहे थे?</string>
+    <string-array name="array_colseledngoym">
+        <item>--Select Options--</item>
+        <item>हाँ</item>
+        <item>नहीं</item>
+        <item>अन्य</item>
+
+    </string-array>
+    <string name="Ym6">औसतन, आपके पूरे घर में खाद्य पदार्थ और खाद्य पदार्थों की खरीद पर हर महीने कितना खर्च होता है?</string>
+    <string-array name="array_expenceym">
+        <item>--Select Options--</item>
+        <item>रु। से कम 500 प्रति माह</item>
+        <item>रुपये 500  - 1,000 प्रति माह</item>
+        <item>रुपये 1000 - 2000 प्रति माह</item>
+        <item>रुपये 2000 - 4000 प्रति माह</item>
+        <item>रुपये 4000 - 5,000 प्रति माह</item>
+        <item>रुपये 5,000 और ऊपर</item>
+        <item>पता नहीं</item>
+    </string-array>
+
+<string name="mucaic">एमयूएसी (सेंटीमीटर)</string>
+
+    <string name="c1">स्त्री नसबंदी</string>
+    <string name="c2">पुरुष नसबंदी </string>
+    <string name="c3">IUCD/ PPIUCD</string>
+    <string name="c4">इंजेक्शन</string>
+    <string name="c5">मौखिक गोलियां</string>
+    <string name="c6">कंडोम / निरोद</string>
+    <string name="c7">निकासी विधि</string>
+    <string name="c8">अन्य पारंपरिक विधि</string>
+    <string name="c9">अन्य आधुनिक विधि</string>
+
+    <string name="Lm4">जन्म के बाद, आपने पहली बार अपने बच्चे को स्तन में कब रखा था</string>
+
+
+    <string name="napwq1">प्रतिवादी / गर्भवती महिला साक्षात्कार के लिए उपलब्ध नहीं है</string>
+    <string name="napw2">प्रतिवादी / गर्भवती महिला ने प्रसवपूर्व जांच (एएनसी) नहीं की</string>
+
+
+    <string-array name="array_na_question">
+        <item>--Select Options--</item>
+        <item>अकाल प्रसव / गर्भपात</item>
+        <item>मौत</item>
+        <item>कहीं और स्थानांतरित</item>
+
+    </string-array>
+
+    <string name="na1"> माँ की मौत  हो गयीं </string>
+    <string name="na2">माँ कहीं और चले गए</string>
+    <string name="na3">बच्चे की मृत्यु हो गई</string>
+    <string name="na4">नवजात  कहीं और चले गए</string>
+    <string name="na5">दोनों मां और शिशु की मृत्यु हो गई</string>
+    <string name="na6">दोनों कहीं और चले गए</string>
+
+
+    <string name="f1">लकड़ी</string>
+    <string name="f2">फसल के अवशेष</string>
+    <string name="f3">गोबर टिकिया</string>
+    <string name="f4">कोयला / चारकोल</string>
+    <string name="f5">मिट्टी के तेल / डीजल</string>
+    <string name="f6">बिजली</string>
+    <string name="f7">रसोई गैस/ पीएनजी</string>
+    <string name="f8">जैव गैस</string>
+    <string name="f9">अन्य</string>
+
+    <string name="nameofbeneficiary"> माता का नाम</string>
+    <string name="dateofbirthbeneficary">जन्म की तारीख(मां)</string>
+
+    <string name="current_password">वर्तमान पासवर्ड दर्ज करें </string>
+    <string name="new_password">नया पासवर्ड</string>
+    <string name="confirm_password">पासवर्ड की पुष्टि कीजिये</string>
+    <string name="anc">एएनसी तिथि</string>
+    <string name="immunization">क्या बच्चे को पूरी तरह से प्रतिरक्षित किया गया है?</string>
+
+</resources>

@@ -35,8 +35,8 @@
                     android:id ="@+id/YM1Button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="YM1"
-                    android:enabled="true"
+                    android:text="MY1"
+                    android:enabled="false"
                     android:textColor="@color/white"
                     android:background="@drawable/graycircularbutton"
                     android:gravity="center"
@@ -57,8 +57,8 @@
                     android:id ="@+id/YM2Button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="YM2"
-                    android:enabled="true"
+                    android:text="MY2"
+                    android:enabled="false"
                     android:textColor="@color/white"
                     android:background="@drawable/graycircularbutton"
                     android:gravity="center"
@@ -75,17 +75,22 @@
             <RelativeLayout
                 android:layout_width="50dp"
                 android:layout_height="50dp">
+
                 <Button
-                    android:id ="@+id/YM3Button"
+                    android:id="@+id/YM3Button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="YM3"
-                    android:enabled="true"
-                    android:textColor="@color/white"
-                    android:background="@drawable/graycircularbutton"
-                    android:gravity="center"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="11dp"
+                    android:layout_marginRight="11dp"
 
-                    />
+                    android:background="@drawable/graycircularbutton"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="MY3"
+                    android:textColor="@color/white" />
 
 
             </RelativeLayout>
@@ -101,8 +106,8 @@
                     android:id ="@+id/YM4Button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="YM4"
-                    android:enabled="true"
+                    android:text="MY4"
+                    android:enabled="false"
                     android:textColor="@color/white"
                     android:background="@drawable/graycircularbutton"
                     android:gravity="center"
@@ -123,8 +128,8 @@
                     android:id ="@+id/YM5Button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="YM5"
-                    android:enabled="true"
+                    android:text="MY5"
+                    android:enabled="false"
                     android:textColor="@color/white"
                     android:background="@drawable/graycircularbutton"
                     android:gravity="center"
@@ -167,9 +172,10 @@
 
     <RelativeLayout
         android:id="@+id/holdingTabs"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/footer"
+        android:layout_above="@+id/footersrd"
         android:layout_below="@+id/topLinear"
 
         android:orientation="vertical">
@@ -177,15 +183,14 @@
         <include layout="@layout/mylayout"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-
+android:layout_above="@+id/buttom"
             android:id="@+id/sbcclayout"/>
 
         <include layout="@layout/fragment_diatary_pw1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:visibility="gone"
-
+            android:layout_above="@+id/buttom"
             android:id="@+id/dietaryLyout"
             />
 
@@ -194,7 +199,7 @@
             android:layout_height="match_parent"
 
             android:visibility="gone"
-
+            android:layout_above="@+id/buttom"
             android:id="@+id/heightWeightLayout"
             />
 
@@ -204,8 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="55dp"
-            android:background="@color/view"
+                  android:background="@color/view"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -370,6 +374,14 @@
         android:layout_below="@+id/topLinear"
         android:id="@+id/NaFormButtonLayout"
         />
+    <include layout="@layout/fragment_pregnant_lady_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:visibility="gone"
+        android:layout_below="@+id/topLinear"
+        android:id="@+id/pTod"
+        />
 
     <!--<include layout="@layout/fragment_diatary_pw1"-->
     <!--android:layout_width="match_parent"-->
@@ -414,16 +426,23 @@
             app:srcCompat="@drawable/back" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_alignBaseline="@+id/save"
+            android:layout_alignBottom="@+id/save"
+            android:clickable="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/box3"
+            android:gravity="center_vertical|center_horizontal"
             android:text="PROFILE"
-            android:visibility="gone"
+            android:id="@+id/profilePage"
+            android:layout_margin="10dp"
+
             android:textColor="@color/white"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+            android:visibility="visible" />
 
         <Button
-            android:id="@+id/save"
+            android:id="@+id/saveYM"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"

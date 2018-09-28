@@ -2,13 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.rajpusht.rajpusht">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -22,6 +26,7 @@
         </activity>
         <activity
             android:name=".Login"
+            android:launchMode="singleTask"
             android:screenOrientation="userPortrait" />
         <activity
             android:name=".DashBoard"
@@ -30,6 +35,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Profile"
+            android:configChanges="locale|orientation|keyboardHidden"
             android:screenOrientation="userPortrait" />
         <activity
             android:name=".PregnantWomenForm"
@@ -44,7 +50,70 @@
             android:name=".RegistrationWomen"
             android:screenOrientation="userPortrait" />
         <activity android:name=".LM_actvity" />
-        <activity android:name=".MyActivity"></activity>
+        <activity android:name=".MyActivity" />
+        <activity android:name=".EditRegistartion" />
+        <activity android:name=".CheckTimeActivity" />
+        <activity android:name=".ChagePassword" />
+        <activity android:name=".OtherWomenList" />
+
+
+        <activity
+            android:name=".activity.CashLoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth" />
+        <activity android:name=".activity.CashProfileActivity"
+            android:launchMode="singleTop"/>
+        <activity
+            android:name=".activity.CashAadharSyncActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth" />
+        <activity
+            android:name=".activity.CashBeneficiaryActivity"
+            android:label="@string/title_activity_cash_beneficiary"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CashAddNewBenefeciaryActivity"
+            android:label="@string/title_activity_cash_add_new_benefeciary"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.CashSecondThirdActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.CashThirdActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.CashFourthActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.CashFifthActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.CashTransferStatus"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name=".activity.CashCorrectionActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.CashEditForms"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.CashFillFormsActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name=".dialog.DialogAccountReason"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth" />
+
     </application>
 
 </manifest>

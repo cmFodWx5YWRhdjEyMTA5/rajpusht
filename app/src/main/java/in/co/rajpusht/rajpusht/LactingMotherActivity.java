@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,9 @@ public class LactingMotherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lacting_mother);
+        TextView textView = (TextView) findViewById(R.id.jsonObject);
 
+        textView.setText(getIntent().getStringExtra("extradata"));
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         tabLayout.addTab(tabLayout.newTab().setText("SBCC"));

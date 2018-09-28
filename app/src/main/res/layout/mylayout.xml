@@ -13,6 +13,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:id="@+id/layoutchecki"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
@@ -25,7 +26,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Are you currently breastfeeding ?"
+                    android:text="@string/Ym1"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -64,7 +65,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="If NO, when did you stop breastfeeding the child ? "
+                    android:text="@string/Ym2"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -107,7 +108,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Are you currently using any contraceptive to delay or avoid getting pregnant ? "
+                    android:text="@string/Ym3"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -122,6 +123,7 @@
                     android:paddingRight="8dp"
                     android:singleLine="true"
                     android:textSize="13dp"
+
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
@@ -143,9 +145,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/currentlyUsingTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="If yes, which of the following methods are you currently using ? "
+                    android:text="@string/Ym4"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -161,11 +164,90 @@
                     android:paddingRight="8dp"
                     android:singleLine="true"
                     android:textSize="13dp"
+                    android:visibility="gone"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:id="@+id/linearCyrrentlyUsing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp"
+                    android:visibility="gone"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    >
+
+                    <CheckBox
+                        android:id="@+id/c1"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c1"/>
+
+                    <CheckBox
+                        android:id="@+id/c2"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c2"/>
+
+                    <CheckBox
+                        android:id="@+id/c3"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c3"/>
+
+                    <CheckBox
+                        android:id="@+id/c4"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c4"/>
+
+                    <CheckBox
+                        android:id="@+id/c5"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c5"/>
+
+                    <CheckBox
+                        android:id="@+id/c6"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c6"/>
+
+                    <CheckBox
+                        android:id="@+id/c7"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c7"/>
+
+                    <CheckBox
+                        android:id="@+id/c8"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c8"/>
+
+                    <CheckBox
+                        android:id="@+id/c9"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="@string/c9"/>
+
+
+                </LinearLayout>
+
+                
+                
+                
                 <View
+                    android:id="@+id/currentlyusingView"
                     android:layout_width="match_parent"
                     android:layout_height="0.75dp"
                     android:layout_marginTop="-2dp"
@@ -184,7 +266,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on what to feed your child, how much, and when, etc ?"
+                    android:text="@string/Ym5"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -222,7 +304,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="On an average, how much does your entire household spend per month on buying foods and food items ? "
+                    android:text="@string/Ym6"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="15dp"
@@ -250,9 +332,50 @@
                     android:layout_marginBottom="20dp"
                     android:background="@color/gray"/>
 
+
+
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ImmuniZedLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/immunization"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/view2"/>
+                <Spinner
+                    android:id="@+id/ImmuniZedLinearSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:paddingLeft="8dp"
+                    android:spinnerMode="dropdown"
+                    android:paddingRight="8dp"
+                    android:singleLine="true"
+                    android:textSize="13dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.75dp"
+                    android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/gray"/>
+
+
+
+            </LinearLayout>
 
 
         </LinearLayout>

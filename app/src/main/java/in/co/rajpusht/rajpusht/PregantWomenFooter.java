@@ -5,13 +5,16 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +25,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -57,7 +61,7 @@ public class PregantWomenFooter extends AppCompatActivity {
     EditText a_no,b_no,c_no,d_no,e_no,f_no,g_no,h_no,i_no,j_no,k_no,l_no,m_no;
 
     String af,bf,cf,df,ef,ff,gf,hf,i_f,jf,kf,lf,mf;
-    Integer an,bn,cn,dn,en,fn,gn,hn,in,jn,kn,ln,mn;
+    Integer an=1,bn=1,cn=1,dn=1,en=1,fn=1,gn=1,hn=1,in=1,jn=1,kn=1,ln=1,mn=1;
 
     EditText height,weight;
 
@@ -67,7 +71,7 @@ public class PregantWomenFooter extends AppCompatActivity {
     ImageView naButton;
 
     String spinner_consult_selfString,spend_on_bfString,sepndOfFoodString;
-    int spinner_consult_selfInteger,spentOnFoodInt;
+    int spinner_consult_selfInteger,spentOnFoodInt,spend_on_bfint;
     TextView textLmpdate;
     CheckBox checkbox,chcekedNAM;
     Spinner pw1_yesno;
@@ -87,23 +91,33 @@ public class PregantWomenFooter extends AppCompatActivity {
     int deliveryPlaceItemSelected,childSexItemSelected,wasChildBornPosition;
     private int mYear2, mMonth2, mDay2;
 
-    EditText nameOfChild,orderOfBirth,childWeight;
+    EditText nameOfChild,orderOfBirth,childWeight,childWeightGram;
     TextView dateOfDelivery,addchild;
     Menu menu;
+    String ChildWeightFinal;
+    TextView profilePage;
+    RelativeLayout chi;
+
+    String changeStage="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pregant_women_footer);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         session = new SessionManager(PregantWomenFooter.this);
         fragment_preliminary_pw1 = findViewById(R.id.sbcclayout);
         fragment_diatary_pw1 = findViewById(R.id.dietaryLyout);
         fragment_height_weight = findViewById(R.id.heightWeightLayout);
         fragment_na = findViewById(R.id.NaFormButtonLayout);
+        profilePage = (TextView) findViewById(R.id.profilePage);
 
         linearMua = (LinearLayout) findViewById(R.id.linearMuac);
         muachole = (TextView) findViewById(R.id.muacholer);
+
+        chi= (RelativeLayout) findViewById(R.id.relativeChild);
 
         if(getIntent().getStringExtra("getstage").equalsIgnoreCase("pw")){
 
@@ -111,28 +125,41 @@ public class PregantWomenFooter extends AppCompatActivity {
                     muachole.setVisibility(View.INVISIBLE);
         }
 
-        if(getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW1")||getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW2")){
+        profilePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),EditRegistartion.class);
+                intent.putExtra("memberId",getIntent().getStringExtra("members_id"));
+                intent.putExtra("motherId",getIntent().getStringExtra("motherId"));
+                intent.putExtra("pregaencyId",getIntent().getStringExtra("pregnancy_id"));
+                intent.putExtra("stage",getIntent().getStringExtra("getstage"));
+                intent.putExtra("familyId",getIntent().getStringExtra("familyId"));
+                startActivity(intent);
+//                finish();
 
-//            Log.d("Menu","inserted");
+            }
+        });
+
+//        if(getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW1")||getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW2")){
+//
+////            Log.d("Menu","inserted");
 //            MenuItem item = (MenuItem) findViewById(R.id.mybutton);
 //            item.setVisible(false);
-//            this.invalidateOptionsMenu();
-//            }
-
-        }
+//          invalidateOptionsMenu();
+////            }
+//
+//        }
 
         textLmpdate = (TextView) findViewById(R.id.date);
         textLmpdate.setText("LMP : "+getIntent().getStringExtra("lmpDate"));
 
-        getSupportActionBar().setTitle(getIntent().getStringExtra("name"));
+        getSupportActionBar().setTitle("Woman : " + getIntent().getStringExtra("name"));
 
 
         basicclick = (View) findViewById(R.id.basicclick);
         pregnentclick = (View) findViewById(R.id.pregnentclick);
         childclick = (View) findViewById(R.id.childclick);
         pd = (View)findViewById(R.id.pTod);
-
-
 
         relativessbc = (RelativeLayout) findViewById(R.id.relativessbc);
         relativeDiversity = (RelativeLayout) findViewById(R.id.relativeDiversity);
@@ -160,7 +187,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         listanetalcheck.add("Migrated elsewhere");
 
         ArrayAdapter<String> dataAdapterlistanetalcheck = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listanetalcheck);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_na_question));
         dataAdapterlistanetalcheck.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pw1_yesno.setAdapter(dataAdapterlistanetalcheck);
 
@@ -170,6 +197,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 
                 pw1_yesnoString=String.valueOf(parent.getSelectedItem());
                 pw1_yesNoInt = position;
+
             }
 
             @Override
@@ -246,10 +274,39 @@ public class PregantWomenFooter extends AppCompatActivity {
                             }
                         }, mYear, mMonth, mDay);
 
+                Calendar cal = Calendar.getInstance();
+                Date result=cal.getTime();
+if(pwActive_subStage.equalsIgnoreCase("PW1")){
 
-                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
-                calender.add(Calendar.DATE,-300);
-                dpd.getDatePicker().setMinDate(calender.getTimeInMillis());
+//    calender.add(Calendar.DATE,0);
+    cal.add(Calendar.DAY_OF_MONTH, -97);
+    result = cal.getTime();
+
+//
+//    0-97;
+}
+if(pwActive_subStage.equalsIgnoreCase("PW2")){
+//    calender.add(Calendar.DATE,-98);
+    cal.add(Calendar.DAY_OF_MONTH, -195);
+    result = cal.getTime();
+
+     }
+     if(pwActive_subStage.equalsIgnoreCase("PW3")){
+//         calender.add(Calendar.DATE,-196);
+         cal.add(Calendar.DAY_OF_MONTH, -251);
+         result = cal.getTime();
+
+     }
+     if(pwActive_subStage.equalsIgnoreCase("PW4")){
+//         calender.add(Calendar.DATE,-252);
+         cal.add(Calendar.DAY_OF_MONTH, -280);
+         result = cal.getTime();
+//252-280
+     }
+
+                dpd.getDatePicker().setMaxDate(calender.getTimeInMillis());
+
+                dpd.getDatePicker().setMinDate(result.getTime());
                 dpd.show();
             }
         });
@@ -266,7 +323,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         list1.add("Rs. 5,000 and above");
         list1.add("Do not Know");
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list1);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_expencelmpw));
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_spend_food.setAdapter(dataAdapter1);
 
@@ -293,7 +350,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         bfList.add("Yes");
         bfList.add("No");
 
-        ArrayAdapter<String> datadapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,bfList);
+        ArrayAdapter<String> datadapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.array_ngofeedinfant));
         datadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_spend_on_bf.setAdapter(datadapter);
 
@@ -303,12 +360,13 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
                 spend_on_bfString= String.valueOf(parent.getItemAtPosition(position));
+                spend_on_bfint=position;
 
-                if(spend_on_bfString.equalsIgnoreCase("yes")){
+                if(spend_on_bfint==1){
 
                     spend_on_bfString="Y";
                 }
-                if(spend_on_bfString.equalsIgnoreCase("No")){
+                if(spend_on_bfint==2){
 
                     spend_on_bfString="N";
                 }
@@ -328,7 +386,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         list.add("No");
         list.add("Can't Remember");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_counseledNGOASHApw));
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_consult_self.setAdapter(dataAdapter);
 
@@ -336,12 +394,13 @@ public class PregantWomenFooter extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-
+int spinnerconsultInt;
                 spinner_consult_selfString = String.valueOf(parent.getItemAtPosition(position));
-                 if(spinner_consult_selfString.equalsIgnoreCase("yes")){
+                spinnerconsultInt=position;
+                 if(spinnerconsultInt==1){
                      spinner_consult_selfString="Y";
                  }
-                 if(spinner_consult_selfString.equalsIgnoreCase("No")){
+                 if(spinnerconsultInt==2){
                      spinner_consult_selfString="N";
                  }
                 //
@@ -374,7 +433,7 @@ public class PregantWomenFooter extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                 if(a_food.isChecked()){
-                    a_no.setVisibility(View.VISIBLE);
+//                    a_no.setVisibility(View.VISIBLE);
                 }else{
                     a_no.setVisibility(View.GONE);
                 }
@@ -389,7 +448,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(b_food.isChecked()){
-                                                      b_no.setVisibility(View.VISIBLE);
+//                                                      b_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       b_no.setVisibility(View.GONE);
                                                   }
@@ -404,7 +463,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(c_food.isChecked()){
-                                                      c_no.setVisibility(View.VISIBLE);
+//                                                      c_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       c_no.setVisibility(View.GONE);
                                                   }
@@ -419,7 +478,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(d_food.isChecked()){
-                                                      d_no.setVisibility(View.VISIBLE);
+//                                                      d_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       d_no.setVisibility(View.GONE);
                                                   }
@@ -434,7 +493,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(e_food.isChecked()){
-                                                      e_no.setVisibility(View.VISIBLE);
+//                                                      e_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                      e_no.setVisibility(View.GONE);
                                                   }
@@ -449,7 +508,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(f_food.isChecked()){
-                                                      f_no.setVisibility(View.VISIBLE);
+//                                                      f_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       f_no.setVisibility(View.GONE);
                                                   }
@@ -464,7 +523,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(g_food.isChecked()){
-                                                      g_no.setVisibility(View.VISIBLE);
+//                                                      g_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       g_no.setVisibility(View.GONE);
                                                   }
@@ -479,7 +538,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(h_food.isChecked()){
-                                                      h_no.setVisibility(View.VISIBLE);
+//                                                      h_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       h_no.setVisibility(View.GONE);
                                                   }
@@ -494,7 +553,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(i_food.isChecked()){
-                                                      i_no.setVisibility(View.VISIBLE);
+//                                                      i_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       i_no.setVisibility(View.GONE);
                                                   }
@@ -509,7 +568,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(j_food.isChecked()){
-                                                      j_no.setVisibility(View.VISIBLE);
+//                                                      j_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       j_no.setVisibility(View.GONE);
                                                   }
@@ -524,7 +583,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(k_food.isChecked()){
-                                                      k_no.setVisibility(View.VISIBLE);
+//                                                      k_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       k_no.setVisibility(View.GONE);
                                                   }
@@ -539,7 +598,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(l_food.isChecked()){
-                                                      l_no.setVisibility(View.VISIBLE);
+//                                                      l_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       l_no.setVisibility(View.GONE);
                                                   }
@@ -554,7 +613,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 
                                                   if(m_food.isChecked()){
-                                                      m_no.setVisibility(View.VISIBLE);
+//                                                      m_no.setVisibility(View.VISIBLE);
                                                   }else{
                                                       m_no.setVisibility(View.GONE);
                                                   }
@@ -582,6 +641,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         nameOfChild = (EditText) findViewById(R.id.nameOfChild);
         orderOfBirth= (EditText) findViewById(R.id.orderOfBirth);
         childWeight = (EditText) findViewById(R.id.childWeight);
+        childWeightGram = (EditText) findViewById(R.id.childWeightGram);
         addchild = (TextView) findViewById(R.id.addchild);
         pregnetNumnber = (EditText)findViewById(R.id.pregnetNumnber);
 
@@ -637,7 +697,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         listplaceofDelivery.add("Home");
 
         ArrayAdapter<String> postofDelivery = new ArrayAdapter<String>(PregantWomenFooter.this,
-                android.R.layout.simple_spinner_item, listplaceofDelivery);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_birthplace));
         postofDelivery.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         placeofDelivery.setAdapter(postofDelivery);
 
@@ -666,7 +726,7 @@ public class PregantWomenFooter extends AppCompatActivity {
         listsexOfchild.add("Intersex");
 
         ArrayAdapter<String> dataAdaptersexOfchild = new ArrayAdapter<String>(PregantWomenFooter.this,
-                android.R.layout.simple_spinner_item, listsexOfchild);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_childgender));
         dataAdaptersexOfchild.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sexOfchild.setAdapter(dataAdaptersexOfchild);
 
@@ -698,7 +758,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 
 
         ArrayAdapter<String> dataAdapterwasChildBorn = new ArrayAdapter<String>(PregantWomenFooter.this,
-                android.R.layout.simple_spinner_item, listwasChildBorn);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_birthbefore9month));
         dataAdapterwasChildBorn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wasChildBorn.setAdapter(dataAdapterwasChildBorn);
 
@@ -728,7 +788,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 //        listbirthBreast.add("Intersexed");
 
         ArrayAdapter<String> dataAdapterbirthBreast = new ArrayAdapter<String>(PregantWomenFooter.this,
-                android.R.layout.simple_spinner_item, listbirthBreast);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_childtobreast));
         dataAdapterbirthBreast.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         birthBreast.setAdapter(dataAdapterbirthBreast);
 
@@ -743,7 +803,7 @@ public class PregantWomenFooter extends AppCompatActivity {
 //        listfirstyellowFeed.add("Intersexed");
 
         ArrayAdapter<String> dataAdapterfirstyellowFeed = new ArrayAdapter<String>(PregantWomenFooter.this,
-                android.R.layout.simple_spinner_item, listfirstyellowFeed);
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.array_khees));
         dataAdapterfirstyellowFeed.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         firstyellowFeed.setAdapter(dataAdapterfirstyellowFeed);
 //
@@ -781,12 +841,12 @@ public class PregantWomenFooter extends AppCompatActivity {
                 if (pwActive_subStage.equalsIgnoreCase("PD")) {
                     errorCode=childformValidation();
                     if (errorCode.equalsIgnoreCase("0")) {
-
+                        ChildWeightFinal = childWeight.getText().toString() + "." + childWeightGram.getText().toString();
                         String cSex;
-                        if (childSex.equalsIgnoreCase("male")) {
+                        if (childSexItemSelected==1) {
 
                             cSex="M";
-                        }else if(childSex.equalsIgnoreCase("Female")){
+                        }else if(childSexItemSelected==2){
                             cSex="F";
                         }else{
                             cSex="I";
@@ -799,16 +859,17 @@ public class PregantWomenFooter extends AppCompatActivity {
                                 ""+ new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())+ "','" +
                                 ""+  dateOfDelivery.getText().toString() +"','"+ cSex +"','"+ getIntent().getStringExtra("members_id") +
                                 "','LM','LM','Y','"+ session.getSurveyorId() +"','"+
-                                new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) +"','Mobile','','N')";
+                                new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) +"','M','','N')";
 
                         String insertChildExtra="INSERT INTO childextra (MEMBERS_ID,DODELIVERY,DELIVERY_PLACE,CHILD_ORDER,BIRTH_WT,FULL_TERM,IS_APPROVED," +
                                 "IS_NEW) VALUES ('"+ childid +"','"+ dateOfDelivery.getText().toString() +"'," +
                                 "'"+  String.valueOf(deliveryPlaceItemSelected)+ "','"+ orderOfBirth.getText().toString()+ "','" +
-                                ""+ childWeight.getText().toString()+"','"+ String.valueOf(wasChildBornPosition)+ "','','N')";
+                                ""+ ChildWeightFinal+"','"+ String.valueOf(wasChildBornPosition)+ "','','N')";
 
                         String pwtrackoff="UPDATE memberbasic SET IS_TO_TRACK = 'N',SURVEYOR_ID = '"+ session.getSurveyorId() +"',TIME_STAMP = '"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date())  +"',IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end) WHERE MEMBERS_ID = '"+ getIntent().getStringExtra("members_id") +"'" ;
 
 
+                        String pregency_active_off="update pregnant set is_active = 'N',IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end) WHERE MEMBERS_ID = '"+ getIntent().getStringExtra("members_id") +"'" ;
                         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
                         Cursor c1 = dbs.rawQuery(childIntoMemeber, null);
@@ -823,6 +884,10 @@ public class PregantWomenFooter extends AppCompatActivity {
                         c3.moveToFirst();
                         c3.close();
 
+                        Cursor c4 = dbs.rawQuery(pregency_active_off, null);
+                        c4.moveToFirst();
+                        c4.close();
+
 
                         Toast.makeText(PregantWomenFooter.this, "Recorded updated Succesfully", Toast.LENGTH_SHORT).show();
 
@@ -833,7 +898,6 @@ public class PregantWomenFooter extends AppCompatActivity {
 
                     }
                     }
-
 
                 else if (pwActive_subStage.equalsIgnoreCase("na")) {
                     errorCode = ValidateNa();
@@ -861,11 +925,11 @@ public class PregantWomenFooter extends AppCompatActivity {
 
                             NaQuery = "INSERT INTO PW_TRACKING (PREGNANCY_ID,MEMBERS_ID,STAGE,SUB_STAGE,IS_AVAILABLE,NA_REASON,IS_ANC,SURVEYOR_ID,TIME_STAMP,SOURCE,IS_NEW,IS_EDITED,IS_APPROVED)VALUES ( '" + getIntent().getStringExtra("pregnancy_id") +
                                     "','" + getIntent().getStringExtra("members_id") + "', 'PW', '" + getIntent().getStringExtra("current_sub_stage") + "','" + is_available + "', " + pw1_yesNoInt + ",'" + ancValue + "', '" + session.getSurveyorId()+ "','" +
-                                    new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "','Mobile','N','','')";
+                                    new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "','M','N','','')";
 
                         } else {
 
-                            NaQuery = "UPDATE PW_TRACKING SET IS_AVAILABLE = '" + is_available + "', NA_REASON = " + pw1_yesNoInt + ",IS_ANC = '" + ancValue + "',IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end), TIME_STAMP='" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SURVEYOR_ID='" + session.getSurveyorId() + "',SOURCE='Mobile' " +
+                            NaQuery = "UPDATE PW_TRACKING SET IS_AVAILABLE = '" + is_available + "', NA_REASON = " + pw1_yesNoInt + ",IS_ANC = '" + ancValue + "',IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end), TIME_STAMP='" + new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault()).format(new Date()) + "',SURVEYOR_ID='" + session.getSurveyorId() + "',SOURCE='M' " +
                                     "WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + getIntent().getStringExtra("current_sub_stage") + "'";
                         }
 
@@ -875,14 +939,16 @@ public class PregantWomenFooter extends AppCompatActivity {
                         cdbs4.moveToFirst();
                         cdbs4.close();
 
-                        String updateSub_StageInMemberBasic = "update memberbasic set sub_stage='" + getIntent().getStringExtra("current_sub_stage") + "', IS_TO_TRACK='" + IS_TO_TRACK + "' WHERE MEMBERS_ID=(SELECT MEMBERS_ID FROM PREGNANT WHERE PREGNANCY_ID='" + getIntent().getStringExtra("pregnancy_id") + "')";
+                        String updateSub_StageInMemberBasic = "update memberbasic set IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end), sub_stage='" + getIntent().getStringExtra("current_sub_stage") + "', IS_TO_TRACK='" + IS_TO_TRACK + "' WHERE MEMBERS_ID=(SELECT MEMBERS_ID FROM PREGNANT WHERE PREGNANCY_ID='" + getIntent().getStringExtra("pregnancy_id") + "')";
                         SQLiteDatabase dsbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
                         Cursor cdsbs = dsbs.rawQuery(updateSub_StageInMemberBasic, null);
                         cdsbs.moveToFirst();
                         dsbs.close();
 
                         Toast.makeText(PregantWomenFooter.this, "Record Updated Successfully", Toast.LENGTH_SHORT).show();
-
+                        Intent intentbenefit = new Intent(getApplicationContext(),DashBoard.class);
+                        startActivity(intentbenefit);
+                        finish();
 
 //                    total = c.getCount();  int
                         c.close();
@@ -904,7 +970,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     anc_date.getText().toString() + "','" + spinner_consult_selfString + "','" + spend_on_bfString + "'," + spentOnFoodInt + "," +
                                     Integer.parseInt(height.getText().toString()) + "," + Integer.parseInt(weight.getText().toString()) + "," + session.getSurveyorId() + ",'"
                                     + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',"
-                                    + "'Mobile'" + "," + "'N'" + "," + "''" + "," + "''" + ")";
+                                    + "'M'" + "," + "'N'" + "," + "''" + "," + "''" + ")";
 
                             Log.d("insertQuery", inseertPwTrack);
 //
@@ -922,7 +988,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     "'," + bn + ",'" + cf + "'," + cn + ",'" + df + "'," + dn + ",'" + ef + "'," +
                                     en + ",'" + ff + "'," + fn + ",'" + gf + "'," + gn + ",'" + hf + "'," + hn + ",'"
                                     + i_f + "'," + in + ",'" + jf + "'," + jn + ",'" + kf + "'," + kn + ",'" + lf + "'," +
-                                    ln + ",'" + mf + "'," + mn + ",'MOBILE','N','','')";
+                                    ln + ",'" + mf + "'," + mn + ",'M','N','','')";
 
                             Log.d("InsertQuerydiet", deitInsert);
 
@@ -937,8 +1003,10 @@ public class PregantWomenFooter extends AppCompatActivity {
                             cinsert.close();
 
 
-                            String updateSub_StageInMemberBasic = "update memberbasic set sub_stage='" + getIntent().getStringExtra("current_sub_stage") + "' WHERE MEMBERS_ID=(SELECT MEMBERS_ID FROM PREGNANT WHERE PREGNANCY_ID='" + getIntent().getStringExtra("pregnancy_id") + "')";
+                            String updateSub_StageInMemberBasic = "update memberbasic set IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end), sub_stage='" + getIntent().getStringExtra("current_sub_stage") + "' WHERE MEMBERS_ID=(SELECT MEMBERS_ID FROM PREGNANT WHERE PREGNANCY_ID='" + getIntent().getStringExtra("pregnancy_id") + "')";
                             SQLiteDatabase dsbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
+
+                            Log.d("lastMember",updateSub_StageInMemberBasic);
 
                             Cursor c3 = dsbs.rawQuery(updateSub_StageInMemberBasic, null);
 
@@ -948,8 +1016,11 @@ public class PregantWomenFooter extends AppCompatActivity {
 //                    c3.moveToFirst();
                             c3.close();
                             Toast.makeText(PregantWomenFooter.this, "Record Saved Succesfully", Toast.LENGTH_SHORT).show();
-
+                            Intent intentbenefit = new Intent(getApplicationContext(),DashBoard.class);
+                            startActivity(intentbenefit);
+                            finish();
                             subStageMode = "edit";
+
 
                         } else if (subStageMode.equalsIgnoreCase("edit")) {
 
@@ -958,7 +1029,7 @@ public class PregantWomenFooter extends AppCompatActivity {
                                     "'" + spinner_consult_selfString + "',IF_COUNSEL_ON_BF = '" + spend_on_bfString + "', SPEND_ON_FOOD = '" +
                                     spentOnFoodInt + "', HEIGHT = '" + Integer.parseInt(height.getText().toString()) + "',WEIGHT = " +
                                     "'" + Integer.parseInt(weight.getText().toString()) + "', SURVEYOR_ID = '" +
-                                    session.getSurveyorId() + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',SOURCE = 'Mobile', IS_APPROVED = '' ,IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end) WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
+                                    session.getSurveyorId() + "', TIME_STAMP = '" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()).format(new Date()) + "',SOURCE = 'M', IS_APPROVED = '' ,IS_NEW=(case when IS_NEW='N' then 'N' else 'E' end) WHERE PREGNANCY_ID = '" + getIntent().getStringExtra("pregnancy_id") + "' AND SUB_STAGE = '" + pwActive_subStage + "'";
 
 
                             SQLiteDatabase dsbss = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
@@ -989,7 +1060,7 @@ else{
             "'," + bn + ",'" + cf + "'," + cn + ",'" + df + "'," + dn + ",'" + ef + "'," +
             en + ",'" + ff + "'," + fn + ",'" + gf + "'," + gn + ",'" + hf + "'," + hn + ",'"
             + i_f + "'," + in + ",'" + jf + "'," + jn + ",'" + kf + "'," + kn + ",'" + lf + "'," +
-            ln + ",'" + mf + "'," + mn + ",'MOBILE','N','','')";
+            ln + ",'" + mf + "'," + mn + ",'M','N','','')";
 }
                             SQLiteDatabase dsbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
@@ -1002,10 +1073,11 @@ else{
 
                             Toast.makeText(PregantWomenFooter.this, "Edited Successfully", Toast.LENGTH_SHORT).show();
 
-
+                            Intent intentbenefit = new Intent(getApplicationContext(),DashBoard.class);
+                            startActivity(intentbenefit);
+                            finish();
                         }
-//                Intent i = new Intent(getApplicationContext(), DashBoard.class);
-//                startActivity(i);
+
                     }
                 }
             }
@@ -1018,10 +1090,11 @@ else{
                 fragment_na.setVisibility(View.INVISIBLE);
                 holdingTabs.setVisibility(View.VISIBLE);
                 pd.setVisibility(View.INVISIBLE);
+                clearAllForm();
 
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
-
+//                Toast.makeText(PregantWomenFooter.this, "pw1Clicked", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -1033,10 +1106,10 @@ else{
                 fragment_na.setVisibility(View.INVISIBLE);
                 pd.setVisibility(View.INVISIBLE);
                 holdingTabs.setVisibility(View.VISIBLE);
-
+                clearAllForm();
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
-
+//                Toast.makeText(PregantWomenFooter.this, "pw2Clicked", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -1049,7 +1122,7 @@ else{
                 holdingTabs.setVisibility(View.VISIBLE);
                 pd.setVisibility(View.INVISIBLE);
 
-
+                clearAllForm();
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
 
@@ -1063,7 +1136,7 @@ else{
                 fragment_na.setVisibility(View.INVISIBLE);
                 holdingTabs.setVisibility(View.VISIBLE);
                 pd.setVisibility(View.INVISIBLE);
-
+                clearAllForm();
                 stageDataByPWID(getIntent().getStringExtra("pregnancy_id"),pwActive_subStage);
 
 
@@ -1132,9 +1205,9 @@ else{
 
 
     public String checkValidation(){
-errorCode="0";
+            errorCode="0";
         if(anc_date.getText().length()==0){
-anc_date.requestFocus();
+          anc_date.requestFocus();
             Toast.makeText(PregantWomenFooter.this, "Select ANC Date", Toast.LENGTH_SHORT).show();
             errorCode="1";
         }else if(spinner_consult_selfString.equalsIgnoreCase("--Select Options--")){
@@ -1149,7 +1222,8 @@ anc_date.requestFocus();
             spinner_spend_food.requestFocus();
             Toast.makeText(PregantWomenFooter.this, "Select Amount Spend on Fooding", Toast.LENGTH_SHORT).show();
             errorCode="1";
-        }else  if(a_no.getVisibility()==View.VISIBLE && a_no.getText().length()==0){
+        }
+        else  if(a_no.getVisibility()==View.VISIBLE && a_no.getText().length()==0){
             a_no.requestFocus();
             Toast.makeText(PregantWomenFooter.this, "Enter No of Fed", Toast.LENGTH_SHORT).show();
             errorCode="1";
@@ -1218,13 +1292,14 @@ anc_date.requestFocus();
     public void setButtonForStages(String pregnancy_id,String current_subStage ){
 
 
-        String query="Select T.MEMBERS_ID,T.PREGNANCY_ID,T.STAGE,T.SUB_STAGE FROM pregnant P \n" +
-                "LEFT JOIN pw_tracking T ON P.PREGNANCY_ID=T.PREGNANCY_ID\n" +
-                "WHERE P.MEMBERS_ID='"+pregnancy_id+"'";
+        String query="Select T.MEMBERS_ID,T.PREGNANCY_ID,T.STAGE,T.SUB_STAGE FROM pregnant P " +
+                "LEFT JOIN pw_tracking T ON P.PREGNANCY_ID=T.PREGNANCY_ID" +
+                " WHERE P.PREGNANCY_ID='"+pregnancy_id+"'";
 
 
         SQLiteDatabase dbs = openOrCreateDatabase("ranjeettest", MODE_PRIVATE, null);
 
+        Log.d("PWSTARTUA",query);
         Cursor c = dbs.rawQuery(query,null);
         int total = c.getCount();
 
@@ -1236,26 +1311,30 @@ anc_date.requestFocus();
             if (c.moveToFirst()) {
                 do {
 //             arrayNoOfChild.add(c.getString(c.getColumnIndex("Members_id")));
-                  if(c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW1")){
-                      PW1Button.setBackgroundResource(R.drawable.greencirclecolor);
-                      PW1Button.setEnabled(true);
-                  }
+//                    Log.d("PWSTARTUA",c.getString(c.getColumnIndex("sub_stage")));
+                    try {
+                        if (c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW1")) {
+                            PW1Button.setBackgroundResource(R.drawable.greencirclecolor);
+                            PW1Button.setEnabled(true);
+                        }
 
-                    if(c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW2")){
-                        PW2Button.setBackgroundResource(R.drawable.greencirclecolor);
-                        PW2Button.setEnabled(true);
+                        if (c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW2")) {
+                            PW2Button.setBackgroundResource(R.drawable.greencirclecolor);
+                            PW2Button.setEnabled(true);
+                        }
+
+                        if (c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW3")) {
+                            PW3Button.setBackgroundResource(R.drawable.greencirclecolor);
+                            PW3Button.setEnabled(true);
+                        }
+                        if (c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW4")) {
+                            PW4Button.setBackgroundResource(R.drawable.greencirclecolor);
+                            PW4Button.setEnabled(true);
+                        }
+
+                    }catch (Exception e){
+
                     }
-
-                    if(c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW3")){
-                        PW3Button.setBackgroundResource(R.drawable.greencirclecolor);
-                        PW3Button.setEnabled(true);
-                    }
-                    if(c.getString(c.getColumnIndex("sub_stage")).equalsIgnoreCase("PW4")){
-                        PW4Button.setBackgroundResource(R.drawable.greencirclecolor);
-                        PW4Button.setEnabled(true);
-                    }
-
-
 //
                 } while (c.moveToNext());
             }
@@ -1296,6 +1375,8 @@ anc_date.requestFocus();
 
 //        c
 //        String
+        save.setEnabled(true);
+        save.setVisibility(View.VISIBLE);
 
         String query="select is_anc,anc_date,IF_COUNSEL_ON_SELFFEED,IF_COUNSEL_ON_BF,SPEND_ON_FOOD,HEIGHT,WEIGHT,T.IS_APPROVED,FEED_A,FEED_A_NOS,FEED_B,FEED_B_NOS,FEED_C,FEED_C_NOS,FEED_D,FEED_D_NOS,FEED_E,FEED_E_NOS,FEED_F,FEED_F_NOS,FEED_G,FEED_G_NOS,FEED_H,FEED_H_NOS,FEED_I,FEED_I_NOS,FEED_J,FEED_J_NOS,FEED_K,FEED_K_NOS,FEED_L,FEED_L_NOS,FEED_M,FEED_M_NOS FROM PW_TRACKING T LEFT JOIN DIET D ON T.PREGNANCY_ID=D.PREGNANCY_ID AND T.SUB_STAGE=D.SUB_STAGE WHERE T.PREGNANCY_ID='"+pw_id+"' AND T.SUB_STAGE='"+sub_stage+"' ";
 
@@ -1369,7 +1450,7 @@ try {
     try {
         if (c.getString(c.getColumnIndex("feed_a")).equalsIgnoreCase("Y")) {
             a_food.setChecked(true);
-            a_no.setVisibility(View.VISIBLE);
+//            a_no.setVisibility(View.VISIBLE);
             a_no.setText(c.getString(c.getColumnIndex("feed_a_nos")));
         } else {
             a_food.setChecked(false);
@@ -1382,7 +1463,7 @@ try {
                             Log.d("getFeed",c.getString(c.getColumnIndex("feed_b")));
                             Log.d("getFeed",c.getString(c.getColumnIndex("feed_b_nos")));
                         b_food.setChecked(true);
-                        b_no.setVisibility(View.VISIBLE);
+//                        b_no.setVisibility(View.VISIBLE);
                         b_no.setText(c.getString(c.getColumnIndex("feed_b_nos")));
                     }
                     else{
@@ -1393,7 +1474,7 @@ try {
 
                     if(c.getString(c.getColumnIndex("feed_c")).equalsIgnoreCase("Y")){
                         c_food.setChecked(true);
-                        c_no.setVisibility(View.VISIBLE);
+//                        c_no.setVisibility(View.VISIBLE);
                         c_no.setText(c.getString(c.getColumnIndex("feed_c_nos")));
                     }
                     else{
@@ -1403,7 +1484,7 @@ try {
                     }
                     if(c.getString(c.getColumnIndex("feed_d")).equalsIgnoreCase("Y")){
                         d_food.setChecked(true);
-                        d_no.setVisibility(View.VISIBLE);
+//                        d_no.setVisibility(View.VISIBLE);
                         d_no.setText(c.getString(c.getColumnIndex("feed_d_nos")));
                     } else{
                         d_food.setChecked(false);
@@ -1413,7 +1494,7 @@ try {
 
                     if(c.getString(c.getColumnIndex("feed_e")).equalsIgnoreCase("Y")){
                         e_food.setChecked(true);
-                        e_no.setVisibility(View.VISIBLE);
+//                        e_no.setVisibility(View.VISIBLE);
                         e_no.setText(c.getString(c.getColumnIndex("feed_e_nos")));
                     }
 
@@ -1424,7 +1505,7 @@ try {
                     }
                     if(c.getString(c.getColumnIndex("feed_f")).equalsIgnoreCase("Y")){
                         f_food.setChecked(true);
-                        f_no.setVisibility(View.VISIBLE);
+//                        f_no.setVisibility(View.VISIBLE);
                         f_no.setText(c.getString(c.getColumnIndex("feed_f_nos")));
                     }
 
@@ -1435,7 +1516,7 @@ try {
                     }
                     if(c.getString(c.getColumnIndex("feed_g")).equalsIgnoreCase("Y")){
                         g_food.setChecked(true);
-                        g_no.setVisibility(View.VISIBLE);
+//                        g_no.setVisibility(View.VISIBLE);
                         g_no.setText(c.getString(c.getColumnIndex("feed_g_nos")));
                     }
                     else{
@@ -1445,7 +1526,7 @@ try {
                     }
                     if(c.getString(c.getColumnIndex("feed_h")).equalsIgnoreCase("Y")){
                         h_food.setChecked(true);
-                        h_no.setVisibility(View.VISIBLE);
+//                        h_no.setVisibility(View.VISIBLE);
                         h_no.setText(c.getString(c.getColumnIndex("feed_h_nos")));
                     }
                     else{
@@ -1455,7 +1536,7 @@ try {
                     }
                     if(c.getString(c.getColumnIndex("feed_I")).equalsIgnoreCase("Y")){
                         i_food.setChecked(true);
-                        i_no.setVisibility(View.VISIBLE);
+//                        i_no.setVisibility(View.VISIBLE);
                         i_no.setText(c.getString(c.getColumnIndex("feed_i_nos")));
                     }
                     else{
@@ -1465,7 +1546,7 @@ try {
                     }
                     if(c.getString(c.getColumnIndex("feed_j")).equalsIgnoreCase("Y")){
                         j_food.setChecked(true);
-                        j_no.setVisibility(View.VISIBLE);
+//                        j_no.setVisibility(View.VISIBLE);
                         j_no.setText(c.getString(c.getColumnIndex("feed_j_nos")));
                     }
 
@@ -1476,7 +1557,7 @@ try {
                     }
                     if(c.getString(c.getColumnIndex("feed_k")).equalsIgnoreCase("Y")){
                         k_food.setChecked(true);
-                        k_no.setVisibility(View.VISIBLE);
+//                        k_no.setVisibility(View.VISIBLE);
                         k_no.setText(c.getString(c.getColumnIndex("feed_k_nos")));
                     }
                     else{
@@ -1487,7 +1568,7 @@ try {
 
                     if(c.getString(c.getColumnIndex("feed_l")).equalsIgnoreCase("Y")){
                         l_food.setChecked(true);
-                        l_no.setVisibility(View.VISIBLE);
+//                        l_no.setVisibility(View.VISIBLE);
                         l_no.setText(c.getString(c.getColumnIndex("feed_l_nos")));
                     }
                     else{
@@ -1498,7 +1579,7 @@ try {
 
                     if(c.getString(c.getColumnIndex("feed_m")).equalsIgnoreCase("Y")){
                         m_food.setChecked(true);
-                        m_no.setVisibility(View.VISIBLE);
+//                        m_no.setVisibility(View.VISIBLE);
                         m_no.setText(c.getString(c.getColumnIndex("feed_m_nos")));
                     }
                     else{
@@ -1506,11 +1587,9 @@ try {
                         m_no.setVisibility(View.INVISIBLE);
                         m_no.setText("");
                     }
+        Log.d("RanjeetISpproved",""+c.getString(c.getColumnIndex("is_approved")));
 
-                    if(c.getString(c.getColumnIndex("is_approved")).equalsIgnoreCase("Y")){
-                        save.setEnabled(true);
 
-                    }
 
 
     }catch (Exception e){
@@ -1518,6 +1597,12 @@ try {
     Log.d("Holi",e.toString());
 
     }
+
+                    if(c.getString(c.getColumnIndex("is_approved")).equalsIgnoreCase("Y")){
+                        save.setEnabled(false);
+                        save.setVisibility(View.INVISIBLE);
+                        
+                    }
 
 
                 }while (c.moveToNext());
@@ -1528,6 +1613,7 @@ try {
 
             subStageMode="add";
         }
+
 
     }
 
@@ -1542,8 +1628,8 @@ try {
         dialogCoupon.setCancelable(false);
         dialogCoupon.setCanceledOnTouchOutside(true);
 //        setFinishOnTouchOutside(true);
-        dialogCoupon.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
+        dialogCoupon.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogCoupon.show();
 
 
         Button yes = (Button)dialogCoupon.findViewById(R.id.yes);
@@ -1551,7 +1637,7 @@ try {
             @Override
             public void onClick(View v) {
 //                onBackPressed();
-
+                dialogCoupon.dismiss();
                 Intent intentback = new Intent(getApplicationContext(),DashBoard.class);
                 startActivity(intentback);
                 finish();
@@ -1565,7 +1651,7 @@ try {
             }
         });
 
-        dialogCoupon.show();
+
 
 
     }
@@ -1575,14 +1661,14 @@ try {
 
         if (a_food.isChecked()) {
             af = "Y";
-            an = Integer.parseInt(a_no.getText().toString());
+//            an = Integer.parseInt(a_no.getText().toString());
         } else {
             af = "N";
             an = null;
         }
         if (b_food.isChecked()) {
             bf = "Y";
-            bn = Integer.parseInt(b_no.getText().toString());
+//            bn = Integer.parseInt(b_no.getText().toString());
         } else {
             bf = "N";
             bn = null;
@@ -1591,7 +1677,7 @@ try {
 
         if (c_food.isChecked()) {
             cf = "Y";
-            cn = Integer.parseInt(c_no.getText().toString());
+//            cn = Integer.parseInt(c_no.getText().toString());
         } else {
             cf = "N";
             cn = null;
@@ -1600,7 +1686,7 @@ try {
 
         if (d_food.isChecked()) {
             df = "Y";
-            dn = Integer.parseInt(d_no.getText().toString());
+//            dn = Integer.parseInt(d_no.getText().toString());
         } else {
             df = "N";
             dn = null;
@@ -1608,7 +1694,7 @@ try {
 
         if (e_food.isChecked()) {
             ef = "Y";
-            en = Integer.parseInt(e_no.getText().toString());
+//            en = Integer.parseInt(e_no.getText().toString());
         } else {
             ef = "N";
             en = null;
@@ -1616,14 +1702,14 @@ try {
 
         if (f_food.isChecked()) {
             ff = "Y";
-            fn = Integer.parseInt(f_no.getText().toString());
+//            fn = Integer.parseInt(f_no.getText().toString());
         } else {
             ff = "N";
             fn = null;
         }
         if (g_food.isChecked()) {
             gf = "Y";
-            gn = Integer.parseInt(g_no.getText().toString());
+//            gn = Integer.parseInt(g_no.getText().toString());
         } else {
             gf = "N";
             gn = null;
@@ -1631,14 +1717,14 @@ try {
 
         if (h_food.isChecked()) {
             hf = "Y";
-            hn = Integer.parseInt(h_no.getText().toString());
+//            hn = Integer.parseInt(h_no.getText().toString());
         } else {
             hf = "N";
             hn = null;
         }
         if (i_food.isChecked()) {
             i_f = "Y";
-            in = Integer.parseInt(i_no.getText().toString());
+//            in = Integer.parseInt(i_no.getText().toString());
         } else {
 
             i_f = "N";
@@ -1648,7 +1734,7 @@ try {
 
         if (j_food.isChecked()) {
             jf = "Y";
-            jn = Integer.parseInt(j_no.getText().toString());
+//            jn = Integer.parseInt(j_no.getText().toString());
         } else {
 
             jf = "N";
@@ -1657,7 +1743,7 @@ try {
 
         if (k_food.isChecked()) {
             kf = "Y";
-            kn = Integer.parseInt(k_no.getText().toString());
+//            kn = Integer.parseInt(k_no.getText().toString());
         } else {
             kf = "N";
             kn = null;
@@ -1665,14 +1751,14 @@ try {
 
         if (l_food.isChecked()) {
             lf = "Y";
-            ln = Integer.parseInt(l_no.getText().toString());
+//            ln = Integer.parseInt(l_no.getText().toString());
         } else {
             lf = "N";
             ln = null;
         }
         if (m_food.isChecked()) {
             mf = "Y";
-            mn = Integer.parseInt(m_no.getText().toString());
+//            mn = Integer.parseInt(m_no.getText().toString());
         } else {
             mf = "N";
             mn = null;
@@ -1703,6 +1789,11 @@ errorCode="1";
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu=menu;
         getMenuInflater().inflate(R.menu.mymenu, menu);
+
+        MenuItem shareItem = menu.findItem(R.id.mybutton);
+        if(getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW3")||getIntent().getStringExtra("current_sub_stage").equalsIgnoreCase("PW4")){
+            shareItem.setVisible(true);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -1712,13 +1803,23 @@ errorCode="1";
         int id = item.getItemId();
 
         if (id == R.id.mybutton) {
-
+//            changeStage=pwActive_subStage;
+if(pwActive_subStage.equalsIgnoreCase("PW3")) {
+    wasChildBorn.setSelection(2);
+    wasChildBorn.setEnabled(false);
+}
             pd.setVisibility(View.VISIBLE);
             fragment_na.setVisibility(View.INVISIBLE);
             holdingTabs.setVisibility(View.INVISIBLE);
             pwActive_subStage="PD";
 
             // do something here
+        }
+
+        if( id==android.R.id.home) {
+            // app icon in action bar clicked; go home
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -1756,7 +1857,7 @@ errorCode="1";
             Toast.makeText(PregantWomenFooter.this, "Enter sex of child ", Toast.LENGTH_SHORT).show();
         }
 
-        if(error=="0" && childWeight.getText().toString().length()==0){
+        if(error=="0" && childWeight.getText().toString().length()==0 && childWeightGram.getText().toString().length()==0){
 
             error="1";
             Toast.makeText(PregantWomenFooter.this, "Enter Child Weight", Toast.LENGTH_SHORT).show();
@@ -1787,6 +1888,95 @@ errorCode="1";
         String memberId= familyID+String.format("%02d",count+1);
 //            Log.d("member_id",memberId);
         return memberId;
+    }
+
+    public void clearAllForm(){
+
+        ViewGroup group = (ViewGroup)findViewById(R.id.layoutchecki);
+        ViewGroup group2 = (ViewGroup)findViewById(R.id.linearMotherForm);
+        ViewGroup group3 = (ViewGroup)findViewById(R.id.viewgroup3);
+
+
+        Log.d("ChildcountCalculation",group.getChildCount()+"");
+        Log.d("ChildcountCalculation",group2.getChildCount()+"");
+        Log.d("ChildcountCalculation",group3.getChildCount()+"");
+
+        for (int i = 0, count = group.getChildCount(); i < count; ++i) {
+            Log.d("ChildcountCalculation","Inserted ");
+            View view = group.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).getText().clear();
+            }
+
+
+            if(view instanceof Spinner){
+                ((Spinner)view).setSelection(0);
+            }
+            if(view instanceof CheckBox ){
+                ((CheckBox)view).setChecked(false);
+            }
+
+            if(view instanceof RadioButton){
+                ((RadioButton)view).setChecked(false);
+            }
+        }
+
+        for (int i = 0, count = group2.getChildCount(); i < count; ++i) {
+
+
+            Log.d("ChildcountCalculation","Inserted2 ");
+            View view = group2.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).getText().clear();
+            }
+            if(view instanceof Spinner){
+                ((Spinner)view).setSelection(0);
+            }
+            if(view instanceof CheckBox ){
+                ((CheckBox)view).setChecked(false);
+            }
+            if(view instanceof RadioButton){
+                ((RadioButton)view).setChecked(false);
+            }
+
+        }
+
+        for (int i = 0, count = group3.getChildCount(); i < count; ++i) {
+            Log.d("ChildcountCalculation","Inserted3");
+            View view3 = group3.getChildAt(i);
+            if (view3 instanceof EditText) {
+                ((EditText)view3).getText().clear();
+            }
+            if(view3 instanceof Spinner){
+                ((Spinner)view3).setSelection(0);
+            }
+            if(view3 instanceof CheckBox ){
+                ((CheckBox)view3).setChecked(false);
+            }
+            if(view3 instanceof RadioButton){
+                ((RadioButton)view3).setChecked(false);
+            }
+
+        }
+
+        a_food.setChecked(false);
+        b_food.setChecked(false);
+        c_food.setChecked(false);
+        d_food.setChecked(false);
+        e_food.setChecked(false);
+        f_food.setChecked(false);
+        g_food.setChecked(false);
+        h_food.setChecked(false);
+                i_food.setChecked(false);
+                j_food.setChecked(false);
+                k_food.setChecked(false);
+                l_food.setChecked(false);
+                m_food.setChecked(false);
+                height.setText("");
+                weight.setText("");
+                anc_date.setText("");
+
+
     }
 
 

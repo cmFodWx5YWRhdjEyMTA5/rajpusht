@@ -9,6 +9,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/layoutchecki"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -21,7 +22,7 @@
                 android:id="@+id/text_acndate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ANC DATE"
+                android:text="@string/anc"
                 android:layout_marginLeft="7dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/view2"/>
@@ -44,7 +45,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on what to eat and how much during your pregnancy? "
+                android:text="@string/pw1q1"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
@@ -77,7 +78,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="In the last three months, were you counseled by an NGO/ASHA or a health worker on how to feed your infant after delivery, how and when to breastfeed, what to feed the child in the first six months, etc.? "
+                android:text="@string/pw1q2"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"
@@ -113,7 +114,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="On an average, how much does your entire household spend per month on buying foods and food items ? "
+                android:text="@string/pw1q3"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="15dp"

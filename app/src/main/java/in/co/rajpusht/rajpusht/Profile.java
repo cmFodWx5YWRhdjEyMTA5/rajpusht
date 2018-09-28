@@ -1,18 +1,32 @@
 package in.co.rajpusht.rajpusht;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +41,8 @@ import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import Adpter.LocationSelectionAdapter;
 import extras.BaseUrl;
@@ -39,6 +55,16 @@ public class Profile extends AppCompatActivity {
     ArrayList<ProfileGetSetMethod> profileArray = new ArrayList<ProfileGetSetMethod>();
     SessionManager session;
     TextView profileName;
+    Locale myLocale;
+    RadioGroup language;
+    RadioButton radioHindi,radioEnglish;
+    Context context;
+    TextView logout;
+    SearchView searchView;
+    LocationSelectionAdapter LocationAdapter;
+    RelativeLayout profileRelativeLayout;
+   // List<ProfileGetSetMethod> profileGetSetMethodList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +75,34 @@ public class Profile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         session = new SessionManager(getApplicationContext());
+//        session.setVillageSelectedId(new Login().selectedId);
 
         DbHelper db = new DbHelper(this);
 
         profileName = (TextView) findViewById(R.id.profileName);
         profileName.setText(session.getSurveyorName());
+        profileRelativeLayout = (RelativeLayout)findViewById(R.id.profile_relative_layout);
+
+        radioHindi= (RadioButton) findViewById(R.id.hindi);
+        radioEnglish= (RadioButton) findViewById(R.id.english);
+
+        logout = (TextView) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                session.logoutUser();
+                finish();
+            }
+        });
+
+        if(session.getAwcCode().equalsIgnoreCase("DEFAULT")){
+
+            logout.setVisibility(View.VISIBLE);
+        }
+        else{
+            logout.setVisibility(View.INVISIBLE);
+        }
 
         ImageView back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +112,72 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        if(session.getLangugae().equalsIgnoreCase("hi")){
+            radioHindi.setChecked(true);
+        }else{
+
+            radioEnglish.setChecked(true);
+
+        }
+
         recyclerviewSelectLocation = (RecyclerView) findViewById(R.id.recyclerviewSelectLocation);
         bindLoation();
+       // LocationAdapter = new LocationSelectionAdapter(this, profileGetSetMethodList);
+
+
+        language = (RadioGroup) findViewById(R.id.languageRadiogroup) ;
+        language.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if(checkedId == R.id.english) {
+
+//                    radioHindi.setChecked(false);
+//                    radioEnglish.setChecked(true);
+
+                    Toast.makeText(getApplicationContext(), "Language selection changed to English",
+                            Toast.LENGTH_SHORT).show();
+                    setLocale("en");
+
+                } else if(checkedId == R.id.hindi) {
+                    Toast.makeText(getApplicationContext(), "Language selection changed to Hindi",
+                            Toast.LENGTH_SHORT).show();
+//                    radioHindi.setChecked(true);
+//                    radioEnglish.setChecked(false);
+
+                    setLocale("hi");
+                }
+            }
+        });
+
+        searchView = (SearchView)findViewById(R.id.searcView_profile);
+        SearchManager searchManager= (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                LocationAdapter.getFilter().filter(query);
+                profileRelativeLayout.setVisibility(View.VISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                LocationAdapter.getFilter().filter(newText);
+                profileRelativeLayout.setVisibility(View.GONE);
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                profileRelativeLayout.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+
 
         Button save = (Button) findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +185,8 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
 
 //to validate clicked or not
+
+
 if(!new Login().selectedId.equalsIgnoreCase("")){
 
     String updateAssign="UPDATE ASSIGNED_LOCATION SET LOGIN=''";
@@ -122,14 +237,15 @@ else{
         Cursor cFlush = dbsflush.rawQuery(bindLoation, null);
         if (cFlush.getCount() >= 1) {
 
+
             int i = 0;
             if (cFlush.moveToFirst()) {
                 do {
 
 
                     ProfileGetSetMethod profilesetset = new ProfileGetSetMethod(cFlush.getString(cFlush.getColumnIndex("id")),
-                            cFlush.getString(cFlush.getColumnIndex("village_eng"))+" ("+cFlush.getString(cFlush.getColumnIndex("awc_eng"))+")", cFlush.getString(cFlush.getColumnIndex("surveyor_name")),
-                            cFlush.getString(cFlush.getColumnIndex("surveyor_id")),cFlush.getString(cFlush.getColumnIndex("login")));
+                            cFlush.getString(cFlush.getColumnIndex("awc_eng")), cFlush.getString(cFlush.getColumnIndex("surveyor_name")),
+                            cFlush.getString(cFlush.getColumnIndex("surveyor_id")),cFlush.getString(cFlush.getColumnIndex("login")),cFlush.getString(cFlush.getColumnIndex("project_name")),cFlush.getString(cFlush.getColumnIndex("sector_name")));
 
                     profileArray.add(profilesetset);
 
@@ -140,16 +256,20 @@ else{
                 } while (cFlush.moveToNext());
 
 
-                LocationSelectionAdapter LocationAdapter = new LocationSelectionAdapter(profileArray);
+                LocationAdapter = new LocationSelectionAdapter(this, profileArray);
                 recyclerviewSelectLocation.setAdapter(LocationAdapter);
                 LinearLayoutManager linear = new LinearLayoutManager(getApplication());
                 linear.setReverseLayout(true);
                 linear.setStackFromEnd(true);
                 recyclerviewSelectLocation.setLayoutManager(linear);
+
+                session.setVillageSelectedId(new Login().selectedId);
             }
 
 
         }
+
+
     }
 
 
@@ -184,7 +304,7 @@ else{
                     session.setVillageHindi(c.getString(c.getColumnIndex("village_hindi")));
 //                    session.setSurveyorName(c.getString(c.getColumnIndex("surveyor_name")));
                     session.setSurveyorId(c.getString(c.getColumnIndex("surveyor_id")));
-session.setAwcEng(c.getString(c.getColumnIndex("awc_eng")));
+                    session.setAwcEng(c.getString(c.getColumnIndex("awc_eng")));
 
                 } while (c.moveToNext());
             }
@@ -640,5 +760,40 @@ session.setAwcEng(c.getString(c.getColumnIndex("awc_eng")));
         Cursor c1 = dbs.rawQuery(query,null);
         c1.moveToFirst();
     }
+
+    public void setLocale(String lang) {
+
+        try {
+            Log.d("Profile", "Inserted Profiel check"+" "+lang);
+
+session.setLangugae(lang);
+            myLocale = new Locale(lang);
+            Locale.setDefault(myLocale);
+
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.setLocale(myLocale);
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                conf.setLayoutDirection(myLocale);
+            }
+            res.updateConfiguration(conf, res.getDisplayMetrics());
+//        Intent refresh = new Intent(this, Profile.class);
+//        startActivity(refresh);
+
+            context.getResources().updateConfiguration(conf,
+                    context.getResources().getDisplayMetrics());
+//            finish();
+//            startActivity(getIntent());
+        }catch (Exception e){
+            Log.d("Profile", "Inserted Profiel check"+e.toString());
+        }
+//        this.setContentView(R.layout.activity_profile);
+    }
+
+
+
 
 }

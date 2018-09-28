@@ -33,8 +33,18 @@ public class ChildExtraGetSet {
 
     String isApproved,isNew,ISEdited;
 
-    String survey_id, do_delivery, delivery_place, child_order, birth_wl, full_term, whenfirst_bf, iffeed_khees, currently_bf, whenstop_bf, anythingbefore_bf, ifstarted_solidfood, whichmonth_solidfood, childimmunization_status;
+    String survey_id, do_delivery, delivery_place, child_order,  full_term, whenfirst_bf, iffeed_khees, currently_bf, whenstop_bf, anythingbefore_bf, ifstarted_solidfood, whichmonth_solidfood, childimmunization_status;
 
+
+    public String getBirth_wl() {
+        return birth_wl;
+    }
+
+    public void setBirth_wl(String birth_wl) {
+        this.birth_wl = birth_wl;
+    }
+
+    String birth_wl;
     public ChildExtraGetSet( String survey_id, String do_delivery, String delivery_place, String child_order, String birth_wl, String full_term, String whenfirst_bf, String iffeed_khees,
                              String currently_bf, String whenstop_bf, String anythingbefore_bf, String ifstarted_solidfood,
                              String whichmonth_solidfood, String childimmunization_status,String isApproved,String isNew,String ISEdited) {
@@ -91,13 +101,7 @@ public class ChildExtraGetSet {
         this.child_order = child_order;
     }
 
-    public String getBirth_wl() {
-        return birth_wl;
-    }
 
-    public void setBirth_wl(String birth_wl) {
-        this.birth_wl = birth_wl;
-    }
 
     public String getFull_term() {
         return full_term;

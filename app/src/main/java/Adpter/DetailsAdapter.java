@@ -1,6 +1,7 @@
 package Adpter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,9 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Set;
 
 import extras.BeneficiaryList;
+import in.co.rajpusht.rajpusht.Helper.ColorHelper;
 import in.co.rajpusht.rajpusht.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -28,9 +33,11 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.MyViewHo
 
 
     private List<BeneficiaryList> moviesList;
-    public DetailsAdapter(List<BeneficiaryList> moviesList) {
+    public DetailsAdapter(List<BeneficiaryList> moviesList, Context context) {
 //        inflater = LayoutInflater.from(context);
         this.moviesList = moviesList;
+        this.context = context;
+
     }
 
     @Override
@@ -45,6 +52,8 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.MyViewHo
     @Override
     public void onBindViewHolder(DetailsAdapter.MyViewHolder holder, int position) {
 
+
+
 if(position%2==0) {
     holder.itemView.setBackgroundColor(Color.WHITE);
 }
@@ -54,6 +63,8 @@ if(position%2==0) {
 
         BeneficiaryList movie=moviesList.get(position);
 
+        holder.husbandName.setText("(w/o) " + movie.getHusband());
+        holder.pctsId.setText("Mamta Card: "+movie.getPctsid());
 
 //getchild==mother_id;
 //        getchildname()==mothername;
@@ -67,8 +78,24 @@ else{
     holder.womenname.setText(movie.getName());
 }
 
+Log.d("getstage_name", movie.getName());
+Log.d("getstage_sub", movie.getSub_stage());                //changes after saving
+Log.d("getstage_current", movie.getCurrent_sub_stage());    //remains same
+Log.d("getstage_familyId", movie.getFamily_id());
+
 if(movie.getSub_stage().equalsIgnoreCase(movie.getCurrent_sub_stage())){
-    holder.buttonststuss.setBackgroundResource(R.color.green);
+
+    SharedPreferences arrayFamilyId = context.getSharedPreferences("Prefs", MODE_PRIVATE);
+    Set<String> set = arrayFamilyId.getStringSet("form_filled", null);
+    ColorHelper.getList().addAll(set);
+        for(String isApprove : ColorHelper.getList())
+        {
+            if(isApprove.equalsIgnoreCase(movie.getFamily_id()))
+            {
+                holder.buttonststuss.setBackgroundResource(R.color.green);  // v1.6- R.color.green
+            }
+        }
+
     holder.buttonststuss.setText(movie.getCurrent_sub_stage());
 }
 else{
@@ -112,7 +139,7 @@ try {
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
 
-        public TextView  womenname, date;
+        public TextView  womenname, date, husbandName, pctsId;
         Button buttonststuss;
         ImageView imageFlags;
         public MyViewHolder(View itemView) {
@@ -122,6 +149,8 @@ try {
             date = (TextView) itemView.findViewById(R.id.date);
             buttonststuss = (Button) itemView.findViewById(R.id.buttonststus);
             imageFlags = (ImageView) itemView.findViewById(R.id.imageFlag);
+            husbandName = (TextView)itemView.findViewById(R.id.husbanName);
+            pctsId = (TextView)itemView.findViewById(R.id.pctsId);
 //
             itemView.setTag(itemView);
 

@@ -35,6 +35,9 @@ public class SessionManager {
     private static final String DIST_CODE="distcode";
     private static final String LOCATION_ID="location_id";
     private static final String AWC_ENG="awc_eng";
+    private static final String Langugae="language_selection";
+    private static final String VILLAGE_SELECTED_ID="village_selected_id";
+    private static final String PRESENT_DATE="present_date";
 
 
 
@@ -42,7 +45,10 @@ public class SessionManager {
 
 
 
-    public SessionManager(Context context){
+
+
+    public SessionManager(Context context)
+    {
 
         this.context =  context;
         sharedprefernce = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
@@ -53,6 +59,27 @@ public class SessionManager {
 
     }
 
+    public void setPresentDate(long presentDate)
+    {
+        editor.putLong(PRESENT_DATE,presentDate).apply();
+        editor.commit();
+
+    }
+    public long getPresentDate()
+    {
+
+        return  sharedprefernce.getLong(PRESENT_DATE,0);
+
+    }
+
+    public void setVillageSelectedId(String villageSelectedId){
+        editor.putString(VILLAGE_SELECTED_ID,villageSelectedId);
+        editor.commit();
+    }
+    public String getVillageSelectedId() {
+
+        return sharedprefernce.getString(VILLAGE_SELECTED_ID,"");
+    }
     public Boolean isLogin(){
         return sharedprefernce.getBoolean(IS_LOGIN, false);
 
@@ -70,6 +97,14 @@ public class SessionManager {
      editor.commit();
 
 
+    }
+
+    public void setLangugae(String langugae){
+        editor.putString(Langugae,langugae);
+        editor.commit();
+    }
+    public String getLangugae(){
+        return sharedprefernce.getString(Langugae,"en");
     }
 
     public void setAwcEng(String awc_eng){
@@ -190,7 +225,9 @@ public class SessionManager {
         Intent i = new Intent(context, Login.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         context.startActivity(i);
+
 
     }
 

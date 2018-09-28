@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_next"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_beneficiarylist"
+            android:icon="@drawable/ic_next"
+            android:title="Cash Transfer Due List" />
+
+        <item
+            android:id="@+id/nav_cash_transefer_status"
+            android:icon="@drawable/ic_next"
+            android:title="Cash Transfer Status" />
+
+
+        <item
+            android:id="@+id/correction_report"
+            android:icon="@drawable/ic_next"
+            android:title="Correction Report"/>
+
+        <item
+            android:id="@+id/nav_incentive_status"
+            android:icon="@drawable/ic_next"
+            android:title="Incentive Status" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_next"
+            android:title="Exit" />
+    </group>
+
+
+
+</menu>

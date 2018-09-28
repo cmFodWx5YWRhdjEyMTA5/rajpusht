@@ -5,7 +5,44 @@ package extras;
  */
 
 public class BeneficiaryList {
-    String Members_id,family_id,name,child_id,childname,status,stage,sub_stage,lmp_date,dedelivery,current_sub_stage;
+    String Members_id;
+    String family_id;
+    String name;
+    String husband;
+    String pctsid;
+    String child_id;
+    String childname;
+    String status;
+    String stage;
+    String sub_stage;
+    String lmp_date;
+    String dedelivery;
+    String current_sub_stage;
+    String isApprove;
+
+    public String getIsApprove() {
+        return isApprove;
+    }
+
+    public void setIsApprove(String isApprove) {
+        this.isApprove = isApprove;
+    }
+
+    public String getHusband() {
+        return husband;
+    }
+
+    public void setHusband(String husband) {
+        this.husband = husband;
+    }
+
+    public String getPctsid() {
+        return pctsid;
+    }
+
+    public void setPctsid(String pctsid) {
+        this.pctsid = pctsid;
+    }
 
     public String getPregnancy_id() {
         return pregnancy_id;
@@ -125,11 +162,13 @@ public class BeneficiaryList {
         this.current_sub_stage = current_sub_stage;
     }
 
-    public BeneficiaryList(String members_id, String family_id, String name, String child_id, String childname, String status, String stage, String sub_stage, String lmp_date, String dedelivery, String current_sub_stage,String pregnancy_id,String is_anc,String motherId) {
+    public BeneficiaryList(String members_id, String family_id, String name, String husband, String pctsid, String child_id, String childname, String status, String stage, String sub_stage, String lmp_date, String dedelivery, String current_sub_stage,String pregnancy_id,String is_anc,String motherId) {
 
         Members_id = members_id;
         this.family_id = family_id;
         this.name = name;
+        this.husband = husband;
+        this.pctsid = pctsid;
         this.child_id = child_id;
         this.childname = childname;
         this.status = status;
@@ -141,5 +180,7 @@ public class BeneficiaryList {
         this.pregnancy_id=pregnancy_id;
         this.is_anc = is_anc;
         this.motherId=motherId;
+       // this.isApprove = isApprove;
+
     }
 }

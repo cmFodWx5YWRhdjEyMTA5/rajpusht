@@ -6,7 +6,30 @@ package extras;
 
 public class ProfileGetSetMethod {
 
-    String id,village_name,surveyor_name,surveyor_id,loginchecked;
+    String id;
+    String village_name;
+    String surveyor_name;
+    String surveyor_id;
+    String loginchecked;
+
+    public String getSectorName() {
+        return sectorName;
+    }
+
+    public void setSectorName(String sectorName) {
+        this.sectorName = sectorName;
+    }
+
+    public String getProjectName() {
+        return ProjectName;
+    }
+
+    public void setProjectName(String projectName) {
+        ProjectName = projectName;
+    }
+
+    String sectorName;
+    String ProjectName;
 
     public String getSurveyor_id() {
         return surveyor_id;
@@ -16,12 +39,14 @@ public class ProfileGetSetMethod {
         this.surveyor_id = surveyor_id;
     }
 
-    public ProfileGetSetMethod(String id, String village_name, String surveyor_name, String surveyor_id,String loginchecked) {
+    public ProfileGetSetMethod(String id, String village_name, String surveyor_name, String surveyor_id,String loginchecked,String projectName,String sectorName) {
         this.id = id;
         this.village_name = village_name;
         this.surveyor_name = surveyor_name;
         this.surveyor_id=surveyor_id;
         this.loginchecked=loginchecked;
+        this.ProjectName=projectName;
+        this.sectorName=sectorName;
 
     }
 

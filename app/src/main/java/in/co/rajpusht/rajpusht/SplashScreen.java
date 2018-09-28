@@ -1,20 +1,29 @@
 package in.co.rajpusht.rajpusht;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 import android.webkit.WebView;
+import android.widget.RadioGroup;
+
+import java.util.Locale;
 
 import extras.SessionManager;
 
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 3000;
     SessionManager session;
+    Locale myLocale;
+    RadioGroup language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,8 @@ public class SplashScreen extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         session= new SessionManager(SplashScreen.this);
+
+        setLocale(session.getLangugae());
 
         new Handler().postDelayed(new Runnable() {
 
@@ -108,4 +119,38 @@ public class SplashScreen extends AppCompatActivity {
 
         return status;
     }
+
+
+    public void setLocale(String lang) {
+
+        try {
+            Log.d("Profile", "Inserted Profiel check"+" "+lang);
+
+            session.setLangugae(lang);
+            myLocale = new Locale(lang);
+            Locale.setDefault(myLocale);
+
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.setLocale(myLocale);
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            conf.setLayoutDirection(myLocale);
+//            }
+            res.updateConfiguration(conf, res.getDisplayMetrics());
+//        Intent refresh = new Intent(this, Profile.class);
+//        startActivity(refresh);
+
+            getBaseContext().getResources().updateConfiguration(conf,
+                    getBaseContext().getResources().getDisplayMetrics());
+//            finish();
+//            startActivity(getIntent());
+        }catch (Exception e){
+            Log.d("Profile", "Inserted Profiel check"+e.toString());
+        }
+//        this.setContentView(R.layout.activity_profile);
+    }
+
 }
